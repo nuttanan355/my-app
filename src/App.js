@@ -1,24 +1,23 @@
-// import logo from "./logo.svg";
+import React from "react";
 import "./App.css";
-import BottomNavBar from "./components/BottomNavBar";
-import ButtonAppBar from "./components/AppBar";
-
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import BottomNavBar from "./navigation/BottomNavBar";
+import Navbar from './navigation/Navbar';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import Home from "./pages/Home";
+import Reports from "./pages/Reports";
+import Products from "./pages/Products";
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <ButtonAppBar />
-        {/* <Route exact path="/">
-          <AppBer />
-        </Route> */}
-
-        {/* <Route exact path="/">
-          <BottomNavBar />
-        </Route> */}
-      </div>
-    </Router>
+        <Navbar />
+        <Switch>
+          <Route path='/' exact component={Home} />
+          <Route path='/reports' component={Reports} />
+          <Route path='/products' component={Products} />
+        </Switch>
+        <BottomNavBar />
+      </Router>
   );
 }
 

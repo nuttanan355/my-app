@@ -16,7 +16,7 @@ function App() {
           <Route path='/reports' component={Reports} />
           <Route path='/products' component={Products} />
         </Switch>
-        <BottomNavBar />
+        {/* <BottomNavBar /> */}
       </Router>
   );
 }

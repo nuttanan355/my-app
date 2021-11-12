@@ -6,6 +6,7 @@ import { SidebarData } from './SidebarData';
 import './Navbar.css';
 import { IconContext } from 'react-icons';
 import { Typography } from '@material-ui/core';
+import BottomNavBar from './BottomNavBar';
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
@@ -43,6 +44,9 @@ function Navbar() {
           </ul>
         </nav>
       </IconContext.Provider>
+      {/* <div>
+        <BottomNavBar/>
+      </div> */}
    </div>
   );
 }

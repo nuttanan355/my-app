@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import './css/App.css';
 import BottomNavBar from "./navigation/BottomNavBar";
 import Navbar from './navigation/Navbar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
@@ -15,6 +15,7 @@ function App() {
           <Route path='/' exact component={Home} />
           <Route path='/reports' component={Reports} />
           <Route path='/products' component={Products} />
+          {/* <Route path='' component={}/> */}
         </Switch>
         {/* <BottomNavBar /> */}
       </Router>

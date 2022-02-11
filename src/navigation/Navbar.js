@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
 import { GrouprData } from "./GrouprData";
 import "../css/Navbar.css";
 import { IconContext } from "react-icons";
 import { Typography } from "@material-ui/core";
 import BottomNavBar from "./BottomNavBar";
 import { ApplicationData } from "./ApplicationData";
+import logo_tea from "../img/logo_tea.png";
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
-  
+
   return (
     <div>
       <IconContext.Provider value={{ color: "#fff" }}>
@@ -22,18 +23,26 @@ function Navbar() {
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
           <Typography variant="h5" className="title-bars">
-            <div>TEA Market</div>
+            <div>
+              <Link to="/">
+                {/* <img src={logo_tea} width="100" height="50" /> */}
+                <div>
+                  <p>TEA Marketplance</p>
+                </div>
+              </Link>
+            </div>
           </Typography>
         </div>
+
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
           <ul className="nav-menu-items" onClick={showSidebar}>
             <li className="navbar-toggle">
               <Link to="#" className="menu-bars">
-                <AiIcons.AiOutlineClose />
+                <FaIcons.FaBars />
               </Link>
             </li>
 
-            <text className="title-bars">ประเภทสินค้า</text>
+            <p className="title-bars">ประเภทสินค้า</p>
             <hr className="title-bars"></hr>
 
             {GrouprData.map((item, index) => {
@@ -47,7 +56,8 @@ function Navbar() {
                 </li>
               );
             })}
-            <text className="title-bars"> Application</text>
+
+            <p className="title-bars"> Application</p>
             <hr className="title-bars"></hr>
 
             {ApplicationData.map((item, index) => {
@@ -61,9 +71,12 @@ function Navbar() {
                 </li>
               );
             })}
-
-
-
+            <div>
+              <div></div>
+              <p>UserName</p>
+              <hr />
+              <p>Type User</p>
+            </div>
           </ul>
         </nav>
       </IconContext.Provider>

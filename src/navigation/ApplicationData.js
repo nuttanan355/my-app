@@ -11,7 +11,7 @@ export const ApplicationData = [
     cName: 'nav-text'
   },
   {
-    title: 'Chat',
+    title: 'Support',
     path: '/support',
     icon: <IoIcons.IoMdHelpCircle />,
     cName: 'nav-text'

@@ -3,9 +3,9 @@ import './css/App.css';
 import Navbar from './navigation/Navbar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from "./pages/Home";
-import ManClothes from "./pages/groupr/ManClothes";
-import WomanClothes from "./pages/groupr/WomanClothes"
-import Bag from "./pages/groupr/Bag";
+import ManClothes from "./groupr/ManClothes";
+import WomanClothes from "./groupr/WomanClothes"
+import Bag from "./groupr/Bag";
 
 
 

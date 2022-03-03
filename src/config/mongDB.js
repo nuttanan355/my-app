@@ -1,1 +1,0 @@
-mongodb+srv://dbUser:<password>@cluster0.zovyl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority

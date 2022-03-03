@@ -2,10 +2,11 @@ import React from "react";
 import './css/App.css';
 import Navbar from './navigation/Navbar';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Home from "./pages/Home";
-import ManClothes from "./groupr/ManClothes";
-import WomanClothes from "./groupr/WomanClothes"
-import Bag from "./groupr/Bag";
+import Home from "./Home";
+import ManClothes from "./pages/ManClothes";
+import WomanClothes from "./pages/WomanClothes"
+import Bag from "./pages/Bag";
+import AddNewProduct from "./seller/AddNewProduct";
 
 
 
@@ -14,6 +15,7 @@ function App() {
     <Router>
         <Navbar />
         <Switch>
+          <AddNewProduct />
           <Route path='/' exact component={Home} />
           <Route path='/manClothes' component={ManClothes} />
           <Route path='/womanClothes' component={WomanClothes}/>

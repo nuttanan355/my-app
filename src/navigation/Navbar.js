@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import * as FaIcons from "react-icons/fa";
-import * as AiIcons from "react-icons/ai";
-import { Link, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { GrouprData } from "./GrouprData";
-import "../css/Navbar.css";
+import "../css/navbar.css";
 import { IconContext } from "react-icons";
 import { Typography } from "@material-ui/core";
-import BottomNavBar from "./BottomNavBar";
+
 import { ApplicationData } from "./ApplicationData";
-import logo_tea from "../img/logo_tea.png";
+
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
@@ -42,8 +41,8 @@ function Navbar() {
               </Link>
             </li>
 
-            <p className="title-bars">ประเภทสินค้า</p>
-            <hr className="title-bars"></hr>
+            <p className="title-bars">ประเภทสินค้า </p><hr/>
+            {/* <hr className="title-bars"></hr> */}
 
             {GrouprData.map((item, index) => {
               return (

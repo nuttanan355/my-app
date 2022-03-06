@@ -27,8 +27,8 @@ var dateKey = saveCurrentDate + "," + saveCurrentTime;
   const createProduct=(e)=>{
     e.preventDefault();
 
-    if(!useState){
-      console.error("null");
+    if(values.productName == null){
+      console.log("null");
     }else{
       // --------add data----------------
       // ----------------- push----------เจคคีย์ใหม่ให้

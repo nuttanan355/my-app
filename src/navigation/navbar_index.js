@@ -2,14 +2,12 @@ import React, { useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { GrouprData } from "./GrouprData";
-import "../css/navbar.css";
 import { IconContext } from "react-icons";
 import { Typography } from "@material-ui/core";
-
 import { ApplicationData } from "./ApplicationData";
+import "../css/navbar.css";
 
-
-function Navbar() {
+function NavbarIndex() {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => setSidebar(!sidebar);
@@ -86,4 +84,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+export default NavbarIndex;

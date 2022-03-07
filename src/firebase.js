@@ -25,6 +25,6 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 // const firebaseDB = getAnalytics(app)
-const firebaseDB = firebase.database();
+const firebaseDB = firebase.database().ref();
 // const firebaseDB = firebase.initializeApp(firebaseConfig)
 export default firebaseDB;

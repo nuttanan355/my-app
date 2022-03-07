@@ -1,9 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import firebaseDB from "../firebase";
 // import { Toast } from "bootstrap";;
 // import {dateKey} from '../dataKey';
 
-function AddNewProduct() {
+var d = new Date();
+var saveCurrentDate = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear();
+var saveCurrentTime = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+var dateKey = saveCurrentDate + "," + saveCurrentTime;
+
+// const initialState ={
+//   productName: "",
+//   productCategory: "",
+//   productPrice: "",
+//   productDetails: "",
+//   produtcCost1: "",
+//   produtcCost2: "",
+//   produtcCost3: "",
+// }
+
+function EditNewProduct() {
+  // const [state ,setState] =useState({initialState});
   const [values, setValues] = useState({
     productName: "",
     productCategory: "",
@@ -13,18 +31,42 @@ function AddNewProduct() {
     produtcCost2: "",
     produtcCost3: "",
   });
+
+  // const history = useHistory();
+  const {id} =useParams();
+
+  useEffect(()=>{
+firebaseDB.child("product").child(id).on("value", (snapshot)=>{
+  if(snapshot.val()!==null){
+    setValues({...snapshot.val()});
+  }else{
+    setValues({});
+  }
+});
+return()=>{
+  setValues({});
+};
+  },[id]);
+
+  // useEffect(()=>{
+  //   if(id){
+  //     setState({...values[id]});
+  //   }else{
+  //     setState({...initialState});
+  //   }
+  //   return()=>{
+  //     setState({...initialState});
+  //   };
+  // },[id,values]);
+
   const handleOnChange = (e) => {
-    // console.log(e.target.name);
-    // console.log(e.target.value);
-    setValues({ ...values, [e.target.name]: e.target.value });
+    const {name , value}=e.target;
+    setValues({ ...values, [name]:value});
   };
 
-  var d = new Date();
-var saveCurrentDate = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear();
-var saveCurrentTime = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
-var dateKey = saveCurrentDate + "," + saveCurrentTime;
 
-  const createProduct=(e)=>{
+
+  const updateProduct=(e)=>{
     e.preventDefault();
 
     if(values.productName == null){
@@ -33,20 +75,20 @@ var dateKey = saveCurrentDate + "," + saveCurrentTime;
       // --------add data----------------
       // ----------------- push----------เจคคีย์ใหม่ให้
       // ----------------- set----------ใส่ค่าที่มีอยู่ลงใน child
-      firebaseDB.ref("product").child(dateKey).set(values,(error)=>{
+      firebaseDB.child("product").child(id).update(values,(error)=>{
         if(error){
           alert.error(error);
         }
         else{
-          console.log("add data success");
+          console.log("edit data success");
         }
     });
   }
 }
-  
+ 
   return (
     <div className="container">
-      <h1>Add New Product</h1>
+      <h1>Edit New Product</h1>
       <hr />
       <div className="container">
         <form>
@@ -58,8 +100,9 @@ var dateKey = saveCurrentDate + "," + saveCurrentTime;
               name="productName"
               className="form-control"
               placeholder="ชื่อสินค้า"
-              value={values.name}
+              value={values.productName}
               onChange={handleOnChange}
+            
             />
           </div>
 
@@ -71,7 +114,7 @@ var dateKey = saveCurrentDate + "," + saveCurrentTime;
               name="productCategory"
               className="form-control"
               placeholder="ประเภทสินค้า"
-              value={values.name}
+              value={values.productCategory}
               onChange={handleOnChange}
             />
             <datalist id="productCategorys">
@@ -100,7 +143,7 @@ var dateKey = saveCurrentDate + "," + saveCurrentTime;
               name="productPrice"
               className="form-control"
               placeholder="ราคา"
-              value={values.name}
+              value={values.productPrice}
               onChange={handleOnChange}
             />
           </div>
@@ -198,7 +241,7 @@ var dateKey = saveCurrentDate + "," + saveCurrentTime;
           </div> */}
 
           <div className="row mt-3 ">
-            <button type="button" className="btn btn-primary col mx-3" onClick={createProduct} >
+            <button type="button" className="btn btn-primary col mx-3" onClick={updateProduct} >
               Submit
             </button>
             <button type="button" className="btn btn-danger col mx-3">
@@ -215,4 +258,4 @@ var dateKey = saveCurrentDate + "," + saveCurrentTime;
     </div>
   );
 }
-export default AddNewProduct;
+export default EditNewProduct;

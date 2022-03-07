@@ -3,6 +3,11 @@ import firebaseDB from "../firebase";
 // import { Toast } from "bootstrap";;
 // import {dateKey} from '../dataKey';
 
+var d = new Date();
+var saveCurrentDate = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear();
+var saveCurrentTime = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+var dateKey = saveCurrentDate + "," + saveCurrentTime;
+
 function AddNewProduct() {
   const [values, setValues] = useState({
     productName: "",
@@ -19,10 +24,7 @@ function AddNewProduct() {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  var d = new Date();
-var saveCurrentDate = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear();
-var saveCurrentTime = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
-var dateKey = saveCurrentDate + "," + saveCurrentTime;
+  
 
   const createProduct=(e)=>{
     e.preventDefault();
@@ -33,7 +35,7 @@ var dateKey = saveCurrentDate + "," + saveCurrentTime;
       // --------add data----------------
       // ----------------- push----------เจคคีย์ใหม่ให้
       // ----------------- set----------ใส่ค่าที่มีอยู่ลงใน child
-      firebaseDB.ref("product").child(dateKey).set(values,(error)=>{
+      firebaseDB.child("product").child(dateKey).set(values,(error)=>{
         if(error){
           alert.error(error);
         }
@@ -58,7 +60,7 @@ var dateKey = saveCurrentDate + "," + saveCurrentTime;
               name="productName"
               className="form-control"
               placeholder="ชื่อสินค้า"
-              value={values.name}
+              // value={values.name}
               onChange={handleOnChange}
             />
           </div>
@@ -71,7 +73,7 @@ var dateKey = saveCurrentDate + "," + saveCurrentTime;
               name="productCategory"
               className="form-control"
               placeholder="ประเภทสินค้า"
-              value={values.name}
+              // value={values.name}
               onChange={handleOnChange}
             />
             <datalist id="productCategorys">
@@ -100,7 +102,7 @@ var dateKey = saveCurrentDate + "," + saveCurrentTime;
               name="productPrice"
               className="form-control"
               placeholder="ราคา"
-              value={values.name}
+              // value={values.name}
               onChange={handleOnChange}
             />
           </div>
@@ -207,11 +209,7 @@ var dateKey = saveCurrentDate + "," + saveCurrentTime;
           </div>
         </form>
       </div>
-      <p className="">
-        name :{values.productName} <br />
-        category :{values.productCategory} <br/>
-        price :{values.productPrice}
-      </p>
+      
     </div>
   );
 }

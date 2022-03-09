@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import firebaseDB from "../firebase";
+import {firebaseDB} from "../firebase";
 // import { Toast } from "bootstrap";;
 // import {dateKey} from '../dataKey';
 
@@ -148,7 +148,7 @@ return()=>{
             />
           </div>
 
-          {/* <div className="form-group mt-3">
+          <div className="form-group mt-3">
             <label htmlFor="productDetails">รายละเอียด</label>
             <textarea
               id="productDetails"
@@ -238,7 +238,7 @@ return()=>{
               className="form-control col"
               placeholder="บาท"
             />
-          </div> */}
+          </div>
 
           <div className="row mt-3 ">
             <button type="button" className="btn btn-primary col mx-3" onClick={updateProduct} >

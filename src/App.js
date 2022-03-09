@@ -10,8 +10,12 @@ import AddNewProduct from "./seller/AddNewProduct";
 import EditNewProduct from "./seller/EditNewProduct";
 import ViewNewProduct from "./seller/ViewNewProduct"
 import NavbarSeller from './navigation/navbar_seller'
+import HomeUser from './user/HomeUser'
 // import formAddNewProduct from "./components/formAddNewProduct";
 
+const chkUserType=()=>{
+
+}
 
 function App() {
   return (
@@ -19,10 +23,10 @@ function App() {
         <NavbarIndex />
         {/* <NavbarSeller /> */}
         <AddNewProduct />
-        <Home />
-        <Switch>
-         <Route path={"/EditData/:id"} component={EditNewProduct} />
-         <Route path={"/ViewData/:id"} component={ViewNewProduct} />
+        {/* <Home /> */}
+        {/* <Switch> */}
+         {/* <Route path={"/EditData/:id"} component={EditNewProduct} /> */}
+         {/* <Route path={"/ViewData/:id"} component={ViewNewProduct} /> */}
         {/* <Route path='/' exact component={AddNewProduct} /> */}
           {/* <AddNewProduct /> */}
           {/* <formAddNewProduct /> */}
@@ -31,7 +35,7 @@ function App() {
           <Route path='/womanClothes' component={WomanClothes}/>
           <Route path='/bag' component={Bag} /> */}
         
-        </Switch>
+        {/* </Switch> */}
       
       </Router>
   );

@@ -1,7 +1,7 @@
 import React from "react";
 import "./css/pages.css";
 import "./css/home.css";
-import firebaseDB from "./firebase";
+import {firebaseDB} from "./firebase";
 import { Link } from "react-router-dom";
 import { useState,useEffect } from "react";
 

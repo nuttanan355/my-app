@@ -16,11 +16,11 @@ function AddNewProduct() {
     productName: "",
     productCategory: "",
     productPrice: "",
-    productImg: '[]',
+    productImg: [],
     productDetails: "",
-    produtcCost1: "",
-    produtcCost2: "",
-    produtcCost3: "",
+    produtcCost1: [],
+    produtcCost2: [],
+    produtcCost3: [],
   });
 
   const handleOnChange = (e) => {
@@ -28,7 +28,7 @@ function AddNewProduct() {
   };
 
   const createProduct = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     if (!useState) {
       console.error("null");
     } else {
@@ -44,13 +44,14 @@ function AddNewProduct() {
             console.log("add data success");
           }
         });
-    }
+    };
   };
 
   // ----------------EDN ADD DATA------------------------------
 
   // -----------ADD IMAGE----------------------------
   const [Images, setImages] = useState([]);
+  const [Upload,setUpload] = useState([]);
 
   const ImgOnChange = (e) => {
     const selectedFIles = [];
@@ -65,15 +66,12 @@ function AddNewProduct() {
   };
 
   const uploadFiles = (targetFilesObject) => {
-    // ims=targetFilesObject;
-    targetFilesObject.map((files) => {
-      const sotrageRef = ref(
-        firebaseStorage,
-        `product/${dateKey}/${files.name}`
-      );
+
+    const dowUrls = [];
+     targetFilesObject.map((files)=> {
+      const sotrageRef = ref(firebaseStorage,`product/${dateKey}/${files.name}`);
       const uploadTask = uploadBytesResumable(sotrageRef, files);
-      // const storageRef = firebaseStorage.ref(`product/${dateKey}/${file.name}`);
-      // const uploadTask = uploadBytesResumable(storageRef,file.name);
+
       uploadTask.on(
         "state_changed",
         (snapshot) => {
@@ -83,42 +81,24 @@ function AddNewProduct() {
           // setProgress(prog);
         },
         (error) => console.log(error),
-        () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+        async () => {
+          await getDownloadURL(uploadTask.snapshot.ref)
+          .then((downloadURL) => {
             console.log("File available at", downloadURL);
-            setValues({ ...values, productImg: [downloadURL] });
-            console.log(values.productImg);
+            // dowURLs = [...e.target.downloadURL]
+            // dowURLs.map((downloadURL)=>{})
+           return dowUrls.push(downloadURL);
           });
+          
         }
+
       );
-     
-     
     }
+
     );
-   
+    setValues({...values,productImg:dowUrls});
     // createProduct();
   };
-
-  // const uploadFiles1 = () => {
-  //  const storageRef = firebaseStorage.ref(`product/${dateKey}/${files.name}`);
-  //   const uploadTask = uploadBytesResumable(storageRef,files.name);
-  //      uploadTask.on('STATE_CHANGED',
-  //        snapshot => {
-  //          const progress = (
-  //            (snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-  //            console.log(`Progress: ${progress}%`);
-  //          if (snapshot.state === 'RUNNING') {
-  //             console.log('file uploading...')
-  //          }
-  //           // ...etc
-  //        },
-  //        error => console.log(error.code),
-  //        complete => {
-  //          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL)=>{
-  //           console.log(downloadURL);
-  //          });
-  //        });
-  //  }
 
   //  const onUploadSubmission1 = e => {
   //   e.preventDefault(); // prevent page refreshing
@@ -167,6 +147,11 @@ function AddNewProduct() {
               multiple
             />
 
+{/* {values.productImg.map(i=>(   <p>
+{i.value}
+</p>)
+
+)} */}
             {/* {Images.map((url, i) => (
               <div key={i}>
                 <a href={url} target="_blank">
@@ -332,13 +317,7 @@ function AddNewProduct() {
           </div>
 
           <div className="row mt-3 ">
-            <button
-              type="button"
-              // type="submit"
-              className="btn btn-primary col mx-3"
-              // onClick={createProduct}
-              // onClick={formHandler}
-            >
+            <button type="button" className="btn btn-primary col mx-3" onClick={createProduct}>
               Submit
             </button>
             <button type="button" className="btn btn-danger col mx-3">

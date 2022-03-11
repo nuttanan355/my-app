@@ -1,12 +1,12 @@
 import React from "react";
-import "./css/pages.css";
-import "./css/home.css";
-import {firebaseDB} from "./firebase";
+import "../css/pages.css";
+import "../css/home.css";
+import {firebaseDB} from "../firebase";
 import { Link } from "react-router-dom";
 import { useState,useEffect } from "react";
 
 
-function Home() {
+function HomeSeller() {
 
   const [values, setValues] = useState({});
   // const [sortedData, setSortedData] = useState([]);
@@ -42,19 +42,8 @@ function Home() {
   };
 
   return (
-    // <div GrouprData="div-main">
-    //   <h2>สินค้าที่ได้รับความนิยม</h2>
-    //   <div>
-    //     <h2>หมวดหมู่</h2>
-    //   </div>
-    //   <div>
-    //     <h2>ทำไมต้องเลือกซื้อ-ขายของออนไลน์ที่ \n Tea Marketplace</h2>
-    //     <h1>มั่นใจได้ทุกการขาย</h1>
-    //     <h2>ไม่ต้องกังวลเรื่องเช็คเครดิตปิดการขายง่ายขึ้น</h2>
-    //   </div>
-    // </div>
-    
-    <div className="container mx-auto">
+    <div className="container sm-auto">
+        <h1>HomeSeller</h1>
     <table className="styled-table">
       <thead>
         <tr>
@@ -84,9 +73,9 @@ function Home() {
                   >
                     Delete
                   </button>
-                  {/* <Link to={`/ViewData/${id}`}>
+                  <Link to={`/ViewData/${id}`}>
                     <button className="btn btn-view">View</button>
-                  </Link> */}
+                  </Link>
                 </td>
               </tr>
             );
@@ -99,4 +88,16 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomeSeller;
+
+// <div GrouprData="div-main">
+    //   <h2>สินค้าที่ได้รับความนิยม</h2>
+    //   <div>
+    //     <h2>หมวดหมู่</h2>
+    //   </div>
+    //   <div>
+    //     <h2>ทำไมต้องเลือกซื้อ-ขายของออนไลน์ที่ \n Tea Marketplace</h2>
+    //     <h1>มั่นใจได้ทุกการขาย</h1>
+    //     <h2>ไม่ต้องกังวลเรื่องเช็คเครดิตปิดการขายง่ายขึ้น</h2>
+    //   </div>
+    // </div>

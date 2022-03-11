@@ -9,8 +9,12 @@ import Bag from "./pages/Bag";
 import AddNewProduct from "./seller/AddNewProduct";
 import EditNewProduct from "./seller/EditNewProduct";
 import ViewNewProduct from "./seller/ViewNewProduct"
-import NavbarSeller from './navigation/navbar_seller'
-import HomeUser from './user/HomeUser'
+import NavbarSeller from './navigation/navbar_seller';
+import Navs from './navigation/navs';
+import HomeUser from './user/HomeUser';
+import HomeSeller from "./seller/HomeSeller";
+import HomeAdmin from './admin/HomeAdmin';
+import AddImage from "./seller/AddImage";
 // import formAddNewProduct from "./components/formAddNewProduct";
 
 const chkUserType=()=>{
@@ -20,14 +24,25 @@ const chkUserType=()=>{
 function App() {
   return (
     <Router>
-        <NavbarIndex />
-        {/* <NavbarSeller /> */}
-        <AddNewProduct />
+
+      {/* <Navs /> */}
+      {/* <Switch> */}
+        {/* <Route path={'/'} component={HomeUser} /> */}
+        {/* <Route path={'/HomeSeller'}  component={HomeSeller} /> */}
+        {/* <Route path={'/HomeAdmin'}  component={HomeAdmin}/> */}
         {/* <Home /> */}
-        {/* <Switch> */}
-         {/* <Route path={"/EditData/:id"} component={EditNewProduct} /> */}
-         {/* <Route path={"/ViewData/:id"} component={ViewNewProduct} /> */}
-        {/* <Route path='/' exact component={AddNewProduct} /> */}
+      {/* </Switch> */}
+        <NavbarIndex />
+        <AddImage />
+        {/* <NavbarSeller /> */}
+        {/* <AddNewProduct /> */}
+        <Home />
+
+        <Switch>
+       {/* < Route path='/' exact component={AddNewProduct} /> */}
+         <Route path={"/EditData/:id"} component={EditNewProduct} />
+         <Route path={"/ViewData/:id"} component={ViewNewProduct} />
+
           {/* <AddNewProduct /> */}
           {/* <formAddNewProduct /> */}
           {/* <Route path='/' exact component={Home} />
@@ -35,7 +50,7 @@ function App() {
           <Route path='/womanClothes' component={WomanClothes}/>
           <Route path='/bag' component={Bag} /> */}
         
-        {/* </Switch> */}
+        </Switch>
       
       </Router>
   );

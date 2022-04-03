@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import { render } from "react-dom";
-import { storage } from "../firebase";
-import { firebaseStorage, firebaseDB } from "../firebase";
+import { storage } from "../components/firebase";
+import { firebaseStorage, firebaseDB } from "../components/firebase";
 
 var d = new Date();
 var saveCurrentDate = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear();
@@ -77,6 +77,7 @@ const AddImage = () => {
     // setValues({...values,productImg:dowloadUrl});
     Promise.all(promises)
       .then(async() => {
+        
         console.log(values.productImg);
         createProduct();
       })

@@ -1,24 +1,24 @@
 import React from "react";
-import Nav from 'react-bootstrap/Nav';
+import { Container, Navbar } from "react-bootstrap";
 
 function NavbarSeller() {
   return (
-    <Nav fill variant="tabs" defaultActiveKey="/home">
-  <Nav.Item>
-    <Nav.Link href="/home">HOME</Nav.Link>
-  </Nav.Item>
-  <Nav.Item>
-    <Nav.Link eventKey="link-1">ADD</Nav.Link>
-  </Nav.Item>
-  <Nav.Item>
-    <Nav.Link eventKey="link-2">Link</Nav.Link>
-  </Nav.Item>
-  <Nav.Item>
-    <Nav.Link eventKey="disabled" disabled>
-      Disabled
-    </Nav.Link>
-  </Nav.Item>
-</Nav>
+    <div>
+    <Navbar bg="dark" variant="dark">
+      <Container>
+        <Navbar.Brand href="/HomeAdmin">
+          <img
+            alt=""
+            src="../../img/logo_kmutnb.png"
+            // width="30"
+            // height="30"
+            className="d-inline-block align-top"
+          />{" "}
+          HomeSeller
+        </Navbar.Brand>
+      </Container>
+    </Navbar>
+  </div>
   );
 }
 export default NavbarSeller;

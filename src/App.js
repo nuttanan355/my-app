@@ -1,54 +1,61 @@
 import React from "react";
 import './css/App.css';
-import NavbarIndex from './navigation/navbar_index';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Home from "./Home";
-import ManClothes from "./pages/ManClothes";
-import WomanClothes from "./pages/WomanClothes"
-import Bag from "./pages/Bag";
-import AddNewProduct from "./seller/AddNewProduct";
-import EditNewProduct from "./seller/EditNewProduct";
-import ViewNewProduct from "./seller/ViewNewProduct"
-import NavbarSeller from './navigation/navbar_seller';
-import Navs from './navigation/navs';
-import HomeUser from './user/HomeUser';
-import HomeSeller from "./seller/HomeSeller";
-import HomeAdmin from './admin/HomeAdmin';
-import AddImage from "./seller/AddImage";
+// import Home from "./Home";
+// import ManClothes from "./pages/ManClothes";
+// import WomanClothes from "./pages/WomanClothes"
+// import Bag from "./pages/Bag";
+// import AddNewProduct from "./seller/AddNewProduct";
+// import EditNewProduct from "./seller/EditNewProduct";
+// import ViewNewProduct from "./seller/ViewNewProduct"
+// import NavbarSeller from './navigation/navbar_seller';
+import Navs from './navigation/navsTest';
+import HomeUser from './components/user/HomeUser';
+import HomeSeller from "./components/seller/HomeSeller";
+import HomeAdmin from './components/admin/HomeAdmin';
+import AddNewProduct from './components/seller/AddNewProduct';
+// import AddImage from "./seller/AddImage";
 // import formAddNewProduct from "./components/formAddNewProduct";
 
-const chkUserType=()=>{
+// const chkUserType=()=>{
+// return(
+  
+// );
+// }
 
-}
 
 function App() {
   return (
     <Router>
 
-      {/* <Navs /> */}
+      <Navs />
       {/* <Switch> */}
         {/* <Route path={'/'} component={HomeUser} /> */}
         {/* <Route path={'/HomeSeller'}  component={HomeSeller} /> */}
         {/* <Route path={'/HomeAdmin'}  component={HomeAdmin}/> */}
         {/* <Home /> */}
       {/* </Switch> */}
-        <NavbarIndex />
-        <AddImage />
+        {/* <NavbarIndex /> */}
+        {/* <AddImage /> */}
         {/* <NavbarSeller /> */}
         {/* <AddNewProduct /> */}
-        <Home />
+        {/* <Home /> */}
+    
+        {/* <Switch>
+
+        </Switch> */}
 
         <Switch>
        {/* < Route path='/' exact component={AddNewProduct} /> */}
-         <Route path={"/EditData/:id"} component={EditNewProduct} />
-         <Route path={"/ViewData/:id"} component={ViewNewProduct} />
+         {/* <Route path={"/EditData/:id"} component={EditNewProduct} /> */}
+         {/* <Route path={"/ViewData/:id"} component={ViewNewProduct} /> */}
 
           {/* <AddNewProduct /> */}
           {/* <formAddNewProduct /> */}
-          {/* <Route path='/' exact component={Home} />
-          <Route path='/manClothes' component={ManClothes} />
-          <Route path='/womanClothes' component={WomanClothes}/>
-          <Route path='/bag' component={Bag} /> */}
+          <Route path='/' exact component={HomeUser} />
+          <Route path='/HomeSeller' component={HomeSeller} />
+          <Route path='/HomeAdmin' component={HomeAdmin}/>
+          <Route path='/AddNewProduct' component={AddNewProduct} />
         
         </Switch>
       

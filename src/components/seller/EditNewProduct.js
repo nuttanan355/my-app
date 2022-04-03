@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import {firebaseDB} from "../firebase";
+import {firebaseDB} from "../components/firebase";
 // import { Toast } from "bootstrap";;
 // import {dateKey} from '../dataKey';
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { firebaseDB, firebaseStorage } from "../firebase";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 // import { storage } from "./firebase";
 
 var d = new Date();
@@ -51,7 +51,7 @@ function AddNewProduct() {
 
   // -----------ADD IMAGE----------------------------
   const [Images, setImages] = useState([]);
-  const [Upload,setUpload] = useState([]);
+  // const [Upload,setUpload] = useState([]);
 
   const ImgOnChange = (e) => {
     const selectedFIles = [];
@@ -68,7 +68,7 @@ function AddNewProduct() {
   const uploadFiles = (targetFilesObject) => {
 
     const dowUrls = [];
-     targetFilesObject.map((files)=> {
+     targetFilesObject.forEach((files)=> {
       const sotrageRef = ref(firebaseStorage,`product/${dateKey}/${files.name}`);
       const uploadTask = uploadBytesResumable(sotrageRef, files);
 
@@ -91,7 +91,6 @@ function AddNewProduct() {
           });
           
         }
-
       );
     }
 
@@ -165,7 +164,7 @@ function AddNewProduct() {
                 key={i}
                 style={{ width: "300px" }}
                 src={url}
-                alt="firebase-image"
+                alt="firebase-images"
               />
             ))}
           </div>

@@ -14,23 +14,19 @@ function NavbarIndex() {
 
   return (
     <div>
-      <IconContext.Provider value={{ color: "#fff" }}>
-        <div className="navbar">
-          <Link to="#" className="menu-bars">
+      <IconContext.Provider value={{ color: "#ffffff"}}>
+        <div className="navbar" >
+          <Link to="#" className="menu-bars" style={{align:'middle'}}>
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
-          <Typography variant="h5" className="title-bars">
-            <div>
-              <Link to="/">
+          <Typography variant="h5" className="title-bars" >
+            <Link to="#"> TEA Marketplance
+              {/* <Link to="/"> */}
                 {/* <img src={logo_tea} width="100" height="50" /> */}
-                <div>
-                  <p>TEA Marketplance</p>
-                </div>
-              </Link>
-            </div>
+              {/* </Link> */}
+            </Link>
           </Typography>
         </div>
-
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
           <ul className="nav-menu-items" onClick={showSidebar}>
             <li className="navbar-toggle">
@@ -38,7 +34,7 @@ function NavbarIndex() {
                 <FaIcons.FaBars />
               </Link>
             </li>
-
+            <br/>
             <p className="title-bars">ประเภทสินค้า </p><hr/>
             {/* <hr className="title-bars"></hr> */}
 
@@ -53,7 +49,7 @@ function NavbarIndex() {
                 </li>
               );
             })}
-
+            <br/><br/>
             <p className="title-bars"> Application</p>
             <hr className="title-bars"></hr>
 

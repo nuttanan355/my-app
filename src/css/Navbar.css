@@ -1,12 +1,12 @@
 .navbar {
-  background-color: #060b26;
+  background-color: #00B952;
   height: 80px;
   display: flex;
   /* justify-content: space-between; */
   /* align-items: center; */
 }
 .navbar-bottom{
-  background-color: #060b26;
+  background-color: #00B952;
   height: 80px;
   display: flex;
 }
@@ -15,6 +15,7 @@
   margin-left: 2vw;
   font-size: 2rem;
   background: none;
+  
 }
 .title-bars{
   flex-grow: 2;
@@ -24,15 +25,16 @@ text-align: center;
 }
 
 .nav-menu {
-  background-color: #060b26;
-  width: 250px;
-  height: 100vh;
+  background-color: #005835;
+  width: 18%;
+  height: 100%;
   display: flex;
   justify-content: center;
   position: fixed;
   top: 0;
   left: -100%;
   transition: 850ms;
+  
 }
 
 .nav-menu.active {
@@ -64,13 +66,16 @@ text-align: center;
 .nav-text a:hover {
   background-color: #1a83ff;
 }
+.menu-bars a:hover {
+  background-color: #1a83ff;
+}
 
 .nav-menu-items {
   width: 100%;
 }
 
 .navbar-toggle {
-  background-color: #060b26;
+  background-color: #005835;
   width: 100%;
   height: 80px;
   display: flex;

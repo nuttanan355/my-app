@@ -40,7 +40,6 @@ function ShowDataSeller(){
   
     return (
       <div>
-    
         <div className="container sm-auto">
         <table className="styled-table">
           <thead>

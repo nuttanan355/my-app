@@ -2,59 +2,73 @@ import React from "react";
 import "../../css/pages.css";
 import "../../css/home.css";
 import NavbarSeller from "../../navigation/navbar_seller";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-// import Navs from "../../navigation/navsTest";
-// import AddNewProduct from "./AddNewProduct";
-// import { BrowserRouter } from "react-router-dom";
+import * as FaIcons from "react-icons/fa";
+import * as AiIcons from "react-icons/ai";
+import { Link } from "react-router-dom";
+// import { Button } from "react-bootstrap";
+// import { Link } from "react-router-dom";
 
 function HomeSeller() {
   return (
     <div>
       <NavbarSeller />
       <div className="container">
-        <div className="row mt-30">
+        <div className="row mt-3">
           <div className="col-md-10">
             <h1>ร้านค้าของฉัน</h1>
           </div>
-          {/* <div className="col-md-2"> */}
-            <a
-              name=""
-              id=""
-              className="btn btn-primary btn-ls col md-2"
-              href="/AddNewProduct"
-            >
-              ลงประกาศขาย
-            </a>
-          {/* </div> */}
+          <a
+            href="/AddNewProduct"
+            className="btn btn-primary btn-lg col"
+            role="button"
+          >
+            ลงขายสินค้า
+          </a>
         </div>
         <hr />
-        <div className="row mt-30">
-          <div className="col" id="stateProduct">
-          <FontAwesomeIcon icon="fa-duotone fa-box-open-full fa-10x" />
-            <p className="text-center">ตรวจสอบสถานะคำสั่งซื้อ</p>
+        
+        <div className="row">
+          <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div1">
+            <div className="text-center">
+              <FaIcons.FaBox size={200} />
+            </div>
+            <p className="text-center mt-3 h4">ตรวจสอบสถานะคำสั่งซื้อ</p>
           </div>
-          <div className="col" id="div2">
-          <FontAwesomeIcon icon="fa-solid fa-square-list fa-10x" />
-          <i class="fa-solid fa-envelope-open-dollar fa-50x"></i>
-            <p className="text-center">ประกาศการขาย</p>
+          <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div2">
+            <Link to="/AddNewProduct">
+              <div className="text-center">
+                <FaIcons.FaBoxes size={200} />
+              </div>
+              <p className="text-center mt-3 h4">ประกาศการขาย</p>
+            </Link>
           </div>
-          <div className="col" id="div3">
-          <FontAwesomeIcon icon="fa-solid fa-envelope-open-dollar" />
-            <p className="text-center">ตรวจสอบการโอนเงินจากระบบ</p>
+          <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div3">
+            <div className="text-center">
+              <FaIcons.FaShoppingBasket size={200} />
+            </div>
+            <p className="text-center mt-3 h4">ตรวจสอบการโอนเงินจากระบบ</p>
           </div>
-        </div>
-        <div className="row mt-30">
-          <div className="col" id="stateProduct">
-          <FontAwesomeIcon icon="fa-duotone fa-box-open-full fa-10x" />
-            <p className="text-center">บริการสินค้าแนะนำ</p>
+          <div class="w-100"></div>
+          <div
+            className="col-lg bg-warning rounded-3 p-3 mx-3 my-3"
+            id="div4"
+          >
+            <div className="text-center">
+              <AiIcons.AiFillLike size={200} />
+            </div>
+            <p className="text-center mt-3 h4">บริการสินค้าแนะนำ</p>
           </div>
-          <div className="col" id="div2">
-          <FontAwesomeIcon icon="fa-solid fa-square-list fa-10x" />
-            <p className="text-center">เลขบัญชีผู้ขาย</p>
+          <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div5">
+            <div className="text-center">
+              <FaIcons.FaRegCreditCard size={200} />
+            </div>
+            <p className="text-center mt-3 h4">เลขบัญชีผู้ขาย</p>
           </div>
-          <div className="col" id="div3">
-            <p className="text-center">รายการคำสั่งซื้อ Packgate</p>
+          <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div6">
+            <div className="text-center">
+              <FaIcons.FaClipboardList size={200} />
+            </div>
+            <p className="text-center mt-3 h4">รายการคำสั่งซื้อ Packgate</p>
           </div>
         </div>
       </div>

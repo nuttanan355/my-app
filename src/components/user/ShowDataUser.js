@@ -1,18 +1,17 @@
 import React from "react";
 import { firebaseDB } from "../firebase";
 import { useState, useEffect } from "react";
-
+import { Card } from "react-bootstrap";
 function ShowDataUser() {
   const [values, setValues] = useState({});
-  // const [images, setImages] = useState({});
+  // const [images, setImages] = useState([]);
   // const [sort, setSort] = useState(false);
-
-
 
   useEffect(() => {
     firebaseDB.child("product").on("value", (snapshot) => {
       if (snapshot.val() !== null) {
         setValues({ ...snapshot.val() });
+        // console.log(snapshot.child('productImg'));
       } else {
         setValues({});
       }
@@ -25,67 +24,101 @@ function ShowDataUser() {
 
   // useEffect(()=>{
   //   firebaseDB.child('product').child('productImg').on('value',(snapshot)=>{
-  //     if(snapshot)
-  //   })
+  //     if(snapshot.val()!==null){
+  //       setImages({...snapshot.val()})
+  //     }else{
+  //       setImages({});
+
+  //     }
+  //   });
+  //   return()=>{
+  //     setImages({});
+  //   }
   // },[]);
 
   return (
-    <div>
+    <div className="container" >
       <div className="row">
-      {Object.keys(values).map((id, index) => {
-        return (
-          <div className="col-md-4">
-            <div className="card mb-4 box-shadow">
-              <image
-                id="imgShow"
-                className="card-img-top"
-                // style="height:200px;"
-                style={{ height: "200px" }}
-                alt="Product Image"
-                src=""
-              />
-              <div className="card-body">
-                <div>
+        {Object.keys(values).map((id,index) => {
+          return (
+            <div className="col-md-4">
+
+                <Card
+                  style={{
+                    width: "350px",
+                    backgrounds: "white",
+                    margin: "10%",
+                    padding: "5%",
+                  }}
+                >
+                  <img
+                    id="imgShow"
+                    className="card-img-top"
+                    // style="height:200px;"
+                    style={{height:"350px"}}
+                    alt="Product Images"
+                    src={values[id].productImg[1]}
+                  />
+                  <Card.Body>
+                    <Card.Title>{values[id].productName}</Card.Title>
+                    <Card.Text>{values[id].productCategory}</Card.Text>
+                    <Card.Text style={{align:'right'}} >{values[id].productPrice} บาท</Card.Text>
+                  </Card.Body>
+                </Card>
+
+              {/* <img
+                  id="imgShow"
+                  className="card-img-top"
+                  // style="height:200px;"
+                  style={{ height: "200px" }}
+                  alt="Product Images"
+                  src={values[id].productImg[1]}
+                /> */}
+              {/* <div className="card-body">
+                  <div>
+                    <p
+                      id="txtShowTitle"
+                      className="text-center font-weight-bold"
+                      style={{ fontSize: "18px" }}
+                    ></p>
+                  </div>
+                  <div>
+                    <p
+                      id="txtShowTitle"
+                      className="text-center font-weight-bold"
+                      style={{ fontSize: "18px" }}
+                    >
+                      {values[id].productCategory}
+                    </p>
+                  </div>
+                  {/* <div>
                   <p
                     id="txtShowTitle"
                     className="text-center font-weight-bold"
                     style={{ fontSize: "18px" }}
                   >
-                    {values[id].productName}
+                    {values[id].productImg}
                   </p>
-                </div>
-                <div>
-                  <p
-                    id="txtShowTitle"
-                    className="text-center font-weight-bold"
-                    style={{ fontSize: "18px" }}
-                  >
-                    {values[id].productCategory}
-                  </p>
-                </div>
-                <div>
-                  <p
-                    id="txtShowTitle"
-                    className="text-center font-weight-bold"
-                    style={{ fontSize: "18px" }}
-                  >
-                    {values[id].productPrice}
-                  </p>
-                </div>
-              </div>
+                </div> */}
+              {/* <div>
+                    <p
+                      id="txtShowTitle"
+                      className="text-center font-weight-bold"
+                      style={{ fontSize: "18px" }}
+                    >
+                      {values[id].productPrice}
+                    </p>
+                  </div> */}
             </div>
-          </div>
-        );
-      })}
-</div>
- 
+
+            // </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
 export default ShowDataUser;
-
-
-
 
 // <table className="styled-table">
 // <thead>

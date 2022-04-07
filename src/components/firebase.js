@@ -30,7 +30,8 @@ firebase.initializeApp(firebaseConfig);
 // const firebaseDB = getAnalytics(app)
 const firebaseDB = firebase.database().ref();
 const firebaseStorage = firebase.storage();
-const auth = firebase.auth();
+
+//const auth = firebase.auth();
 
 // for Login
 /* const firestore = firebase.firestore();

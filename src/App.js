@@ -18,6 +18,12 @@ import AddNewProduct from './components/seller/AddNewProduct';
 // import AddImage from "./seller/AddImage";
 // import formAddNewProduct from "./components/formAddNewProduct";
 
+// pages
+import Home from './components/Login/Home'
+import Dashboard from './components/Login/Dashboard'
+import LogIn from './components/Login/LogIn'
+import SignUp from './components/Login/SignUp'
+import { AuthProvider } from './components/Login/Auth'
 // const chkUserType=()=>{
 // return(
   
@@ -57,7 +63,9 @@ function App() {
           <Route path='/HomeSeller' component={HomeSeller} />
           <Route path='/HomeAdmin' component={HomeAdmin}/>
           <Route path='/AddNewProduct' component={AddNewProduct} />
-        
+        {/*   <Route path='/Home' component={Home} />
+           */}
+           
         </Switch>
       
       </Router>

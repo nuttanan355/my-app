@@ -20,10 +20,17 @@ function NavbarIndex() {
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
           <Typography variant="h5" className="title-bars" >
-            <Link to="#"> TEA Marketplance
+            
+            <Link to="#"> TEA Marketplance 
               {/* <Link to="/"> */}
                 {/* <img src={logo_tea} width="100" height="50" /> */}
               {/* </Link> */}
+            </Link>
+
+            <Link to="../components/LoginandRegister/Home.js"> 
+            
+            Login
+            
             </Link>
           </Typography>
         </div>

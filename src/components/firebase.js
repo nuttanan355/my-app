@@ -4,8 +4,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 import 'firebase/compat/storage'
 // import 'firebase/compat/auth';
-import 'firebase/auth';
-import 'firebase/firestore';
+
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -30,38 +29,5 @@ firebase.initializeApp(firebaseConfig);
 // const firebaseDB = getAnalytics(app)
 const firebaseDB = firebase.database().ref();
 const firebaseStorage = firebase.storage();
-
-//const auth = firebase.auth();
-
-// for Login
-/* const firestore = firebase.firestore();
-const firebaseDB = firebase.initializeApp(firebaseConfig)
-
-export const createUserDocument = async (user, additionalData) => {
-  if (!user) return;
-
-  const userRef = firestore.doc(`users/${user.uid}`);
-
-  const snapshot = await userRef.get();
-
-  if (!snapshot.exists) {
-    const { email } = user;
-    const { displayName } = additionalData;
-    const userRoles = ['user'];
-    
-
-    try {
-      await userRef.set({
-        displayName,
-        email,
-        createdAt: new Date(),
-        userRoles,
-        ...additionalData
-      });
-    } catch (error) {
-      console.log('Error in creating user', error);
-    }
-  }
-}; */
 
 export {firebaseDB,firebaseStorage};

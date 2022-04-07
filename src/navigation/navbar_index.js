@@ -5,7 +5,7 @@ import { GrouprData } from "./GrouprData";
 import { IconContext } from "react-icons";
 import { Typography } from "@material-ui/core";
 import { ApplicationData } from "./ApplicationData";
-import "../css/navbar.css";
+import "../css/Navbar.css";
 
 function NavbarIndex() {
   const [sidebar, setSidebar] = useState(false);

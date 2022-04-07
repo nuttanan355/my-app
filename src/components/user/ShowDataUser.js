@@ -65,53 +65,7 @@ function ShowDataUser() {
                     <Card.Text style={{align:'right'}} >{values[id].productPrice} บาท</Card.Text>
                   </Card.Body>
                 </Card>
-
-              {/* <img
-                  id="imgShow"
-                  className="card-img-top"
-                  // style="height:200px;"
-                  style={{ height: "200px" }}
-                  alt="Product Images"
-                  src={values[id].productImg[1]}
-                /> */}
-              {/* <div className="card-body">
-                  <div>
-                    <p
-                      id="txtShowTitle"
-                      className="text-center font-weight-bold"
-                      style={{ fontSize: "18px" }}
-                    ></p>
-                  </div>
-                  <div>
-                    <p
-                      id="txtShowTitle"
-                      className="text-center font-weight-bold"
-                      style={{ fontSize: "18px" }}
-                    >
-                      {values[id].productCategory}
-                    </p>
-                  </div>
-                  {/* <div>
-                  <p
-                    id="txtShowTitle"
-                    className="text-center font-weight-bold"
-                    style={{ fontSize: "18px" }}
-                  >
-                    {values[id].productImg}
-                  </p>
-                </div> */}
-              {/* <div>
-                    <p
-                      id="txtShowTitle"
-                      className="text-center font-weight-bold"
-                      style={{ fontSize: "18px" }}
-                    >
-                      {values[id].productPrice}
-                    </p>
-                  </div> */}
-            </div>
-
-            // </div>
+              </div>
           );
         })}
       </div>

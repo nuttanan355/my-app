@@ -3,8 +3,8 @@ import * as FaIcons from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { GrouprData } from "./GrouprData";
 import { IconContext } from "react-icons";
-import { Typography } from "@material-ui/core";
 import { ApplicationData } from "./ApplicationData";
+import * as FcIcons from "react-icons/fc";
 import "../css/Navbar.css";
 
 function NavbarIndex() {
@@ -14,35 +14,40 @@ function NavbarIndex() {
 
   return (
     <div>
-      <IconContext.Provider value={{ color: "#ffffff"}}>
-        <div className="navbar" >
-          <Link to="#" className="menu-bars" style={{align:'middle'}}>
+      <IconContext.Provider value={{ color: "#ffffff" }}>
+        <div className="navbar">
+          <Link to="#" className="menu-bars" style={{ fontSize: "120%", margin: "20px" }}>
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
-          <Typography variant="h5" className="title-bars" >
-            
-            <Link to="#"> TEA Marketplance 
+          <div variant="h5" className="title-bars" style={{ textAlign: "left" }}>
+
+            <Link className="btn" to="#" style={{ fontWeight: "bold", fontSize: "160%", color: "white", margin: "1%" }}>TEA Marketplance
               {/* <Link to="/"> */}
-                {/* <img src={logo_tea} width="100" height="50" /> */}
+              {/* <img src={logo_tea} width="100" height="50" /> */}
               {/* </Link> */}
             </Link>
 
-            <Link to="../components/LoginandRegister/Home.js"> 
-            
-            Login
-            
+
+          </div>
+          <div variant="h5" className="title-bars" style={{ textAlign: "right" }}>
+
+
+            <Link className="btn " style={{ color: "gray", fontSize: "100%", background: "#fefefe", margin: "10px", align: "mid" }} to="../components/LoginandRegister/Home.js">
+              <FcIcons.FcGoogle style={{ fontSize: "150%" }} /> &nbsp; <a style={{ color: "lightgray" }}>|</a> &nbsp;
+              Sign In With Google
             </Link>
-          </Typography>
+
+          </div>
         </div>
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
-          <ul className="nav-menu-items" onClick={showSidebar}>
+          <ul className="nav-menu-items" onClick={showSidebar} >
             <li className="navbar-toggle">
-              <Link to="#" className="menu-bars">
+              <Link to="#" className="btn menu-bars" style={{ fontSize: "120%", textAlign: "right", color: "Lightgray" }} >
                 <FaIcons.FaBars />
               </Link>
             </li>
-            <br/>
-            <p className="title-bars">ประเภทสินค้า </p><hr/>
+
+            <p className="title-bars">ประเภทสินค้า </p><hr />
             {/* <hr className="title-bars"></hr> */}
 
             {GrouprData.map((item, index) => {
@@ -56,7 +61,7 @@ function NavbarIndex() {
                 </li>
               );
             })}
-            <br/><br/>
+            <br /><br />
             <p className="title-bars"> Application</p>
             <hr className="title-bars"></hr>
 
@@ -71,12 +76,7 @@ function NavbarIndex() {
                 </li>
               );
             })}
-            <div>
-              <div></div>
-              <p>UserName</p>
-              <hr />
-              <p>Type User</p>
-            </div>
+      
           </ul>
         </nav>
       </IconContext.Provider>

@@ -41,15 +41,16 @@ function ShowDataUser() {
       <div className="row">
         {Object.keys(values).map((id,index) => {
           return (
-            <div className="col-md-4">
+            <div key={id} className="col-md-4">
 
-                <Card
+                <Card 
                   style={{
                     width: "350px",
                     backgrounds: "white",
                     margin: "10%",
                     padding: "5%",
                   }}
+                  
                 >
                   <img
                     id="imgShow"
@@ -57,12 +58,13 @@ function ShowDataUser() {
                     // style="height:200px;"
                     style={{height:"350px"}}
                     alt="Product Images"
-                    src={values[id].productImg[1]}
+                    src={values[id].productImg[0]}
+                    // onClick="#"
                   />
                   <Card.Body>
                     <Card.Title>{values[id].productName}</Card.Title>
                     <Card.Text>{values[id].productCategory}</Card.Text>
-                    <Card.Text style={{align:'right'}} >{values[id].productPrice} บาท</Card.Text>
+                    <Card.Text style={{textAlign:"right"}} >{values[id].productPrice} บาท</Card.Text>
                   </Card.Body>
                 </Card>
               </div>

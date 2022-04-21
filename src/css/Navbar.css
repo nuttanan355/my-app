@@ -23,6 +23,17 @@ color: #FFF;
 text-align: center;
 
 }
+.navbar-logo {
+  color: rgb(255, 123, 0);
+  justify-self: start;
+  margin-left: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+
+}
 
 .nav-menu {
   background-color: #005835;

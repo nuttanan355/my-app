@@ -1,24 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import {firebaseDB} from "../components/firebase";
+import { firebaseDB } from "../components/firebase";
 // import { Toast } from "bootstrap";;
 // import {dateKey} from '../dataKey';
 
-var d = new Date();
-var saveCurrentDate = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear();
-var saveCurrentTime = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
-var dateKey = saveCurrentDate + "," + saveCurrentTime;
-
-// const initialState ={
-//   productName: "",
-//   productCategory: "",
-//   productPrice: "",
-//   productDetails: "",
-//   produtcCost1: "",
-//   produtcCost2: "",
-//   produtcCost3: "",
-// }
 
 function EditNewProduct() {
   // const [state ,setState] =useState({initialState});
@@ -33,20 +19,23 @@ function EditNewProduct() {
   });
 
   // const history = useHistory();
-  const {id} =useParams();
+  const { id } = useParams();
 
-  useEffect(()=>{
-firebaseDB.child("product").child(id).on("value", (snapshot)=>{
-  if(snapshot.val()!==null){
-    setValues({...snapshot.val()});
-  }else{
-    setValues({});
-  }
-});
-return()=>{
-  setValues({});
-};
-  },[id]);
+  useEffect(() => {
+    firebaseDB
+      .child("product")
+      .child(id)
+      .on("value", (snapshot) => {
+        if (snapshot.val() !== null) {
+          setValues({ ...snapshot.val() });
+        } else {
+          setValues({});
+        }
+      });
+    return () => {
+      setValues({});
+    };
+  }, [id]);
 
   // useEffect(()=>{
   //   if(id){
@@ -60,32 +49,32 @@ return()=>{
   // },[id,values]);
 
   const handleOnChange = (e) => {
-    const {name , value}=e.target;
-    setValues({ ...values, [name]:value});
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
   };
 
-
-
-  const updateProduct=(e)=>{
+  const updateProduct = (e) => {
     e.preventDefault();
 
-    if(values.productName == null){
+    if (values.productName == null) {
       console.log("null");
-    }else{
+    } else {
       // --------add data----------------
       // ----------------- push----------เจคคีย์ใหม่ให้
       // ----------------- set----------ใส่ค่าที่มีอยู่ลงใน child
-      firebaseDB.child("product").child(id).update(values,(error)=>{
-        if(error){
-          alert.error(error);
-        }
-        else{
-          console.log("edit data success");
-        }
-    });
-  }
-}
- 
+      firebaseDB
+        .child("product")
+        .child(id)
+        .update(values, (error) => {
+          if (error) {
+            alert.error(error);
+          } else {
+            console.log("edit data success");
+          }
+        });
+    }
+  };
+
   return (
     <div className="container">
       <h1>Edit New Product</h1>
@@ -102,7 +91,6 @@ return()=>{
               placeholder="ชื่อสินค้า"
               value={values.productName}
               onChange={handleOnChange}
-            
             />
           </div>
 
@@ -241,7 +229,11 @@ return()=>{
           </div>
 
           <div className="row mt-3 ">
-            <button type="button" className="btn btn-primary col mx-3" onClick={updateProduct} >
+            <button
+              type="button"
+              className="btn btn-primary col mx-3"
+              onClick={updateProduct}
+            >
               Submit
             </button>
             <button type="button" className="btn btn-danger col mx-3">
@@ -252,7 +244,7 @@ return()=>{
       </div>
       <p className="">
         name :{values.productName} <br />
-        category :{values.productCategory} <br/>
+        category :{values.productCategory} <br />
         price :{values.productPrice}
       </p>
     </div>

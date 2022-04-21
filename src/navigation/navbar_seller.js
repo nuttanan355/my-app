@@ -4,7 +4,7 @@ import { Container, Navbar } from "react-bootstrap";
 function NavbarSeller() {
   return (
     <div>
-    <Navbar bg="dark" variant="dark">
+    <Navbar bg="#00B952" variant="dark">
       <Container>
         <Navbar.Brand href="/HomeAdmin">
           <img

@@ -1,23 +1,27 @@
 import React from "react";
-import { Nav } from "react-bootstrap";
+import { Nav, NavLink,NavItem } from "react-bootstrap";
+import  chkUserType from '../App';
 
 function Navs() {
   return (
     <div>
       <Nav fill variant="tabs">
-        <Nav.Item>
-          <Nav.Link href="/">User</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="link-1" href="HomeSeller">
+        <NavItem>
+          <NavLink eventKey="link-0" href="/" >User</NavLink>
+          <chkUserType {...'user'}/>
+        </NavItem>
+        <NavItem>
+          <NavLink eventKey="link-1" href="HomeSeller">
             Seller
-          </Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="link-2" href="HomeAdmin">
+          </NavLink>
+          <chkUserType {...'seller'}/>
+        </NavItem>
+        <NavItem>
+          <NavLink eventKey="link-2" href="HomeAdmin">
             Admin
-          </Nav.Link>
-        </Nav.Item>
+          </NavLink>
+          <chkUserType {...'admin'}/>
+        </NavItem>
       </Nav>
       {/* <Nav justify variant="tabs" defaultActiveKey="/home">
         <NavItem>

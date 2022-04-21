@@ -47,9 +47,9 @@ function NavbarIndex() {
               </Link>
             </li>
 
-            <p className="title-bars">ประเภทสินค้า </p><hr />
+            <p className="title-bars">ประเภทสินค้า </p>
             {/* <hr className="title-bars"></hr> */}
-
+            <hr className="title-bars"/>
             {GrouprData.map((item, index) => {
               return (
                 // <li title='test'> </li>,
@@ -63,7 +63,7 @@ function NavbarIndex() {
             })}
             <br /><br />
             <p className="title-bars"> Application</p>
-            <hr className="title-bars"></hr>
+            <hr className="title-bars" />
 
             {ApplicationData.map((item, index) => {
               return (
@@ -76,7 +76,7 @@ function NavbarIndex() {
                 </li>
               );
             })}
-      
+
           </ul>
         </nav>
       </IconContext.Provider>

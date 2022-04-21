@@ -10,6 +10,12 @@ export const ApplicationData = [
     cName: 'nav-text'
   },
   {
+    title: 'Cart',
+    path: '/messages',
+    icon: <FaIcons.FaCartPlus />,
+    cName: 'nav-text'
+  },
+  {
     title: 'Support',
     path: '/support',
     icon: <IoIcons.IoMdHelpCircle />,

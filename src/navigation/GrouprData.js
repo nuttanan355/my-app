@@ -6,13 +6,13 @@ import * as GiIcons from 'react-icons/gi';
 export const GrouprData = [
 
   {
-    title: 'เสื้อผ้าผู้ชาย',
+    title: 'เสื้อผ้า',
     path: '/manClothes',
     icon: <FaIcons.FaTshirt />,
     cName: 'nav-text'
   },
   {
-    title: 'เสื้อผ้าผู้หญิง',
+    title: 'เครื่องประดับ',
     path: '/womanClothes',
     icon: <GiIcons.GiLargeDress />,
     cName: 'nav-text'
@@ -41,5 +41,5 @@ export const GrouprData = [
     icon: <AiIcons.AiFillMobile />,
     cName: 'nav-text'
   },
-  
+
 ];

@@ -33,7 +33,7 @@ import Dashboard from "./components/Login/Dashboard";
 import LogIn from "./components/Login/LogIn";
 import SignUp from "./components/Login/SignUp";
 import { AuthProvider } from "./components/Login/Auth";
-
+import NavbarIndex from './navigation/navbar_index'
 const chkUserType = (user) => {
   if (user == "User") {
     return <Switch>
@@ -45,7 +45,7 @@ const chkUserType = (user) => {
     </Switch>;
   } else if (user == "Admin") {
     return <Switch>
-      
+
     </Switch>;
   } else {
     return (
@@ -58,7 +58,8 @@ const chkUserType = (user) => {
 
 function App() {
   return (
-    <Router>
+
+    <Router >
       {/* <Navs /> */}
       {/* <Switch> */}
       {/* <Route path={'/'} component={HomeUser} /> */}
@@ -71,7 +72,7 @@ function App() {
       {/* <NavbarSeller /> */}
       {/* <AddNewProduct /> */}
       {/* <Home /> */}
-
+    <NavbarIndex/>
       <Switch>
         {/* <------------------------Pages USER--------------------------> */}
         {/* < Route path='/' exact component={AddNewProduct} /> */}

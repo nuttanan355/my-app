@@ -3,6 +3,11 @@ import "./css/pages.css";
 import "./css/home.css";
 import "./css/style.css";
 import ShowDataUser from "./components/user/ShowDataUser";
+import * as AiIcons from "react-icons/ai";
+import * as FaIcons from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { GrouprData } from "././navigation/GrouprData";
+
 
 // import {firebaseDB} from "./components/firebase";
 // import { Link } from "react-router-dom";
@@ -10,41 +15,51 @@ import ShowDataUser from "./components/user/ShowDataUser";
 
 function Home() {
   return (
+
     <div className="container mx-auto">
       <div className="container">
-        <h2 style={{ margin: "2%" }}>สินค้าที่ได้รับความนิยม</h2>
+        
+        <h2 style={{ padding: "3%", color: "orange" }}><AiIcons.AiFillStar style={{ color: "orange", fontSize: "90%" }} /> สินค้าที่ได้รับความนิยม</h2>
 
         <ShowDataUser />
+        <br />
 
       </div>
-      {/* <img
-                    id="imgShow"
-                    className="card-img-top"
-                    // style="height:200px;"
-                    style={{height:"350px"}}
-                    alt="not bg"
-                    src={require('./img/bg.jpg')}
-                  /> */}
-      {/* <img alt="not bg" /> */}
-      
-        <div>
-          <img src='./img/bg.jpg'
-            id="imgShow"
-            style={{ height: "350px", width: '720px' }}
-            alt="not bg" />
+      <br /><br /><br />
+      <div className="col">
+        <h3>หมวดหมู่</h3><hr />
+        <div style={{ textAlign: "center", padding: "10px", margin: "0px" }}>
+          {GrouprData.map((item, index) => {
+            return (
 
-          <div>
-            <h2>หมวดหมู่</h2>
-          </div>
-          <div>
-            <h2>ทำไมต้องเลือกซื้อ-ขายของออนไลน์ที่</h2>
-            <h1> Tea Marketplace</h1>
-            <h1>มั่นใจได้ทุกการขาย</h1>
-            <h2>ไม่ต้องกังวลเรื่องเช็คเครดิตปิดการขายง่ายขึ้น</h2>
-          </div>
+              // <li title='test'> </li>,
+              // <li key={index} className={item.cName}>
+              //   <Link to={item.path}>
+              //     {item.icon}
+              //     <span>{item.title}</span>
+              //   </Link>
+              // </li>
+
+
+
+              <div className="btn" style={{ textAlign: "center" }}>
+                <button className="btn circle-btn btn-type" style={{ margin: "20px" }} >{item.icon} <div style={{ margin: "10px" }}>{item.title}</div></button>
+
+              </div>
+
+
+
+
+            );
+          })}
         </div>
-        
+      </div>
+
+
+
+          
     </div>
+    
   );
 }
 

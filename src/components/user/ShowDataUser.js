@@ -3,6 +3,7 @@ import { firebaseDB } from "../firebase";
 import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import * as AiIcons from "react-icons/ai";
+
 function ShowDataUser() {
   const [values, setValues] = useState({});
   // const [images, setImages] = useState([]);
@@ -38,43 +39,47 @@ function ShowDataUser() {
   // },[]);
 
   return (
-    <div className="slide-container">
-      <AiIcons.AiOutlineArrowLeft id="slide-left" className="arrow"/>
-      <section class="container" id="slider">
-        {Object.keys(values).map((id, index) => {
-          return (
-            <div key={id} className="col-sm-5">
+      <div className="slide-container">
+        <section className="item-container" id="slider">
+          {Object.keys(values).map((id, index) => {
+            return (
+              <div key={id} className="col-lg-3" style={{
+                height: "30%"
+              }}>
 
-              <Card
-                style={{
-                  width: "350px",
-                  backgrounds: "white",
-                  margin: "10%",
-                  padding: "5%",
-                }}
+                <Card className="thumbnail"
+                  style={{
+                    background: "#ffffff",
+                    border: "0",
+                    width: "80%",
+                    padding: "1px"
+                  }}
 
-              >
-                <img
-                  id="imgShow"
-                  className="card-img-top"
-                  // style="height:200px;"
-                  style={{ height: "350px" }}
-                  alt="Product Images"
-                  src={values[id].productImg[0]}
-                // onClick="#"
-                />
-                <Card.Body>
-                  <Card.Title>{values[id].productName}</Card.Title>
-                  <Card.Text>{values[id].productCategory}</Card.Text>
-                  <Card.Text style={{ textAlign: "right" }} >{values[id].productPrice} บาท</Card.Text>
-                </Card.Body>
-              </Card>
-            </div>
-          );
-        })}
-    </section >
-    <AiIcons.AiOutlineArrowRight id="slide-right" className="arrow"/>
-    </div>
+                >
+                  <img
+                    id="imgShow"
+                    className="card-img-top "
+                    // style="height:200px;"
+                    style={{ width: "100%" }}
+                    alt="Product Images"
+                    src={values[id].productImg[0]}
+                  // onClick="#"
+                  />
+                  <Card.Body>
+                    <Card.Title style={{ fontWeight: "bold", fontSize: "100%" }}>{values[id].productName} </Card.Title>
+                    <Card.Text style={{ fontSize: "100%", textAlign: "right" }} >{values[id].productPrice} บาท</Card.Text>
+                  </Card.Body>
+
+                </Card>
+              </div>
+            );
+          })}
+
+        </section >
+
+
+
+      </div>
   );
 }
 export default ShowDataUser;

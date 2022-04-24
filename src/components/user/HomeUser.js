@@ -8,7 +8,7 @@ import NavbarIndex from '../../navigation/navbar_index';
 function HomeUser (){
     return(
     <div>
-            <NavbarIndex />
+           
             <Home />
     </div>
     );

@@ -7,7 +7,6 @@ import Footer from "./components/user/footer"
 
 ReactDOM.render(
   <React.StrictMode >
-    
     <App />
     <Footer/>
   </React.StrictMode>,

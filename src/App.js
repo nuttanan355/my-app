@@ -1,7 +1,7 @@
 import React from "react";
 // import './css/App.css';
 import "./css/App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import Home from "./Home";
 // import ManClothes from "./pages/ManClothes";
 // import WomanClothes from "./pages/WomanClothes"
@@ -27,7 +27,7 @@ import AddNewProduct from "./components/seller/AddNewProduct";
 
 // <------------------------Pages USER-------------------------->
 import HomeUser from "./components/user/HomeUser";
-
+import Mobile from "./components/user/mobile";
 import Home from "./components/Login/Home";
 import Dashboard from "./components/Login/Dashboard";
 import LogIn from "./components/Login/LogIn";
@@ -36,22 +36,22 @@ import { AuthProvider } from "./components/Login/Auth";
 import NavbarIndex from './navigation/navbar_index'
 const chkUserType = (user) => {
   if (user == "User") {
-    return <Switch>
+    return <Routes>
 
-    </Switch>;
+    </Routes>;
   } else if (user == "Seller") {
-    return <Switch>
+    return <Routes>
 
-    </Switch>;
+    </Routes>;
   } else if (user == "Admin") {
-    return <Switch>
+    return <Routes>
 
-    </Switch>;
+    </Routes>;
   } else {
     return (
-      <Switch>
-        <Route path={"*"} component={NotFound} />
-      </Switch>
+      <Routes>
+        <Route path={"*"} element={NotFound} />
+      </Routes>
     );
   }
 };
@@ -73,29 +73,30 @@ function App() {
       {/* <AddNewProduct /> */}
       {/* <Home /> */}
     <NavbarIndex/>
-      <Switch>
+      <Routes>
         {/* <------------------------Pages USER--------------------------> */}
         {/* < Route path='/' exact component={AddNewProduct} /> */}
         {/* <Route path={"/EditData/:id"} component={EditNewProduct} /> */}
         {/* <Route path={"/ViewData/:id"} component={ViewNewProduct} /> */}
         {/* <AddNewProduct /> */}
         {/* <formAddNewProduct /> */}
-        <Route path={"/"} exact component={HomeUser} />
-
+        <Route path={"/"} index element={<HomeUser/>} />
+        <Route path={"/mobile"} element={<Mobile/>} />
         {/* <------------------------Pages SELLER------------------------> */}
-        <Route path={"/HomeSeller"} component={HomeSeller} />
-        <Route path={"/AddNewProduct"} component={AddNewProduct} />
+        <Route path={"/HomeSeller"} element={<HomeSeller/>} />
+        <Route path={"/AddNewProduct"} element={<AddNewProduct/>} />
+       
 
         {/* <------------------------Pages ADMIN-------------------------> */}
-        <Route path={"/HomeAdmin"} component={HomeAdmin} />
-        <Route path={"/NewProductsAdmin"} component={NewProductsAdmin} />
-        <Route path={"/OrdersAdmin"} component={OrdersAdmin} />
-        <Route path={"/EditProductAdmin"} component={EditProductsAdmin} />
-        <Route path={"/RecomAdmin"} component={RecomAdmin} />
+        <Route path={"/HomeAdmin"} element={<HomeAdmin/>} />
+        <Route path={"/NewProductsAdmin"} element={<NewProductsAdmin/>} />
+        <Route path={"/OrdersAdmin"} element={<OrdersAdmin/>} />
+        <Route path={"/EditProductAdmin"} element={<EditProductsAdmin/>} />
+        <Route path={"/RecomAdmin"} element={<RecomAdmin/>} />
 
         {/* <------------------------Pages GATHER------------------------> */}
-        <Route path={"*"} component={NotFound} />
-      </Switch>
+        <Route path={"*"} element={NotFound} />
+      </Routes>
     </Router>
   );
 }

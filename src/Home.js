@@ -18,7 +18,7 @@ function Home() {
 
     <div className="container mx-auto">
       <div className="container">
-        
+
         <h2 style={{ padding: "3%", color: "orange" }}><AiIcons.AiFillStar style={{ color: "orange", fontSize: "90%" }} /> สินค้าที่ได้รับความนิยม</h2>
 
         <ShowDataUser />
@@ -27,39 +27,40 @@ function Home() {
       </div>
       <br /><br /><br />
       <div className="col">
+
         <h3>หมวดหมู่</h3><hr />
         <div style={{ textAlign: "center", padding: "10px", margin: "0px" }}>
           {GrouprData.map((item, index) => {
             return (
 
-              // <li title='test'> </li>,
-              // <li key={index} className={item.cName}>
-              //   <Link to={item.path}>
-              //     {item.icon}
-              //     <span>{item.title}</span>
-              //   </Link>
-              // </li>
 
 
 
-              <div className="btn" style={{ textAlign: "center" }}>
-                <button className="btn circle-btn btn-type" style={{ margin: "20px" }} >{item.icon} <div style={{ margin: "10px" }}>{item.title}</div></button>
+              <a href={item.path}>
+                <div className="btn" style={{ textAlign: "center" }}>
+                  <button className="btn circle-btn btn-type" style={{ margin: "20px" }} >{item.icon} <div style={{ margin: "10px" }}>{item.title}</div></button>
 
-              </div>
+                </div>
+              </a>
+
 
 
 
 
             );
           })}
+        
+
+
+
         </div>
       </div>
 
 
 
-          
+
     </div>
-    
+
   );
 }
 

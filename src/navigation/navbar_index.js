@@ -21,7 +21,7 @@ function NavbarIndex() {
           </Link>
           <div variant="h5" className="title-bars" style={{ textAlign: "left" }}>
 
-            <Link className="btn" to="#" style={{ fontWeight: "bold", fontSize: "140%", color: "white", margin: "1%" }}>TEA Marketplance
+            <Link className="btn" to="/" style={{ fontWeight: "bold", fontSize: "140%", color: "white", margin: "1%" }}>TEA Marketplance
               {/* <Link to="/"> */}
               {/* <img src={logo_tea} width="100" height="50" /> */}
               {/* </Link> */}

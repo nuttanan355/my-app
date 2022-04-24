@@ -9,37 +9,43 @@ export const GrouprData = [
     title: 'เสื้อผ้า',
     path: '/manClothes',
     icon: <FaIcons.FaTshirt />,
-    cName: 'nav-text'
+    cName: 'nav-text',
+    color: 'red'
   },
   {
     title: 'เครื่องประดับ',
     path: '/womanClothes',
     icon: <GiIcons.GiLargeDress />,
-    cName: 'nav-text'
+    cName: 'nav-text',
+    color: 'blue'
   },
   {
     title: 'กระเป๋า',
     path: '/bag',
     icon: <GiIcons.GiSchoolBag />,
-    cName: 'nav-text'
+    cName: 'nav-text',
+    color: 'yellow'
   },
   {
     title: 'รองเท้า',
     path: '/shoe',
     icon: <GiIcons.GiConverseShoe />,
-    cName: 'nav-text'
+    cName: 'nav-text',
+    color: 'purple'
   },
   {
     title: 'เครื่องใช้ไฟฟ้า',
     path: '/electrical',
     icon: <GiIcons.GiElectric />,
-    cName: 'nav-text'
+    cName: 'nav-text',
+    color: 'cyan'
   },
   {
     title: 'มือถือและอุปกรณ์',
     path: '/mobile',
     icon: <AiIcons.AiFillMobile />,
-    cName: 'nav-text'
+    cName: 'nav-text',
+    color: 'green'
   },
 
 ];

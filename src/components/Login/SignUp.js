@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
+// import { Redirect } from 'react-router-dom'
 import firebaseConfig from './config'
 
 const SignUp = () => {
@@ -22,7 +22,8 @@ const SignUp = () => {
     }
 
     if (currentUser) {
-        return <Redirect to="/dashboard" />
+        return 
+        // <Redirect to="/dashboard" />
     }
 
     return (

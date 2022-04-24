@@ -4,31 +4,31 @@ import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import * as AiIcons from "react-icons/ai";
 
-// let thumbnails = document.getElementsByClassName('thumbnail');
-// let slider = document.getElementById('slider');
+let thumbnails = document.getElementsByClassName('thumbnail');
+let slider = document.getElementById('slider');
 
-// const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
+const maxScrollLeft = slider.scrollWidth - slider.clientWidth;
 
-// function autoPlay() {
-//     if (slider.scrollLeft > (maxScrollLeft - 1)) {
-//         slider.scrollLeft -= maxScrollLeft;
-//     } else {
-//         slider.scrollLeft += 1;
-//     }
-// }
-// let play = setInterval(autoPlay, 50);
+function autoPlay() {
+    if (slider.scrollLeft > (maxScrollLeft - 1)) {
+        slider.scrollLeft -= maxScrollLeft;
+    } else {
+        slider.scrollLeft += 1;
+    }
+}
+let play = setInterval(autoPlay, 50);
 
-// // PAUSE THE SLIDE ON HOVER
-// for (var i=0; i < thumbnails.length; i++){
+// PAUSE THE SLIDE ON HOVER
+for (var i=0; i < thumbnails.length; i++){
 
-// thumbnails[i].addEventListener('mouseover', function() {
-//     clearInterval(play);
-// });
+thumbnails[i].addEventListener('mouseover', function() {
+    clearInterval(play);
+});
 
-// thumbnails[i].addEventListener('mouseout', function() {
-//     return play = setInterval(autoPlay, 50);
-// });
-// }
+thumbnails[i].addEventListener('mouseout', function() {
+    return play = setInterval(autoPlay, 50);
+});
+}
 
 function ShowDataUser() {
   const [values, setValues] = useState({});

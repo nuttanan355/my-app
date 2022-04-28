@@ -6,7 +6,7 @@ import ShowDataUser from "../user/ShowDataUser";
 import * as AiIcons from "react-icons/ai";
 import * as FaIcons from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { GrouprData } from "../../client/GrouprData";
+import { GrouprData } from "../../client/GroupData";
 import Ads from './ads';
 
 
@@ -30,17 +30,18 @@ function HomeUser() {
       <div className="col">
 
         <h3>หมวดหมู่</h3><hr />
-        <div style={{ textAlign: "center", padding: "10px", margin: "0px" }}>
-          {GrouprData.map((item, index) => {
-            return (
-              <a href={item.path} key={index}>
-                <div className="btn" style={{ textAlign: "center" }}>
-                  <button className="btn circle-btn btn-type" style={{ margin: "20px" }} >{item.icon} <div style={{ margin: "10px" }}>{item.title}</div></button>
-                </div>
-              </a>
-            );
-          })}
-        </div>
+        <div className="frame">
+        {GrouprData.map((item, index) => {
+          return (
+            <a key={index} href={item.path} >
+              <div className="btn" style={{ textAlign: "center" }}>
+                <button className="btn circle-btn btn-type" style={{ width: "300px", background: "white", marginBottom: "7px", marginTop: "7px" }} >{item.icon} <div>{item.title}</div></button>
+
+              </div>
+            </a>
+          );
+        })}
+      </div>
       </div>
       {/* <Ads/> */}
     </div>

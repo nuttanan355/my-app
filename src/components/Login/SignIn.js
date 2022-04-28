@@ -1,7 +1,7 @@
 import React from 'react'
 // import { Redirect } from 'react-router-dom'
 
-function LogIn() {
+function SignIn() {
 
     // const handleSubmit = (e) => {
     //     e.preventDefault();
@@ -80,4 +80,4 @@ function LogIn() {
     )
 }
 
-export default LogIn;
+export default SignIn;

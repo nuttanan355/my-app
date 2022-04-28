@@ -69,8 +69,8 @@ function ShowDataUser() {
       <section className="item-container" id="slider">
         {Object.keys(values).map((id, index) => {
           return (
-            <div key={id} className="col-lg-3" style={{
-              height: "30%"
+            <div key={id} className="btn col-lg-3" style={{
+             
             }}>
 
               <Card className="thumbnail"
@@ -80,6 +80,9 @@ function ShowDataUser() {
                   width: "80%",
                   padding: "1px"
                 }}
+                onClick={() =>
+                  (window.location.href = `/product-details/${id}`)
+                }
 
               >
                 <img

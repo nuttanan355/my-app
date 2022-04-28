@@ -27,7 +27,7 @@ import AddNewProduct from "./components/seller/AddNewProduct";
 
 // <------------------------Pages USER-------------------------->
 import HomeUser from "./components/user/HomeUser";
-import LogIn from "./components/login/LogIn";
+import LogIn from "./components/Login/SignIn";
 import Mobile from "./components/user/mobile";
 
 import NavbarIndex from './layout/navbar_index'

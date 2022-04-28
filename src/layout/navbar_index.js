@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { GrouprData } from "../client/GrouprData";
+import { GrouprData } from "../client/GroupData";
 import { IconContext } from "react-icons";
 import { ApplicationData } from "../client/ApplicationData";
 import * as FcIcons from "react-icons/fc";
+import * as BsIcons from "react-icons/bs";
 import "../css/Navbar.css";
 
 function NavbarIndex() {

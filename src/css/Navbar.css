@@ -2,6 +2,7 @@
   background-color: #00B952;
   height: 80px;
   display: flex;
+  
   /* justify-content: space-between; */
   /* align-items: center; */
 }
@@ -45,7 +46,7 @@ text-align: center;
   top: 0;
   left: -100%;
   transition: 850ms;
-  
+  z-index: 999;
 }
 
 .nav-menu.active {

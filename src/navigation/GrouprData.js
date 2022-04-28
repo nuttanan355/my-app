@@ -2,7 +2,19 @@ import React from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as AiIcons from 'react-icons/ai';
 import * as IoIcons from 'react-icons/io';
+import * as BsIcons from 'react-icons/bs';
+import * as BiIcons from 'react-icons/bi';
+import * as ImIcons from 'react-icons/im';
 import * as GiIcons from 'react-icons/gi';
+import * as WiIcons from 'react-icons/wi';
+import * as GoIcons from 'react-icons/go';
+import * as GrIcons from 'react-icons/gr';
+import * as HiIcons from 'react-icons/hi';
+import * as RiIcons from 'react-icons/ri';
+import * as SiIcons from 'react-icons/si';
+import * as TiIcons from 'react-icons/ti';
+
+
 export const GrouprData = [
 
   {

@@ -51,6 +51,7 @@ text-align: center;
 .nav-menu.active {
   left: 0;
   transition: 600ms;
+  min-width: 300px;
 }
 
 .nav-text {

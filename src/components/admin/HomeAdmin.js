@@ -1,14 +1,14 @@
 import React from "react";
 // import { Switch,Router } from 'react-router-dom';
 // import { Container, Navbar } from 'react-bootstrap';
-import { Link } from 'react-router-dom'
-import NavbarAdmin from "../../navigation/navbar_admins";
+// import { Link } from 'react-router-dom'
+import NavbarAdmin from "../../layout/navbar_admins";
 import * as AiIcons from "react-icons/ai";
-import * as FcIcons from "react-icons/fc";
-import * as FiIcons from "react-icons/fa";
+// import * as FcIcons from "react-icons/fc";
+// import * as FiIcons from "react-icons/fa";
 import * as RiIcons from "react-icons/ri";
 import * as BsIcons from "react-icons/bs";
-import * as HiIcons from "react-icons/hi";
+// import * as HiIcons from "react-icons/hi";
 function HomeAdmin() {
   return (
     <div style={{ background: "lightgray" }}>

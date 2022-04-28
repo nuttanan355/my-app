@@ -1,48 +1,82 @@
-import React, { useContext } from 'react'
+import React from 'react'
 // import { Redirect } from 'react-router-dom'
-import { AuthContext } from './Auth'
-import firebaseConfig from './config'
 
-const LogIn = () => {
+function LogIn() {
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    // const handleSubmit = (e) => {
+    //     e.preventDefault();
 
-        const { email, password } = e.target.elements;
+    //     const { email, password } = e.target.elements;
 
-        try {
+    //     try {
 
-            firebaseConfig.auth().signInWithEmailAndPassword(email.value, password.value);
+    //         firebaseConfig.auth().signInWithEmailAndPassword(email.value, password.value);
 
-        } catch(error) {
-            alert(error);
-        }
-    }
+    //     } catch(error) {
+    //         alert(error);
+    //     }
+    // }
 
-    const { currentUser } = useContext(AuthContext);
-    if (currentUser) {
-        return 
-        // <Redirect to="/dashboard" />;
-    }
+    // const { currentUser } = useContext(AuthContext);
+    // if (currentUser) {
+    //     return 
+    //     // <Redirect to="/dashboard" />;
+    // }
 
     return (
-        <>
+
             <div className="container mt-5">
-            <h1>Log In</h1>
-            <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-                <label for="exampleInputEmail1" className="form-label">Email address</label>
-                <input type="email" name="email" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+            <div className="wrap-login100">
+				<div className="login100-pic js-tilt" data-tilt>
+					<img src="images/img-01.png" alt="IMG" />
+				</div>
+
+				<form className="login100-form validate-form">
+					<span className="login100-form-title">
+						Member Login
+					</span>
+
+					<div className="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+						<input className="input100" type="text" name="email" placeholder="Email" />
+						<span className="focus-input100"></span>
+						<span className="symbol-input100">
+							<i className="fa fa-envelope" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<div className="wrap-input100 validate-input" data-validate = "Password is required">
+						<input className="input100" type="password" name="pass" placeholder="Password" />
+						<span className="focus-input100"></span>
+						<span className="symbol-input100">
+							<i className="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+					
+					<div className="container-login100-form-btn">
+						<button className="login100-form-btn">
+							Login
+						</button>
+					</div>
+
+					<div className="text-center p-t-12">
+						<span className="txt1">
+							Forgot
+						</span>
+						<a className="txt2" href="#">
+							Username / Password?
+						</a>
+					</div>
+
+					<div className="text-center p-t-136">
+						<a className="txt2" href="#">
+							Create your Account
+							<i className="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
+						</a>
+					</div>
+				</form>
+			</div>
             </div>
-            <div className="mb-3">
-                <label for="exampleInputPassword1" className="form-label">Password</label>
-                <input type="password" name="password" className="form-control" id="exampleInputPassword1" />
-            </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
-            </div>
-        </>
+
     )
 }
 

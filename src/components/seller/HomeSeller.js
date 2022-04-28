@@ -1,7 +1,6 @@
 import React from "react";
 import "../../css/pages.css";
 import "../../css/home.css";
-import NavbarSeller from "../../navigation/navbar_seller";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
@@ -11,7 +10,6 @@ import { Link } from "react-router-dom";
 function HomeSeller() {
   return (
     <div>
-      <NavbarSeller />
       <div className="container">
         <div className="row mt-3">
           <div className="col-md-10">

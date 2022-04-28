@@ -1,5 +1,5 @@
 import React from "react";
-import { firebaseDB } from "../firebase";
+import { firebaseDB } from "../../server/firebase";
 import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
 import * as AiIcons from "react-icons/ai";

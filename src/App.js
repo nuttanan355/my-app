@@ -1,7 +1,7 @@
 import React from "react";
 // import './css/App.css';
 import "./css/App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 // import Home from "./Home";
 // import ManClothes from "./pages/ManClothes";
 // import WomanClothes from "./pages/WomanClothes"
@@ -11,7 +11,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // import ViewNewProduct from "./seller/ViewNewProduct"
 // import NavbarSeller from './navigation/navbar_seller';
 // <------------------------Pages GATHER------------------------>
-import Navs from "./navigation/navsTest";
+// import Navs from "./layout/navsTest";
 import NotFound from "./error_404";
 
 // <------------------------Pages ADMIM------------------------->
@@ -27,51 +27,16 @@ import AddNewProduct from "./components/seller/AddNewProduct";
 
 // <------------------------Pages USER-------------------------->
 import HomeUser from "./components/user/HomeUser";
+import LogIn from "./components/login/LogIn";
 import Mobile from "./components/user/mobile";
-import Home from "./components/Login/Home";
-import Dashboard from "./components/Login/Dashboard";
-import LogIn from "./components/Login/LogIn";
-import SignUp from "./components/Login/SignUp";
-import { AuthProvider } from "./components/Login/Auth";
-import NavbarIndex from './navigation/navbar_index'
-const chkUserType = (user) => {
-  if (user == "User") {
-    return <Routes>
 
-    </Routes>;
-  } else if (user == "Seller") {
-    return <Routes>
-
-    </Routes>;
-  } else if (user == "Admin") {
-    return <Routes>
-
-    </Routes>;
-  } else {
-    return (
-      <Routes>
-        <Route path={"*"} element={NotFound} />
-      </Routes>
-    );
-  }
-};
+import NavbarIndex from './layout/navbar_index'
 
 function App() {
   return (
 
-    <Router >
-      {/* <Navs /> */}
-      {/* <Switch> */}
-      {/* <Route path={'/'} component={HomeUser} /> */}
-      {/* <Route path={'/HomeSeller'}  component={HomeSeller} /> */}
-      {/* <Route path={'/HomeAdmin'}  component={HomeAdmin}/> */}
-      {/* <Home /> */}
-      {/* </Switch> */}
-      {/* <NavbarIndex /> */}
-      {/* <AddImage /> */}
-      {/* <NavbarSeller /> */}
-      {/* <AddNewProduct /> */}
-      {/* <Home /> */}
+    <div>
+
     <NavbarIndex/>
       <Routes>
         {/* <------------------------Pages USER--------------------------> */}
@@ -81,6 +46,7 @@ function App() {
         {/* <AddNewProduct /> */}
         {/* <formAddNewProduct /> */}
         <Route path={"/"} index element={<HomeUser/>} />
+        <Route path={"/user/login"} index element={<LogIn/>} />
         <Route path={"/mobile"} element={<Mobile/>} />
         {/* <------------------------Pages SELLER------------------------> */}
         <Route path={"/HomeSeller"} element={<HomeSeller/>} />
@@ -97,7 +63,7 @@ function App() {
         {/* <------------------------Pages GATHER------------------------> */}
         <Route path={"*"} element={NotFound} />
       </Routes>
-    </Router>
+  </div>
   );
 }
 

@@ -1,5 +1,5 @@
 .navbar {
-  position: relative;
+  position: relative fixed;
   background-color: #00B952;
   height: 80px;
   display: flex;
@@ -18,6 +18,11 @@
   margin-left: 2vw;
   font-size: 2rem;
   background: none;
+  position: fixed;
+  width: 40px;
+  background-color: #005835;
+  text-align: center;
+  border-radius: 5px 5px 5px 5px;
 
 }
 
@@ -25,6 +30,7 @@
   flex-grow: 2;
   color: #FFF;
   text-align: center;
+
 
 }
 
@@ -46,7 +52,6 @@
 .nav-menu {
   background-color: #005835;
   width: 15%;
-  height: 100%;
   display: flex;
   justify-content: center;
   position: fixed;
@@ -60,6 +65,7 @@
   left: 0;
   transition: 600ms;
   min-width: 300px;
+  position: fixed;
 }
 
 .nav-text {

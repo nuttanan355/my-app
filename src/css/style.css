@@ -1,8 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
-
+*{
+    font-family:'Prompt', sans-serif;;
+}
 body {
-   font-family:Verdana, Geneva, Tahoma, sans-serif;
-    background-color: #ffffff;
+   
+    background-color: #F0FDF6;
+    
 }
 
 .btn-type {

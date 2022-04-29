@@ -1,8 +1,9 @@
 .navbar {
+  position:relative;
   background-color: #00B952;
   height: 80px;
   display: flex;
-  
+  padding: 0;
   /* justify-content: space-between; */
   /* align-items: center; */
 }
@@ -25,14 +26,14 @@ text-align: center;
 
 }
 .navbar-logo {
+  position: absolute;
   color: rgb(255, 123, 0);
   justify-self: start;
   margin-left: 20px;
   cursor: pointer;
   text-decoration: none;
-  font-size: 2rem;
   display: flex;
-  align-items: center;
+  scale: 50%;
 
 }
 

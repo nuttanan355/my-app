@@ -20,30 +20,21 @@ function NavbarIndex() {
           <Link
             to="#"
             className="menu-bars"
-            style={{ fontSize: "120%", margin: "20px" }}
+            style={{ fontSize: "120%", marginLeft: "20px", marginTop: "0", background: "red" }}
           >
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
           <div
             variant="h5"
             className="title-bars"
-            style={{ textAlign: "left" }}
+            style={{ marginLeft: "0px" }}
           >
-            <Link
-              className="btn"
-              to="/"
-              style={{
-                fontWeight: "bold",
-                fontSize: "140%",
-                color: "white",
-                margin: "1%",
-              }}
-            >
-              TEA Marketplance
-              {/* <Link to="/"> */}
-              {/* <img src={logo_tea} width="100" height="50" /> */}
-              {/* </Link> */}
-            </Link>
+           
+              <img className="btn navbar-logo" src="../img/logo.png" style={{ background: "red", marginTop: "0" }} onClick={()=>
+                (window.location.href = `/`)
+              }/>
+          
+           
           </div>
           <div
             variant="h5"
@@ -61,8 +52,8 @@ function NavbarIndex() {
               }}
               to="../components/LoginandRegister/Home.js"
             >
-              <FcIcons.FcGoogle style={{ fontSize: "150%" }} /> 
-               &nbsp; | &nbsp; Sign In With Google 
+              <FcIcons.FcGoogle style={{ fontSize: "150%" }} />
+              &nbsp; | &nbsp; Sign In With Google
             </Link>
           </div>
         </div>

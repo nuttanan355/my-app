@@ -20,22 +20,19 @@ function NavbarIndex() {
           <Link
             to="#"
             className="menu-bars"
-            style={{ fontSize: "120%", marginLeft: "20px", marginTop: "0", background: "red" }}
+            style={{ fontSize: "120%", marginLeft: "20px", marginTop: "0px"}}
           >
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
-          <div
-            variant="h5"
-            className="title-bars"
-            style={{ marginLeft: "0px" }}
-          >
+         
+         
            
-              <img className="btn navbar-logo" src="../img/logo.png" style={{ background: "red", marginTop: "0" }} onClick={()=>
+              <img className="btn navbar-logo" src="../img/logo.png" style={{ width:"100%"}} onClick={()=>
                 (window.location.href = `/`)
               }/>
-          
            
-          </div>
+     
+          
           <div
             variant="h5"
             className="title-bars"
@@ -46,14 +43,14 @@ function NavbarIndex() {
               style={{
                 color: "gray",
                 fontSize: "100%",
-                background: "#fefefe",
-                margin: "10px",
+                
+                marginRight: "2%",
                 align: "mid",
               }}
               to="../components/LoginandRegister/Home.js"
             >
-              <FcIcons.FcGoogle style={{ fontSize: "150%" }} />
-              &nbsp; | &nbsp; Sign In With Google
+              <BsIcons.BsPersonBoundingBox style={{ fontSize: "200%" }} />
+             
             </Link>
           </div>
         </div>

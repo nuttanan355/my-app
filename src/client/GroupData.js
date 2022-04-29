@@ -18,14 +18,28 @@ import * as TiIcons from 'react-icons/ti';
 export const GrouprData = [
 
   {
-    title: 'เสื้อผ้า',
+    title: 'เสื้อผู้ชาย',
     path: '/manClothes',
     icon: <FaIcons.FaTshirt />,
     cName: 'nav-text',
     color: 'red'
   },
   {
-    title: 'เครื่องประดับ',
+    title: 'กางเกงผู้ชาย',
+    path: '/womanClothes',
+    icon: <GiIcons.GiLargeDress />,
+    cName: 'nav-text',
+    color: 'blue'
+  },
+  {
+    title: 'เสื้อผู้หญิง',
+    path: '/manClothes',
+    icon: <FaIcons.FaTshirt />,
+    cName: 'nav-text',
+    color: 'red'
+  },
+  {
+    title: 'กางเกงผู้หญิง',
     path: '/womanClothes',
     icon: <GiIcons.GiLargeDress />,
     cName: 'nav-text',
@@ -59,5 +73,84 @@ export const GrouprData = [
     cName: 'nav-text',
     color: 'green'
   },
+  // ------------------------------------
+  {
+    title: 'มือถือและอุปกรณ์',
+    path: '/mobile',
+    icon: <AiIcons.AiFillMobile />,
+    cName: 'nav-text',
+    color: 'green'
+  },
+  {
+    title: 'มือถือและอุปกรณ์',
+    path: '/mobile',
+    icon: <AiIcons.AiFillMobile />,
+    cName: 'nav-text',
+    color: 'green'
+  },
+  {
+    title: 'มือถือและอุปกรณ์',
+    path: '/mobile',
+    icon: <AiIcons.AiFillMobile />,
+    cName: 'nav-text',
+    color: 'green'
+  },
+  {
+    title: 'มือถือและอุปกรณ์',
+    path: '/mobile',
+    icon: <AiIcons.AiFillMobile />,
+    cName: 'nav-text',
+    color: 'green'
+  },
+  {
+    title: 'มือถือและอุปกรณ์',
+    path: '/mobile',
+    icon: <AiIcons.AiFillMobile />,
+    cName: 'nav-text',
+    color: 'green'
+  },
+  {
+    title: 'มือถือและอุปกรณ์',
+    path: '/mobile',
+    icon: <AiIcons.AiFillMobile />,
+    cName: 'nav-text',
+    color: 'green'
+  },
+  {
+    title: 'มือถือและอุปกรณ์',
+    path: '/mobile',
+    icon: <AiIcons.AiFillMobile />,
+    cName: 'nav-text',
+    color: 'green'
+  },
+  {
+    title: 'มือถือและอุปกรณ์',
+    path: '/mobile',
+    icon: <AiIcons.AiFillMobile />,
+    cName: 'nav-text',
+    color: 'green'
+  },
+  {
+    title: 'มือถือและอุปกรณ์',
+    path: '/mobile',
+    icon: <AiIcons.AiFillMobile />,
+    cName: 'nav-text',
+    color: 'green'
+  },
+  {
+    title: 'มือถือและอุปกรณ์',
+    path: '/mobile',
+    icon: <AiIcons.AiFillMobile />,
+    cName: 'nav-text',
+    color: 'green'
+  },
+  {
+    title: 'มือถือและอุปกรณ์',
+    path: '/mobile',
+    icon: <AiIcons.AiFillMobile />,
+    cName: 'nav-text',
+    color: 'green'
+  },
+
 
 ];

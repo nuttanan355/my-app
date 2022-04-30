@@ -2,7 +2,7 @@ import React from "react";
 // import { Switch,Router } from 'react-router-dom';
 // import { Container, Navbar } from 'react-bootstrap';
 // import { Link } from 'react-router-dom'
-import NavbarAdmin from "../../layout/navbar_admins";
+import NavbarAdmin from "../../layout/NavbarAdmins";
 import * as AiIcons from "react-icons/ai";
 // import * as FcIcons from "react-icons/fc";
 // import * as FiIcons from "react-icons/fa";

@@ -1,4 +1,4 @@
-import React from "react";
+import React ,{useState,useEffect}from "react";
 // import './css/App.css';
 import "./css/App.css";
 import { Routes, Route } from "react-router-dom";
@@ -15,29 +15,66 @@ import { Routes, Route } from "react-router-dom";
 import NotFound from "./error_404";
 
 // <------------------------Pages ADMIM------------------------->
+
 import HomeAdmin from "./components/admin/HomeAdmin";
 import NewProductsAdmin from "./components/admin/NewProductsAdmin";
 import EditProductsAdmin from "./components/admin/EditProductsAdmin";
 import OrdersAdmin from "./components/admin/OrdersAdmin";
 import RecomAdmin from "./components/admin/RecomAdmin";
 
+// ---------------------------------------------------------------------------------------------------------------------------------
+
+
+// <------------------------Pages USER-------------------------->
+import NavbarIndex from "./layout/NavbarIndex";
+import HomeUser from "./components/user/HomeUser";
+import SignIn from "./components/Login/SignIn";
+import SignUp from "./components/Login/SignUp";
+import Logout from "./components/Login/Logout";
+
 // <------------------------Pages SELLER------------------------>
 import HomeSeller from "./components/seller/HomeSeller";
 import AddNewProduct from "./components/seller/AddNewProduct";
+import { firebaseAuth, firebaseDB } from "./server/firebase";
 
-// <------------------------Pages USER-------------------------->
-import HomeUser from "./components/user/HomeUser";
-import LogIn from "./components/Login/SignIn";
-import Mobile from "./components/user/mobile";
+// -------------------------------------------------------END IMPORT-----------------------------------------------------------------
 
-import NavbarIndex from './layout/navbar_index'
+
 
 function App() {
+
+
+  const [admin, setAdmmin] = useState({});
+
+ 
+  console.log("Chak"+admin);
+
+
+  useEffect(() => {
+   
+        firebaseDB
+          .child("Users")
+          .orderByChild("type")
+          .equalTo("Admin")
+          .on("value", (snapshot) => {
+            if (snapshot.val() !== null) {
+              setAdmmin({...snapshot.val()});
+            } else {
+              setAdmmin({});
+            }
+          });
+   
+ 
+  }, []);
+
+
+
+
+
+
   return (
-
     <div>
-
-    <NavbarIndex/>
+      <NavbarIndex />
       <Routes>
         {/* <------------------------Pages USER--------------------------> */}
         {/* < Route path='/' exact component={AddNewProduct} /> */}
@@ -45,25 +82,28 @@ function App() {
         {/* <Route path={"/ViewData/:id"} component={ViewNewProduct} /> */}
         {/* <AddNewProduct /> */}
         {/* <formAddNewProduct /> */}
-        <Route path={"/"} index element={<HomeUser/>} />
-        <Route path={"/user/login"} index element={<LogIn/>} />
-        <Route path={"/mobile"} element={<Mobile/>} />
+        <Route path={"/"} index element={<HomeUser />} />
+        <Route path={"/user/sign-in"} index element={<SignIn />} />
+        <Route path={"/user/sign-up"} index element={<SignUp />} />
+        <Route path={"/logout"} index element={<Logout />} />
+
+        {/* <Route path={"profi"} */}
+
         {/* <------------------------Pages SELLER------------------------> */}
-        <Route path={"/HomeSeller"} element={<HomeSeller/>} />
-        <Route path={"/AddNewProduct"} element={<AddNewProduct/>} />
-       
+        <Route path={"/HomeSeller"} element={<HomeSeller />} />
+        <Route path={"/AddNewProduct"} element={<AddNewProduct />} />
 
         {/* <------------------------Pages ADMIN-------------------------> */}
-        <Route path={"/HomeAdmin"} element={<HomeAdmin/>} />
-        <Route path={"/NewProductsAdmin"} element={<NewProductsAdmin/>} />
-        <Route path={"/OrdersAdmin"} element={<OrdersAdmin/>} />
-        <Route path={"/EditProductAdmin"} element={<EditProductsAdmin/>} />
-        <Route path={"/RecomAdmin"} element={<RecomAdmin/>} />
+        <Route path={"/HomeAdmin"} element={<HomeAdmin />} />
+        <Route path={"/NewProductsAdmin"} element={<NewProductsAdmin />} />
+        <Route path={"/OrdersAdmin"} element={<OrdersAdmin />} />
+        <Route path={"/EditProductAdmin"} element={<EditProductsAdmin />} />
+        <Route path={"/RecomAdmin"} element={<RecomAdmin />} />
 
         {/* <------------------------Pages GATHER------------------------> */}
-        <Route path={"*"} element={NotFound} />
+        <Route path={"*"} element={<NotFound />} />
       </Routes>
-  </div>
+    </div>
   );
 }
 

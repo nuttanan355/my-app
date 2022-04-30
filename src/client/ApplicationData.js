@@ -1,30 +1,31 @@
 import React from 'react';
 import * as FaIcons from 'react-icons/fa';
-import * as IoIcons from 'react-icons/io';
+import * as ImIcons from 'react-icons/im';
+import * as IoIcons from 'react-icons/io5';
 
 export const ApplicationData = [
   {
     title: 'My Profile',
-    path: '/messages',
-    icon: <FaIcons.FaEnvelopeOpenText />,
+    path: '/user/profile',
+    icon: <ImIcons.ImProfile />,
     cName: 'nav-text'
   },
   {
     title: 'Cart',
-    path: '/messages',
+    path: '/user/carts',
     icon: <FaIcons.FaCartPlus />,
-    cName: 'nav-text'
-  },
-  {
-    title: 'Support',
-    path: '/support',
-    icon: <IoIcons.IoMdHelpCircle />,
     cName: 'nav-text'
   },
   {
     title: 'Peyment',
     path: '/messages',
     icon: <FaIcons.FaEnvelopeOpenText />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Logout',
+    path: '/logout',
+    icon: <IoIcons.IoLogOut />,
     cName: 'nav-text'
   },
 

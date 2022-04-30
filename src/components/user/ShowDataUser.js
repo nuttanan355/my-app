@@ -2,7 +2,7 @@ import React from "react";
 import { firebaseDB } from "../../server/firebase";
 import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
-import * as AiIcons from "react-icons/ai";
+// import * as AiIcons from "react-icons/ai";
 
 // let thumbnails = document.getElementsByClassName('thumbnail');
 // let slider = document.getElementById('slider');

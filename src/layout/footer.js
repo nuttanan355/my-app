@@ -1,4 +1,5 @@
 import React from 'react'
+import '../css/footer.css';
 
 function footer() {
   return (
@@ -38,17 +39,16 @@ function footer() {
       <div className="container">
         <div className="row">
           <div className="col-md-8 col-sm-6 col-xs-12">
-            <p className="copyright-text" style={{fontSize:"18px"}}>Copyright &copy; 2017 All Rights Reserved by 
-         <a href="#">Scanfcode</a>.
+            <p className="copyright-text" style={{fontSize:"18px"}}>Copyright &copy; 2017 All Rights Reserved by Scanfcode.
             </p>
           </div>
 
           <div className="col-md-4 col-sm-6 col-xs-12">
             <ul className="social-icons">
-              <li><a className="facebook" href="#"><i className="fa fa-facebook"></i></a></li>
-              <li><a className="twitter" href="#"><i className="fa fa-twitter"></i></a></li>
-              <li><a className="dribbble" href="#"><i className="fa fa-dribbble"></i></a></li>
-              <li><a className="linkedin" href="#"><i className="fa fa-linkedin"></i></a></li>   
+              <li><i className="fa fa-facebook"></i></li>
+              <li><i className="fa fa-twitter"></i></li>
+              <li><i className="fa fa-dribbble"></i></li>
+              <li><i className="fa fa-linkedin"></i></li>   
             </ul>
           </div>
         </div>

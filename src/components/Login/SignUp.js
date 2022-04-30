@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import * as FcIcons from "react-icons/fc";
-import { Link } from "react-router-dom";
 import "../../css/signIn.css";
 import { firebaseAuth, firebaseDB } from "../../server/firebase";
 

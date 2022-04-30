@@ -3,9 +3,9 @@ import * as FaIcons from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import { GrouprData } from "../client/GroupData";
-import { IconContext } from "react-icons";
+// import { IconContext } from "react-icons";
 import { ApplicationData } from "../client/ApplicationData";
-import * as FcIcons from "react-icons/fc";
+// import * as FcIcons from "react-icons/fc";
 import * as BsIcons from "react-icons/bs";
 import { firebaseAuth } from "../server/firebase";
 import "../css/Navbar.css";
@@ -22,7 +22,6 @@ function NavbarIndex() {
     });
   }, []);
 
-  console.log(user);
 
   return (
     <div className="container-fluid">
@@ -43,7 +42,6 @@ function NavbarIndex() {
           </li>
 
           <p className="title-bars">ประเภทสินค้า </p>
-          {/* <hr className="title-bars"></hr> */}
           <hr className="title-bars" />
           {GrouprData.map((item, index) => {
             return (
@@ -71,6 +69,7 @@ function NavbarIndex() {
           src="../img/logo.png"
           style={{ width: "100%" }}
           onClick={() => (window.location.href = "/")}
+          alt=""
         />
 
         <div className="nav ">
@@ -98,6 +97,7 @@ function NavbarIndex() {
                     width: "40px",
                     margin: "0px 20px 0px 0px",
                   }}
+                  alt=""
                 />
                 {user.displayName}
               </Dropdown.Toggle>

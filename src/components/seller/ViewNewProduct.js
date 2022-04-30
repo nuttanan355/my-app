@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import {firebaseDB} from "../components/firebase";
+import {firebaseDB} from "../../server/firebase";
 
 function ViewNewProduct() {
   const [values, setValues] = useState({});

@@ -2,7 +2,6 @@ import React from "react";
 // import { Switch,Router } from 'react-router-dom';
 // import { Container, Navbar } from 'react-bootstrap';
 // import { Link } from 'react-router-dom'
-import NavbarAdmin from "../../layout/NavbarAdmins";
 import * as AiIcons from "react-icons/ai";
 // import * as FcIcons from "react-icons/fc";
 // import * as FiIcons from "react-icons/fa";
@@ -12,8 +11,7 @@ import * as BsIcons from "react-icons/bs";
 function HomeAdmin() {
   return (
     <div style={{ background: "lightgray" }}>
-      <NavbarAdmin />
-      <div className="container" >
+           <div className="container" >
         <div className="container mt-5">
           <h1 style={{ fontWeight: "bold", color: "gray" }}>ADMIN</h1>
         </div>

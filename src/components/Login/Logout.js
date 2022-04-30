@@ -1,10 +1,9 @@
-import React from "react";
 import { firebaseAuth } from "../../server/firebase";
 import "../../css/App.css";
-import { Link } from "react-router-dom";
-import * as FcIcons from "react-icons/fc";
+// import { Link } from "react-router-dom";
+// import * as FcIcons from "react-icons/fc";
 
-const Logout = ({ user }) => {
+const Logout = () => {
 
           firebaseAuth
             .signOut()

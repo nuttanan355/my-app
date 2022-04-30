@@ -1,6 +1,6 @@
 import React,{useState} from "react";
 import "../../css/signIn.css";
-import { firebaseAuth } from "../../server/firebase";
+// import { firebaseAuth } from "../../server/firebase";
 import LoginGoogle from "./LoginGoogle";
 
 function SignIn() {

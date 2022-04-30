@@ -1,7 +1,7 @@
 import { firebaseAuth, firebase ,firebaseDB} from "../../server/firebase";
-import React, { useEffect ,useState } from "react";
+import React from "react";
 import "../../css/App.css";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import * as FcIcons from "react-icons/fc";
 
 const provider = new firebase.auth.GoogleAuthProvider().setCustomParameters({prompt: "select_account",});

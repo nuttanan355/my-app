@@ -1,10 +1,9 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import "../../css/signIn.css";
-// import { firebaseAuth } from "../../server/firebase";
+import { firebaseAuth } from "../../server/firebase";
 import LoginGoogle from "./LoginGoogle";
 
 function SignIn() {
-
   const [value, setValue] = useState({
     email: "",
     password: "",
@@ -16,10 +15,25 @@ function SignIn() {
   };
 
   const handleSubmit = (e) => {
-      e.preventDefault();
-try{}catch(error){console.log(error)}
-  }
-
+    e.preventDefault();
+    try {
+      firebaseAuth
+        .signInWithEmailAndPassword(value.email, value.password)
+        .then((userCredential) => {
+          var user = userCredential.user;
+          console.log(user);
+          console.log(user.uid);
+          console.log(user.email);
+          window.location.href = "/";
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      // +(true);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <div className="limiter">
@@ -32,7 +46,10 @@ try{}catch(error){console.log(error)}
           <form className="login100-form validate-form" onSubmit={handleSubmit}>
             <span className="login100-form-title">Member Login</span>
 
-            <div className="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+            <div
+              className="wrap-input100 validate-input"
+              data-validate="Valid email is required: ex@abc.xyz"
+            >
               <input
                 className="input100"
                 type="text"
@@ -46,7 +63,10 @@ try{}catch(error){console.log(error)}
               </span>
             </div>
 
-            <div className="wrap-input100 validate-input" data-validate="Password is required">
+            <div
+              className="wrap-input100 validate-input"
+              data-validate="Password is required"
+            >
               <input
                 className="input100"
                 type="password"
@@ -76,11 +96,9 @@ try{}catch(error){console.log(error)}
                 Create your Account
               </a>
             </div>
-			
           </form>
-         
-            <LoginGoogle  variant="primary" />
-  
+
+          <LoginGoogle variant="primary" />
         </div>
       </div>
     </div>

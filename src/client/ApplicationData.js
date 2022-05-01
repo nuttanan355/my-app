@@ -17,8 +17,14 @@ export const ApplicationData = [
     cName: 'nav-text'
   },
   {
-    title: 'Peyment',
-    path: '/messages',
+    title: 'Oders',
+    path: '/user/order',
+    icon: <FaIcons.FaEnvelopeOpenText />,
+    cName: 'nav-text'
+  },
+  {
+    title: 'Seller',
+    path: '/user/seller-product',
     icon: <FaIcons.FaEnvelopeOpenText />,
     cName: 'nav-text'
   },

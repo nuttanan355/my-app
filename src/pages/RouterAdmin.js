@@ -38,6 +38,4 @@ export const RouteAdmin = [
     path: "/admin/recom",
     element: <RecomAdmin />,
   },
-
-
 ];

@@ -11,13 +11,13 @@ function HomeSeller() {
   return (
     <div>
       <div className="container">
-        <div className="row mt-3">
-          <div className="col-md-10">
+        <div className="row pt-3">
+          <div className="col-8 md-10">
             <h1>ร้านค้าของฉัน</h1>
           </div>
           <a
-            href="/AddNewProduct"
-            className="btn btn-primary btn-lg col"
+            href="/seller/AddNewProduct"
+            className="btn btn-primary btn-lg col-4 my-3"
             role="button"
           >
             ลงขายสินค้า
@@ -33,7 +33,7 @@ function HomeSeller() {
             <p className="text-center mt-3 h4">ตรวจสอบสถานะคำสั่งซื้อ</p>
           </div>
           <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div2">
-            <Link to="/AddNewProduct">
+            <Link to="/seller/AddNewProduct">
               <div className="text-center">
                 <FaIcons.FaBoxes size={200} />
               </div>
@@ -46,7 +46,7 @@ function HomeSeller() {
             </div>
             <p className="text-center mt-3 h4">ตรวจสอบการโอนเงินจากระบบ</p>
           </div>
-          <div class="w-100"></div>
+          <div className="w-100"></div>
           <div
             className="col-lg bg-warning rounded-3 p-3 mx-3 my-3"
             id="div4"

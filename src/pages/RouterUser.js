@@ -61,4 +61,9 @@ export const RouteUser = [
         path: "/EditData/:id",
         element: <EditNewProduct />,
       },
+      {
+        path:"/user/seller-product",
+        element:<HomeSeller />
+      }
+
 ];

@@ -1,8 +1,11 @@
-import React from 'react';
+import React from "react";
 
-function OrdersAdmin () {
-return(<div className="container">
-    
-</div>);
+function OrdersAdmin() {
+  return (
+    <div>
+      <h1> Orders</h1>
+      <hr />
+    </div>
+  );
 }
 export default OrdersAdmin;

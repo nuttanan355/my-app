@@ -1,8 +1,12 @@
-import React, { useState } from "react";
-import { firebaseDB, firebaseStorage } from "../../server/firebase";
+import React, { useState, useEffect } from "react";
+import {
+  firebaseAuth,
+  firebaseDB,
+  firebaseStorage,
+} from "../../server/firebase";
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-// import { useParams } from "react-router-dom";
-// import { storage } from "./firebase";
+import { GrouprData } from "../../client/GroupData";
+import Form from "react-bootstrap/Form";
 
 var d = new Date();
 var saveCurrentDate = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear();
@@ -11,127 +15,139 @@ var saveCurrentTime =
 var dateKey = saveCurrentDate + "," + saveCurrentTime;
 
 function AddNewProduct() {
+
+  useEffect(() => {
+    firebaseAuth.onAuthStateChanged((user) => {
+     return setValues({...values, sellerEmail: user.email, sellerUid: user.uid});
+    });
+  }, []);
+
   // ----------------ADD DATA--------------------------------
   const [values, setValues] = useState({
+    sellerUid: "",
     productName: "",
     productCategory: "",
     productPrice: "",
+    productAllow: false,
     productImg: [],
     productDetails: "",
-    produtcCost1: [],
-    produtcCost2: [],
-    produtcCost3: [],
+    produtcDate: saveCurrentDate,
+    produtcTime: saveCurrentTime,
+    produtcCost100: "",
+    produtcCost200: "",
+    produtcCost201: "",
+    produtcCost202: "",
+    produtcCost300: "",
+    produtcCost301: "",
+    produtcCost302: "",
   });
 
   const handleOnChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  const createProduct = (e) => {
-    e.preventDefault();
-    if (!useState) {
-      console.error("null");
-    } else {
-      // -- push-เจคคีย์ใหม่ให้
-      // -- set-ใส่ค่าที่มีอยู่ลงใน child
-      firebaseDB
-        .child("product")
-        .child(dateKey)
-        .set(values, (error) => {
-          if (error) {
-            alert.error(error);
-          } else {
-            console.log("add data success");
-          }
-        });
-    };
-  };
+  console.log(values);
 
   // ----------------EDN ADD DATA------------------------------
 
   // -----------ADD IMAGE----------------------------
+
+  const [ShowImages, setShowImages] = useState([]);
   const [Images, setImages] = useState([]);
-  // const [Upload,setUpload] = useState([]);
 
-  const ImgOnChange = (e) => {
+  const ImgOnChange = (ever) => {
     const selectedFIles = [];
-    const targetFilesObject = [...e.target.files];
-
+    const targetFilesObject = [...ever.target.files];
+    setImages([...ever.target.files]);
     targetFilesObject.map((file) => {
       return selectedFIles.push(URL.createObjectURL(file));
     });
-    setImages(selectedFIles);
-    uploadFiles(targetFilesObject) ;
-    // console.log(Images);
+    setShowImages(selectedFIles);
   };
 
-  const uploadFiles = (targetFilesObject) => {
 
-    const dowUrls = [];
-     targetFilesObject.forEach((files)=> {
-      const sotrageRef = ref(firebaseStorage,`product/${dateKey}/${files.name}`);
-      const uploadTask = uploadBytesResumable(sotrageRef, files);
-
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {
-          // const prog = Math.round(
-          //   (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          // );
-          // setProgress(prog);
-        },
-        (error) => console.log(error),
-        async () => {
-          await getDownloadURL(uploadTask.snapshot.ref)
-          .then((downloadURL) => {
-            console.log("File available at", downloadURL);
-            // dowURLs = [...e.target.downloadURL]
-            // dowURLs.map((downloadURL)=>{})
-           return dowUrls.push(downloadURL);
-          });
-          
-        }
-      );
-    }
-
-    );
-    setValues({...values,productImg:dowUrls});
-    // createProduct();
+  const handleonSubmit = () => {
+      Images.forEach((files) => {
+        const sotrageRef = ref(
+          firebaseStorage,
+          `product/${dateKey}/${files.name}`
+        );
+        const uploadTask = uploadBytesResumable(sotrageRef, files);
+        uploadTask.on(
+          "state_changed",
+          (snapshot) => {
+            // const prog = Math.round(
+            //   (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+            // );
+            // setProgress(prog);
+          },
+          (error) => console.log(error),
+          async () => {
+            await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              console.log("File available at", downloadURL);
+              return values.productImg.push(downloadURL);
+            });
+          }
+        );
+      });
+      console.log(values.productImg);
+      setTimeout(() => {
+        firebaseDB
+          .child("product")
+          .child(dateKey)
+          .set(values)
+          .then(() => {
+            console.log("add data success");
+          })
+          .catch((error) => console.log(error));
+      }, 5000);
+    
+    // console.log(values.productImg);
   };
-
-  //  const onUploadSubmission1 = e => {
-  //   e.preventDefault(); // prevent page refreshing
-  //     const promises = [];
-  //     Images.forEach(image => {
-  //      const uploadTask =
-  //      firebaseStorage.ref().child(`product1/${dateKey}/${image.name}.jpg`).put(image);
-  //         promises.push(uploadTask);
-  //         uploadTask.on(
-  //          'STATE_CHANGED',
-  //            snapshot => {
-  //             const progress = (
-  //               (snapshot.bytesTransferred / snapshot.totalBytes) * 100);
-  //                if (snapshot.state === 'RUNNING') {
-  //                 console.log(`Progress: ${progress}%`);
-  //                }
-  //              },
-  //              error => console.log(error.code),
-  //              async () => {
-  //                const downloadURL = await uploadTask.snapshot.ref.getDownloadURL();
-  //                 // do something with the url
-  //                 console.log(downloadURL);
-  //               }
-  //              );
-  //            });
-  //        Promise.all(promises)
-  //         .then(() => alert('All files uploaded'))
-  //         .catch(err => console.log(err.code));
-  //  }
 
   // -----------END ADD IMAGE----------------------------
 
+  const checkDate = () => {
+    if (values.productName === "") {
+      console.log("ใส่ชื่อ ไอ้สอง")
+    } else if (values.productCategory === "") {
+      console.log("ใส่ประเภทด้วย ไอ้สัส")
+    } else if (values.productCategory === "ประเภทสินค้า") {
+      console.log("ใส่ประเภทด้วย ไอ้สัส")
+    } else if (values.productPrice === "") {
+      console.log("ใส่ราคาด้วย ไม่งั้นจะขายใครไอ้เ-ร")
+    } else if (values.productDetails === "") {
+      console.log("ใส่รายละเอียดด้วย เขาจะรู้ไหมว่าใช้งานยังไง")
+    } else if (values.produtcCost100 === "") {
+      console.log("ใส่ค่าส่งด้วย")
+    } else if (values.produtcCost200 === "") {
+      console.log("ราคาเดียวก็ใส่-ซะไอ้สัส 01")
+    } else if (values.produtcCost201 === "") {
+      console.log("ราคาเดียวก็ใส่-ซะไอ้สัส 02")
+    } else if (values.produtcCost202 === "") {
+      console.log("ราคาเดียวก็ใส่-ซะไอ้สัส 03")
+    } else if (values.produtcCost300 === "") {
+      console.log("ราคาเดียวก็ใส่-ซะไอ้สัส 04")
+    } else if (values.produtcCost301 === "") {
+      console.log("ราคาเดียวก็ใส่-ซะไอ้สัส 05")
+    } else if (values.produtcCost302 === "") {
+      console.log("ราคาเดียวก็ใส่-ซะไอ้สัส 06")
+    } else if (Images.length === 0) {
+      console.log("ไม่ใส่รูป ใครจะรูปว่าขายอะไรว่ะ")
+    } else {
+      handleonSubmit();
+    }
+  };
+
+
+
+
+
+
+
+
   return (
-    <div className="container">
+    <div className="container pb-5">
       <h1>Add New Product</h1>
       <hr />
       <div className="container">
@@ -146,20 +162,7 @@ function AddNewProduct() {
               multiple
             />
 
-{/* {values.productImg.map(i=>(   <p>
-{i.value}
-</p>)
-
-)} */}
-            {/* {Images.map((url, i) => (
-              <div key={i}>
-                <a href={url} target="_blank">
-                  {url}
-                </a>
-              </div>
-            ))}
-            <br /> */}
-            {Images.map((url, i) => (
+            {ShowImages.map((url, i) => (
               <img
                 key={i}
                 style={{ width: "300px" }}
@@ -183,33 +186,23 @@ function AddNewProduct() {
 
           <div className="form-group mt-3">
             <label htmlFor="productCategorys">ประเภทสินค้า</label>
-            <input
-              list="productCategorys"
+            <Form.Select
+              aria-label="Default select example"
               id="productCategory"
               name="productCategory"
               className="form-control"
-              placeholder="ประเภทสินค้า"
-              // value={values.name}
               onChange={handleOnChange}
-            />
-            <datalist id="productCategorys">
-              {/* --------เสื้อผ้า------- */}
-              <option value="เสื้อผ้าผู้ชาย" />
-              <option value="เสื้อผ้าผู้หญิง" />
-              {/* --------รองเท้า------- */}
-              <option value="รองเท้าผู้ชาย" />
-              <option value="รองเท้าผู้หญิง" />
-              {/* --------กระเป๋า------- */}
-              <option value="กระเป๋าผู้ชาย" />
-              <option value="กระเป๋าผู้หญิง" />
-              <option value="กระเป๋าเดินทาง" />
-              {/* --------มือถือ------- */}
-              <option value="โทรศัพท์มือถือ" />
-              <option value="อุปกรณ์เสริม" />
-              <option value="อื่นๆ" />
-            </datalist>
+            >
+              <option>ประเภทสินค้า</option>
+              {GrouprData.map((item, keys) => {
+                return (
+                  <option name="productCategory" key={keys} value={item.title}>
+                    {item.title}
+                  </option>
+                );
+              })}
+            </Form.Select>
           </div>
-
           <div className="form-group mt-3">
             <label htmlFor="productPrice">ราคา</label>
             <input
@@ -242,10 +235,11 @@ function AddNewProduct() {
             </label>
             <input
               type="number"
-              id="produtcCost1"
-              name="produtcCost1"
+              id="produtcCost100"
+              name="produtcCost100"
               className="form-control col"
               placeholder="ราคา"
+              onChange={handleOnChange}
             />
           </div>
 
@@ -255,30 +249,33 @@ function AddNewProduct() {
             </label>
             <input
               type="number"
-              id="produtcCost2"
-              name="produtcCost2"
+              id="produtcCost200"
+              name="produtcCost200"
               className="form-control col"
               placeholder="ชิ้น"
+              onChange={handleOnChange}
             />
             <label htmlFor="produtcCost2" className="col">
               ถึง
             </label>
             <input
               type="number"
-              id="produtcCost2"
-              name="produtcCost2"
+              id="produtcCost201"
+              name="produtcCost201"
               className="form-control col"
               placeholder="ชิ้น"
+              onChange={handleOnChange}
             />
             <label htmlFor="produtcCost2" className="col">
               ค่าส่งที่กำหนด
             </label>
             <input
               type="number"
-              id="produtcCost2"
-              name="produtcCost2"
+              id="produtcCost202"
+              name="produtcCost202"
               className="form-control col"
               placeholder="บาท"
+              onChange={handleOnChange}
             />
           </div>
 
@@ -288,35 +285,41 @@ function AddNewProduct() {
             </label>
             <input
               type="number"
-              id="produtcCost3"
-              name="produtcCost3"
+              id="produtcCost300"
+              name="produtcCost300"
               className="form-control col"
               placeholder="ชิ้น"
+              onChange={handleOnChange}
             />
             <label htmlFor="produtcCost3" className="col">
               ถึง
             </label>
             <input
               type="number"
-              id="produtcCost3"
-              name="produtcCost3"
+              id="produtcCost301"
+              name="produtcCost301"
               className="form-control col"
               placeholder="ชิ้น"
+              onChange={handleOnChange}
             />
             <label htmlFor="produtcCost3" className="col">
               ค่าส่งที่กำหนด
             </label>
             <input
               type="number"
-              id="produtcCost3"
-              name="produtcCost3"
+              id="produtcCost302"
+              name="produtcCost302"
               className="form-control col"
               placeholder="บาท"
+              onChange={handleOnChange}
             />
           </div>
-
           <div className="row mt-3 ">
-            <button type="button" className="btn btn-primary col mx-3" onClick={createProduct}>
+            <button
+              type="button"
+              className="btn btn-primary col mx-3"
+              onClick={checkDate}
+            >
               Submit
             </button>
             <button type="button" className="btn btn-danger col mx-3">

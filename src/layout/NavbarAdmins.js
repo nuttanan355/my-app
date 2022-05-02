@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 // import { Container, Navbar } from "react-bootstrap";
 // import * as FcIcons from "react-icons/fc";
 // import * as RiIcons from "react-icons/ri";
@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Logout from "../components/login/Logout";
 
 function NavbarAdmin() {
+  
 
   return (
     <div>

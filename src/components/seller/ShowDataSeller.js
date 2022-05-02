@@ -2,7 +2,7 @@ import React from 'react'
 import { firebaseDB } from "../firebase";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import NavbarSeller from "../../navigation/navbar_seller";
+// import NavbarSeller from "../../navigation/navbar_seller";
 
 function ShowDataSeller(){
     const [values, setValues] = useState({});
@@ -17,10 +17,6 @@ function ShowDataSeller(){
           setValues({});
         }
       });
-  
-      return () => {
-        setValues({});
-      };
     }, []);
   
     const onDelete = (id) => {

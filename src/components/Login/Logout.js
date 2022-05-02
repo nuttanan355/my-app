@@ -8,7 +8,7 @@ const Logout = () => {
           firebaseAuth
             .signOut()
             .then(() => {
-              // window.location.href = "/";
+              window.location.href = "/";
             })
             .catch((error) => {
               console.error(error);

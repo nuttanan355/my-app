@@ -16,7 +16,7 @@ function HomeSeller() {
             <h1>ร้านค้าของฉัน</h1>
           </div>
           <a
-            href="/seller/AddNewProduct"
+            href="/seller/seller-product/add-product"
             className="btn btn-primary btn-lg col-4 my-3"
             role="button"
           >
@@ -26,19 +26,19 @@ function HomeSeller() {
         <hr />
         
         <div className="row">
-          <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div1">
-            <div className="text-center">
-              <FaIcons.FaBox size={200} />
-            </div>
-            <p className="text-center mt-3 h4">ตรวจสอบสถานะคำสั่งซื้อ</p>
-          </div>
-          <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div2">
-            <Link to="/seller/AddNewProduct">
+        <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div1">
+            <Link to="/seller/seller-product">
               <div className="text-center">
                 <FaIcons.FaBoxes size={200} />
               </div>
               <p className="text-center mt-3 h4">ประกาศการขาย</p>
             </Link>
+          </div>
+          <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div2">
+            <div className="text-center">
+              <FaIcons.FaBox size={200} />
+            </div>
+            <p className="text-center mt-3 h4">ตรวจสอบสถานะคำสั่งซื้อ</p>
           </div>
           <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div3">
             <div className="text-center">

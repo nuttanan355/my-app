@@ -71,7 +71,7 @@ function NavbarAdmin() {
                       textAlign: "right", 
                       fontSize: "18px" 
                   }}
-            onClick={Logout()}
+            onClick={()=>Logout()}
           >
             Logout
           </p>

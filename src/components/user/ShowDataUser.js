@@ -44,7 +44,6 @@ function ShowDataUser() {
         setValues({});
       }
     });
-
     return () => {
       setValues({});
     };
@@ -69,9 +68,7 @@ function ShowDataUser() {
       <section className="item-container" id="slider">
         {Object.keys(values).map((id, index) => {
           return (
-            <div key={id} className="btn col-lg-3" style={{
-             
-            }}>
+            <div key={index} className="btn col-lg-3">
 
               <Card className="thumbnail"
                 style={{
@@ -81,7 +78,7 @@ function ShowDataUser() {
                   padding: "1px"
                 }}
                 onClick={() =>
-                  (window.location.href = `/product-details/${id}`)
+                  (window.location.href = `/view-product/${id}`)
                 }
 
               >

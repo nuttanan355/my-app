@@ -14,7 +14,7 @@ import HomeSeller from "../components/seller/HomeSeller";
 import SellerProduct from "../components/seller/SellerProduct"
 import AddNewProduct from "../components/seller/AddNewProduct";
 import EditNewProduct from "../components/seller/EditNewProduct";
-import ViewNewProduct from "../components/seller/ViewNewProduct"
+import ViewProduct from "../components/user/ViewProduct"
 
 
 
@@ -43,8 +43,8 @@ export const RouteUser = [
       element: <Logout />,
     },
     {
-        path: "/ViewData/:id",
-        element: <ViewNewProduct />,
+        path: "/view-product/:id",
+        element: <ViewProduct />,
       },
 
    
@@ -55,15 +55,16 @@ export const RouteUser = [
         element: <HomeSeller />,
       },
       {
-        path:"/user/seller-product",
+        path:"/seller/seller-product",
         element:<SellerProduct />
       },
       {
         path: "/seller/seller-product/add-product",
         element: <AddNewProduct />,
       },
+
           {
-        path: "/EditData/:id",
+        path: "/seller/edit-data/:id",
         element: <EditNewProduct />,
       },
 

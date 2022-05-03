@@ -1,22 +1,26 @@
 import React from 'react'
-import { firebaseDB } from "../firebase";
+import { firebaseDB,firebaseAuth } from "../../server/firebase";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 // import NavbarSeller from "../../navigation/navbar_seller";
 
 function ShowDataSeller(){
     const [values, setValues] = useState({});
+
     // const [sortedData, setSortedData] = useState([]);
     // const [sort, setSort] = useState(false);
   
     useEffect(() => {
-      firebaseDB.child("product").on("value", (snapshot) => {
-        if (snapshot.val() !== null) {
-          setValues({ ...snapshot.val() });
-        } else {
-          setValues({});
-        }
-      });
+      firebaseAuth.onAuthStateChanged((user) => {
+        firebaseDB.child("product").orderByChild("sellerUid").equalTo(user.uid.toString())
+        .on("value", (snapshot) => {
+          if (snapshot.val() !== null) {
+            setValues({ ...snapshot.val() });
+          } else {
+            setValues({});
+          }
+        });
+       });
     }, []);
   
     const onDelete = (id) => {

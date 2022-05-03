@@ -12,14 +12,17 @@ const signInWithGoogle = () =>
 .then((userCredential) => {
       var user = userCredential.user;
 
-      console.log(user.email);
+      // console.log(user.email);
 
-     const checkAccess = firebaseDB.child("User").orderByChild('email').equalTo(user.uid.toString());
+     const checkAccess = firebaseDB.child("Users").orderByChild('email').equalTo(user.email.toString());
      checkAccess.on('value',(snapshot)=>{
+      // console.log("Not if "+snapshot.val());
       if (snapshot.val() !== null) {
         // console.log("Not Add User success");
+        // console.log("Not null"+snapshot.val());
       window.location.href = "/";
       } else {
+        // console.log("Null"+snapshot.val());
         firebaseDB.child("Users").child(user.uid)
         .set({
           email: user.email,
@@ -28,7 +31,6 @@ const signInWithGoogle = () =>
           type: "User",
         })
         .then(() => {
-         
           // console.log("Add User success");
           window.location.href = "/";
         })

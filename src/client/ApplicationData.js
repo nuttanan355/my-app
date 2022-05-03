@@ -24,7 +24,7 @@ export const ApplicationData = [
   },
   {
     title: 'Seller',
-    path: '/user/seller-product',
+    path: '/HomeSeller',
     icon: <FaIcons.FaEnvelopeOpenText />,
     cName: 'nav-text'
   },

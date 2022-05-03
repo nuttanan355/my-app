@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../../css/signIn.css";
-import { firebaseAuth } from "../../server/firebase";
+import { firebase } from "../../server/firebase";
 import LoginGoogle from "./LoginGoogle";
 
 function SignIn() {
@@ -17,7 +17,7 @@ function SignIn() {
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      firebaseAuth
+      firebase.auth()
         .signInWithEmailAndPassword(value.email, value.password)
         .then((userCredential) => {
           var user = userCredential.user;
@@ -70,7 +70,7 @@ function SignIn() {
               <input
                 className="input100"
                 type="password"
-                name="pass"
+                name="password"
                 placeholder="Password"
                 onChange={handleChange}
               />
@@ -81,7 +81,7 @@ function SignIn() {
             </div>
 
             <div className="container-login100-form-btn">
-              <button className="login100-form-btn">Login</button>
+              <button className="login100-form-btn" type="submit">Login</button>
             </div>
 
             {/* <div className="text-center p-t-12">

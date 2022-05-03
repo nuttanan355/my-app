@@ -12,34 +12,37 @@ import Footer from "./layout/footer";
 import { RouteAdmin } from "./pages/RouterAdmin";
 import { RouteUser } from "./pages/RouterUser";
 import { firebaseAuth, firebaseDB } from "./server/firebase";
+import Spinner from 'react-bootstrap/Spinner'
 // import { BrowserRouter } from "react-router-dom";
 
 
 // -------------------------------------------------------END IMPORT-----------------------------------------------------------------
 
 function App() {
-  const [admin, setAdmmin] = useState(false)
+  const [admin, setAdmmin] = useState()
   useEffect(() => {
-    firebaseAuth.onAuthStateChanged(async(users) => {
-      try{         firebaseDB
+    firebaseAuth.onAuthStateChanged((users) => {
+      if (users !== null) {
+        firebaseDB
         .child("Users")
         .child(users.uid.toString())
         .child("type")
         .on("value", (snapshot) => {
           if (snapshot.val() === "Admin") {
-            setAdmmin(true);
+            return setAdmmin(true);
           } else {
+            return setAdmmin(false);
           }
-        }); }catch(error){
-        console.error(error);
-      }
+        }); 
+      }else{
+        setAdmmin(false);
+      }         
     });
-  }, []);
+  }, [admin]);
 
   return (
     <div>
-      
-      {admin ? (
+      {admin === true ? (
         <div>
           <NavbarAdmin />
           <Routes>
@@ -47,9 +50,8 @@ function App() {
               return <Route index path={path} element={element} key={key} />;
             })}
           </Routes>
-
         </div>
-      ) : (
+      ) :admin === false ? (
         <div>
           <NavbarIndex />
           <Routes>
@@ -59,9 +61,15 @@ function App() {
           </Routes>
           <Footer />
         </div>
+      ):(
+        <div>
+          <Spinner animation="grow" variant="success" />
+        </div>
       )}
     </div>
   );
+
+
 }
 
 export default App;

@@ -94,7 +94,7 @@ function AddNewProduct() {
       setTimeout(() => {
         firebaseDB
           .child("product")
-          .child(dateKey)
+          .child("Product-"+dateKey)
           .set(values)
           .then(() => {
             console.log("add data success");
@@ -107,7 +107,7 @@ function AddNewProduct() {
 
   // -----------END ADD IMAGE----------------------------
 
-  const checkDate = () => {
+  const checkData = () => {
     if (values.productName === "") {
       console.log("ใส่ชื่อ ไอ้สอง")
     } else if (values.productCategory === "") {
@@ -318,7 +318,7 @@ function AddNewProduct() {
             <button
               type="button"
               className="btn btn-primary col mx-3"
-              onClick={checkDate}
+              onClick={checkData}
             >
               Submit
             </button>

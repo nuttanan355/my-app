@@ -31,42 +31,50 @@ function HomeSeller() {
               <div className="text-center">
                 <FaIcons.FaBoxes size={200} />
               </div>
-              <p className="text-center mt-3 h4">ประกาศการขาย</p>
+              <h4 className="text-center mt-3 h4">ประกาศการขาย</h4>
             </Link>
           </div>
           <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div2">
+          <Link to="/seller/seller-orders">
             <div className="text-center">
               <FaIcons.FaBox size={200} />
             </div>
-            <p className="text-center mt-3 h4">ตรวจสอบสถานะคำสั่งซื้อ</p>
+            <h4 className="text-center mt-3 h4">ตรวจสอบสถานะคำสั่งซื้อ</h4>
+            </Link>
           </div>
           <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div3">
+          <Link to="/seller/seller-payment">
             <div className="text-center">
               <FaIcons.FaShoppingBasket size={200} />
             </div>
-            <p className="text-center mt-3 h4">ตรวจสอบการโอนเงินจากระบบ</p>
+            <h4 className="text-center mt-3 h4">ตรวจสอบการโอนเงินจากระบบ</h4>
+            </Link>
           </div>
           <div className="w-100"></div>
-          <div
-            className="col-lg bg-warning rounded-3 p-3 mx-3 my-3"
-            id="div4"
-          >
+          <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div4">
+          <Link to="/seller/seller-recom">
             <div className="text-center">
               <AiIcons.AiFillLike size={200} />
             </div>
-            <p className="text-center mt-3 h4">บริการสินค้าแนะนำ</p>
+            <h4 className="text-center mt-3 h4">บริการสินค้าแนะนำ</h4>
+            </Link>
           </div>
           <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div5">
+          <Link to="/seller/seller-profile">
+
             <div className="text-center">
               <FaIcons.FaRegCreditCard size={200} />
             </div>
-            <p className="text-center mt-3 h4">เลขบัญชีผู้ขาย</p>
+            <h4 className="text-center mt-3 h4">Profile Seller</h4>
+            </Link>
           </div>
           <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div6">
+          <Link to="/seller/seller-packgate">
             <div className="text-center">
               <FaIcons.FaClipboardList size={200} />
             </div>
-            <p className="text-center mt-3 h4">รายการคำสั่งซื้อ Packgate</p>
+            <h4 className="text-center mt-3 h4">รายการคำสั่งซื้อ Packgate</h4>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,8 +1,7 @@
-import { Button } from "bootstrap";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import {firebaseDB} from "../../server/firebase";
+import {firebaseDB,firebaseAuth} from "../../server/firebase";
 
 function ViewProduct() {
 
@@ -10,6 +9,14 @@ function ViewProduct() {
   const [Images, setImages] = useState([]);
   const { id } = useParams();
 
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    firebaseAuth.onAuthStateChanged((user) => {
+      setUser(user);
+    });
+  }, []);
+                                                                                              
   useEffect(() => {
     firebaseDB.child("product").child(id)
          .on("value", (snapshot) => {
@@ -24,30 +31,21 @@ function ViewProduct() {
         setValues({});
       };
   },[id]);
+  
+  console.log("values" ,values)
+  console.log("users" ,user)
 
   const addCart=()=>{
-    firebaseDB.child("cart")
+    firebaseDB.child("cart").child(user.uid).child(id).set(values).then(()=>{
+      console.log("เพิ่มลงตะกร้าแล้ว")
+    }).catch((err)=>console.log(err))
+ 
+    
 
   }
 
-  // sellerUid: "",
-  // productName: "",
-  // productCategory: "",
-  // productPrice: "",
-  // productAllow: false,
-  // productImg: [],
-  // productDetails: "",
-  // produtcDate: saveCurrentDate,
-  // produtcTime: saveCurrentTime,
-  // produtcCost100: "",
-  // produtcCost200: "",
-  // produtcCost201: "",
-  // produtcCost202: "",
-  // produtcCost300: "",
-  // produtcCost301: "",
-  // produtcCost302: "",
 
-  console.log("values", values);
+  // console.log("values", values);
   return (
     <div className="container py-5">
       <div style={{ marginTop: "150px" }}>
@@ -79,7 +77,7 @@ function ViewProduct() {
             </button>
             </Link>
             
-            <button type="button" className="btn btn-primary" data-toggle="button" aria-pressed="false" autoComplete="off">
+            <button type="button" className="btn btn-primary" data-toggle="button" aria-pressed="false" autoComplete="off" onClick={()=>addCart()}>
               Cart
             </button>
         
@@ -89,3 +87,23 @@ function ViewProduct() {
     </div>
   );
 }export default ViewProduct;
+
+
+
+
+  // sellerUid: "",
+  // productName: "",
+  // productCategory: "",
+  // productPrice: "",
+  // productAllow: false,
+  // productImg: [],
+  // productDetails: "",
+  // produtcDate: saveCurrentDate,
+  // produtcTime: saveCurrentTime,
+  // produtcCost100: "",
+  // produtcCost200: "",
+  // produtcCost201: "",
+  // produtcCost202: "",
+  // produtcCost300: "",
+  // produtcCost301: "",
+  // produtcCost302: "",

@@ -6,6 +6,7 @@ import NotFound from "../error_404";
 import HomeUser from "../components/user/HomeUser";
 import SignIn from "../components/login/SignIn";
 import SignUp from "../components/login/SignUp";
+import CartUser from '../components/user/CartUser';
 import Logout from "../components/login/Logout";
 
 
@@ -45,6 +46,10 @@ export const RouteUser = [
     {
         path: "/view-product/:id",
         element: <ViewProduct />,
+      },
+      {
+        path: "/user/carts",
+        element: <CartUser />,
       },
 
    

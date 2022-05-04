@@ -36,7 +36,8 @@ function ShowDataUser() {
   // const [sort, setSort] = useState(false);
 
   useEffect(() => {
-    firebaseDB.child("product").on("value", (snapshot) => {
+    firebaseDB.child("product").orderByChild("productAllow")
+    .equalTo(true).on("value", (snapshot) => {
       if (snapshot.val() !== null) {
         setValues({ ...snapshot.val() });
         // console.log(snapshot.child('productImg'));

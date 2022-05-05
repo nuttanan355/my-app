@@ -62,9 +62,9 @@ function App() {
           <Footer />
         </div>
       ):(
-        <div>
-          <Spinner animation="grow" variant="success" />
-        </div>
+        <div className="container" style={{background:"red"}}>
+         <Spinner className="wait-spinner"  animation="border" variant="success" />
+        </div> 
       )}
     </div>
   );

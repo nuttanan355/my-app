@@ -8,7 +8,7 @@ function CartUser(){
     // const [images, setImages] = useState([]);
     // const [sort, setSort] = useState(false);
 
-    // const [uid, setUid] = useState();
+    const [uid, setUid] = useState();
 
     useEffect(() => {
       firebaseAuth.onAuthStateChanged((user) => {
@@ -16,6 +16,7 @@ function CartUser(){
             firebaseDB.child("cart").child(user.uid.toString()).on("value", (snapshot) => {
               if (snapshot.val() !== null) {
                 setValues({ ...snapshot.val() });
+                setUid(user.uid.toString())
                 // console.log(snapshot.child('productImg'));
               } else {
                 setValues({});
@@ -29,14 +30,20 @@ function CartUser(){
         console.log(user.uid.toString());
       });
     }, []);
-  
-    useEffect(() => {
 
-    }, []);
-
-
-const DeleteProductCart =()=>{
-
+const DeleteProductCart =(id)=>{
+        if (
+          window.confirm("Are you sure that you wanted to delete that contact ?")
+        ) {
+          firebaseDB.child(`cart/${uid}/${id}`).remove((err) => {
+            if (err) {
+              console.error(err);
+            } else {
+              // colors.log("Contact Deleted Successfully");
+              console.log("Contact Deleted Successfully");
+            }
+          });
+        }
 }
 
 
@@ -51,7 +58,7 @@ const DeleteProductCart =()=>{
               <Card.Img variant="top" src={values[id].productImg[0]} style={{width:'100px'}} />
                 <Card.Title>{values[id].productName}</Card.Title>
                 <Card.Text>{values[id].productDetails}</Card.Text>
-                <Button variant="primary" onClick={()=>DeleteProductCart()}>ลบ</Button>
+                <Button variant="primary" onClick={()=>DeleteProductCart(id)}>ลบ</Button>
               </Card.Body>
             </Card>
           );

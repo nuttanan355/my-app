@@ -50,18 +50,15 @@
   box-shadow: 5px 0px 20px #474747;
   width: 300px;
   display: flex;
-
   position: fixed;
   top: 0;
   height: 100%;
   left: -100%;
   transition: 850ms;
   z-index: 999;
-  opacity: 0%;
 }
 
 .nav-menu.active {
-  opacity: 100%;
   background-color: #ffffff;
   position: fixed;
   z-index: 99999;

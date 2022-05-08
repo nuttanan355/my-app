@@ -58,19 +58,7 @@ function NavbarIndex() {
               </li>
             );
           })}
-          <div style={{ borderBottom: "2px dashed black", marginRight: "25px", marginBottom: "5px", marginTop: "25px" }}>
-            <p className="title-bars" style={{ fontSize: "16px", marginBottom: "10px" }}>ประเภทสินค้า </p>
-          </div>
-          {GrouprData.map((item, index) => {
-            return (
-              <li key={index} className={item.cName}>
-                <Link to={item.path} style={{ color: "black" }}>
-                  {item.icon}
-                  <span >{item.title}</span>
-                </Link>
-              </li>
-            );
-          })}
+          
 
 
         </ul>

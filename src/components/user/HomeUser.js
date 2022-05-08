@@ -5,7 +5,8 @@ import "../../css/style.css";
 import ShowDataUser from "../user/ShowDataUser";
 import * as AiIcons from "react-icons/ai";
 import { GrouprData } from "../../client/GroupData";
-
+import Welcome from "../user/Welcome";
+import Search from "../user/Search";
 // import {firebaseDB} from "./components/firebase";
 // import { Link } from "react-router-dom";
 // import { useState,useEffect } from "react";
@@ -13,7 +14,9 @@ import { GrouprData } from "../../client/GroupData";
 function HomeUser() {
   return (
     <div className="container mx-auto">
-      <div className="container">
+      <Search />
+
+      <div className="container" style={{ background: "white", borderRadius: "15px 15px 15px 15px", border: "2px solid black", boxShadow: "4px 4px 3px #454545" }}>
         <h2 style={{ padding: "3%", color: "orange" }}>
           <AiIcons.AiFillStar style={{ color: "orange", fontSize: "90%" }} />{" "}
           สินค้าที่ได้รับความนิยม
@@ -50,10 +53,10 @@ function HomeUser() {
         </div>
       </div>
       <div >
-      <ShowDataUser />
+     
       </div>
-      
-      {/* <Ads/> */}
+
+
     </div>
   );
 }

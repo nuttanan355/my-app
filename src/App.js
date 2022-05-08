@@ -24,19 +24,19 @@ function App() {
     firebaseAuth.onAuthStateChanged((users) => {
       if (users !== null) {
         firebaseDB
-        .child("Users")
-        .child(users.uid.toString())
-        .child("type")
-        .on("value", (snapshot) => {
-          if (snapshot.val() === "Admin") {
-            return setAdmmin(true);
-          } else {
-            return setAdmmin(false);
-          }
-        }); 
-      }else{
+          .child("Users")
+          .child(users.uid.toString())
+          .child("type")
+          .on("value", (snapshot) => {
+            if (snapshot.val() === "Admin") {
+              return setAdmmin(true);
+            } else {
+              return setAdmmin(false);
+            }
+          });
+      } else {
         setAdmmin(false);
-      }         
+      }
     });
   }, [admin]);
 
@@ -51,7 +51,7 @@ function App() {
             })}
           </Routes>
         </div>
-      ) :admin === false ? (
+      ) : admin === false ? (
         <div>
           <NavbarIndex />
           <Routes>
@@ -61,12 +61,13 @@ function App() {
           </Routes>
           <Footer />
         </div>
-      ):(
-        <div className="container" style={{background:"red"}}>
-         <Spinner className="wait-spinner"  animation="border" variant="success" />
-        </div> 
-      )}
+      ) : (
+        <div className="wait-spinner" >
+      <Spinner  animation="border" variant="light" />
     </div>
+  )
+}
+    </div >
   );
 
 

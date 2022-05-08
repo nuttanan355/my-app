@@ -37,15 +37,16 @@ function SignIn() {
 
   return (
     <div className="limiter">
-      <div className="container-login100">
-        <div className="wrap-login100">
-          <div className="login100-pic js-tilt" data-tilt>
-            <img src="../../../public/img-01.png" alt="IMG" />
+      <div className="container-login100"  >
+        <div className="wrap-login100" >
+          <div >
+            <img src="../img/wel.png" alt="IMG" />
           </div>
 
           <form className="login100-form validate-form" onSubmit={handleSubmit}>
             <span className="login100-form-title">Member Login</span>
-
+            <LoginGoogle variant="primary"/>
+            <hr/>
             <div
               className="wrap-input100 validate-input"
               data-validate="Valid email is required: ex@abc.xyz"
@@ -98,7 +99,7 @@ function SignIn() {
             </div>
           </form>
 
-          <LoginGoogle variant="primary" />
+          
         </div>
       </div>
     </div>

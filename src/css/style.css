@@ -1,22 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
-*{
-    font-family:'Prompt', sans-serif;;
+
+* {
+    font-family: 'Prompt', sans-serif;
+    ;
 }
+
 body {
-   
-    background-color: #F0FDF6;
-    
+
+    background-image: linear-gradient(to right, rgb(94, 189, 126) , rgb(117, 161, 212))
+
+}
+
+.wait-spinner { 
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .btn-type {
     color: #461717;
 }
-.btn-sign-in{
+
+.btn-sign-in {
     color: rgb(128, 128, 128);
 }
-.btn-sign-in:hover{
+
+.btn-sign-in:hover {
     color: #02a54c;
 }
+
 .btn-type:hover {
     color: #02a54c;
     transform: scale(1.1);
@@ -124,7 +138,7 @@ section .thumbnail {
     flex: 0 0 auto;
     object-fit: cover;
     cursor: pointer;
-    
+
     margin-bottom: 20px;
     border: 1px solid var(--black);
     overflow: hidden;
@@ -135,18 +149,18 @@ section .thumbnail {
 }
 
 section .thumbnail:hover {
-    transform: scale(1);
-    box-shadow: 0px 0px 15px #d1d1d1;
+    transform: scale(1.1);
+
 }
 
 .thumbnail:hover {
     transform: scale(1.1);
-    box-shadow: 0px 0px 15px #d1d1d1;
+   
 }
 
 .circle-btn {
-    border-color: #bdbdbd;
-    color: #bdbdbd;
+    border-color: #444444;
+    color: #585858;
     align-items: center;
     padding: 10px 20px 10px 20px;
     font-size: 26px;
@@ -155,8 +169,9 @@ section .thumbnail:hover {
 }
 
 .circle-btn:hover {
-    border-color: #00B952;
-    color: #00B952;
+    transition: 300ms;
+    color: #ff810b;
+    
 }
 
 .frame {

@@ -1,4 +1,4 @@
-import React, {useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
@@ -7,7 +7,10 @@ import { GrouprData } from "../client/GroupData";
 import { ApplicationData } from "../client/ApplicationData";
 // import * as FcIcons from "react-icons/fc";
 import * as BsIcons from "react-icons/bs";
+import * as RiIcons from "react-icons/ri";
 import { firebaseAuth } from "../server/firebase";
+import * as GoIcons from "react-icons/go";
+import * as IoIcons from "react-icons/io";
 import "../css/Navbar.css";
 
 function NavbarIndex() {
@@ -24,31 +27,29 @@ function NavbarIndex() {
 
 
   return (
-    <div className="container-fluid">
+    <div>
       <div className={sidebar ? "nav-menu active" : "nav-menu"}>
         <ul className="nav-menu-items" onClick={showSidebar}>
-          <li className="navbar-toggle">
+          <li className="navbar-toggle" style={{ height: "50px" }}>
             <Link
               to="#"
-              className="btn menu-bars"
               style={{
-                fontSize: "120%",
-                textAlign: "right",
-                color: "Lightgray",
+                fontSize: "30px",
+                color: "black"
               }}
             >
-              <FaIcons.FaBars />
+              <RiIcons.RiCloseFill />
             </Link>
           </li>
-
-          <p className="title-bars">ประเภทสินค้า </p>
-          <hr className="title-bars" />
+          <div style={{borderBottom:"2px dashed black" , marginRight:"25px" ,  marginBottom:"5px"}}>
+            <p className="title-bars" style={{fontSize:"20px" , marginBottom:"10px"}}>ประเภทสินค้า </p>
+          </div>
           {GrouprData.map((item, index) => {
             return (
               <li key={index} className={item.cName}>
-                <Link to={item.path}>
+                <Link to={item.path}  style={{color:"black"}}>
                   {item.icon}
-                  <span>{item.title}</span>
+                  <span >{item.title}</span>
                 </Link>
               </li>
             );
@@ -57,47 +58,22 @@ function NavbarIndex() {
       </div>
 
       <div className="navbar">
-        <Link
-          to="#"
-          className="menu-bars"
-          style={{ fontSize: "120%", marginLeft: "20px", marginTop: "0px" }}
-        >
-          <FaIcons.FaBars onClick={showSidebar} />
-        </Link>
-        <img
-          className="btn navbar-logo"
-          src="../img/logo.png"
-          style={{ width: "100%" }}
-          onClick={() => (window.location.href = "/")}
-          alt=""
-        />
+        <button className="btn" style={{ padding: "5px", marginLeft: "30px", border: "10px" }} onClick={showSidebar} >
+          <FaIcons.FaBars style={{ fontSize: "20px", padding: "0" }} />
+        </button>
 
-        <div className="nav ">
-          <form className="d-flex">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="btn btn-primary" type="submit">
-              Search
-            </button>
-          </form>
-        </div>
 
-        <div className="nav">
+        <div className="nav" >
           {user ? (
             <Dropdown>
-              <Dropdown.Toggle className="nav-links" variant="transprent">
+              <Dropdown.Toggle className="nav-links" variant="transprent" style={{ fontSize: "1vh", padding: "0%", marginTop: "5px", color: "white" }}>
                 <img
                   src={user.photoURL}
                   style={{
                     borderRadius: "50%",
-                    width: "40px",
-                    margin: "0px 20px 0px 0px",
+                    width: "15%",
+                    margin: "0px 10px 0px 0px",
                   }}
-                  alt=""
                 />
                 {user.displayName}
               </Dropdown.Toggle>
@@ -108,10 +84,10 @@ function NavbarIndex() {
               >
                 {ApplicationData.map((item, index) => {
                   return (
-                    <Dropdown.Item key={index} className={item.cName} href={item.path}>
+                    <Dropdown.Item key={index} className={item.cName} href={item.path} style={{ paddingLeft: "10px" }}>
                       {/* <Link to={item.path}> */}
-                        {item.icon}
-                        <span>{item.title}</span>
+                      {item.icon}
+                      <span>{item.title}</span>
                       {/* </Link> */}
                     </Dropdown.Item>
                   );
@@ -135,8 +111,10 @@ function NavbarIndex() {
                 }}
                 to="../user/sign-in"
               >
-                <BsIcons.BsPersonBoundingBox style={{ fontSize: "200%" }} />
-                <p className="">Sign In</p>
+                <div style={{ background: "white", width: "50px", padding: "5px", borderRadius: "10px", boxShadow: "0px 2px 3px gray" }}>
+                  <BsIcons.BsFillPersonFill style={{ fontSize: "200%" }} />
+                  <p style={{ fontSize: "10px" }}>Sign In</p>
+                </div>
               </Link>
             </div>
           )}

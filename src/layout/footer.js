@@ -12,10 +12,10 @@ function footer() {
           </div>
 
           <div className="col-xs-6 col-md-3">
-            <h6>Categories</h6>
+            <h6>Page</h6>
             <ul className="footer-links">
-              <li><a href="http://scanfcode.com/category/c-language/">C</a></li>
-              <li><a href="http://scanfcode.com/category/front-end-development/">UI Design</a></li>
+              <li><a href="/">Home</a></li>
+              <li><a href="http://scanfcode.com/category/front-end-development/">Category</a></li>
               <li><a href="http://scanfcode.com/category/back-end-development/">PHP</a></li>
               <li><a href="http://scanfcode.com/category/java-programming-language/">Java</a></li>
               <li><a href="http://scanfcode.com/category/android/">Android</a></li>

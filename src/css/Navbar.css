@@ -54,7 +54,7 @@
   position: fixed;
   top: 0;
   height: 100%;
-  left: 0;
+  left: -100%;
   transition: 850ms;
   z-index: 999;
   opacity: 0%;
@@ -66,7 +66,7 @@
   position: fixed;
   z-index: 99999;
   left: 0;
-  transition: 600ms;
+  transition: 800ms;
   width: 300px;
   position: fixed;
   height: 100%;
@@ -103,6 +103,7 @@
 
 .nav-menu-items {
   width: 100%;
+
 }
 
 .navbar-toggle {

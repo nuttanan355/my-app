@@ -49,10 +49,11 @@ const signInWithGoogle = () =>
 const LoginGoogle = () => {
   return (
     <div className="btn">
-      <button className="btn auth-btn" onClick={signInWithGoogle} style={{ fontSize: "16px", color:"gray" }}>
-        <FcIcons.FcGoogle style={{ fontSize: "150%"}} /> &nbsp; &nbsp; |
-        &nbsp;&nbsp; Sign In With Google
+      <button className="btn auth-btn" onClick={signInWithGoogle} style={{ fontSize: "16px", color: "gray", weight: "lighter",  borderRadius: "10px" }}>
+        <FcIcons.FcGoogle style={{ fontSize: "150%" }} /> &nbsp; Sign In With Google
       </button>
+
+      <hr/>
     </div>
   );
 };

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { Dropdown } from "react-bootstrap";
 import * as FaIcons from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { Dropdown } from "react-bootstrap";
 import { GrouprData } from "../client/GroupData";
+import { NavMenu } from "../client/NavMenu";
 // import { IconContext } from "react-icons";
 import { ApplicationData } from "../client/ApplicationData";
 // import * as FcIcons from "react-icons/fc";
@@ -26,6 +27,9 @@ function NavbarIndex() {
   }, []);
 
 
+
+
+  
   return (
     <div>
       <div className={sidebar ? "nav-menu active" : "nav-menu"}>
@@ -41,24 +45,40 @@ function NavbarIndex() {
               <RiIcons.RiCloseFill />
             </Link>
           </li>
-          <div style={{borderBottom:"2px dashed black" , marginRight:"25px" ,  marginBottom:"5px"}}>
-            <p className="title-bars" style={{fontSize:"20px" , marginBottom:"10px"}}>ประเภทสินค้า </p>
-          </div>
-          {GrouprData.map((item, index) => {
+
+          
+
+          {NavMenu.map((item, index) => {
             return (
               <li key={index} className={item.cName}>
-                <Link to={item.path}  style={{color:"black"}}>
+                <Link to={item.path} style={{ color: "black" }}>
                   {item.icon}
                   <span >{item.title}</span>
                 </Link>
               </li>
             );
           })}
+          <div style={{ borderBottom: "2px dashed black", marginRight: "25px", marginBottom: "5px", marginTop: "25px" }}>
+            <p className="title-bars" style={{ fontSize: "16px", marginBottom: "10px" }}>ประเภทสินค้า </p>
+          </div>
+          {GrouprData.map((item, index) => {
+            return (
+              <li key={index} className={item.cName}>
+                <Link to={item.path} style={{ color: "black" }}>
+                  {item.icon}
+                  <span >{item.title}</span>
+                </Link>
+              </li>
+            );
+          })}
+
+
         </ul>
+
       </div>
 
       <div className="navbar">
-        <button className="btn" style={{ padding: "5px", marginLeft: "30px", border: "10px" }} onClick={showSidebar} >
+        <button className="btn nav-bar" style={{ padding: "5px", marginLeft: "30px", border: "1px solid white", color: "white" }} onClick={showSidebar} >
           <FaIcons.FaBars style={{ fontSize: "20px", padding: "0" }} />
         </button>
 

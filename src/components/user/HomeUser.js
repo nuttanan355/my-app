@@ -28,8 +28,8 @@ function HomeUser() {
       <br />
       <br />
       <div className="col">
-        <h3>หมวดหมู่</h3>
-        <hr />
+        <h3 style={{color:"white"}}>หมวดหมู่</h3>
+        <hr style={{border:"2px solid white"}}/>
         <div className="frame">
           {GrouprData.map((item, index) => {
             return (
@@ -38,7 +38,8 @@ function HomeUser() {
                   <button
                     className="btn circle-btn btn-type"
                     style={{
-                      width: "300px",
+                      width: "20vw",
+                      fontSize:"1vw",
                       background: "white",
                       marginBottom: "7px",
                       marginTop: "7px",

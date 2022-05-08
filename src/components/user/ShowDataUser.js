@@ -70,7 +70,6 @@ function ShowDataUser() {
         {Object.keys(values).map((id, index) => {
           return (
             <div key={index} className="btn col-lg-3">
-
               <Card className="thumbnail"
                 style={{
                   background: "#ffffff",

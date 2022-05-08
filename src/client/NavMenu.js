@@ -3,7 +3,7 @@ import * as BsIcons from 'react-icons/bs';
 import * as AiIcons from 'react-icons/ai';
 // import * as IoIcons from 'react-icons/io';
 // import * as BsIcons from 'react-icons/bs';
-// import * as BiIcons from 'react-icons/bi';
+import * as BiIcons from 'react-icons/bi';
 // import * as ImIcons from 'react-icons/im';
 import * as VscIcons from 'react-icons/vsc';
 // import * as WiIcons from 'react-icons/wi';
@@ -32,9 +32,9 @@ export const NavMenu = [
   
   },
   {
-    title: 'สินค้า',
-    path: '/womanClothes',
-    icon: <AiIcons.AiOutlineShop />,
+    title: 'หมวดหมู่',
+    path: '/category',
+    icon: <AiIcons.AiOutlineAppstore />,
     cName: 'nav-text',
   
   },

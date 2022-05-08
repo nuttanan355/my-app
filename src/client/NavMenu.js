@@ -32,6 +32,13 @@ export const NavMenu = [
   
   },
   {
+    title: 'สินค้า',
+    path: '/womanClothes',
+    icon: <AiIcons.AiOutlineShop />,
+    cName: 'nav-text',
+  
+  },
+  {
     title: 'ตะกร้าสินค้า',
     path: '/cart',
     icon: <AiIcons.AiOutlineShoppingCart />,

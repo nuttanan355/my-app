@@ -53,14 +53,12 @@
   position: fixed;
   top: 0;
   height: 100%;
-  left: 0;
+  left: -100%;
   transition: 850ms;
-  opacity: 0%;
   z-index: 999;
 }
 
 .nav-menu.active {
-  opacity: 100%;
   background-color: #ffffff;
   position: fixed;
   z-index: 99999;

@@ -26,7 +26,7 @@ export const NavMenu = [
   },
   {
     title: 'สินค้า',
-    path: '/womanClothes',
+    path: '/product',
     icon: <AiIcons.AiOutlineShop />,
     cName: 'nav-text',
   
@@ -47,7 +47,7 @@ export const NavMenu = [
   },
   {
     title: 'รายงานปัญหา',
-    path: '/womanClothes',
+    path: '/report',
     icon: <VscIcons.VscReport />,
     cName: 'nav-text',
   

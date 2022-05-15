@@ -25,8 +25,15 @@ export const NavMenuNoLogin = [
     
   // },
   {
+    title: 'ลงชื่อเข้าใช้',
+    path: '/user/sign-in',
+    icon: <AiIcons.AiOutlineShop />,
+    cName: 'nav-text',
+  
+  },
+  {
     title: 'สมัครสมาชิก',
-    path: '/product',
+    path: '/user/sign-up',
     icon: <AiIcons.AiOutlineShop />,
     cName: 'nav-text',
   
@@ -44,13 +51,6 @@ export const NavMenuNoLogin = [
     icon: <AiIcons.AiOutlineAppstore />,
     cName: 'nav-text',
   
-  },
-  {
-    title: 'ตะกร้าสินค้า',
-    path: '/cart',
-    icon: <AiIcons.AiOutlineShoppingCart />,
-    cName: 'nav-text',
-    
   },
   {
     title: 'รายงานปัญหา',

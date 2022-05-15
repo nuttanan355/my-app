@@ -67,20 +67,12 @@ function AddNewProduct() {
 
 
   const handleonSubmit = () => {
+
       Images.forEach((files) => {
-        const sotrageRef = ref(
-          firebaseStorage,
-          `product/${dateKey}/${files.name}`
-        );
+        const sotrageRef = ref(firebaseStorage,`product/${dateKey}/${files.name}`);
         const uploadTask = uploadBytesResumable(sotrageRef, files);
-        uploadTask.on(
-          "state_changed",
-          (snapshot) => {
-            // const prog = Math.round(
-            //   (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-            // );
-            // setProgress(prog);
-          },
+        uploadTask.on("state_changed",
+          (snapshot) => {},
           (error) => console.log(error),
           async () => {
             await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
@@ -89,20 +81,16 @@ function AddNewProduct() {
             });
           }
         );
-      });
-      console.log(values.productImg);
-      setTimeout(() => {
+      }).then(()=>{
         firebaseDB
-          .child("product")
-          .child("Product-"+dateKey)
-          .set(values)
-          .then(() => {
-            console.log("add data success");
-          })
-          .catch((error) => console.log(error));
-      }, 5000);
-    
-    // console.log(values.productImg);
+        .child("Product")
+        .child("Product-"+dateKey)
+        .set(values)
+        .then(() => {
+          console.log("add data success");
+        }).catch((error) => console.log(error));
+      });
+
   };
 
   // -----------END ADD IMAGE----------------------------
@@ -135,7 +123,13 @@ function AddNewProduct() {
     } else if (Images.length === 0) {
       console.log("ไม่ใส่รูป ใครจะรูปว่าขายอะไรว่ะ")
     } else {
-      handleonSubmit();
+      // let text = "Press a button!\nEither OK or Cancel.";
+      // if (window.confirm(text) == true) {
+        handleonSubmit();
+      // } else {
+      //   text = "You canceled!";
+      // }
+      
     }
   };
 
@@ -151,8 +145,18 @@ function AddNewProduct() {
       <h1>Add New Product</h1>
       <hr />
       <div className="container">
-        {/* <form onSubmit={''}> */}
-        <form>
+ 
+        <form className="was-validated">
+          
+        {ShowImages.map((url, i) => (
+              <img
+                key={i}
+                style={{ width: "150px" }}
+                src={url}
+                alt="firebase-images"
+              />
+            ))}
+
           <div className="form-group">
             <label htmlFor="productImg">รูปภาพ</label>
             <input
@@ -160,16 +164,9 @@ function AddNewProduct() {
               type="file"
               onChange={ImgOnChange}
               multiple
+              required
             />
 
-            {ShowImages.map((url, i) => (
-              <img
-                key={i}
-                style={{ width: "300px" }}
-                src={url}
-                alt="firebase-images"
-              />
-            ))}
           </div>
           <div className="form-group mt-3">
             <label htmlFor="productName">ชื่อสินค้า</label>
@@ -181,19 +178,22 @@ function AddNewProduct() {
               placeholder="ชื่อสินค้า"
               // value={values.name}
               onChange={handleOnChange}
+              required
             />
           </div>
 
           <div className="form-group mt-3">
             <label htmlFor="productCategorys">ประเภทสินค้า</label>
+
             <Form.Select
               aria-label="Default select example"
               id="productCategory"
               name="productCategory"
-              className="form-control"
+              className="form-select"
               onChange={handleOnChange}
+              required
             >
-              <option>ประเภทสินค้า</option>
+              <option value="">ประเภทสินค้า</option>
               {GrouprData.map((item, keys) => {
                 return (
                   <option name="productCategory" key={keys} value={item.title}>
@@ -213,6 +213,7 @@ function AddNewProduct() {
               placeholder="ราคา"
               // value={values.name}
               onChange={handleOnChange}
+              required
             />
           </div>
 
@@ -226,6 +227,7 @@ function AddNewProduct() {
               style={{ resize: "none" }}
               value={values.name}
               onChange={handleOnChange}
+              required
             />
           </div>
 
@@ -240,6 +242,7 @@ function AddNewProduct() {
               className="form-control col"
               placeholder="ราคา"
               onChange={handleOnChange}
+              required
             />
           </div>
 
@@ -254,6 +257,7 @@ function AddNewProduct() {
               className="form-control col"
               placeholder="ชิ้น"
               onChange={handleOnChange}
+              required
             />
             <label htmlFor="produtcCost2" className="col">
               ถึง
@@ -265,6 +269,7 @@ function AddNewProduct() {
               className="form-control col"
               placeholder="ชิ้น"
               onChange={handleOnChange}
+              required
             />
             <label htmlFor="produtcCost2" className="col">
               ค่าส่งที่กำหนด
@@ -276,6 +281,7 @@ function AddNewProduct() {
               className="form-control col"
               placeholder="บาท"
               onChange={handleOnChange}
+              required
             />
           </div>
 
@@ -290,7 +296,9 @@ function AddNewProduct() {
               className="form-control col"
               placeholder="ชิ้น"
               onChange={handleOnChange}
+              required
             />
+
             <label htmlFor="produtcCost3" className="col">
               ถึง
             </label>
@@ -301,7 +309,9 @@ function AddNewProduct() {
               className="form-control col"
               placeholder="ชิ้น"
               onChange={handleOnChange}
+              required
             />
+
             <label htmlFor="produtcCost3" className="col">
               ค่าส่งที่กำหนด
             </label>
@@ -312,6 +322,7 @@ function AddNewProduct() {
               className="form-control col"
               placeholder="บาท"
               onChange={handleOnChange}
+              required
             />
           </div>
           <div className="row mt-3 ">
@@ -319,6 +330,7 @@ function AddNewProduct() {
               type="button"
               className="btn btn-primary col mx-3"
               onClick={checkData}
+              
             >
               Submit
             </button>

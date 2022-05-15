@@ -15,7 +15,7 @@ import * as VscIcons from 'react-icons/vsc';
 // import * as TiIcons from 'react-icons/ti';
 
 
-export const NavMenu = [
+export const NavMenuNoLogin = [
 
   // {
   //   title: 'หน้าหลัก',
@@ -25,8 +25,8 @@ export const NavMenu = [
     
   // },
   {
-    title: 'ข้อมูลส่วนตัว',
-    path: '/profile',
+    title: 'สมัครสมาชิก',
+    path: '/product',
     icon: <AiIcons.AiOutlineShop />,
     cName: 'nav-text',
   

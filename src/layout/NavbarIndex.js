@@ -29,10 +29,10 @@ function NavbarIndex() {
 
 
 
-  
+
   return (
     <div>
-      <div className={sidebar ? "nav-menu active" : "nav-menu"}>
+      {/* <div className={sidebar ? "nav-menu active" : "nav-menu"}>
         <ul className="nav-menu-items" onClick={showSidebar}>
           <li className="navbar-toggle" style={{ height: "50px" }}>
             <Link
@@ -46,8 +46,6 @@ function NavbarIndex() {
             </Link>
           </li>
 
-          
-
           {NavMenu.map((item, index) => {
             return (
               <li key={index} className={item.cName}>
@@ -58,23 +56,24 @@ function NavbarIndex() {
               </li>
             );
           })}
-          
-
 
         </ul>
 
-      </div>
+      </div> */}
 
       <div className="navbar">
-        <button className="btn nav-bar" style={{ padding: "5px", marginLeft: "30px", border: "1px solid white", color: "white" }} onClick={showSidebar} >
-          <FaIcons.FaBars style={{ fontSize: "20px", padding: "0" }} />
-        </button>
-
-
+        <div>
+          {/* <button className="btn nav-bar" style={{ padding: "5px", marginLeft: "30px", border: "1px solid white", color: "white" }} onClick={showSidebar} >
+            <FaIcons.FaBars style={{ fontSize: "20px", padding: "0" }} />
+          </button> */}
+          <a href="/">
+            <img className="btn" style={{ height: "70px", marginLeft: "20px" }} src="./img/logo.png" />
+          </a>
+        </div>
         <div className="nav" >
           {user ? (
             <Dropdown>
-              <Dropdown.Toggle className="nav-links" variant="transprent" style={{ fontSize: "1vh", padding: "0%", marginTop: "5px", color: "white" }}>
+              <Dropdown.Toggle className="nav-links" variant="transprent" style={{ fontSize: "16px", padding: "0%", marginTop: "5px", color: "white" }}>
                 <img
                   src={user.photoURL}
                   style={{

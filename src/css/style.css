@@ -7,12 +7,41 @@
 
 body {
 
-    background-image: linear-gradient(to right, rgb(168, 235, 190) , rgb(155, 224, 245))
+    background-color: #f8f8f8;
+}
+
+.flexbox {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    flex-wrap: wrap;
 
 }
 
-.wait-spinner { 
+hr {
+    border: #f8f8f8;
+}
+
+.flex-item {
+    padding-left: 20px;
+    padding-right: 20px;
+    display: block;
+    box-sizing: border-box;
+    width: 20%;
+    margin-bottom: 20px;
+    
+}
+/* .flex-item:hover {
+    border: 1px solid orangered;
+    
+} */
+.card:hover{
+    border: 3px solid rgb(83, 226, 171);
+    transition: 100ms;
+}
+.wait-spinner {
     margin: 0;
+    color: rgb(83, 226, 171);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -21,6 +50,8 @@ body {
 
 .btn-type {
     color: #461717;
+    box-shadow: "0px 0px 2px lightgray";
+
 }
 
 .btn-sign-in {
@@ -34,6 +65,7 @@ body {
 .btn-type:hover {
     color: #02a54c;
     transform: scale(1.1);
+
 }
 
 /* UTILITY */
@@ -155,7 +187,7 @@ section .thumbnail:hover {
 
 .thumbnail:hover {
     transform: scale(1.1);
-   
+
 }
 
 .circle-btn {
@@ -166,12 +198,14 @@ section .thumbnail:hover {
     font-size: 26px;
     width: 400px;
     height: 150px;
+
 }
 
 .circle-btn:hover {
-    transition: 300ms;
-    color: #ff810b;
-    
+    transition: 20 0ms;
+    color: #05ad59;
+    border: 1px solid #016935;
+
 }
 
 .frame {

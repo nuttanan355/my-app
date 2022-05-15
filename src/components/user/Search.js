@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { firebaseDB } from "../../server/firebase";
+import { GrouprData } from "../../client/GroupData";
 import { Link } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import { FormControl } from "react-bootstrap";
@@ -11,7 +12,7 @@ function Search() {
 
     useEffect(() => {
         firebaseDB.child("product").orderByChild("productAllow")
-            .equalTo(true).on("value", (snapshot) => {
+            .startAt(true).on("value", (snapshot) => {
                 if (snapshot.val() !== null) {
                     setValues({ ...snapshot.val() });
                     // console.log(snapshot.child('productImg'));
@@ -72,27 +73,37 @@ function Search() {
     );
 
     return (
-            <div className="container" style={{ marginBottom: "20px", marginTop: "20px", textAlign: "right" }}>
-                <Dropdown className="btn" style={{ background: "white", border: "2px solid black", textAlign: "center", width: "70px" , boxShadow:"3px 3px 2px gray" }}>
+        <div className="container" style={{ marginBottom: "20px", marginTop: "20px", textAlign: "right" }}>
+            <Dropdown className="btn" style={{ background: "white", border: "2px solid black", textAlign: "center", width: "70px", boxShadow: "3px 3px 2px gray" }}>
 
-                    <Dropdown.Toggle as={CustomToggle} className="btn" id="dropdown-custom-components" style={{ color: "white" }} >
-                        <BiIcons.BiSearchAlt style={{ color: "black", fontSize: "20px", marginRight: "5px" }} />
-                    </Dropdown.Toggle>
+                <Dropdown.Toggle as={CustomToggle} className="btn" id="dropdown-custom-components" style={{ color: "white" }} >
+                    <BiIcons.BiSearchAlt style={{ color: "black", fontSize: "20px", marginRight: "5px" }} />
+                </Dropdown.Toggle>
 
-                    <Dropdown.Menu as={CustomMenu}>
-                        {Object.keys(values).map((id, index) => {
-                            return (
-                                <Dropdown.Item onClick={() =>
-                                    (window.location.href = `/view-product/${id}`)
-                                }>
-                                    {values[id].productName}
+                <Dropdown.Menu as={CustomMenu}>
+                    {Object.keys(values).map((id, index) => {
+                        return (
+                            <Dropdown.Item onClick={() =>
+                                (window.location.href = `/view-product/${id}`)
+                            }>
+                                {values[id].productName}
 
-                                </Dropdown.Item>
-                            );
-                        })}
-                    </Dropdown.Menu>
-                </Dropdown>
-            </div>
+                            </Dropdown.Item>
+                        );
+                    })}
+
+                    {/* {GrouprData.map((item, index) => {
+                        return (
+                        
+                            <Dropdown.Item onClick={() => (window.location.href = `${item.path}`)} >
+                                    {item.icon} {item.title}
+                                
+                            </Dropdown.Item>
+                        );
+                    })} */}
+                </Dropdown.Menu>
+            </Dropdown>
+        </div>
     )
 }
 

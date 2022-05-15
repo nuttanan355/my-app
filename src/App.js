@@ -63,7 +63,7 @@ function App() {
         </div>
       ) : (
         <div className="wait-spinner" >
-      <Spinner  animation="border" variant="light" />
+      <Spinner  animation="border"  />
     </div>
   )
 }

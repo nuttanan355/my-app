@@ -7,7 +7,7 @@ function NewProductsAdmin() {
 
   useEffect(() => {
     firebaseDB
-      .child("product")
+      .child("Product")
       .orderByChild("productAllow")
       .equalTo(false)
       .on("value", (snapshot) => {
@@ -24,7 +24,7 @@ function NewProductsAdmin() {
 
   const AllowProduct =(id)=>{
     firebaseDB
-      .child("product")
+      .child("Product")
       .child(id)
       .update({productAllow:true}).thead(()=>{window.location.reload(); console.log("Allow");}).catch((error)=>console.log(error))
   }

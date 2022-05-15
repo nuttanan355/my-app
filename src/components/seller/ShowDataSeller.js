@@ -12,7 +12,7 @@ function ShowDataSeller(){
   
     useEffect(() => {
       firebaseAuth.onAuthStateChanged((user) => {
-        firebaseDB.child("product").orderByChild("sellerUid").equalTo(user.uid.toString())
+        firebaseDB.child("Product").orderByChild("sellerUid").equalTo(user.uid.toString())
         .on("value", (snapshot) => {
           if (snapshot.val() !== null) {
             setValues({ ...snapshot.val() });

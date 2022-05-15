@@ -13,7 +13,7 @@ function CartUser(){
     useEffect(() => {
       firebaseAuth.onAuthStateChanged((user) => {
         if(user !==null){
-            firebaseDB.child("cart").child(user.uid.toString()).on("value", (snapshot) => {
+            firebaseDB.child("Cart").child(user.uid.toString()).on("value", (snapshot) => {
               if (snapshot.val() !== null) {
                 setValues({ ...snapshot.val() });
                 setUid(user.uid.toString())

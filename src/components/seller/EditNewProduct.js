@@ -20,7 +20,7 @@ function EditNewProduct() {
 
   useEffect(() => {
     firebaseDB
-      .child("product")
+      .child("Product")
       .child(id)
       .on("value", (snapshot) => {
         if (snapshot.val() !== null) {
@@ -60,7 +60,7 @@ function EditNewProduct() {
       // ----------------- push----------เจคคีย์ใหม่ให้
       // ----------------- set----------ใส่ค่าที่มีอยู่ลงใน child
       firebaseDB
-        .child("product")
+        .child("Product")
         .child(id)
         .update(values, (error) => {
           if (error) {

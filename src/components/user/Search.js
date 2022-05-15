@@ -11,7 +11,7 @@ function Search() {
     // const [sort, setSort] = useState(false);
 
     useEffect(() => {
-        firebaseDB.child("product").orderByChild("productAllow")
+        firebaseDB.child("Product").orderByChild("productAllow")
             .startAt(true).on("value", (snapshot) => {
                 if (snapshot.val() !== null) {
                     setValues({ ...snapshot.val() });

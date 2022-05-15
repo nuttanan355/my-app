@@ -18,7 +18,7 @@ function ViewProduct() {
   }, []);
 
   useEffect(() => {
-    firebaseDB.child("product").child(id)
+    firebaseDB.child("Product").child(id)
       .on("value", (snapshot) => {
         if (snapshot.val() !== null) {
           setValues({ ...snapshot.val() });
@@ -36,7 +36,7 @@ function ViewProduct() {
   console.log("users", user)
 
   const addCart = () => {
-    firebaseDB.child("cart").child(user.uid).child(id).set(values).then(() => {
+    firebaseDB.child("Cart").child(user.uid).child(id).set(values).then(() => {
       console.log("เพิ่มลงตะกร้าแล้ว")
     }).catch((err) => console.log(err))
   }

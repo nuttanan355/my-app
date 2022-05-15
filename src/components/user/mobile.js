@@ -36,7 +36,7 @@ function Mobile() {
     // const [sort, setSort] = useState(false);
 
     useEffect(() => {
-        firebaseDB.child("product").on("value", (snapshot) => {
+        firebaseDB.child("Product").on("value", (snapshot) => {
             if (snapshot.val() !== null) {
                 setValues({ ...snapshot.val() });
                 // console.log(snapshot.child('productImg'));

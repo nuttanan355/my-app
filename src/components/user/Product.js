@@ -9,7 +9,7 @@ function Product() {
     // const [sort, setSort] = useState(false);
 
     useEffect(() => {
-        firebaseDB.child("product").orderByChild("productAllow")
+        firebaseDB.child("Product").orderByChild("productAllow")
             .equalTo(true).on("value", (snapshot) => {
                 if (snapshot.val() !== null) {
                     setValues({ ...snapshot.val() });

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import {firebaseDB,firebaseAuth} from "../../server/firebase";
+import { firebaseDB, firebaseAuth } from "../../server/firebase";
 
 function ViewProduct() {
 
@@ -16,50 +16,46 @@ function ViewProduct() {
       setUser(user);
     });
   }, []);
-                                                                                              
+
   useEffect(() => {
     firebaseDB.child("product").child(id)
-         .on("value", (snapshot) => {
-          if (snapshot.val() !== null) {
-            setValues({ ...snapshot.val() });
-            setImages(snapshot.child("productImg").val());
-          } else {
-            setValues({});
-          }
+      .on("value", (snapshot) => {
+        if (snapshot.val() !== null) {
+          setValues({ ...snapshot.val() });
+          setImages(snapshot.child("productImg").val());
+        } else {
+          setValues({});
+        }
       });
-      return () => {
-        setValues({});
-      };
-  },[id]);
-  
-  console.log("values" ,values)
-  console.log("users" ,user)
+    return () => {
+      setValues({});
+    };
+  }, [id]);
 
-  const addCart=()=>{
-    firebaseDB.child("cart").child(user.uid).child(id).set(values).then(()=>{
+  console.log("values", values)
+  console.log("users", user)
+
+  const addCart = () => {
+    firebaseDB.child("cart").child(user.uid).child(id).set(values).then(() => {
       console.log("เพิ่มลงตะกร้าแล้ว")
-    }).catch((err)=>console.log(err))
- 
-    
-
+    }).catch((err) => console.log(err))
   }
-
-
   // console.log("values", values);
   return (
     <div className="container py-5">
-      <div style={{ marginTop: "150px" }}>
-        <div className="card">
+      <a href="/"> หน้าหลัก \</a><a href="#"> สินค้า \</a> <a href="#">{values.productCategory}</a>
+      <div >
+        <div>
           <div className="card-header">
             <h3>{values.productName}</h3>
           </div>
           <div className="container">
-            {Images.map((url,i)=>(<img
-                  style={{ width: "300px" }}
-                  src={url}
-                  key={i}
-                  alt="firebase-images"
-                />)
+            {Images.map((url, i) => (<img
+              style={{ width: "300px" }}
+              src={url}
+              key={i}
+              alt="firebase-images"
+            />)
             )}
             <br />
             <strong>Name: </strong>
@@ -72,21 +68,21 @@ function ViewProduct() {
             <span>{values.productPrice}</span>
             <br />
             <Link to="../">
-            <button type="button" className="btn btn-primary" data-toggle="button" aria-pressed="false" autoComplete="off">
-              Go Back
-            </button>
+              <button type="button" className="btn btn-primary" data-toggle="button" aria-pressed="false" autoComplete="off">
+                Go Back
+              </button>
             </Link>
-            
-            <button type="button" className="btn btn-primary" data-toggle="button" aria-pressed="false" autoComplete="off" onClick={()=>addCart()}>
+
+            <button type="button" className="btn btn-primary" data-toggle="button" aria-pressed="false" autoComplete="off" onClick={() => addCart()}>
               Cart
             </button>
-        
+
           </div>
         </div>
       </div>
     </div>
   );
-}export default ViewProduct;
+} export default ViewProduct;
 
 
 

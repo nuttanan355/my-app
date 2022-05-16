@@ -3,7 +3,7 @@ import { firebaseAuth } from "../../server/firebase";
 import "../../css/pages.css";
 import "../../css/home.css";
 import "../../css/style.css";
-import NavLink from "../user/NavLink";
+import NavLink from "../../layout/NavLink";
 import ShowDataUser from "../user/ShowDataUser";
 import * as AiIcons from "react-icons/ai";
 import { GrouprData } from "../../client/GroupData";
@@ -34,7 +34,7 @@ function HomeUser() {
               <Carousel.Item>
                 <img
                   className="d-block w-100"
-                  src="../../img/ads1.png"
+                  src="../../img/ads2.png"
                   alt="1500*500"
                   style={{ minHeight: "200px", maxHeight: "500px", width: "1000px" }}
                 />
@@ -51,7 +51,7 @@ function HomeUser() {
               <Carousel.Item>
                 <img
                   className="d-block w-100"
-                  src="../../img/ads3.jpg"
+                  src="../../img/ads2.png"
                   alt="1500*500"
                   style={{ minHeight: "200px", maxHeight: "500px", width: "1000px" }}
                 />
@@ -63,7 +63,7 @@ function HomeUser() {
         <div className="container" style={{ background: "white", borderRadius: "15px 15px 15px 15px", boxShadow: "0px 0px 2px lightgray" }}>
           <h2 style={{ padding: "3%", color: "orange", fontSize: "25px" }} >
             <AiIcons.AiFillStar style={{ color: "orange", fontSize: "20px" }} />{" "}
-            สินค้าที่ได้รับความนิยม <h2></h2>
+            สินค้าที่ได้รับความนิยม 
           </h2>
           <ShowDataUser />
           <br />
@@ -76,13 +76,11 @@ function HomeUser() {
                 หมวดหมู่
               </h2>
               <div className="slide-container" >
-
                 <section className="item-container" id="slider" style={{ paddingTop: "0px", marginBottom: "50px", height: "300px" }}>
-
                   {GrouprData.map((item, index) => {
                     return (
-                      <div classname="flexbox">
-                        <a className="btn" key={index} href={item.path}>
+                      <div className="flexbox" key={index} >
+                        <a className="btn"href={item.path}>
                           <button
                             className="btn circle-btn btn-type flex-item"
                             style={{

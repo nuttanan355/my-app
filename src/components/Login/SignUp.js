@@ -30,6 +30,7 @@ function SignIn() {
               full_name:value.fullName, 
               uid: user.uid,
               type: "User",
+              uimg:"",
             })
             .then(() => {
               alert("Add Admin success");

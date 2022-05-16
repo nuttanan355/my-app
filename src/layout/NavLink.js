@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { firebaseAuth } from "../../server/firebase";
-import "../../css/pages.css";
-import "../../css/home.css";
-import "../../css/style.css";
-import { NavMenu } from "../../client/NavMenu";
-import { NavMenuNoLogin } from "../../client/NavMenuNoLogin";
+import { firebaseAuth } from "../server/firebase";
+import "../css/pages.css";
+import "../css/home.css";
+import "../css/style.css";
+import { NavMenu } from "../client/NavMenu";
+import { NavMenuNoLogin } from "../client/NavMenuNoLogin";
 import { Link } from "react-router-dom";
 
 

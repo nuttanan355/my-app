@@ -32,15 +32,12 @@ import { Card } from "react-bootstrap";
 
 function ShowDataUser() {
   const [values, setValues] = useState({});
-  // const [images, setImages] = useState([]);
-  // const [sort, setSort] = useState(false);
 
   useEffect(() => {
-    firebaseDB.child("Product").orderByChild("productAllow")
-    .equalTo(true).on("value", (snapshot) => {
+    firebaseDB.child("Product").orderByChild("productAllow").equalTo(true).once("value", (snapshot) => {
       if (snapshot.val() !== null) {
         setValues({ ...snapshot.val() });
-        // console.log(snapshot.child('productImg'));
+        console.log(snapshot.val());
       } else {
         setValues({});
       }
@@ -49,20 +46,6 @@ function ShowDataUser() {
       setValues({});
     };
   }, []);
-
-  // useEffect(()=>{
-  //   firebaseDB.child('product').child('productImg').on('value',(snapshot)=>{
-  //     if(snapshot.val()!==null){
-  //       setImages({...snapshot.val()})
-  //     }else{
-  //       setImages({});
-
-  //     }
-  //   });
-  //   return()=>{
-  //     setImages({});
-  //   }
-  // },[]);
 
   return (
     <div className="slide-container">
@@ -107,30 +90,4 @@ function ShowDataUser() {
 
     </div>
   );
-}
-export default ShowDataUser;
-
-// <table className="styled-table">
-// <thead>
-//   <tr>
-//     {/* <th style={{ textAlign: "center" }}>productName.</th> */}
-//     <th style={{ textAlign: "center" }}>Name</th>
-//     <th style={{ textAlign: "center" }}>Category</th>
-//     <th style={{ textAlign: "center" }}>Price</th>
-//     {/* <th style={{ textAlign: "center" }}>Status</th> */}
-//   </tr>
-// </thead>
-// <tbody>
-//   {Object.keys(values).map((id, index) => {
-//     return (
-//       <tr key={id}>
-//         {/* <th scope="row">{index + 1}</th> */}
-//         <td>{values[id].productName}</td>
-//         <td>{values[id].productCategory}</td>
-//         <td>{values[id].productPrice}</td>
-//         {/* <td>{values[id].status}</td> */}
-//       </tr>
-//     );
-//   })}
-// </tbody>
-// </table>
+}export default ShowDataUser;

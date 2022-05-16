@@ -1,12 +1,14 @@
+import { red } from "@material-ui/core/colors";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 import { firebaseDB, firebaseAuth } from "../../server/firebase";
 
 function ViewProduct() {
-
   const [values, setValues] = useState({});
   const [Images, setImages] = useState([]);
+  const [ValQuantity, setValQuantity] = useState(1);
   const { id } = useParams();
 
   const [user, setUser] = useState(null);
@@ -18,7 +20,9 @@ function ViewProduct() {
   }, []);
 
   useEffect(() => {
-    firebaseDB.child("Product").child(id)
+    firebaseDB
+      .child("Product")
+      .child(id)
       .on("value", (snapshot) => {
         if (snapshot.val() !== null) {
           setValues({ ...snapshot.val() });
@@ -32,74 +36,133 @@ function ViewProduct() {
     };
   }, [id]);
 
-  console.log("values", values)
-  console.log("users", user)
+  // console.log("values", values);
+  // console.log("users", user);
 
   const addCart = () => {
-    firebaseDB.child("Cart").child(user.uid).child(id).set(values).then(() => {
-      console.log("เพิ่มลงตะกร้าแล้ว")
-    }).catch((err) => console.log(err))
-  }
+  const refDB =  firebaseDB.child("Cart").child(user.uid).child(id);
+  refDB.set(values)
+      .then(() => {
+        refDB.update({ValQuantity:ValQuantity,}).then(()=>{
+          Swal.fire('เพิ่มลงตะกร้าแล้ว');
+        }).catch((err)=>{
+          console.log(err);
+        })
+      })
+      .catch((err) => console.log(err));
+  };
   // console.log("values", values);
   return (
     <div className="container py-5">
-      <a href="/"> หน้าหลัก \</a><a href="#"> สินค้า \</a> <a href="#">{values.productCategory}</a>
-      <div >
+      <a href="/"> หน้าหลัก \</a>
+      <a href="#"> สินค้า \</a> <a href="#">{values.productCategory}</a>
+      <div>
         <div>
-          <div className="card-header">
+          {/* <div className="card-header">
             <h3>{values.productName}</h3>
-          </div>
+          </div> */}
           <div className="container">
-            {Images.map((url, i) => (<img
-              style={{ width: "300px" }}
-              src={url}
-              key={i}
-              alt="firebase-images"
-            />)
-            )}
-            <br />
-            <strong>Name: </strong>
-            <span>{values.productName}</span>
-            <br />
-            <strong>Email: </strong>
-            <span>{values.productCategory}</span>
-            <br />
-            <strong>Contact: </strong>
-            <span>{values.productPrice}</span>
-            <br />
-            <Link to="../">
-              <button type="button" className="btn btn-primary" data-toggle="button" aria-pressed="false" autoComplete="off">
-                Go Back
-              </button>
-            </Link>
+            <div
+              className="row"
+              style={{
+                backgroundColor: "red",
+                height: "500px",
+                width: "1000px",
+              }}
+            >
+              <div
+                className="col"
+                style={{
+                  backgroundColor: "coral",
+                  height: "500px",
+                  width: "1000px",
+                }}
+              >
+                {Images.map((url, i) => (
+                  <img
+                    style={{ width: "300px" }}
+                    src={url}
+                    key={i}
+                    alt="firebase-images"
+                  />
+                ))}
+              </div>
+              <div
+                className="col"
+                style={{
+                  backgroundColor: "#92a8d1",
+                  height: "500px",
+                  width: "1000px",
+                }}
+              >
+                <h2>{values.productName}</h2>
+                <h4>{"฿" + values.productPrice}</h4>
 
-            <button type="button" className="btn btn-primary" data-toggle="button" aria-pressed="false" autoComplete="off" onClick={() => addCart()}>
-              Cart
-            </button>
+                <p>1</p>
+                <strong>Name: </strong>
+                <span>{values.productName}</span>
+                <br />
 
+                <button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() =>
+                    setValQuantity((ValQuantity) => ValQuantity - 1)
+                  }
+                >
+                  -
+                </button>
+                <input
+                  type="number"
+                  id="orderQuantity"
+                  name="orderQuantity"
+                  value={ValQuantity}
+                  onChange={(e)=>e.target.value}
+                />
+
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() =>
+                  setValQuantity((ValQuantity) => ValQuantity + 1)
+                  }
+                >
+                  +
+                </button>
+                <br />
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  data-toggle="button"
+                  aria-pressed="false"
+                  autoComplete="off"
+                  onClick={() => addCart()}
+                >
+                  เพิ่มลงตะกร้า
+                </button>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
-} export default ViewProduct;
+}
+export default ViewProduct;
 
-
-
-
-  // sellerUid: "",
-  // productName: "",
-  // productCategory: "",
-  // productPrice: "",
-  // productAllow: false,
-  // productImg: [],
-  // productDetails: "",
-  // produtcDate: saveCurrentDate,
-  // produtcTime: saveCurrentTime,
-  // produtcCost100: "",
-  // produtcCost200: "",
-  // produtcCost201: "",
-  // produtcCost202: "",
-  // produtcCost300: "",
-  // produtcCost301: "",
-  // produtcCost302: "",
+// sellerUid: "",
+// productName: "",
+// productCategory: "",
+// productPrice: "",
+// productAllow: false,
+// productImg: [],
+// productDetails: "",
+// produtcDate: saveCurrentDate,
+// produtcTime: saveCurrentTime,
+// produtcCost100: "",
+// produtcCost200: "",
+// produtcCost201: "",
+// produtcCost202: "",
+// produtcCost300: "",
+// produtcCost301: "",
+// produtcCost302: "",

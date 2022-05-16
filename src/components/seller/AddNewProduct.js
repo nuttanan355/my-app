@@ -24,6 +24,7 @@ function AddNewProduct() {
 
   // ----------------ADD DATA--------------------------------
   const [values, setValues] = useState({
+    productID: dateKey,
     sellerUid: "",
     productName: "",
     productCategory: "",
@@ -46,7 +47,7 @@ function AddNewProduct() {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  console.log(values);
+  // console.log(values);
 
   // ----------------EDN ADD DATA------------------------------
 
@@ -67,7 +68,6 @@ function AddNewProduct() {
 
 
   const handleonSubmit = () => {
-
       Images.forEach((files) => {
         const sotrageRef = ref(firebaseStorage,`product/${dateKey}/${files.name}`);
         const uploadTask = uploadBytesResumable(sotrageRef, files);
@@ -77,20 +77,21 @@ function AddNewProduct() {
           async () => {
             await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
               console.log("File available at", downloadURL);
-              return values.productImg.push(downloadURL);
+               values.productImg.push(downloadURL);
+               if( values.productImg.length === Images.length){
+                firebaseDB
+                .child("Product")
+                .child("Product-"+dateKey)
+                .set(values)
+                .then(() => {
+                  console.log("add data success");
+                  window.location.href='/seller/seller-product';
+                }).catch((error) => console.log(error)); 
+               }
             });
           }
         );
-      }).then(()=>{
-        firebaseDB
-        .child("Product")
-        .child("Product-"+dateKey)
-        .set(values)
-        .then(() => {
-          console.log("add data success");
-        }).catch((error) => console.log(error));
       });
-
   };
 
   // -----------END ADD IMAGE----------------------------

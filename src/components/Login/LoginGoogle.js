@@ -29,6 +29,7 @@ const signInWithGoogle = () =>
               full_name: user.displayName,
               uid: user.uid,
               type: "User",
+              uimg:user.photoURL,
             })
             .then(() => {
               // console.log("Add User success");

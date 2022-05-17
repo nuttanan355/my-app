@@ -13,6 +13,7 @@ import { RouteAdmin } from "./pages/RouterAdmin";
 import { RouteUser } from "./pages/RouterUser";
 import { firebaseAuth, firebaseDB } from "./server/firebase";
 import Spinner from 'react-bootstrap/Spinner'
+import { RouteNoLogin } from "./pages/RouterNoLogin";
 // import { BrowserRouter } from "react-router-dom";
 
 
@@ -28,21 +29,21 @@ function App() {
           .child(users.uid.toString())
           .child("type")
           .on("value", (snapshot) => {
-            if (snapshot.val() === "Admin") {
-              return setAdmmin(true);
+            if (snapshot.val() !== null) {
+              return setAdmmin(snapshot.val());
             } else {
-              return setAdmmin(false);
+              return setAdmmin("NoLogin");
             }
           });
       } else {
-        setAdmmin(false);
+        setAdmmin("NoLogin");
       }
     });
   }, [admin]);
 
   return (
     <div>
-      {admin === true ? (
+      {admin === "Admin" ? (
         <div>
           <NavbarAdmin />
           <Routes>
@@ -51,7 +52,7 @@ function App() {
             })}
           </Routes>
         </div>
-      ) : admin === false ? (
+      ) : admin === "User" ? (
         <div>
           <NavbarIndex />
           <Routes>
@@ -61,7 +62,17 @@ function App() {
           </Routes>
           <Footer />
         </div>
-      ) : (
+      ) :admin === "NoLogin" ?(
+        <div>
+            <NavbarIndex />
+          <Routes>
+            {RouteNoLogin.map(({ path, element }, keys) => {
+              return <Route index path={path} element={element} key={keys} />;
+            })}
+          </Routes>
+          <Footer />
+        </div>
+      ): (
         <div className="wait-spinner" >
       <Spinner  animation="border"  />
     </div>

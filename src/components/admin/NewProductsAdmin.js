@@ -1,16 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Card, Button } from "react-bootstrap";
+import Swal from "sweetalert2";
 import { firebaseDB } from "../../server/firebase";
 
 function NewProductsAdmin() {
   const [values, setValues] = useState({});
 
   useEffect(() => {
-    firebaseDB
-      .child("Product")
-      .orderByChild("productAllow")
-      .equalTo(false)
-      .on("value", (snapshot) => {
+    firebaseDB.child("Product").orderByChild("productAllow").equalTo(false).on("value", (snapshot) => {
         if (snapshot.val() !== null) {
           setValues({ ...snapshot.val() });
         } else {
@@ -23,10 +20,29 @@ function NewProductsAdmin() {
   }, []);
 
   const AllowProduct =(id)=>{
-    firebaseDB
-      .child("Product")
-      .child(id)
-      .update({productAllow:true}).thead(()=>{window.location.reload(); console.log("Allow");}).catch((error)=>console.log(error))
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success'
+        )
+        firebaseDB.child("Product").child(id)
+        .update({productAllow:true,}).then(() => {
+          // alert("Add Admin success");
+        }).catch((error) => {
+          console.error(error);
+        });
+      }
+    })
   }
 
   return (

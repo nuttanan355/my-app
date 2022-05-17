@@ -52,6 +52,7 @@ const DeleteProductCart =(id)=>{
                   <div className="row">
         {Object.keys(values).map((id, index) => {
           return (
+            
             <Card key={index} className="my-2">
               <Card.Header>ชื่อร้าน</Card.Header>
               <Card.Body>
@@ -59,6 +60,27 @@ const DeleteProductCart =(id)=>{
                 <Card.Title>{values[id].productName}</Card.Title>
                 <Card.Text>{values[id].productDetails}</Card.Text>
                 <Button variant="primary" onClick={()=>DeleteProductCart(id)}>ลบ</Button>
+                <Button
+                  type="button"
+                  className="btn btn-danger"
+                  onClick={() => firebaseDB.child("Cart").child(uid).child(id).update({ValQuantity:values[id].ValQuantity-1})}>
+                  -
+                </Button>
+                <input
+                  type="number"
+                  id="orderQuantity"
+                  name="orderQuantity"
+                  value={values[id].ValQuantity}
+                  onChange={(e)=>e.target.value}
+                />
+
+                <Button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() =>  firebaseDB.child("Cart").child(uid).child(id).update({ValQuantity:values[id].ValQuantity+1})}
+                >
+                  +
+                </Button>
               </Card.Body>
             </Card>
           );

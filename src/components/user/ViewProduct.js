@@ -25,7 +25,7 @@ function ViewProduct() {
       .child(id)
       .on("value", (snapshot) => {
         if (snapshot.val() !== null) {
-          setValues({ ...snapshot.val() });
+          setValues({ ...snapshot.val()});
           setImages(snapshot.child("productImg").val());
         } else {
           setValues({});
@@ -40,11 +40,11 @@ function ViewProduct() {
   // console.log("users", user);
 
   const addCart = () => {
-  const refDB =  firebaseDB.child("Cart").child(user.uid).child(id);
+  const refDB =  firebaseDB.child("Cart").child(user.uid).child(values.sellerUid).child(id);
   refDB.set(values)
       .then(() => {
         refDB.update({ValQuantity:ValQuantity,}).then(()=>{
-          Swal.fire('เพิ่มลงตะกร้าแล้ว');
+          Swal.fire('เพิ่มลงตะกร้าแล้ว').then(()=>window.location.href='/');
         }).catch((err)=>{
           console.log(err);
         })

@@ -26,18 +26,18 @@ export const NavMenu = [
   // },
   {
     title: 'ข้อมูลส่วนตัว',
-    path: '/profile',
+    path: '/user/profile',
     icon: <AiIcons.AiOutlineShop />,
     cName: 'nav-text',
   
   },
-  {
-    title: 'สินค้า',
-    path: '/product',
-    icon: <AiIcons.AiOutlineShop />,
-    cName: 'nav-text',
+  // {
+  //   title: 'สินค้า',
+  //   path: '/product',
+  //   icon: <AiIcons.AiOutlineShop />,
+  //   cName: 'nav-text',
   
-  },
+  // },
   {
     title: 'หมวดหมู่',
     path: '/category',
@@ -47,7 +47,7 @@ export const NavMenu = [
   },
   {
     title: 'ตะกร้าสินค้า',
-    path: '/cart',
+    path: '/user/cart',
     icon: <AiIcons.AiOutlineShoppingCart />,
     cName: 'nav-text',
     

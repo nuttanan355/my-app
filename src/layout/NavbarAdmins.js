@@ -2,7 +2,7 @@ import React from "react";
 // import { Container, Navbar } from "react-bootstrap";
 // import * as FcIcons from "react-icons/fc";
 // import * as RiIcons from "react-icons/ri";
-// import * as BsIcons from "react-icons/bs";
+import * as IoIcons from "react-icons/io5";
 import { Link } from "react-router-dom";
 import Logout from "../components/login/Logout";
 
@@ -62,6 +62,7 @@ function NavbarAdmin() {
           to="/"
           style={{ border: "0" }}
         >
+        <img className="img" src="../img/logo copy1.png"/>
           TEA Marketplance
         </Link>
         <div style={{ textAlign: "right" }}>
@@ -73,7 +74,7 @@ function NavbarAdmin() {
                   }}
             onClick={()=>Logout()}
           >
-            Logout
+            <IoIcons.IoLogOut/> Logout
           </p>
         </div>
       </nav>

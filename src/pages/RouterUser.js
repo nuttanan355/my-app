@@ -20,6 +20,8 @@ import HomeSeller from "../components/seller/HomeSeller";
 import SellerProduct from "../components/seller/SellerProduct"
 import AddNewProduct from "../components/seller/AddNewProduct";
 import EditNewProduct from "../components/seller/EditNewProduct";
+import RecomProduct from "../components/seller/RecomProduct";
+import PaymentProduct from '../components/user/PaymentProduct';
 
 
 
@@ -60,6 +62,10 @@ export const RouteUser = [
         element: <CartUser />,
     },
     {
+      path: "/user/payments/:id",
+      element: <PaymentProduct />,
+  },
+    {
       path: "/product",
       element: <Product />,
   },
@@ -87,6 +93,10 @@ export const RouteUser = [
           {
         path: "/seller/edit-data/:id",
         element: <EditNewProduct />,
+      },
+      {
+        path: "/seller/seller-recom",
+        element: <RecomProduct />,
       },
 
 

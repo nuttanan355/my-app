@@ -25,7 +25,7 @@ function ViewProduct() {
       .child(id)
       .on("value", (snapshot) => {
         if (snapshot.val() !== null) {
-          setValues({ ...snapshot.val()});
+          setValues({ ...snapshot.val() });
           setImages(snapshot.child("productImg").val());
         } else {
           setValues({});
@@ -40,12 +40,12 @@ function ViewProduct() {
   // console.log("users", user);
 
   const addCart = () => {
-  const refDB =  firebaseDB.child("Cart").child(user.uid).child(values.sellerUid).child(id);
-  refDB.set(values)
+    const refDB = firebaseDB.child("Cart").child(user.uid).child(values.sellerUid).child(id);
+    refDB.set(values)
       .then(() => {
-        refDB.update({ValQuantity:ValQuantity,}).then(()=>{
-          Swal.fire('เพิ่มลงตะกร้าแล้ว').then(()=>window.location.href='/');
-        }).catch((err)=>{
+        refDB.update({ ValQuantity: ValQuantity, }).then(() => {
+          Swal.fire('เพิ่มลงตะกร้าแล้ว').then(() => window.location.href = '/');
+        }).catch((err) => {
           console.log(err);
         })
       })
@@ -64,23 +64,15 @@ function ViewProduct() {
           <div className="container">
             <div
               className="row"
-              style={{
-                backgroundColor: "red",
-                height: "500px",
-                width: "1000px",
-              }}
+              style={{ background: "green", width: "100%",padding:"20px" }}
             >
               <div
                 className="col"
-                style={{
-                  backgroundColor: "coral",
-                  height: "500px",
-                  width: "1000px",
-                }}
+                style={{ background: "red" }}
               >
                 {Images.map((url, i) => (
                   <img
-                    style={{ width: "300px" }}
+                    style={{ width: "100%" }}
                     src={url}
                     key={i}
                     alt="firebase-images"
@@ -117,14 +109,14 @@ function ViewProduct() {
                   id="orderQuantity"
                   name="orderQuantity"
                   value={ValQuantity}
-                  onChange={(e)=>e.target.value}
+                  onChange={(e) => e.target.value}
                 />
 
                 <button
                   type="button"
                   className="btn btn-primary"
                   onClick={() =>
-                  setValQuantity((ValQuantity) => ValQuantity + 1)
+                    setValQuantity((ValQuantity) => ValQuantity + 1)
                   }
                 >
                   +

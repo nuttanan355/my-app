@@ -25,7 +25,7 @@ function HomeUser() {
 
   return (
     <div>
-      <NavLink />
+      
       <div className="container mx-auto" >
         {/* <Search /> */}
         <div className="container" style={{ width: "1500px", textAlign: "center", marginTop: "20px" }}>

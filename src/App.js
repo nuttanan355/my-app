@@ -3,6 +3,7 @@ import "./css/App.css";
 import { Routes, Route } from "react-router-dom";
 // <------------------------Layout------------------------>
 import NavbarAdmin from "./layout/NavbarAdmins";
+import NavLink from "./layout/NavLink";
 import NavbarIndex from "./layout/NavbarIndex";
 import Footer from "./layout/footer";
 
@@ -55,6 +56,7 @@ function App() {
       ) : admin === "User" ? (
         <div>
           <NavbarIndex />
+          <NavLink />
           <Routes>
             {RouteUser.map(({ path, element }, keys) => {
               return <Route index path={path} element={element} key={keys} />;
@@ -65,6 +67,7 @@ function App() {
       ) :admin === "NoLogin" ?(
         <div>
             <NavbarIndex />
+            <NavLink />
           <Routes>
             {RouteNoLogin.map(({ path, element }, keys) => {
               return <Route index path={path} element={element} key={keys} />;

@@ -47,7 +47,7 @@ export const NavMenu = [
   },
   {
     title: 'ตะกร้าสินค้า',
-    path: '/user/cart',
+    path: '/user/carts',
     icon: <AiIcons.AiOutlineShoppingCart />,
     cName: 'nav-text',
     

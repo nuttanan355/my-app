@@ -7,9 +7,6 @@ import PaymentProduct from "./PaymentProduct";
 
 function CartUser() {
   const [values, setValues] = useState({});
-  // const [images, setImages] = useState([]);
-  // const [sort, setSort] = useState(false);
-
   const [uid, setUid] = useState();
 
   useEffect(() => {
@@ -39,7 +36,7 @@ function CartUser() {
 
   // console.log(values);
 
-  const DeleteProductCart = (id,kery) => {
+  const DeleteProductCart = (id, kery) => {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -70,84 +67,31 @@ function CartUser() {
   };
 
   return (
-    <div className="mt-3">
-      <div className="row">
+    <div className="default-bg">
+      <div>
         {Object.keys(values).map((id, index) => {
           return (
-            <div className ="container mt-5" key={index}>
-              <h4>ชื่อร้าน : {id}</h4>
+            <div style={{ paddingLeft: "50px", paddingRight: "50px", marginTop: "50px" }}>
+              <div key={index}>
+                {Object.keys(values[id]).map((kery, i) => {
+                  const value = values[id][kery];
+                  console.log(kery)
+                  return (
+                    <div className="item-cart" key={i}>
+                      <div className="cart-detail"><img className="img-cart" src={value.productImg[0]} />
+                        <div style={{fontSize:"36px"}} className="cart-detail-item">{value.productName}</div>
+                        <div className="cart-detail-item">ชื่อร้าน : {id}</div>
+                      </div>
+                      <div className="cart-hr" />
+                      <div className="cart-payment">
+                        <div className="cart-detail-item">ชื่อร้าน : {id}</div>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
 
-              {/* {console.log(values[id])} */}
-              {Object.keys(values[id]).map((kery,i) => {
-                const value = values[id][kery];
-                console.log(kery)
-                return (
-                  <Card className="my-2" key={i}>
-                    {/* <Card.Header>{id}</Card.Header> */}
-                    <Card.Body>
-                      <Card.Img
-                        variant="top"
-                        src={value.productImg[0]}
-                        style={{ width: "100px" }}
-                      />
-                      <Card.Title>{value.productName}</Card.Title>
-                      <Card.Text>{value.productDetails}</Card.Text>
-                      <Button
-                        variant="primary"
-                        onClick={() => DeleteProductCart(id,kery)}
-                      >
-                        ลบ
-                      </Button>
-                      <Button
-                        type="button"
-                        className="btn btn-danger"
-                        onClick={() =>
-                          firebaseDB
-                            .child("Cart")
-                            .child(uid)
-                            .child(id)
-                            .child(kery)
-                            .update({ ValQuantity: value.ValQuantity - 1 })
-                        }
-                      >
-                        -
-                      </Button>
-                      <input
-                        type="number"
-                        id="orderQuantity"
-                        name="orderQuantity"
-                        value={value.ValQuantity}
-                        onChange={(e) => e.target.value}
-                      />
-
-                      <Button
-                        type="button"
-                        className="btn btn-primary"
-                        onClick={() =>
-                          firebaseDB
-                            .child("Cart")
-                            .child(uid)
-                            .child(id)
-                            .child(kery)
-                            .update({ ValQuantity: value.ValQuantity + 1 })
-                        }
-                      >
-                        +
-                      </Button>
-                    </Card.Body>
-                  </Card>
-                );
-              })}
-
-
-<Button
-                        variant="primary"
-                        onClick={() => (window.location.href = `/user/payments/${id}`)}
-                      >
-                        ชำระเงิน
-                      </Button>
-
-            </div>    
+            </div>
           );
         })}
       </div>

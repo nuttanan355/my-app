@@ -21,6 +21,7 @@ import SellerProduct from "../components/seller/SellerProduct"
 import AddNewProduct from "../components/seller/AddNewProduct";
 import EditNewProduct from "../components/seller/EditNewProduct";
 import RecomProduct from "../components/seller/RecomProduct";
+import PayRecomProduct from "../components/seller/PayRecomProduct";
 import PaymentProduct from '../components/user/PaymentProduct';
 
 
@@ -97,6 +98,10 @@ export const RouteUser = [
       {
         path: "/seller/seller-recom",
         element: <RecomProduct />,
+      },
+      {
+        path: "/seller/seller-recom/pay/:id",
+        element: <PayRecomProduct />,
       },
 
 

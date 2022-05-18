@@ -44,7 +44,7 @@ function RecomProduct(){
                       <Card.Text>{values[id].productDetails}</Card.Text>
                       <Card.Text>{values[id].sellerUid}</Card.Text>
                     </Card.Body>
-                    <button className='btn' onClick={()=>{}}>แนะนำสินค้า</button>
+                    <button className='btn' onClick={()=>(window.location.href = `/seller/seller-recom/pay/${id}`)}>แนะนำสินค้า</button>
                   </Card>
                 ) : (
                   <></>

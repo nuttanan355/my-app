@@ -15,7 +15,7 @@ function PaymentProduct(){
             firebaseDB
             .child("Cart")
             .child(user.uid.toString())
-            .child(id.toString())
+            .child(id)
             .on("value", (snapshot) => {
               if (snapshot.val() !== null) {
                 setValues({ ...snapshot.val()});

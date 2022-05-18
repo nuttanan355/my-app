@@ -52,7 +52,7 @@ function ProfileUser(){
                                             <input 
                                                     class="#" type="text"
                                                     placeholder="Enter Your PhoneNumber" 
-                                                    value="ThiS IS for user.Phone" 
+                                                    value="" 
                                             ></input>                                                 
                                         <h6>  Your address:  </h6> 
                                     <textarea 
@@ -60,18 +60,23 @@ function ProfileUser(){
                                             placeholder="Enter Address" 
                                             type="text"
                                             name="address"
+                                            value="" 
                                             
                                     ></textarea>
                                   
                                    
                                     
-                            <div className="col-md-2">
+                            <div className="row" style={{width: "400px", alignItems:"center"}} >
 
-                                        <input type="submit" className="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
-                                <div className="row">
-                                        <input type="submit" className="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                                        
+                                <div className="col" style={{width:"100px"}}>
+                                         <input type="submit" className="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                                        
                                 </div>
-                          
+                                <div className="col" style={{width:"100px"}}>
+                                         
+                                        <input type="submit" className="profile-edit-btn" name="btnAddMore" value="Cancel"/>
+                                </div>
                              </div>
                         </div>
                     </div>

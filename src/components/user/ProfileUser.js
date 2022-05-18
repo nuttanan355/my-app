@@ -54,7 +54,7 @@ function ProfileUser(){
                                             <input 
                                                     className="#" 
                                                     placeholder="Enter Your PhoneNumber" 
-                                                    type="text"
+                                                    type="email"
                                                     name="address"
                                                     
                                             ></input>                                                 

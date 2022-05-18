@@ -63,7 +63,7 @@ function NavbarAdmin() {
           style={{ border: "0" }}
         >
         <img className="img" src="../img/logo copy1.png"/>
-          TEA Marketplance
+          {/* TEA Marketplance */}
         </Link>
         <div style={{ textAlign: "right" }}>
           <p className="btn text-white"

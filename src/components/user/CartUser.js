@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 import { Card, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 import PaymentProduct from "./PaymentProduct";
-
+import * as RiIcons from 'react-icons/ri';
+import * as HiIcons from 'react-icons/hi';
 function CartUser() {
   const [values, setValues] = useState({});
   const [uid, setUid] = useState();
@@ -65,30 +66,94 @@ function CartUser() {
     //   firebaseDB.child(`Cart/${uid}/${id}/${kery}`).remove().then().catch();
     // }
   };
-
   return (
     <div className="default-bg">
+      <div className="icon-bg" style={{ height: "60px", fontSize: "35px", marginTop: "10px" }}>
+        <RiIcons.RiShoppingBasket2Line style={{ fontSize: "28px" }} /> ตะกร้าสินค้า
+      </div>
       <div>
         {Object.keys(values).map((id, index) => {
           return (
-            <div style={{ paddingLeft: "50px", paddingRight: "50px", marginTop: "50px" }}>
-              <div key={index}>
+            <div style={{ paddingLeft: "50px", paddingRight: "50px", marginTop: "10px" }}>
+              <div className="big-cart" key={index}>
                 {Object.keys(values[id]).map((kery, i) => {
                   const value = values[id][kery];
                   console.log(kery)
                   return (
                     <div className="item-cart" key={i}>
-                      <div className="cart-detail"><img className="img-cart" src={value.productImg[0]} />
-                        <div style={{fontSize:"36px"}} className="cart-detail-item">{value.productName}</div>
-                        <div className="cart-detail-item">ชื่อร้าน : {id}</div>
+                      <div ></div>
+                      <div className="cart-detail">
+                        <div>
+                          <img style={{ borderRadius: "15%", overflow: "hidden", width: "80px", height: "80px" }} src={value.productImg[0]} />
+                        </div>
+
+                        <div style={{ fontSize: "22px" }} className="cart-detail-item">{value.productName}</div>
                       </div>
                       <div className="cart-hr" />
                       <div className="cart-payment">
-                        <div className="cart-detail-item">ชื่อร้าน : {id}</div>
+                        <button className="bin-icon"
+                          style={{ marginRight: "20px", marginLeft: "20px", fontSize: "22px" }}
+                          variant="primary"
+                          onClick={() => DeleteProductCart(id, kery)}
+                        >
+                          <RiIcons.RiDeleteBin5Fill />
+                        </button>
+                        <div style={{ weight: "15px", height: "15px", alignItems: "center", paddingTop: "6%" }}>
+                          <button  style={{ marginLeft: "50px" }}
+                            type="button"
+                            onClick={() =>
+                              firebaseDB
+                                .child("Cart")
+                                .child(uid)
+                                .child(id)
+                                .child(kery)
+                                .update({ ValQuantity: value.ValQuantity - 1 })
+                            }
+                          >
+                            <HiIcons.HiMinus className="btn-delete" />
+                          </button>
+
+                          <input
+
+                            type="text"
+                            style={{ width: "100px", textAlign: "center", marginLeft: "5px", marginRight: "5px" }}
+                            id="orderQuantity"
+                            name="orderQuantity"
+                            value={value.ValQuantity}
+                            onChange={(e) => e.target.value}
+                          />
+
+                          <button
+                            
+                            type="button"
+                            onClick={() =>
+                              firebaseDB
+                                .child("Cart")
+                                .child(uid)
+                                .child(id)
+                                .child(kery)
+                                .update({ ValQuantity: value.ValQuantity + 1 })
+                            }
+                          >
+                            <HiIcons.HiPlus className="btn-add"/>
+                          </button>
+
+                        </div>
+
                       </div>
+
                     </div>
+
                   )
                 })}
+                <div style={{ width: "100%", textAlign: "right" }}>
+                  <button type="button" className="btn-payment" style={{ fontSize: "20px", width: "20%", height: "60px", borderRadius: "0px 0px 15px 0px " }}
+                    variant="primary"
+                    onClick={() => (window.location.href = `/user/payments/${id}`)}
+                  >
+                    ชำระเงิน
+                  </button>
+                </div>
               </div>
 
             </div>

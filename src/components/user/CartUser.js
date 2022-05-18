@@ -87,7 +87,11 @@ function CartUser() {
                           <img style={{ borderRadius: "15%", overflow: "hidden", width: "80px", height: "80px" }} src={value.productImg[0]} />
                         </div>
 
-                        <div style={{ fontSize: "22px" }} className="cart-detail-item">{value.productName}</div>
+                        <div style={{ fontSize: "22px" }} className="cart-detail-item">
+                          <h4>{value.productName}</h4> <br />
+                          <h5 style={{ color: "gray" }}>{value.productPrice} ฿ / ชิ้น</h5> <br />
+                        </div>
+
                       </div>
                       <div className="cart-hr" />
                       <div className="cart-payment">
@@ -99,7 +103,7 @@ function CartUser() {
                           <RiIcons.RiDeleteBin5Fill />
                         </button>
                         <div style={{ weight: "15px", height: "15px", alignItems: "center", paddingTop: "6%" }}>
-                          <button  style={{ marginLeft: "50px" }}
+                          <button style={{ marginLeft: "50px" }}
                             type="button"
                             onClick={() =>
                               firebaseDB
@@ -124,7 +128,7 @@ function CartUser() {
                           />
 
                           <button
-                            
+
                             type="button"
                             onClick={() =>
                               firebaseDB
@@ -135,7 +139,7 @@ function CartUser() {
                                 .update({ ValQuantity: value.ValQuantity + 1 })
                             }
                           >
-                            <HiIcons.HiPlus className="btn-add"/>
+                            <HiIcons.HiPlus className="btn-add" />
                           </button>
 
                         </div>

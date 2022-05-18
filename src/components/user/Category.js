@@ -24,7 +24,10 @@ function Category() {
         <div className='flexbox' >
           {Object.keys(values).map((id, index) => {
             return (
-              <div type="button" className="flex-item" key={index} >
+              <div type="button" className="flex-item" key={index} onClick={() =>
+                (window.location.href = `/view-product/${id}`)
+              }
+>
                 <div className='card' >
                   <img className='img-item' src={values[id].productImg[0]} />
                   <div className='title-item'>

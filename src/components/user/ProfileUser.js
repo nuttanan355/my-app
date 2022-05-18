@@ -36,7 +36,8 @@ function ProfileUser(){
                                     
                                             <h6>Name:</h6>
                                     <input 
-                                            class="#" type="text"
+                                            class="#" 
+                                            type="text"
                                             value="ThiS IS for user.display" 
                                             
                                     ></input>
@@ -44,15 +45,18 @@ function ProfileUser(){
                                          <h6> E-mail: </h6>
                                             
                                     <input 
-                                            class="#" type="text"
+                                            class="#" 
+                                            type="text"
                                             value="ThiS IS for user.Email" 
                                     ></input>
                                             <h6> Phone: </h6>
                                             
                                             <input 
-                                                    class="#" type="text"
+                                                    className="#" 
                                                     placeholder="Enter Your PhoneNumber" 
-                                                    value="" 
+                                                    type="text"
+                                                    name="address"
+                                                    
                                             ></input>                                                 
                                         <h6>  Your address:  </h6> 
                                     <textarea 
@@ -60,7 +64,7 @@ function ProfileUser(){
                                             placeholder="Enter Address" 
                                             type="text"
                                             name="address"
-                                            value="" 
+                                             
                                             
                                     ></textarea>
                                   
@@ -70,12 +74,12 @@ function ProfileUser(){
 
                                         
                                 <div className="col" style={{width:"100px"}}>
-                                         <input type="submit" className="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                                         <input type="submit" className="profile-edit-btn" name="btnAddMore" value="Save"/>
                                         
                                 </div>
                                 <div className="col" style={{width:"100px"}}>
                                          
-                                        <input type="submit" className="profile-edit-btn" name="btnAddMore" value="Cancel"/>
+                                        <input type="reset" className="profile-edit-btn" name="btnAddMore" value="Cancel"/>
                                 </div>
                              </div>
                         </div>

@@ -65,17 +65,19 @@ function ShowDataUser() {
                 }
 
               >
+                <div>
                 <img
                   id="imgShow"
                   className="card-img-top "
                   // style="height:200px;"
-                  style={{ width: "100%" }}
+                  style={{ width: "200px",height: "200px" , overflow:"hidden"}}
                   alt="Product Images"
                   src={values[id].productImg[0]}
                 // onClick="#"
                 />
+                </div>
                 <Card.Body>
-                  <Card.Title style={{ fontWeight: "bold", fontSize: "100%" }}>{values[id].productName} </Card.Title>
+                  <Card.Title style={{ fontWeight: "bold", fontSize: "100%" }} length="10">{values[id].productName} </Card.Title>
                   <Card.Text style={{ fontSize: "100%", textAlign: "right" }} >{values[id].productPrice} บาท</Card.Text>
                 </Card.Body>
 

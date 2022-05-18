@@ -14,7 +14,7 @@ function ProfileUser(){
 
 
     return(
-    <div className="container emp-profile" style={{backgroundColor: "lightblue"}} >
+    <div className="default-bg" style={{backgroundColor: "lightblue"}} >
             <form method="post">
                 <div className="row" >
                     <div className="col-md-4">

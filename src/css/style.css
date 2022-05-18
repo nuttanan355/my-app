@@ -151,6 +151,7 @@ hr {
 }
 
 .big-cart {
+    width: 1300px;
     padding-top: 20px;
     padding-left: 20px;
     border: 1px solid lightgray;
@@ -164,7 +165,6 @@ hr {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-bottom: 50px;
 
 }
 

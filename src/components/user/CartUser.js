@@ -82,7 +82,7 @@ function CartUser() {
                   return (
                     <div className="item-cart" key={i}>
                       <div ></div>
-                      <div className="cart-detail">
+                      <div className="cart-detail" style={{background:"red"}}>
                         <div>
                           <img style={{ borderRadius: "15%", overflow: "hidden", width: "80px", height: "80px" }} src={value.productImg[0]} />
                         </div>

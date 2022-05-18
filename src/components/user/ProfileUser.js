@@ -26,42 +26,52 @@ function ProfileUser(){
                             </div>
                         </div>
                     </div>
+                                     
                     <div className="col-md-6">
+                    <h1>Your Profile</h1>
+
                         <div className="profile-head">
+                                
+
                                     
-                                    <h1>Your Profile</h1>
-                                    
-                                            <h6>
-                                                Name:
-                                            </h6>
+                                            <h6>Name:</h6>
                                     <input 
                                             class="#" type="text"
-                                            value="ThiS IS for user.display" >
+                                            value="ThiS IS for user.display" 
+                                            
+                                    ></input>
 
-                                    </input>
-                                            <h6>
-                                                E-mail:
-                                            </h6>
+                                         <h6> E-mail: </h6>
+                                            
                                     <input 
                                             class="#" type="text"
-                                            value="ThiS IS for user.Email" >
-                                    </input>                                                
-                                        <h6>
-                                            Your address: 
-                                        </h6>
-
-                                    <input
-                                            className="#"
-                                            placeholder="Enter Address"
+                                            value="ThiS IS for user.Email" 
+                                    ></input>
+                                            <h6> Phone: </h6>
+                                            
+                                            <input 
+                                                    class="#" type="text"
+                                                    placeholder="Enter Your PhoneNumber" 
+                                                    value="ThiS IS for user.Phone" 
+                                            ></input>                                                 
+                                        <h6>  Your address:  </h6> 
+                                    <textarea 
+                                            className="#"  
+                                            placeholder="Enter Address" 
                                             type="text"
                                             name="address"
-                                            style={{ width: "300px" }}
-                                    />
+                                            
+                                    ></textarea>
                                   
                                    
                                     
                             <div className="col-md-2">
-                                <input type="submit" className="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+
+                                        <input type="submit" className="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                                <div className="row">
+                                        <input type="submit" className="profile-edit-btn" name="btnAddMore" value="Edit Profile"/>
+                                </div>
+                          
                              </div>
                         </div>
                     </div>

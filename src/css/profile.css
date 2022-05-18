@@ -90,3 +90,7 @@
     font-weight: 600;
     color: #0062cc;
 }
+textarea {
+    width: 400px;
+    height: 50px;
+  }

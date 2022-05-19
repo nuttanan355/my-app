@@ -26,10 +26,6 @@ function NavbarIndex() {
     });
   }, []);
 
-
-
-
-
   return (
     <div>
       {/* <div className={sidebar ? "nav-menu active" : "nav-menu"}>

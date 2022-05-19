@@ -139,3 +139,19 @@ span {
 .nav-link {
   font-size: 10px;
 }
+.nav-link-admin {
+  color:rgb(46, 46, 46);
+}
+.nav-link-admin:hover {
+  color:black;
+}
+.nav-item-admin {
+  width: 10%;
+  color:rgb(0, 85, 78);
+  transition: 200ms;
+}
+.nav-item-admin:hover {
+ font-weight: bold;
+ color:white;
+ transition: 200ms;
+}

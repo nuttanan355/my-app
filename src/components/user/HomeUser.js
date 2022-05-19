@@ -24,9 +24,9 @@ function HomeUser() {
   }, []);
 
   return (
-    <div>
+    <div className="default-bg">
       
-      <div className="container mx-auto" >
+      <div>
         {/* <Search /> */}
         <div className="container" style={{ width: "1500px", textAlign: "center", marginTop: "20px" }}>
           <div style={{ textAlign: "center", border: "2px solid black", boxShadow: "2px 2px 3px gray" }}>

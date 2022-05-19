@@ -26,10 +26,6 @@ function NavbarIndex() {
     });
   }, []);
 
-
-
-
-
   return (
     <div>
       {/* <div className={sidebar ? "nav-menu active" : "nav-menu"}>
@@ -67,7 +63,7 @@ function NavbarIndex() {
             <FaIcons.FaBars style={{ fontSize: "20px", padding: "0" }} />
           </button> */}
           <a href="/">
-            <img className="btn" style={{ height: "70px", marginLeft: "20px" }} src="../img/logo.png" />
+            <img className="btn" style={{ height: "70px", marginLeft: "20px" }} src="../../img/logo.png" />
           </a>
         </div>
         <div className="nav" >

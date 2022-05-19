@@ -126,7 +126,7 @@ hr {
     color: white;
     transition: 1000ms;
     width: 100%;
-    height:60px;
+    height: 60px;
     border-radius: 0px 0px 15px 15px;
 }
 
@@ -152,12 +152,14 @@ hr {
     margin-bottom: 30px;
     border-bottom: 2px solid rgb(231, 231, 231);
 }
-.grid-cart{
+
+.grid-cart {
     display: flex;
     margin-bottom: 80px;
 }
+
 .big-cart {
-    display: block ;
+    display: block;
     width: 70%;
     padding-top: 20px;
     padding-left: 20px;
@@ -166,8 +168,14 @@ hr {
     border-radius: 15px 15px 15px 15px;
     transition: 300ms;
 }
+
+.btn-seller:hover {
+    background-color: #e7e7e7;
+    border-radius: 10%;
+}
+
 .small-cart {
-    display: block ;
+    display: block;
     width: 25%;
     padding-top: 20px;
     border: 1px solid lightgray;
@@ -344,7 +352,14 @@ section .thumbnail:hover {
 
 .thumbnail:hover {
     transform: scale(1.1);
+    box-shadow: 0px 5px 10px rgb(185, 185, 185);
+}
 
+.box-login {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .circle-btn {

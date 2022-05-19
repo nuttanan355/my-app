@@ -24,9 +24,9 @@ function HomeUser() {
   }, []);
 
   return (
-    <div>
+    <div className="default-bg">
       
-      <div className="container mx-auto" >
+      <div>
         {/* <Search /> */}
         <div className="container" style={{ width: "1500px", textAlign: "center", marginTop: "20px" }}>
           <div style={{ textAlign: "center", border: "2px solid black", boxShadow: "2px 2px 3px gray" }}>
@@ -79,7 +79,7 @@ function HomeUser() {
                 <section className="item-container" id="slider" style={{ paddingTop: "0px", marginBottom: "50px", height: "300px" }}>
                   {GrouprData.map((item, index) => {
                     return (
-                      <div className="flexbox" key={index} >
+                      <div key={index} >
                         <a className="btn"href={item.path}>
                           <button
                             className="btn circle-btn btn-type flex-item"
@@ -87,8 +87,6 @@ function HomeUser() {
                               width: "12vw",
                               fontSize: "1vw",
                               background: "white",
-                              marginRight: "20px",
-                              marginLeft: "20px"
                             }}
                           >
                             {item.icon} <div>{item.title}</div>

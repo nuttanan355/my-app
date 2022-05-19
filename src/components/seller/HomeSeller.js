@@ -2,7 +2,9 @@ import React from "react";
 import "../../css/pages.css";
 import "../../css/home.css";
 import * as FaIcons from "react-icons/fa";
+import * as FcIcons from "react-icons/fc";
 import * as AiIcons from "react-icons/ai";
+import * as BsIcons from "react-icons/bs";
 import { Link } from "react-router-dom";
 // import { Button } from "react-bootstrap";
 // import { Link } from "react-router-dom";
@@ -24,56 +26,60 @@ function HomeSeller() {
           </a>
         </div>
         <hr />
-        
+
         <div className="row">
-        <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div1">
+
+          <div className="col" style={{ width: "30%", margin: "50px", height: "auto" }} id="div1">
             <Link to="/seller/seller-product">
-              <div className="text-center">
-                <FaIcons.FaBoxes size={200} />
+              <div className="text-center btn-seller" style={{ padding: "10px" }}>
+                <FcIcons.FcAdvertising style={{ fontSize: "12vw" }} />
+                <h4 className="text-center mt-3 h4">ประกาศการขาย</h4>
               </div>
-              <h4 className="text-center mt-3 h4">ประกาศการขาย</h4>
+
             </Link>
           </div>
-          <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div2">
-          <Link to="/seller/seller-orders">
-            <div className="text-center">
-              <FaIcons.FaBox size={200} />
-            </div>
-            <h4 className="text-center mt-3 h4">ตรวจสอบสถานะคำสั่งซื้อ</h4>
+
+          <div className="col " style={{ width: "30%", margin: "50px" }} id="div2">
+            <Link to="/seller/seller-orders">
+              <div className="text-center btn-seller" style={{ padding: "10px" }}>
+                <FcIcons.FcFinePrint style={{ fontSize: "12vw" }} />
+                <h4 className="text-center mt-3 h4">ตรวจสอบสถานะคำสั่งซื้อ</h4>
+              </div>
+
             </Link>
           </div>
-          <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div3">
-          <Link to="/seller/seller-payment">
-            <div className="text-center">
-              <FaIcons.FaShoppingBasket size={200} />
-            </div>
-            <h4 className="text-center mt-3 h4">ตรวจสอบการโอนเงินจากระบบ</h4>
+          <div className="col" style={{ width: "30%", margin: "50px" }} id="div3">
+            <Link to="/seller/seller-payment">
+              <div className="text-center btn-seller" style={{ padding: "10px" }}>
+                <FcIcons.FcMoneyTransfer style={{ fontSize: "12vw" }} />
+                <h4 className="text-center mt-3 h4">ตรวจสอบการโอนเงินจากระบบ</h4>
+              </div>
+
             </Link>
           </div>
           <div className="w-100"></div>
-          <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div4">
-          <Link to="/seller/seller-recom">
-            <div className="text-center">
-              <AiIcons.AiFillLike size={200} />
-            </div>
-            <h4 className="text-center mt-3 h4">บริการสินค้าแนะนำ</h4>
+          <div className="col" style={{ width: "30%", margin: "50px" }} id="div4">
+            <Link to="/seller/seller-recom">
+              <div className="text-center btn-seller" style={{ padding: "10px" }}>
+                <FcIcons.FcCustomerSupport style={{ fontSize: "12vw" }} />
+                <h4 className="text-center mt-3 h4">บริการสินค้าแนะนำ</h4>
+              </div>
             </Link>
           </div>
-          <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div5">
-          <Link to="/seller/seller-profile">
-
-            <div className="text-center">
-              <FaIcons.FaRegCreditCard size={200} />
-            </div>
-            <h4 className="text-center mt-3 h4">Profile Seller</h4>
+          <div className="col" style={{ width: "30%", margin: "50px" }} id="div5">
+            <Link to="/seller/seller-profile">
+              <div className="text-center btn-seller" style={{ padding: "10px" }}>
+                <FcIcons.FcShop style={{ fontSize: "12vw" }} />
+                <h4 className="text-center mt-3 h4">Profile Seller</h4>
+              </div>
             </Link>
           </div>
-          <div className="col-lg bg-warning rounded-3 p-3 mx-3 my-3" id="div6">
-          <Link to="/seller/seller-packgate">
-            <div className="text-center">
-              <FaIcons.FaClipboardList size={200} />
-            </div>
-            <h4 className="text-center mt-3 h4">รายการคำสั่งซื้อ Packgate</h4>
+          <div className="col" style={{ width: "30%", margin: "50px" }} id="div6">
+            <Link to="/seller/seller-packgate">
+              <div className="text-center btn-seller" style={{ padding: "10px" }}>
+                <FcIcons.FcPackage style={{ fontSize: "12vw" }} />
+                <h4 className="text-center mt-3 h4">รายการคำสั่งซื้อ Packgate</h4>
+              </div>
             </Link>
           </div>
         </div>

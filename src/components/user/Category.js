@@ -31,8 +31,8 @@ function Category() {
                 <div className='card' >
                   <img className='img-item' src={values[id].productImg[0]} />
                   <div className='title-item'>
-                    <div className='name-item'>
-                    {values[id].productName}
+                    <div className='name-item' >
+                    <p style={{whiteSpace:"nowrap", textOverflow:"ellipsis",overflow:"hidden"}}> {values[id].productName} </p>
                     </div>
                     <div className='price-item'>
                     {values[id].productPrice} ฿

@@ -71,12 +71,14 @@ function ViewProduct() {
                 style={{ background: "red" }}
               >
                 {Images.map((url, i) => (
+  
                   <img
                     style={{ width: "100%" }}
                     src={url}
                     key={i}
                     alt="firebase-images"
                   />
+              
                 ))}
               </div>
               <div

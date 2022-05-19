@@ -31,6 +31,21 @@ function PayRecomProduct(){
 
       console.log(values)
 
+
+
+const AddRecomProduct=()=>{
+    
+}
+
+
+
+
+
+
+
+
+
+
     return(
     <div className="container">
         <h3>สินค้าแนะนำ</h3>
@@ -81,7 +96,7 @@ function PayRecomProduct(){
       <form>
           <input type='file' />
       </form>
-        <button className='btn' >บริการสินค้าแนะนำ</button>
+        <button className='btn' onClick={()=>AddRecomProduct()}>บริการสินค้าแนะนำ</button>
     </div>
     );
 }export default PayRecomProduct

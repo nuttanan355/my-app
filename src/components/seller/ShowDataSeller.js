@@ -8,7 +8,7 @@ import { Tab } from "bootstrap";
 
 function ShowDataSeller() {
   const [values, setValues] = useState({});
-
+  const [Images, setImages] = useState([]);
 
   useEffect(() => {
     firebaseAuth.onAuthStateChanged((user) => {
@@ -82,11 +82,19 @@ function ShowDataSeller() {
                 ) : (
                   <Card className="my-2">
                     <Card.Body>
-                      <Card.Img
-                        variant="top"
-                        src={values[id].productImg[0]}
-                        style={{ width: "100px" }}
+                    {values[id].productImg.map((url, i) => (
+                    <div className="col" interval={3000} key={i}>
+                      <img
+                        src={url}
+                        alt="First slide"
+                        style={{
+                          height: "200px",
+                          textAlign: "center",
+                          margin: "1%"
+                        }}
                       />
+                    </div>
+                  ))}
                       <Card.Title>{values[id].productName}</Card.Title>
                       <Card.Text>{values[id].productDetails}</Card.Text>
                       <Card.Text>{values[id].sellerUid}</Card.Text>

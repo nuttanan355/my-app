@@ -35,7 +35,6 @@ function NavLink() {
                     <div className="item-nav-home">
                         {NavMenuNoLogin.map((item, index) => {
                             return (
-
                                 <Link className="btn nav-home" key={index} to={item.path} style={{ textAlign: "center" }}>
 
                                     <span >{item.title}</span>

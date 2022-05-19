@@ -265,7 +265,7 @@ p {
 
 .item-container {
 
-    max-width: 100%;
+    width: 100%;
     margin: auto;
 
     /* padding: 0 20px; */
@@ -285,7 +285,7 @@ main {
 }
 
 .slide-container {
-    width: 90%;
+    width: 95%;
     display: flex;
     justify-content: center;
     align-items: center;

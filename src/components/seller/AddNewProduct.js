@@ -134,13 +134,6 @@ function AddNewProduct() {
     }
   };
 
-
-
-
-
-
-
-
   return (
     <div className="container pb-5">
       <h1>Add New Product</h1>
@@ -159,7 +152,7 @@ function AddNewProduct() {
             ))}
 
           <div className="form-group">
-            <label htmlFor="productImg">รูปภาพ</label>
+            <label style={{marginRight:"10px"}} htmlFor="productImg">รูปภาพ ( scale 1:1 ) </label>
             <input
               accept="image/*"
               type="file"

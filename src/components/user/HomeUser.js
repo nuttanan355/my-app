@@ -25,7 +25,7 @@ function HomeUser() {
 
   return (
     <div className="default-bg">
-      
+
       <div>
         {/* <Search /> */}
         <div className="container" style={{ width: "1500px", textAlign: "center", marginTop: "20px" }}>
@@ -34,7 +34,7 @@ function HomeUser() {
               <Carousel.Item>
                 <img
                   className="d-block w-100"
-                  src="../../img/ads2.png"
+                  src="../../img/ads1.png"
                   alt="1500*500"
                   style={{ minHeight: "200px", maxHeight: "500px", width: "1000px" }}
                 />
@@ -51,7 +51,7 @@ function HomeUser() {
               <Carousel.Item>
                 <img
                   className="d-block w-100"
-                  src="../../img/ads2.png"
+                  src="../../img/ads1.png"
                   alt="1500*500"
                   style={{ minHeight: "200px", maxHeight: "500px", width: "1000px" }}
                 />
@@ -59,50 +59,51 @@ function HomeUser() {
             </Carousel>
           </div>
         </div>
+      </div>
+      <br />
+      <div className="container" style={{ background: "white", borderRadius: "15px 15px 15px 15px", boxShadow: "0px 0px 2px lightgray" }}>
+        <h2 style={{ padding: "3%", color: "orange", fontSize: "25px" }} >
+          <AiIcons.AiFillStar style={{ color: "orange", fontSize: "20px" }} />{" "}
+          สินค้าที่ได้รับความนิยม
+        </h2>
+        <ShowDataUser />
         <br />
-        <div className="container" style={{ background: "white", borderRadius: "15px 15px 15px 15px", boxShadow: "0px 0px 2px lightgray" }}>
-          <h2 style={{ padding: "3%", color: "orange", fontSize: "25px" }} >
-            <AiIcons.AiFillStar style={{ color: "orange", fontSize: "20px" }} />{" "}
-            สินค้าที่ได้รับความนิยม 
-          </h2>
-          <ShowDataUser />
-          <br />
-        </div>
-        <br />
-        <div className="container">
-          <div className="frame" style={{ marginBottom: "50px" }}>
-            <div style={{ background: "white", borderRadius: "15px", width: "1500px", boxShadow: "0px 0px 2px lightgray" }}>
-              <h2 style={{  paddingLeft: "50px",paddingTop: "50px", color: "orange", fontSize: "25px" }} >
-                หมวดหมู่
-              </h2>
-              <div className="slide-container" >
-                <section className="item-container" id="slider" style={{ paddingTop: "0px", marginBottom: "50px", height: "300px" }}>
-                  {GrouprData.map((item, index) => {
-                    return (
-                      <div key={index} >
-                        <a className="btn"href={item.path}>
-                          <button
-                            className="btn circle-btn btn-type flex-item"
-                            style={{
-                              width: "12vw",
-                              fontSize: "1vw",
-                              background: "white",
-                            }}
-                          >
-                            {item.icon} <div>{item.title}</div>
-                          </button>
-                        </a>
-                      </div>
-                    );
-                  })}
-                </section >
-              </div>
+      </div>
+      <br />
+      <div>
+        <div>
+          <div style={{ marginLeft: "50px", marginRight: "50px", background: "white", borderRadius: "15px", boxShadow: "0px 0px 2px lightgray" }}>
+            <h2 style={{ paddingLeft: "50px", paddingTop: "50px", color: "orange", fontSize: "25px" }}>
+              หมวดหมู่
+            </h2>
+            <div className="slide-container" >
+              <section className="item-container" id="slider" style={{ paddingTop: "0px", marginBottom: "50px", height: "300px" }}>
+                {GrouprData.map((item, index) => {
+                  return (
+                    <div key={index} >
+                      <a className="btn" href={item.path}>
+                        <button
+                          className="btn circle-btn btn-type flex-item"
+                          style={{
+                            width: "12vw",
+                            fontSize: "1vw",
+                            background: "white",
+                          }}
+                        >
+                          {item.icon} <div>{item.title}</div>
+                        </button>
+                      </a>
+                    </div>
+                  );
+                })}
+              </section >
             </div>
           </div>
         </div>
-        <div >
-        </div>
       </div>
+      <div >
+      </div>
+
     </div >
   );
 }

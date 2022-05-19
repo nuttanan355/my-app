@@ -48,12 +48,12 @@ function ShowDataUser() {
   }, []);
 
   return (
-    <div className="slide-container">
-      <section className="item-container" id="slider">
+    <div className="slide-container" >
+      <section id="slider">
         {Object.keys(values).map((id, index) => {
           return (
             <div key={index} className="btn col-lg-3">
-              <Card className="thumbnail"
+              <div className="thumbnail"
                 style={{
                   background: "#ffffff",
                   border: "0",
@@ -65,23 +65,21 @@ function ShowDataUser() {
                 }
 
               >
-                <div>
-                <img
-                  id="imgShow"
-                  className="card-img-top "
-                  // style="height:200px;"
-                  style={{ width: "200px",height: "200px" , overflow:"hidden"}}
-                  alt="Product Images"
-                  src={values[id].productImg[0]}
-                // onClick="#"
-                />
+                <div style={{ height: "300px",  overflow: "hidden" }}>
+                  <img
+                    id="imgShow"
+                    className="card-img-top "
+                    style={{ width: "auto"}}
+                    alt="Product Images"
+                    src={values[id].productImg[0]}
+                  // onClick="#"
+                  />
                 </div>
-                <Card.Body>
-                  <Card.Title style={{ fontWeight: "bold", fontSize: "100%" }} length="10">{values[id].productName} </Card.Title>
-                  <Card.Text style={{ fontSize: "100%", textAlign: "right" }} >{values[id].productPrice} บาท</Card.Text>
-                </Card.Body>
-
-              </Card>
+                <div style={{ paddingTop: "15px", paddingLeft: "15px", height: "80px", background: "red" }}>
+                  <p style={{ fontWeight: "bold", fontSize: "100%", textAlign: "left" }}>{values[id].productName}</p>
+                  <p style={{ fontWeight: "bold", fontSize: "100%", textAlign: "left" }}>{values[id].productPrice} บาท</p>
+                </div>
+              </div>
             </div>
           );
         })}
@@ -92,4 +90,4 @@ function ShowDataUser() {
 
     </div>
   );
-}export default ShowDataUser;
+} export default ShowDataUser;

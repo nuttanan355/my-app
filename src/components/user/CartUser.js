@@ -74,7 +74,7 @@ function CartUser() {
       <div>
         {Object.keys(values).map((id, index) => {
           return (
-            <div style={{ paddingLeft: "50px", paddingRight: "50px", marginTop: "10px" }}>
+            <div className="grid-cart" style={{ paddingLeft: "50px", paddingRight: "50px", marginTop: "10px" }}>
               <div className="big-cart" key={index}>
                 {Object.keys(values[id]).map((kery, i) => {
                   const value = values[id][kery];
@@ -82,7 +82,7 @@ function CartUser() {
                   return (
                     <div className="item-cart" key={i}>
                       <div ></div>
-                      <div className="cart-detail" style={{background:"red"}}>
+                      <div className="cart-detail" >
                         <div>
                           <img style={{ borderRadius: "15%", overflow: "hidden", width: "80px", height: "80px" }} src={value.productImg[0]} />
                         </div>
@@ -150,18 +150,31 @@ function CartUser() {
 
                   )
                 })}
-                <div style={{ width: "100%", textAlign: "right" }}>
-                  <button type="button" className="btn-payment" style={{ fontSize: "20px", width: "20%", height: "60px", borderRadius: "0px 0px 15px 0px " }}
-                    variant="primary"
-                    onClick={() => (window.location.href = `/user/payments/${id}`)}
-                  >
-                    ชำระเงิน
-                  </button>
-                </div>
+
               </div>
+
+              <div className="small-cart" style={{ marginLeft: "25px" }}>
+                <div style={{ fontSize: "20px", width: "100%", height: "100%", borderRadius: "0px 0px 15px 0px " }}>
+
+
+
+
+
+                </div>
+                <button type="button" className="btn-payment"
+                  variant="primary"
+                  onClick={() => (window.location.href = `/user/payments/${id}`)}
+                >
+                  ชำระเงิน
+                </button>
+              </div>
+
 
             </div>
           );
+
+
+
         })}
       </div>
     </div>

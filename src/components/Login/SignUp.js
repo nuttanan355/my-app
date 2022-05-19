@@ -27,10 +27,10 @@ function SignIn() {
             .child(user.uid)
             .set({
               email: user.email,
-              full_name:value.fullName, 
+              full_name: value.fullName,
               uid: user.uid,
               type: "User",
-              uimg:"",
+              uimg: "",
             })
             .then(() => {
               alert("Add Admin success");
@@ -46,7 +46,43 @@ function SignIn() {
   };
 
   return (
-    <div className="limiter">
+    <div className="default-bg">
+
+      {/* <div className="box-login" >
+        <div style={{ background: "red ", height: "500px", width: "800px" }}>
+
+          <label>ชื่อจริง</label>
+          <input
+            type="text"
+            className="form-control"
+            name="fullName"
+            onChange={handleChange}
+          />
+          <label>เบอร์มือถือ</label>
+
+        </div>
+
+      </div> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
       <div className="container-login100">
         <div className="wrap-login100">
           <div className="login100-pic js-tilt" data-tilt>

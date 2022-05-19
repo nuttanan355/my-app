@@ -165,7 +165,7 @@ function CartUser() {
                   variant="primary"
                   onClick={() => (window.location.href = `/user/payments/${id}`)}
                 >
-                  ชำระเงิน
+                  
                 </button>
               </div>
 

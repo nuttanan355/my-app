@@ -35,7 +35,10 @@ function PaymentProduct() {
   return (
     <div className="default-bg">
       <h3>ชำระเงิน</h3>
-      {/* <table className="table">
+      <div className='grid' style={{ display: "flex", marginLeft: "30px", marginRight: "30px" }} >
+
+
+        {/* <table className="table">
         <tr>
           <td scope="row"></td>
           <td>ชื่อร้าน</td>
@@ -72,15 +75,42 @@ function PaymentProduct() {
       <form>
         <input type='file' />
       </form> */}
-
-      {Object.keys(values).map((id, index) => (
-        <div className='big-cart'>
-          <div>
-            <img className='big-cart' src={values[id].productImg[0]} />
+        <div style={{ display: "block", marginBottom: "20px", width: "60%", paddingRight: "10px" }}>
+          <div style={{ display: "flex" }}>
+            <h5 style={{ display: "block", width: "60px", color: "gray" }}>สินค้า</h5>
+            <hr style={{ display: "block", width: "80%" }} />
           </div>
-        </div>
-      ))}
+          {Object.keys(values).map((id, index) => (
 
+            <div>
+              <div style={{ display: "flex", marginBottom: "20px" }}>
+                <img style={{ display: "block", height: "50px", width: "50px", borderRadius: "15%" }} src={values[id].productImg[0]} />
+                <a style={{ display: "block", marginLeft: "20px" }}>{values[id].productName}<br /> {values[id].productPrice} ฿ <br /> {values[id].sellerUid}</a>
+              </div>
+
+            </div>
+
+          ))}
+        </div>
+        <div className='address-pay' style={{ display: "block", marginBottom: "20px", width: "40%" }}>
+          <div style={{ display: "flex" }}>
+            <h5 style={{ display: "block", width: "60px", color: "gray" }}>ที่อยู่</h5>
+            <hr style={{ display: "block", width: "80%" }} />
+          </div>
+          {Object.keys(values).map((id, index) => (
+
+            <div style={{ borderLeft: "1px solid lightgray",minHeight:"200px" }}>
+
+
+            </div>
+
+          ))}
+        </div>
+
+
+
+
+      </div>
       <button className='btn-payment' >สั่งซื้อสินค้า</button>
     </div>
   );

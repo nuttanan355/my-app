@@ -58,13 +58,6 @@ function CartUser() {
         })
       }
     })
-    // console.log("ID",id);
-    // console.log("KERY",kery);
-    // if (
-    //   window.confirm("Are you sure that you wanted to delete that contact ?")
-    // ) {
-    //   firebaseDB.child(`Cart/${uid}/${id}/${kery}`).remove().then().catch();
-    // }
   };
   return (
     <div className="default-bg">

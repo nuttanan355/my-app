@@ -44,6 +44,10 @@ export const RouteNoLogin = [
       element: <SignUp />,
     },
     {
+      path: "/logout",
+      element: <Logout />,
+    },
+    {
       path: "/category",
       element: <Category />,
   },

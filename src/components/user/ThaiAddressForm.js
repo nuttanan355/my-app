@@ -1,71 +1,90 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Form } from 'react-bootstrap';
+
+import refThai from '../../server/thailand.json';
+
+
+
 
 function ThaiAddressFrom(){
 
+  const [addressJson, setAddressJson] = useState(refThai);
+  const [searchString, setSearchString] = useState("");
+  // const [Address, setAddress] = useState({});
+
+
+
+
+
+
+  useEffect(()=>{
+    if(searchString.length === 0){
+      setAddressJson(refThai);
+    }else{
+      const searchedObjects = [];
+      refThai.forEach((singleHeroObject, index) => {
+        Object.values(singleHeroObject).every((onlyValues, valIndex) => {
+          if (onlyValues.toLowerCase().includes(searchString.toLowerCase())) {
+            searchedObjects.push(singleHeroObject);
+            return;
+          }
+        });
+      });
+      setAddressJson(searchedObjects);
+    }
+  },[searchString])
+
+  // const addressSearch = (searchText) => {
+  //   // Get matches to current text input
+  //   let matchItems = addressJson.filter((addressJson) => {
+  //     const regex = new RegExp(`^${searchText}`, "gi");
+  //     return (
+  //       addressJson.district.match(regex) ||
+  //       addressJson.districtEng.match(regex) ||
+  //       addressJson.amphoe.match(regex) ||
+  //       addressJson.amphoeEng.match(regex) ||
+  //       addressJson.province.match(regex) ||
+  //       addressJson.provinceEng.match(regex)
+  //     );
+  //   });
+  //   if (searchText.length === 0) {
+  //     setAddress(null);
+  //   }
+
+  //   setAddress(matchItems);
+
+  // };
+
+
+
+// console.log(Address);
+console.log(addressJson);
+
+
+
     return(
-        <div class="w3-container w3-margin-top">
-        <div class="mt-5 w3-content">
-          <div class="w3-row w3-margin">
-            <h3><i class="fa fa-home"></i> Thailand Search Address</h3>
-            <div class="autocomplete">
-              <input
-                id="search"
-                type="text"
-                name="address"
-                class="w3-input w3-border w3-xlarge"
-                placeholder="Enter address..."
-              />
-            </div>
-          </div>
+        <>
+           <div className="form-group  mt-3">
+            <input id="search" type="text" name="address"placeholder="Thailand Search Address...." className='form-control col'onChange={(e)=>{setSearchString(e.target.value)}}/>
+            
         </div>
 
-        <div class="w3-content">
-          <div class="w3-row-padding w3-padding-16">
-            <div class="w3-half">
-              <label>ตำบล / แขวง</label>
-              <input
-                id="district"
-                type="text"
-                name="district"
-                class="w3-input w3-border w3-xlarge"
-                placeholder="ตำบล / แขวง"
-              />
+            <div className="form-group mt-3 row">
+              <input id="district" type="text" name="district" className="form-control col" placeholder="ตำบล / แขวง" />
+              <input id="amphoe" type="text" name="amphoe" className="form-control col" placeholder="อำเภอ / เขต"/>
             </div>
-            <div class="w3-half">
-              <label>อำเภอ / เขต</label>
-              <input
-                id="amphoe"
-                type="text"
-                name="amphoe"
-                class="w3-input w3-border w3-xlarge"
-                placeholder="อำเภอ / เขต"
-              />
-            </div>
-          </div>
-          <div class="w3-row-padding w3-padding-16">
-            <div class="w3-half">
-              <label>จังหวัด</label>
+            <div className="form-group mt-3">
               <input
                 id="province"
                 type="text"
                 name="province"
-                class="w3-input w3-border w3-xlarge"
+                className="form-control"
                 placeholder="จังหวัด"
               />
             </div>
-            <div class="w3-half">
-              <label>รหัสไปรษณีย์</label>
-              <input
-                id="zipcode"
-                type="text"
-                name="zipcode"
-                class="w3-input w3-border w3-xlarge"
-                placeholder="รหัสไปรษณีย์"
-              />
+            <div className="form-group mt-3">
+              <input id="zipcode" type="text" name="zipcode" placeholder="รหัสไปรษณีย์" className="form-control"/>
             </div>
-          </div>
-        </div>
-        {/* <!-- End Address Input Content--> */}
-      </div>
+      </>
     );
 }export default ThaiAddressFrom;

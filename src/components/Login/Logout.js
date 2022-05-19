@@ -4,7 +4,6 @@ import "../../css/App.css";
 // import * as FcIcons from "react-icons/fc";
 
 const Logout = () => {
-
           firebaseAuth
             .signOut()
             .then(() => {
@@ -12,9 +11,7 @@ const Logout = () => {
             })
             .catch((error) => {
               console.error(error);
-            })
-        
-  
+            });
 };
 
 export default Logout;

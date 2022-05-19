@@ -39,13 +39,6 @@ export const NavMenuNoLogin = [
   
   },
   {
-    title: 'สินค้า',
-    path: '/product',
-    icon: <AiIcons.AiOutlineShop />,
-    cName: 'nav-text',
-  
-  },
-  {
     title: 'หมวดหมู่',
     path: '/category',
     icon: <AiIcons.AiOutlineAppstore />,

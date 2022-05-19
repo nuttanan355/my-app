@@ -117,18 +117,18 @@ function NavbarAdmin() {
 
     <div className="navbar" style={{ alignItems: "left", justifyContent: "center", fontSize: "16px" }}>
       <div type="button" style={{ display: "block", height: "100%", width: "8%" }} >
-        <img src="./img/logo.png" style={{ width: "100px" }} />
+        <img src="../img/logo.png" style={{ width: "100px" }} onClick={() => window.location='/'}/>
       </div>
-      <div className="nav-item-admin" type="button" style={{ display: "block", marginLeft: "40px", textAlign: "center" }} >
+      <div className="nav-item-admin" type="button" style={{ display: "block", marginLeft: "40px", textAlign: "center" }} onClick={() => window.location='/admin/oders'}>
         รายการคำสั่งซื้อจากผู้ซื้อ
       </div>
-      <div className="nav-item-admin" type="button" style={{ display: "block", marginLeft: "40px", textAlign: "center" }} >
+      <div className="nav-item-admin" type="button" style={{ display: "block", marginLeft: "40px", textAlign: "center" }} onClick={() => window.location='/admin/new-products'}>
         ตรวจสอบการอัปโหลด
       </div>
-      <div className="nav-item-admin" type="button" style={{ display: "block", marginLeft: "40px", textAlign: "center" }} >
+      <div className="nav-item-admin" type="button" style={{ display: "block", marginLeft: "40px", textAlign: "center" }} onClick={() => window.location='/admin/recom'}>
         บริการสินค้าแนะนำ
       </div>
-      <div className="nav-item-admin" type="button" style={{ display: "block", marginLeft: "40px", textAlign: "center" }} >
+      <div className="nav-item-admin" type="button" style={{ display: "block", marginLeft: "40px", textAlign: "center" }} onClick={() => window.location='/admin/edit-product'}>
         ตรวจสอบการแก้ไข
       </div>
       <div className="nav-item-admin"  type="button" style={{ display: "block", marginLeft: "40px", textAlign: "center"}} onClick={() => Logout()}>

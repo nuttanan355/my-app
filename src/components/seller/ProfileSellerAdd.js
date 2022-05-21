@@ -20,8 +20,10 @@ function ProfileSellerAdd() {
 
   // ----------------ADD DATA--------------------------------
   const [values, setValues] = useState({
+    storeImg: [],
     storeName: "",
     storeAddress: "",
+    storeDetails:"",
     phoneNumber: "",
     imgBankAccount: [],
     nameBankAccount: "",
@@ -34,7 +36,22 @@ function ProfileSellerAdd() {
 
   const [ShowImages, setShowImages] = useState([]);
   const [Images, setImages] = useState([]);
+
+  const [ShowImagesStore, setShowImagesStore] = useState([]);
+  const [ImagesStore, setImagesStore] = useState([]);
   const [uid, setUid] = useState();
+
+
+  const ImgStoreOnChange = (ever) => {
+    const selectedFIles = [];
+    const targetFilesObject = [...ever.target.files];
+    setImagesStore([...ever.target.files]);
+    targetFilesObject.map((file) => {
+      return selectedFIles.push(URL.createObjectURL(file));
+    });
+    setShowImagesStore(selectedFIles);
+  }; 
+  
 
   const ImgOnChange = (ever) => {
     const selectedFIles = [];
@@ -57,12 +74,12 @@ function ProfileSellerAdd() {
   }, []);
 
   const handleonSubmit = () => {
-    Images.forEach((files) => {
-      const sotrageRef = ref(
+    ImagesStore.forEach((fileStore)=>{
+      const sotrageRefStoreProfile = ref(
         firebaseStorage,
-        `users/${uid}/seller/payment-${files.name}`
+        `users/${uid}/seller/storeProfile-${fileStore.name}`
       );
-      const uploadTask = uploadBytesResumable(sotrageRef, files);
+      const uploadTask = uploadBytesResumable(sotrageRefStoreProfile, fileStore);
       uploadTask.on(
         "state_changed",
         (snapshot) => {},
@@ -70,18 +87,42 @@ function ProfileSellerAdd() {
         async () => {
           await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             console.log("File available at", downloadURL);
-            values.imgBankAccount.push(downloadURL);
-            if (values.imgBankAccount.length === Images.length) {
-              firebaseDB
-                .child("Users")
-                .child(uid)
-                .child("seller")
-                .set(values)
-                .then(() => {
-                  console.log("add data success");
-                  window.location.href = "/seller/seller-product";
-                })
-                .catch((error) => console.log(error));
+            values.storeImg=downloadURL;
+            if (values.storeImg !== null) {
+    
+              Images.forEach((files) => {
+                const sotrageRef = ref(
+                  firebaseStorage,
+                  `users/${uid}/seller/payment-${files.name}`
+                );
+                const uploadTask = uploadBytesResumable(sotrageRef, files);
+                uploadTask.on(
+                  "state_changed",
+                  (snapshot) => {},
+                  (error) => console.log(error),
+                  async () => {
+                    await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                      console.log("File available at", downloadURL);
+                      values.imgBankAccount=downloadURL;
+                      if (values.imgBankAccount !== null) {
+                        firebaseDB
+                          .child("Users")
+                          .child(uid)
+                          .child("seller")
+                          .set(values)
+                          .then(() => {
+                            console.log("add data success");
+                            window.location.href = "/seller/seller-profile";
+                          })
+                          .catch((error) => console.log(error));
+                      } else {
+                        console.log("Error add data");
+                      }
+                    });
+                  }
+                );
+              });
+      
             } else {
               console.log("Error add data");
             }
@@ -130,6 +171,24 @@ function ProfileSellerAdd() {
       <h1>Profile Seller</h1>
       <hr />
       <form className="was-validated">
+
+
+      <div className="form-group mt-3">
+          <label htmlFor="bankAccount">รูปร้านค้า</label>
+          {ShowImagesStore ? (
+            <img style={{ width: "150px" }} src={ShowImagesStore} />
+          ) : (
+            <></>
+          )}
+
+          <br />
+          <input accept="image/*" type="file" onChange={ImgStoreOnChange} required />
+        </div>
+
+
+
+
+
         <div className="form-group mt-3">
           <label htmlFor="productName">ชื่อร้านค้า</label>
           <input
@@ -145,13 +204,27 @@ function ProfileSellerAdd() {
         </div>
 
         <div className="form-group mt-3">
+          <label htmlFor="productDetails">รายละเอียดร้านค้า</label>
+          <textarea
+            id="storeDetails"
+            name="storeDetails"
+            className="form-control"
+            placeholder="รายละเอียดร้านค้า"
+            style={{ resize: "none", height: "100px" }}
+            value={values.name}
+            onChange={handleOnChange}
+            required
+          />
+        </div>
+
+        <div className="form-group mt-3">
           <label htmlFor="productDetails">ที่อยู่</label>
           <textarea
             id="storeAddress"
             name="storeAddress"
             className="form-control"
             placeholder="ที่อยู่ร้านค้า"
-            style={{ resize: "none", height: "200px" }}
+            style={{ resize: "none", height: "100px" }}
             value={values.name}
             onChange={handleOnChange}
             required

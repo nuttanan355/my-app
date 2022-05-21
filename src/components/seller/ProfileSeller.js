@@ -6,20 +6,28 @@ import {
   firebaseDB,
   firebaseStorage,
 } from "../../server/firebase";
+import Swal from "sweetalert2";
 
 function ProfileSeller() {
-  const [ShowImages, setShowImages] = useState([]);
-  const [Images, setImages] = useState([]);
+  const [ShowImagesBank, setShowImagesBank] = useState([]);
+  const [ImagesBank, setImagesBank] = useState([]);
+
+  const [ShowImagesStore, setShowImagesStore] = useState([]);
+  const [ImagesStore, setImagesStore] = useState([]);
+
   const [uid, setUid] = useState();
 
   const [values, setValues] = useState({
+    storeImg: [],
     storeName: "",
     storeAddress: "",
     phoneNumber: "",
+    storeDetails: "",
     imgBankAccount: [],
     nameBankAccount: "",
     numberBankAccount: "",
   });
+  console.log(values);
 
   useEffect(() => {
     firebaseAuth.onAuthStateChanged((user) => {
@@ -34,6 +42,24 @@ function ProfileSeller() {
               setValues({ ...snapshot.val() });
             } else {
               setValues({});
+              let timerInterval;
+              Swal.fire({
+                icon: "error",
+                title: "ไม่มีข้อมูลร้านค้า",
+                html: "ต้องมีข้อมูลร้านก่อน ถึงจะเพิ่มสินค้าได้",
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: () => {
+                  Swal.showLoading();
+                  const b = Swal.getHtmlContainer().querySelector("b");
+                  timerInterval = setInterval(() => {}, 100);
+                },
+                willClose: () => {
+                  clearInterval(timerInterval);
+                },
+              }).then((result) => {
+                window.location.href = "/seller/seller-profile/add";
+              });
             }
           });
       } else {
@@ -46,14 +72,24 @@ function ProfileSeller() {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
-  const ImgOnChange = (ever) => {
+  const ImagesBankOnChange = (ever) => {
     const selectedFIles = [];
     const targetFilesObject = [...ever.target.files];
-    setImages([...ever.target.files]);
+    setImagesBank([...ever.target.files]);
     targetFilesObject.map((file) => {
       return selectedFIles.push(URL.createObjectURL(file));
     });
-    setShowImages(selectedFIles);
+    setShowImagesBank(selectedFIles);
+  };
+
+  const ImagesStoreOnChange = (ever) => {
+    const selectedFIles = [];
+    const targetFilesObject = [...ever.target.files];
+    setImagesStore([...ever.target.files]);
+    targetFilesObject.map((file) => {
+      return selectedFIles.push(URL.createObjectURL(file));
+    });
+    setShowImagesStore(selectedFIles);
   };
 
   const CustomToggle = ({ children, eventKey }) => {
@@ -71,53 +107,24 @@ function ProfileSeller() {
       </button>
     );
   };
-console.log(ShowImages)
+
+
+  console.log("ImagesStore"+ImagesStore)
+  console.log("ImagesBank"+ImagesBank)
   const handleonSubmit = () => {
-    const storageDel = firebaseStorage.ref().child(`users/${uid}/seller`);
-    storageDel
-      .listAll()
-      .then((listResults) => {
-        const promises = listResults.items.map((item) => {
-          return item.delete();
-        });
-        Promise.all(promises);
-        // console.log(promises);
-      })
-      .then(() => {
-        Images.forEach((files) => {
-          const sotrageRef = ref(
-            firebaseStorage,
-            `users/${uid}/seller/payment-${files.name}`
-          );
-          const uploadTask = uploadBytesResumable(sotrageRef, files);
-          uploadTask.on(
-            "state_changed",
-            (snapshot) => {},
-            (error) => console.log(error),
-            async () => {
-              await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                  console.log("File available at", downloadURL);
-                  values.imgBankAccount.push(downloadURL);
-                  if (values.imgBankAccount.length === Images.length) {
-                    firebaseDB
-                      .child("Users")
-                      .child(uid)
-                      .child("seller")
-                      .set(values)
-                      .then(() => {
-                        console.log("add data success");
-                        window.location.href = "/seller/seller-profile";
-                      })
-                      .catch((error) => console.log(error));
-                  } else {
-                    console.log("Error add data");
-                  }
-                }
-              );
-            }
-          );
-        });
+    if (ImagesStore.length !== 0) {
+      const storageDel = firebaseStorage.refFromURL(values.storeImg);
+      storageDel.delete().then(() => {
+        UpdateImagesStore();
       });
+    } else if (ImagesBank.length !== 0) {
+      const storageDel = firebaseStorage.refFromURL(values.imgBankAccount);
+      storageDel.delete().then(() => {
+        UpdateImagesBank();
+      });
+    } else {
+      UpdateDate();
+    }
   };
 
   const checkData = () => {
@@ -152,6 +159,73 @@ console.log(ShowImages)
     // }
   };
 
+  const UpdateImagesStore = () => {
+    ImagesStore.forEach((fileStore) => {
+      const sotrageRefStoreProfile = ref(
+        firebaseStorage,
+        `users/${uid}/seller/storeProfile-${fileStore.name}`
+      );
+      const uploadTask = uploadBytesResumable(
+        sotrageRefStoreProfile,
+        fileStore
+      );
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (error) => console.log(error),
+        async () => {
+          await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("File available at", downloadURL);
+            values.storeImg = downloadURL;
+            if (values.storeImg !== null) {
+              UpdateDate();
+            } else {
+              console.log("Error");
+            }
+          });
+        }
+      );
+    });
+  };
+  const UpdateImagesBank = () => {
+    ImagesBank.forEach((files) => {
+      const sotrageRef = ref(
+        firebaseStorage,
+        `users/${uid}/seller/payment-${files.name}`
+      );
+      const uploadTask = uploadBytesResumable(sotrageRef, files);
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {},
+        (error) => console.log(error),
+        async () => {
+          await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("File available at", downloadURL);
+            values.imgBankAccount = downloadURL;
+            if (values.imgBankAccount !== null) {
+              UpdateDate();
+            } else {
+              console.log("Error");
+            }
+          });
+        }
+      );
+    });
+  };
+
+  const UpdateDate = () => {
+    firebaseDB
+      .child("Users")
+      .child(uid)
+      .child("seller")
+      .update(values)
+      .then(() => {
+        console.log("add data success");
+
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <div className="container">
       <h1>Profile Seller</h1>
@@ -163,25 +237,42 @@ console.log(ShowImages)
           </Card.Header>
           <Accordion.Collapse eventKey="0">
             <Card.Body>
+              <p htmlFor="bankAccount">รูปร้านค้า</p>
+              <img style={{ width: "150px" }} src={values.storeImg} />
               <div className="mt-3">
-                <label htmlFor="productName">ชื่อร้านค้า : {values.storeName}</label>
+                <label htmlFor="productName">
+                  ชื่อร้านค้า : {values.storeName}
+                </label>
               </div>
 
               <div className="mt-3">
-                <label htmlFor="productDetails">ที่อยู่ : {values.storeAddress}</label>
+                <label htmlFor="productDetails">
+                  รายละเอียด : {values.storeDetails}
+                </label>
               </div>
-              
               <div className="mt-3">
-                <label htmlFor="phoneNumber">เบอร์โทร : {values.phoneNumber}</label>
+                <label htmlFor="productDetails">
+                  ที่อยู่ : {values.storeAddress}
+                </label>
+              </div>
+
+              <div className="mt-3">
+                <label htmlFor="phoneNumber">
+                  เบอร์โทร : {values.phoneNumber}
+                </label>
               </div>
 
               <div className="mt-3">
                 <label htmlFor="bankAccount">บัญชีธนาคาร</label>
-                <hr/>
+                <hr />
                 <p htmlFor="bankAccount">QR CODE</p>
-                <img style={{ width: "150px" }} src={values.imgBankAccount[0]} />
-                <p htmlFor="productName">ชื่อบัญชี : {values.nameBankAccount}</p>
-                <p htmlFor="productName">เลขบัญชี : {values.numberBankAccount}</p>
+                <img style={{ width: "150px" }} src={values.imgBankAccount} />
+                <p htmlFor="productName">
+                  ชื่อบัญชี : {values.nameBankAccount}
+                </p>
+                <p htmlFor="productName">
+                  เลขบัญชี : {values.numberBankAccount}
+                </p>
                 <p></p>
               </div>
             </Card.Body>
@@ -195,6 +286,20 @@ console.log(ShowImages)
           <Accordion.Collapse eventKey="1">
             <Card.Body>
               <form className="was-validated">
+                {ShowImagesStore.length ? (
+                  <img style={{ width: "150px" }} src={ShowImagesStore} />
+                ) : (
+                  <img style={{ width: "150px" }} src={values.storeImg} />
+                )}
+
+                <br />
+                <input
+                  accept="image/*"
+                  type="file"
+                  onChange={ImagesStoreOnChange}
+                  required
+                />
+
                 <div className="form-group mt-3">
                   <label htmlFor="productName">ชื่อร้านค้า</label>
                   <input
@@ -204,6 +309,20 @@ console.log(ShowImages)
                     className="form-control"
                     placeholder="ชื่อร้านค้า"
                     value={values.storeName}
+                    onChange={handleOnChange}
+                    required
+                  />
+                </div>
+
+                <div className="form-group mt-3">
+                  <label htmlFor="productDetails">รายละเอียดร้านค้า</label>
+                  <textarea
+                    id="storeDetails"
+                    name="storeDetails"
+                    className="form-control"
+                    placeholder="รายละเอียดร้านค้า"
+                    style={{ resize: "none", height: "100px" }}
+                    value={values.storeDetails}
                     onChange={handleOnChange}
                     required
                   />
@@ -267,17 +386,20 @@ console.log(ShowImages)
                 </div>
                 <div className="form-group mt-3">
                   <label htmlFor="bankAccount">QR CODE</label>
-                  {ShowImages.length ? (
-                    <img style={{ width: "150px" }} src={ShowImages} />
+                  {ShowImagesBank.length ? (
+                    <img style={{ width: "150px" }} src={ShowImagesBank} />
                   ) : (
-                    <img style={{ width: "150px" }} src={values.imgBankAccount[0]} />
+                    <img
+                      style={{ width: "150px" }}
+                      src={values.imgBankAccount}
+                    />
                   )}
 
                   <br />
                   <input
                     accept="image/*"
                     type="file"
-                    onChange={ImgOnChange}
+                    onChange={ImagesBankOnChange}
                     required
                   />
                 </div>

@@ -18,41 +18,70 @@ function Category() {
     };
   }, []);
   return (
-    <div><a href="/"> หน้าหลัก \</a><a href="#"> หมวดหมู่ \</a>
-      <div className='default-bg'>
-        <div className='flexbox' >
-
-
+    <div>
+      <div>
+        <div className='flexbox' style={{ justifyContent: "center" }} >
           {Object.keys(values).map((id, index) => {
             return (
+              <div style={{ display: "block ", height: "300px", padding: "5px", width: "12.5%" }} key={index} >
+                <div type="button" className="hovercard" onClick={() => (window.location.href = `/view-product/${id}`)} style={{ borderRadius: "5px" }}>
+                  <div className='img-product' >
+                    <img
+                      id="imgShow"
+                      className="card-img-top "
+                      style={{ width: "100%", height: '180px', borderRadius: "5px 5px 0px 0px" }}
+                      alt="Product Images"
+                      src={values[id].productImg[0]}
+                    />
+                  </div>
 
-              <div key={index} className="thumbnail"
-                style={{
-                  background: "#ffffff",
-                  border: "0",
-                  width: "12.5%",
-                  padding: "5px",
-                  borderRadius:"5px"
-                }}
-                onClick={() =>
-                  (window.location.href = `/view-product/${id}`)
-                }
+                  <div style={{ padding: "10px", background: "white", height: "80px", borderRadius: "0px 0px 5px 5px" }}>
+                    <div style={{ height: "40px", overflow: "hidden" }}>
+                      <p className='cut-text-multi' style={{ fontWeight: "bold", fontSize: "12px", textAlign: "left" }}>{values[id].productName}</p>
+                    </div>
+                    <p style={{ marginTop: "5px", fontWeight: "bold", fontSize: "12px", textAlign: "left", color: "#14DDA0" }}> {values[id].productPrice} บาท </p>
+                  </div>
 
-              >
-                <div style={{ height: "auto", overflow: "hidden" }}>
-                  <img
-                    id="imgShow"
-                    className="card-img-top "
-                    style={{ width: "100%" }}
-                    alt="Product Images"
-                    src={values[id].productImg[0]}
-                  />
-                </div>
-                <div style={{ paddingTop: "10px", paddingLeft: "15px", height: "100px" }}>
-                  <p style={{ fontWeight: "bold", fontSize: "12px", textAlign: "left" }}>{values[id].productName}</p>
-                  <p style={{ marginTop: "15px", fontWeight: "bold", fontSize: "12px", textAlign: "left" }}>{values[id].productPrice} บาท</p>
+
+
+
                 </div>
               </div>
+
+
+              // <div type="button" key={index}
+              //   style={{
+              //     border: "0",
+              //     height: "310px",
+              //     width: "12.5%",
+              //     margin: "5px",
+              //     // borderRadius: "5px",
+              //     // paddingLeft: "5px",
+              //     // paddingRight: "5px",
+              //     background: "green",
+              //     marginBottom: "10px"
+              //   }}
+              //   onClick={() =>
+              //     (window.location.href = `/view-product/${id}`)
+              //   }
+
+              // >
+              //   <div style={{ height: "auto", overflow: "hidden" }}>
+              //     <img
+              //       id="imgShow"
+              //       className="card-img-top "
+              //       style={{ width: "200px", height: '200px' }}
+              //       alt="Product Images"
+              //       src={values[id].productImg[0]}
+              //     />
+              //   </div>
+              //   <div style={{ padding: "10px", background: "white", height: "100px" }}>
+              //     <div style={{ background: "red", height: "60px", overflow: "hidden" }}>
+              //       <p style={{ fontWeight: "bold", fontSize: "12px", textAlign: "left" }}>{values[id].productName}</p>
+              //     </div>
+              //     <p style={{ marginTop: "5px", fontWeight: "bold", fontSize: "12px", textAlign: "left" }}>{values[id].productPrice} บาท</p>
+              //   </div>
+              // </div>
             );
           })}
 

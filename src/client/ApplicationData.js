@@ -2,7 +2,6 @@ import React from 'react';
 import * as FaIcons from 'react-icons/fa';
 import * as ImIcons from 'react-icons/im';
 import * as IoIcons from 'react-icons/io5';
-
 export const ApplicationData = [
   {
     title: 'My Profile',
@@ -25,7 +24,7 @@ export const ApplicationData = [
   {
     title: 'Seller',
     path: '/HomeSeller',
-    icon: <FaIcons.FaEnvelopeOpenText />,
+    icon: <IoIcons.IoStorefrontSharp />,
     cName: 'nav-text'
   },
   {

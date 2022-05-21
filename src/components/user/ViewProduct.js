@@ -62,25 +62,20 @@ function ViewProduct() {
             <h3>{values.productName}</h3>
           </div> */}
           <div className="container">
-            <div
-              className="row"
-              style={{ background: "green", width: "100%",padding:"20px" }}
-            >
-              <div
-                className="col"
-                style={{ background: "red" }}
-              >
-                {Images.map((url, i) => (
-  
-                  <img
-                    style={{ width: "100%" }}
-                    src={url}
-                    key={i}
-                    alt="firebase-images"
-                  />
-              
-                ))}
+            <div className="row" style={{ background: "green", width: "100%", padding: "20px" }}>
+              <div className="col flex-view">
+                <div clessName="flex-view-item">
+                  {Images.map((url, i) => (
+                    <img className="view-img"
+                      src={url}
+                      key={i}
+                      alt="firebase-images"
+                    />
+                  ))}
+                </div>
+
               </div>
+
               <div
                 className="col"
                 style={{

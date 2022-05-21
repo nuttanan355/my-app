@@ -11,30 +11,31 @@ function ProfileSeller() {
   const [ShowImages, setShowImages] = useState([]);
   const [Images, setImages] = useState([]);
   const [uid, setUid] = useState();
-  const [store, setStore] = useState({});
-
 
   const [values, setValues] = useState({
     storeName: "",
     storeAddress: "",
     phoneNumber: "",
-    bankAccount: [],
+    imgBankAccount: [],
+    nameBankAccount: "",
+    numberBankAccount: "",
   });
 
   useEffect(() => {
     firebaseAuth.onAuthStateChanged((user) => {
       if (user !== null) {
-         setUid(user.uid.toString());
-        //  setValues({...values,sellerEmail: user.email,sellerUid: user.uid,});
-
-         firebaseDB.child("Users").child(user.uid.toString()).child("seller").once('value',(snapshot)=>{
-           if(snapshot.val()!==null){
-            setValues({ ...snapshot.val() });
-           }else{
-            setValues({});
-           }
-         })
-
+        setUid(user.uid.toString());
+        firebaseDB
+          .child("Users")
+          .child(user.uid.toString())
+          .child("seller")
+          .once("value", (snapshot) => {
+            if (snapshot.val() !== null) {
+              setValues({ ...snapshot.val() });
+            } else {
+              setValues({});
+            }
+          });
       } else {
         return setUid(null);
       }
@@ -55,7 +56,7 @@ function ProfileSeller() {
     setShowImages(selectedFIles);
   };
 
-  const CustomToggle=({ children, eventKey })=> {
+  const CustomToggle = ({ children, eventKey }) => {
     const decoratedOnClick = useAccordionButton(eventKey, () =>
       console.log("totally custom!")
     );
@@ -69,41 +70,54 @@ function ProfileSeller() {
         {children}
       </button>
     );
-  }
-
+  };
+console.log(ShowImages)
   const handleonSubmit = () => {
-    Images.forEach((files) => {
-      const sotrageRef = ref(
-        firebaseStorage,
-        `users/${uid}/seller/payment-${files.name}`
-      );
-      const uploadTask = uploadBytesResumable(sotrageRef, files);
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {},
-        (error) => console.log(error),
-        async () => {
-          await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            console.log("File available at", downloadURL);
-            values.bankAccount.push(downloadURL);
-            if (values.bankAccount.length === Images.length) {
-              firebaseDB
-                .child("Users")
-                .child(uid)
-                .child("seller")
-                .set(values)
-                .then(() => {
-                  console.log("add data success");
-                  window.location.href = "/seller/seller-profile";
-                })
-                .catch((error) => console.log(error));
-            } else {
-              console.log("Error add data");
+    const storageDel = firebaseStorage.ref().child(`users/${uid}/seller`);
+    storageDel
+      .listAll()
+      .then((listResults) => {
+        const promises = listResults.items.map((item) => {
+          return item.delete();
+        });
+        Promise.all(promises);
+        // console.log(promises);
+      })
+      .then(() => {
+        Images.forEach((files) => {
+          const sotrageRef = ref(
+            firebaseStorage,
+            `users/${uid}/seller/payment-${files.name}`
+          );
+          const uploadTask = uploadBytesResumable(sotrageRef, files);
+          uploadTask.on(
+            "state_changed",
+            (snapshot) => {},
+            (error) => console.log(error),
+            async () => {
+              await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                  console.log("File available at", downloadURL);
+                  values.imgBankAccount.push(downloadURL);
+                  if (values.imgBankAccount.length === Images.length) {
+                    firebaseDB
+                      .child("Users")
+                      .child(uid)
+                      .child("seller")
+                      .set(values)
+                      .then(() => {
+                        console.log("add data success");
+                        window.location.href = "/seller/seller-profile";
+                      })
+                      .catch((error) => console.log(error));
+                  } else {
+                    console.log("Error add data");
+                  }
+                }
+              );
             }
-          });
-        }
-      );
-    });
+          );
+        });
+      });
   };
 
   const checkData = () => {
@@ -150,21 +164,26 @@ function ProfileSeller() {
           <Accordion.Collapse eventKey="0">
             <Card.Body>
               <div className="mt-3">
-                <label htmlFor="productName">ชื่อร้านค้า</label>
+                <label htmlFor="productName">ชื่อร้านค้า : {values.storeName}</label>
               </div>
 
               <div className="mt-3">
-                <label htmlFor="productDetails">ที่อยู่</label>
-              </div>
-
-              <div className="mt-3">
-                <label htmlFor="bankAccount">QR CODE บัญชีธนาคาร</label>
+                <label htmlFor="productDetails">ที่อยู่ : {values.storeAddress}</label>
               </div>
               
               <div className="mt-3">
-                <label htmlFor="phoneNumber">เบอร์โทร</label>
+                <label htmlFor="phoneNumber">เบอร์โทร : {values.phoneNumber}</label>
               </div>
 
+              <div className="mt-3">
+                <label htmlFor="bankAccount">บัญชีธนาคาร</label>
+                <hr/>
+                <p htmlFor="bankAccount">QR CODE</p>
+                <img style={{ width: "150px" }} src={values.imgBankAccount[0]} />
+                <p htmlFor="productName">ชื่อบัญชี : {values.nameBankAccount}</p>
+                <p htmlFor="productName">เลขบัญชี : {values.numberBankAccount}</p>
+                <p></p>
+              </div>
             </Card.Body>
           </Accordion.Collapse>
         </Card>
@@ -184,7 +203,7 @@ function ProfileSeller() {
                     name="storeName"
                     className="form-control"
                     placeholder="ชื่อร้านค้า"
-                    // value={values.name}
+                    value={values.storeName}
                     onChange={handleOnChange}
                     required
                   />
@@ -197,24 +216,64 @@ function ProfileSeller() {
                     name="storeAddress"
                     className="form-control"
                     placeholder="ที่อยู่ร้านค้า"
-                    style={{ resize: "none" }}
-                    value={values.name}
+                    style={{ resize: "none", height: "200px" }}
+                    value={values.storeAddress}
                     onChange={handleOnChange}
                     required
                   />
                 </div>
 
                 <div className="form-group mt-3">
-                  <label htmlFor="bankAccount">QR CODE บัญชีธนาคาร</label>
-                  {ShowImages.map((url, i) => (
-                    <img
-                      key={i}
-                      style={{ width: "150px" }}
-                      src={url}
-                      alt="firebase-images"
-                    />
-                  ))}
+                  <label htmlFor="productName">เบอร์โทร</label>
+                  <input
+                    type="number"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    className="form-control"
+                    placeholder="ชื่อร้านค้า"
+                    value={values.phoneNumber}
+                    onChange={handleOnChange}
+                    required
+                  />
+                </div>
 
+                <h2>บัญชีธนาคาร</h2>
+                <hr />
+                <div className="form-group mt-3">
+                  <label htmlFor="productName">ชื่อบัญชี</label>
+                  <input
+                    type="text"
+                    id="nameBankAccount"
+                    name="nameBankAccount"
+                    className="form-control"
+                    placeholder="ชื่อบัญชี"
+                    value={values.nameBankAccount}
+                    onChange={handleOnChange}
+                    required
+                  />
+                </div>
+                <div className="form-group mt-3">
+                  <label htmlFor="productName">เลขบัญชี</label>
+                  <input
+                    type="number"
+                    id="numberBankAccount"
+                    name="numberBankAccount"
+                    className="form-control"
+                    placeholder="เลขบัญชี"
+                    value={values.numberBankAccount}
+                    onChange={handleOnChange}
+                    required
+                  />
+                </div>
+                <div className="form-group mt-3">
+                  <label htmlFor="bankAccount">QR CODE</label>
+                  {ShowImages.length ? (
+                    <img style={{ width: "150px" }} src={ShowImages} />
+                  ) : (
+                    <img style={{ width: "150px" }} src={values.imgBankAccount[0]} />
+                  )}
+
+                  <br />
                   <input
                     accept="image/*"
                     type="file"
@@ -223,18 +282,6 @@ function ProfileSeller() {
                   />
                 </div>
 
-                <div className="form-group row">
-                  <label htmlFor="phoneNumber">เบอร์โทร</label>
-                  <input
-                    type="number"
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    className="form-control col"
-                    placeholder="ชิ้น"
-                    onChange={handleOnChange}
-                    required
-                  />
-                </div>
                 <div className="row mt-3 ">
                   <button
                     type="button"

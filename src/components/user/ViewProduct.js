@@ -41,7 +41,8 @@ function ViewProduct() {
 
   const addCart = () => {
     const refDB = firebaseDB.child("Cart").child(user.uid).child(values.sellerUid).child(id);
-    refDB.set(values)
+    if(values.Address !== null){
+      refDB.set(values)
       .then(() => {
         refDB.update({ ValQuantity: ValQuantity, }).then(() => {
           Swal.fire('เพิ่มลงตะกร้าแล้ว').then(() => window.location.href = '/');
@@ -50,6 +51,10 @@ function ViewProduct() {
         })
       })
       .catch((err) => console.log(err));
+    }else{
+      window.location.href="/user/profile"
+    }
+   
   };
   // console.log("values", values);
   return (

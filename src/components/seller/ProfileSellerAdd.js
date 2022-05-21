@@ -7,7 +7,6 @@ import {
   firebaseStorage,
 } from "../../server/firebase";
 
-
 function ProfileSellerAdd() {
   useEffect(() => {
     firebaseAuth.onAuthStateChanged((user) => {
@@ -24,18 +23,14 @@ function ProfileSellerAdd() {
     storeName: "",
     storeAddress: "",
     phoneNumber: "",
-    bankAccount: [],
+    imgBankAccount: [],
+    nameBankAccount: "",
+    numberBankAccount: "",
   });
 
   const handleOnChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
-
-  // console.log(values);
-
-  // ----------------EDN ADD DATA------------------------------
-
-  // -----------ADD IMAGE----------------------------
 
   const [ShowImages, setShowImages] = useState([]);
   const [Images, setImages] = useState([]);
@@ -51,21 +46,22 @@ function ProfileSellerAdd() {
     setShowImages(selectedFIles);
   };
 
-
   useEffect(() => {
     firebaseAuth.onAuthStateChanged((user) => {
-        if(user !== null){
-            return setUid(user.uid.toString())
-        }else{
-            return setUid(null)
-        }
-console.log(user)
+      if (user !== null) {
+        return setUid(user.uid.toString());
+      } else {
+        return setUid(null);
+      }
     });
   }, []);
 
   const handleonSubmit = () => {
     Images.forEach((files) => {
-      const sotrageRef = ref(firebaseStorage,`users/${uid}/seller/payment-${files.name}`);
+      const sotrageRef = ref(
+        firebaseStorage,
+        `users/${uid}/seller/payment-${files.name}`
+      );
       const uploadTask = uploadBytesResumable(sotrageRef, files);
       uploadTask.on(
         "state_changed",
@@ -74,20 +70,21 @@ console.log(user)
         async () => {
           await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             console.log("File available at", downloadURL);
-            values.bankAccount.push(downloadURL);
-            if (values.bankAccount.length === Images.length) {
-                firebaseDB
+            values.imgBankAccount.push(downloadURL);
+            if (values.imgBankAccount.length === Images.length) {
+              firebaseDB
                 .child("Users")
-                .child(uid).child("seller")
+                .child(uid)
+                .child("seller")
                 .set(values)
                 .then(() => {
                   console.log("add data success");
                   window.location.href = "/seller/seller-product";
                 })
                 .catch((error) => console.log(error));
-             }else{
-                console.log("Error add data");
-             }
+            } else {
+              console.log("Error add data");
+            }
           });
         }
       );
@@ -124,17 +121,15 @@ console.log(user)
     // } else if (Images.length === 0) {
     //   console.log("ไม่ใส่รูป ใครจะรูปว่าขายอะไรว่ะ");
     // } else {
-      handleonSubmit();
+    handleonSubmit();
     // }
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Profile Seller</h1>
       <hr />
       <form className="was-validated">
-        
-
         <div className="form-group mt-3">
           <label htmlFor="productName">ชื่อร้านค้า</label>
           <input
@@ -156,7 +151,7 @@ console.log(user)
             name="storeAddress"
             className="form-control"
             placeholder="ที่อยู่ร้านค้า"
-            style={{ resize: "none" }}
+            style={{ resize: "none", height: "200px" }}
             value={values.name}
             onChange={handleOnChange}
             required
@@ -164,42 +159,59 @@ console.log(user)
         </div>
 
         <div className="form-group mt-3">
-          <label htmlFor="bankAccount">
-            QR CODE บัญชีธนาคาร
-          </label>
-          {ShowImages.map((url, i) => (
-          <img
-            key={i}
-            style={{ width: "150px" }}
-            src={url}
-            alt="firebase-images"
-          />
-        ))}
-
-          <input
-            accept="image/*"
-            type="file"
-            onChange={ImgOnChange}
-            required
-          />
-     
-        </div>
-
-        <div className="form-group row">
-          <label htmlFor="phoneNumber">
-            เบอร์โทร
-          </label>
+          <label htmlFor="productName">เบอร์โทร</label>
           <input
             type="number"
             id="phoneNumber"
             name="phoneNumber"
-            className="form-control col"
-            placeholder="ชิ้น"
+            className="form-control"
+            placeholder="ชื่อร้านค้า"
+            // value={values.name}
             onChange={handleOnChange}
             required
           />
-         
         </div>
+
+        <h2>บัญชีธนาคาร</h2>
+        <hr />
+        <div className="form-group mt-3">
+          <label htmlFor="productName">ชื่อบัญชี</label>
+          <input
+            type="text"
+            id="nameBankAccount"
+            name="nameBankAccount"
+            className="form-control"
+            placeholder="ชื่อบัญชี"
+            // value={values.name}
+            onChange={handleOnChange}
+            required
+          />
+        </div>
+        <div className="form-group mt-3">
+          <label htmlFor="productName">เลขบัญชี</label>
+          <input
+            type="number"
+            id="numberBankAccount"
+            name="numberBankAccount"
+            className="form-control"
+            placeholder="เลขบัญชี"
+            // value={values.name}
+            onChange={handleOnChange}
+            required
+          />
+        </div>
+        <div className="form-group mt-3">
+          <label htmlFor="bankAccount">QR CODE</label>
+          {ShowImages ? (
+            <img style={{ width: "150px" }} src={ShowImages} />
+          ) : (
+            <></>
+          )}
+
+          <br />
+          <input accept="image/*" type="file" onChange={ImgOnChange} required />
+        </div>
+
         <div className="row mt-3 ">
           <button
             type="button"
@@ -213,7 +225,6 @@ console.log(user)
           </button>
         </div>
       </form>
-
     </div>
   );
 }

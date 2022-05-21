@@ -7,6 +7,7 @@ import {
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
 import { GrouprData } from "../../client/GroupData";
 import Form from "react-bootstrap/Form";
+import Swal from "sweetalert2";
 
 var d = new Date();
 var saveCurrentDate = d.getDate() + "-" + d.getMonth() + "-" + d.getFullYear();
@@ -15,10 +16,42 @@ var saveCurrentTime =
 var dateKey = saveCurrentDate + "," + saveCurrentTime;
 
 function AddNewProduct() {
+  const [ChekDataSeller, setChekDataSeller] = useState(false);
+
 
   useEffect(() => {
     firebaseAuth.onAuthStateChanged((user) => {
-     return setValues({...values, sellerEmail: user.email, sellerUid: user.uid});
+      firebaseDB.child("Users").child(user.uid.toString()).child("seller").on("value",(snapshot)=>{
+        console.log(snapshot.val());
+        if(snapshot.val() !== null){
+          setChekDataSeller(true);
+          return setValues({...values, sellerEmail: user.email, sellerUid: user.uid,storeName: user.seller.storeName,});
+        }else{
+          setChekDataSeller(false);
+          let timerInterval
+          Swal.fire({
+            icon: 'error',
+            title: 'ไม่มีข้อมูลร้านค้า',
+            html: 'ต้องมีข้อมูลร้านก่อน ถึงจะเพิ่มสินค้าได้',
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: () => {
+              Swal.showLoading()
+              const b = Swal.getHtmlContainer().querySelector('b')
+              timerInterval = setInterval(() => {
+              }, 100)
+            },
+            willClose: () => {
+              clearInterval(timerInterval)
+            }
+          }).then((result) => {
+            window.location.href='/seller/seller-profile';
+          })
+
+        }
+
+      });
+    
     });
   }, []);
 
@@ -26,6 +59,7 @@ function AddNewProduct() {
   const [values, setValues] = useState({
     productID: dateKey,
     sellerUid: "",
+    storeName: "",
     productName: "",
     productCategory: "",
     productPrice: "",
@@ -123,7 +157,7 @@ function AddNewProduct() {
       console.log("ราคาเดียวก็ใส่-ซะไอ้สัส 06")
     } else if (Images.length === 0) {
       console.log("ไม่ใส่รูป ใครจะรูปว่าขายอะไรว่ะ")
-    } else {
+    }else {
       // let text = "Press a button!\nEither OK or Cancel.";
       // if (window.confirm(text) == true) {
         handleonSubmit();

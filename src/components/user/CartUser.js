@@ -193,11 +193,9 @@ function CartUser() {
                               <HiIcons.HiPlus className="btn-add" />
                             </button>
                           </div>
-                          <p>{value.productPrice * value.ValQuantity}</p>
-                         
+                          <p>{value.productPrice * value.ValQuantity}</p>  
                         </div>
                       </div>
-                      {/* {sum = sum + value.productPrice*value.ValQuantity} */}
                     </div>
                   );
                 })}

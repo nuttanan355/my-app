@@ -23,6 +23,8 @@ import EditNewProduct from "../components/seller/EditNewProduct";
 import RecomProduct from "../components/seller/RecomProduct";
 import PayRecomProduct from "../components/seller/PayRecomProduct";
 import ProfileSeller from "../components/seller/ProfileSeller";
+import ProfileSellerAdd from "../components/seller/ProfileSellerAdd";
+// import ProfileSellerEdit from "../components/seller/ProfileSellerEdit";
 import PaymentProduct from '../components/user/PaymentProduct';
 
 
@@ -99,6 +101,10 @@ export const RouteUser = [
       {
         path: "/seller/seller-profile",
         element: <ProfileSeller />,
+      },
+      {
+        path: "/seller/seller-profile/add",
+        element: <ProfileSellerAdd />,
       },
       {
         path: "/seller/seller-recom",

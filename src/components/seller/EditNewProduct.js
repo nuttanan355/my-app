@@ -15,7 +15,6 @@ function EditNewProduct() {
     produtcCost3: "",
   });
 
-  // const history = useHistory();
   const { id } = useParams();
 
   useEffect(() => {
@@ -33,17 +32,6 @@ function EditNewProduct() {
       setValues({});
     };
   }, [id]);
-
-  // useEffect(()=>{
-  //   if(id){
-  //     setState({...values[id]});
-  //   }else{
-  //     setState({...initialState});
-  //   }
-  //   return()=>{
-  //     setState({...initialState});
-  //   };
-  // },[id,values]);
 
   const handleOnChange = (e) => {
     const { name, value } = e.target;

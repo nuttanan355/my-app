@@ -50,19 +50,30 @@ function NewProductsAdmin() {
       <h1>ประกาศการขาย</h1>
       <hr />
       <div className="row">
-        {Object.keys(values).map((id, index) => {
-          return (
-            <Card key={index} className="my-2">
-              <Card.Header>ชื่อร้าน</Card.Header>
-              <Card.Body>
-              <Card.Img variant="top" src={values[id].productImg[0]} style={{width:'100px'}} />
-                <Card.Title>{values[id].productName}</Card.Title>
-                <Card.Text>{values[id].productDetails}</Card.Text>
-                <Button variant="primary" onClick={()=>AllowProduct(id)}>อนุมัติ</Button>
-              </Card.Body>
-            </Card>
-          );
-        })}
+        {values ?(
+          <div>
+                  {Object.keys(values).map((id, index) => {
+                    return (
+                      <div key={index}>
+                      <Card  className="my-2">
+                        <Card.Header>ชื่อร้าน</Card.Header>
+                        <Card.Body>
+                        <Card.Img variant="top" src={values[id].productImg[0]} style={{width:'100px'}} />
+                          <Card.Title>{values[id].productName}</Card.Title>
+                          <Card.Text>{values[id].productDetails}</Card.Text>
+                          <Button variant="primary" onClick={()=>AllowProduct(id)}>อนุมัติ</Button>
+                        </Card.Body>
+                      </Card>
+                      </div>
+                    );
+                  })}
+                  </div>
+        ):(
+          <div>
+            <h5>ไม่มีรายการ</h5>
+          </div>
+        )}
+
       </div>
     </div>
   );

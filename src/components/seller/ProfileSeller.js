@@ -1,25 +1,19 @@
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage";
 import React, { useEffect, useState } from "react";
-import { Form } from "react-bootstrap";
+import { Accordion, Card, Form, useAccordionButton } from "react-bootstrap";
 import {
   firebaseAuth,
   firebaseDB,
   firebaseStorage,
 } from "../../server/firebase";
 
-
 function ProfileSeller() {
-  useEffect(() => {
-    firebaseAuth.onAuthStateChanged((user) => {
-      return setValues({
-        ...values,
-        sellerEmail: user.email,
-        sellerUid: user.uid,
-      });
-    });
-  }, []);
+  const [ShowImages, setShowImages] = useState([]);
+  const [Images, setImages] = useState([]);
+  const [uid, setUid] = useState();
+  const [store, setStore] = useState({});
 
-  // ----------------ADD DATA--------------------------------
+
   const [values, setValues] = useState({
     storeName: "",
     storeAddress: "",
@@ -27,19 +21,29 @@ function ProfileSeller() {
     bankAccount: [],
   });
 
+  useEffect(() => {
+    firebaseAuth.onAuthStateChanged((user) => {
+      if (user !== null) {
+         setUid(user.uid.toString());
+        //  setValues({...values,sellerEmail: user.email,sellerUid: user.uid,});
+
+         firebaseDB.child("Users").child(user.uid.toString()).child("seller").once('value',(snapshot)=>{
+           if(snapshot.val()!==null){
+            setValues({ ...snapshot.val() });
+           }else{
+            setValues({});
+           }
+         })
+
+      } else {
+        return setUid(null);
+      }
+    });
+  }, []);
+
   const handleOnChange = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
-
-  // console.log(values);
-
-  // ----------------EDN ADD DATA------------------------------
-
-  // -----------ADD IMAGE----------------------------
-
-  const [ShowImages, setShowImages] = useState([]);
-  const [Images, setImages] = useState([]);
-  const [uid, setUid] = useState();
 
   const ImgOnChange = (ever) => {
     const selectedFIles = [];
@@ -51,21 +55,28 @@ function ProfileSeller() {
     setShowImages(selectedFIles);
   };
 
+  const CustomToggle=({ children, eventKey })=> {
+    const decoratedOnClick = useAccordionButton(eventKey, () =>
+      console.log("totally custom!")
+    );
 
-  useEffect(() => {
-    firebaseAuth.onAuthStateChanged((user) => {
-        if(user !== null){
-            return setUid(user.uid.toString())
-        }else{
-            return setUid(null)
-        }
-console.log(user)
-    });
-  }, []);
+    return (
+      <button
+        type="button"
+        // style={{ backgroundColor: "pink" }}
+        onClick={decoratedOnClick}
+      >
+        {children}
+      </button>
+    );
+  }
 
   const handleonSubmit = () => {
     Images.forEach((files) => {
-      const sotrageRef = ref(firebaseStorage,`users/${uid}/seller/payment-${files.name}`);
+      const sotrageRef = ref(
+        firebaseStorage,
+        `users/${uid}/seller/payment-${files.name}`
+      );
       const uploadTask = uploadBytesResumable(sotrageRef, files);
       uploadTask.on(
         "state_changed",
@@ -76,25 +87,24 @@ console.log(user)
             console.log("File available at", downloadURL);
             values.bankAccount.push(downloadURL);
             if (values.bankAccount.length === Images.length) {
-                firebaseDB
+              firebaseDB
                 .child("Users")
-                .child(uid).child("seller")
+                .child(uid)
+                .child("seller")
                 .set(values)
                 .then(() => {
                   console.log("add data success");
-                  window.location.href = "/seller/seller-product";
+                  window.location.href = "/seller/seller-profile";
                 })
                 .catch((error) => console.log(error));
-             }else{
-                console.log("Error add data");
-             }
+            } else {
+              console.log("Error add data");
+            }
           });
         }
       );
     });
   };
-
-  // -----------END ADD IMAGE----------------------------
 
   const checkData = () => {
     // if (values.productName === "") {
@@ -124,96 +134,124 @@ console.log(user)
     // } else if (Images.length === 0) {
     //   console.log("ไม่ใส่รูป ใครจะรูปว่าขายอะไรว่ะ");
     // } else {
-      handleonSubmit();
+    handleonSubmit();
     // }
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Profile Seller</h1>
       <hr />
-      <form className="was-validated">
-        
+      <Accordion defaultActiveKey="0">
+        <Card>
+          <Card.Header>
+            <CustomToggle eventKey="0">Show Profile Seller</CustomToggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey="0">
+            <Card.Body>
+              <div className="mt-3">
+                <label htmlFor="productName">ชื่อร้านค้า</label>
+              </div>
 
-        <div className="form-group mt-3">
-          <label htmlFor="productName">ชื่อร้านค้า</label>
-          <input
-            type="text"
-            id="storeName"
-            name="storeName"
-            className="form-control"
-            placeholder="ชื่อร้านค้า"
-            // value={values.name}
-            onChange={handleOnChange}
-            required
-          />
-        </div>
+              <div className="mt-3">
+                <label htmlFor="productDetails">ที่อยู่</label>
+              </div>
 
-        <div className="form-group mt-3">
-          <label htmlFor="productDetails">ที่อยู่</label>
-          <textarea
-            id="storeAddress"
-            name="storeAddress"
-            className="form-control"
-            placeholder="ที่อยู่ร้านค้า"
-            style={{ resize: "none" }}
-            value={values.name}
-            onChange={handleOnChange}
-            required
-          />
-        </div>
+              <div className="mt-3">
+                <label htmlFor="bankAccount">QR CODE บัญชีธนาคาร</label>
+              </div>
+              
+              <div className="mt-3">
+                <label htmlFor="phoneNumber">เบอร์โทร</label>
+              </div>
 
-        <div className="form-group mt-3">
-          <label htmlFor="bankAccount">
-            QR CODE บัญชีธนาคาร
-          </label>
-          {ShowImages.map((url, i) => (
-          <img
-            key={i}
-            style={{ width: "150px" }}
-            src={url}
-            alt="firebase-images"
-          />
-        ))}
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
 
-          <input
-            accept="image/*"
-            type="file"
-            onChange={ImgOnChange}
-            required
-          />
-     
-        </div>
+        <Card>
+          <Card.Header>
+            <CustomToggle eventKey="1">Edit</CustomToggle>
+          </Card.Header>
+          <Accordion.Collapse eventKey="1">
+            <Card.Body>
+              <form className="was-validated">
+                <div className="form-group mt-3">
+                  <label htmlFor="productName">ชื่อร้านค้า</label>
+                  <input
+                    type="text"
+                    id="storeName"
+                    name="storeName"
+                    className="form-control"
+                    placeholder="ชื่อร้านค้า"
+                    // value={values.name}
+                    onChange={handleOnChange}
+                    required
+                  />
+                </div>
 
-        <div className="form-group row">
-          <label htmlFor="phoneNumber">
-            เบอร์โทร
-          </label>
-          <input
-            type="number"
-            id="phoneNumber"
-            name="phoneNumber"
-            className="form-control col"
-            placeholder="ชิ้น"
-            onChange={handleOnChange}
-            required
-          />
-         
-        </div>
-        <div className="row mt-3 ">
-          <button
-            type="button"
-            className="btn btn-primary col mx-3"
-            onClick={checkData}
-          >
-            Submit
-          </button>
-          <button type="reset" className="btn btn-danger col mx-3">
-            Cancel
-          </button>
-        </div>
-      </form>
+                <div className="form-group mt-3">
+                  <label htmlFor="productDetails">ที่อยู่</label>
+                  <textarea
+                    id="storeAddress"
+                    name="storeAddress"
+                    className="form-control"
+                    placeholder="ที่อยู่ร้านค้า"
+                    style={{ resize: "none" }}
+                    value={values.name}
+                    onChange={handleOnChange}
+                    required
+                  />
+                </div>
 
+                <div className="form-group mt-3">
+                  <label htmlFor="bankAccount">QR CODE บัญชีธนาคาร</label>
+                  {ShowImages.map((url, i) => (
+                    <img
+                      key={i}
+                      style={{ width: "150px" }}
+                      src={url}
+                      alt="firebase-images"
+                    />
+                  ))}
+
+                  <input
+                    accept="image/*"
+                    type="file"
+                    onChange={ImgOnChange}
+                    required
+                  />
+                </div>
+
+                <div className="form-group row">
+                  <label htmlFor="phoneNumber">เบอร์โทร</label>
+                  <input
+                    type="number"
+                    id="phoneNumber"
+                    name="phoneNumber"
+                    className="form-control col"
+                    placeholder="ชิ้น"
+                    onChange={handleOnChange}
+                    required
+                  />
+                </div>
+                <div className="row mt-3 ">
+                  <button
+                    type="button"
+                    className="btn btn-primary col mx-3"
+                    onClick={checkData}
+                  >
+                    Submit
+                  </button>
+                  <button type="reset" className="btn btn-danger col mx-3">
+                    Cancel
+                  </button>
+                </div>
+              </form>
+            </Card.Body>
+          </Accordion.Collapse>
+        </Card>
+      </Accordion>
     </div>
   );
 }

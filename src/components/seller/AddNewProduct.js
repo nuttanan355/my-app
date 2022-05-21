@@ -24,8 +24,10 @@ function AddNewProduct() {
       firebaseDB.child("Users").child(user.uid.toString()).child("seller").on("value",(snapshot)=>{
         console.log(snapshot.val());
         if(snapshot.val() !== null){
+          console.log(snapshot.val().storeName);
           setChekDataSeller(true);
-          return setValues({...values, sellerEmail: user.email, sellerUid: user.uid,storeName: user.seller.storeName,});
+          return setValues({...values, sellerEmail: user.email, sellerUid: user.uid,storeName: snapshot.val().storeName,});
+            // storeName: snapshot.val().seller.storeName,});
         }else{
           setChekDataSeller(false);
           let timerInterval
@@ -45,7 +47,7 @@ function AddNewProduct() {
               clearInterval(timerInterval)
             }
           }).then((result) => {
-            window.location.href='/seller/seller-profile';
+            window.location.href='/seller/seller-profile/add';
           })
 
         }

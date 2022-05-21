@@ -189,6 +189,9 @@ function ProfileSeller() {
               </div>
 
               <div className="mt-3">
+                <label htmlFor="productDetails">รายละเอียด : {values.storeDetails}</label>
+              </div>
+              <div className="mt-3">
                 <label htmlFor="productDetails">ที่อยู่ : {values.storeAddress}</label>
               </div>
               
@@ -229,7 +232,7 @@ function ProfileSeller() {
                     required
                   />
                 </div>
-                
+
                 <div className="form-group mt-3">
           <label htmlFor="productDetails">รายละเอียดร้านค้า</label>
           <textarea

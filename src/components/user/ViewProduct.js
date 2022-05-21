@@ -42,20 +42,20 @@ function ViewProduct() {
 
   const addCart = () => {
     const refDB = firebaseDB.child("Cart").child(user.uid).child(values.sellerUid).child(id);
-    if(values.Address !== null){
+    if (values.Address !== null) {
       refDB.set(values)
-      .then(() => {
-        refDB.update({ ValQuantity: ValQuantity, }).then(() => {
-          Swal.fire('เพิ่มลงตะกร้าแล้ว').then(() => window.location.href = '/');
-        }).catch((err) => {
-          console.log(err);
+        .then(() => {
+          refDB.update({ ValQuantity: ValQuantity, }).then(() => {
+            Swal.fire('เพิ่มลงตะกร้าแล้ว').then(() => window.location.href = '/');
+          }).catch((err) => {
+            console.log(err);
+          })
         })
-      })
-      .catch((err) => console.log(err));
-    }else{
-      window.location.href="/user/profile"
+        .catch((err) => console.log(err));
+    } else {
+      window.location.href = "/user/profile"
     }
-   
+
   };
   // console.log("values", values);
   return (
@@ -69,7 +69,7 @@ function ViewProduct() {
           </div> */}
           <div className="container">
             <div className="row" style={{ width: "100%", padding: "20px" }}>
-              <div className="col flex-view" style={{ width: "60%"}}>
+              <div className="col flex-view" style={{ width: "60%" }}>
                 <div clessName="flex-view-item">
                   {Images.map((url, i) => (
                     <img className="view-img"
@@ -86,19 +86,29 @@ function ViewProduct() {
               <div
                 className="col"
                 style={{
-                  borderLeft:"1px solid lightgray",
+                  borderLeft: "1px solid lightgray",
                   minHeight: "500px",
                   width: "1000px",
                 }}
               >
                 <div style={{ paddingLeft: "100px" }}>
-                  <div style={{ marginTop: "20px"}}>
+                  <div style={{ marginTop: "20px" }}>
                     <strong style={{ fontSize: "40px", fontWeight: "bold" }}>
                       {values.productName}
                     </strong>
                   </div>
-                  <h2 style={{color:"#14DDA0" , fontWeight:"bold"}}>{values.productPrice}</h2><a style={{ marginTop: "20px" }}> บาท / ชิ้น</a>
-                  <div>
+
+                  <div className="row" style={{ marginTop: "20px" }}>
+                    <div className="col-2">
+                      <h2 style={{ color: "#14DDA0", fontWeight: "bold" }}>{values.productPrice} </h2>
+                      
+                    </div>
+                    <div className="col">
+                    <p style={{ fontWeight: "bold" }}>บาท / ชิ้น</p>
+                    </div>
+                  </div>
+
+                  <div style={{ marginTop: "20px" }}>
                     <strong>ร้าน: </strong>
                     <span>{values.storeName}</span>
                     <br />
@@ -106,7 +116,7 @@ function ViewProduct() {
                     <button
                       type="button"
 
-                      className="btn btn-danger"
+                      className="btn btn-outline-danger"
                       onClick={() =>
                         setValQuantity((ValQuantity) => ValQuantity - 1)
                       }
@@ -114,8 +124,7 @@ function ViewProduct() {
                       -
                     </button>
                     <input
-                      style={{ background: "#f8f8f8", textAlign: "center", marginRight: "10px", marginLeft: "10px", marginTop: "20px" }}
-                      type="number"
+                      style={{ background: "#f8f8f8", textAlign: "center", marginRight: "10px", marginLeft: "10px", marginTop: "70px", width:"100px" }}
                       id="orderQuantity"
                       name="orderQuantity"
                       value={ValQuantity}
@@ -125,7 +134,7 @@ function ViewProduct() {
                     <button
                       type="button"
 
-                      className="btn btn-primary"
+                      className="btn btn-outline-primary"
                       onClick={() =>
                         setValQuantity((ValQuantity) => ValQuantity + 1)
                       }
@@ -133,7 +142,7 @@ function ViewProduct() {
                       +
                     </button>
                     <br />
-                    <div style={{textAlign:"right" , paddingRight:"50px"}}>
+                    <div style={{ textAlign: "right", paddingRight: "50px" }}>
                       <Button
                         type="button"
                         className="btn-payment"
@@ -141,7 +150,7 @@ function ViewProduct() {
                         aria-pressed="false"
                         autoComplete="off"
                         onClick={() => addCart()}
-                        style={{ marginTop: "20px" , border:"0px" , borderRadius:"15px"}}
+                        style={{ marginTop: "20px", border: "0px", borderRadius: "15px" }}
                       >
                         เพิ่มลงตะกร้า
                       </Button>

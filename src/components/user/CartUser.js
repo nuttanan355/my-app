@@ -20,7 +20,6 @@ function CartUser() {
             if (snapshot.val() !== null) {
               setValues({ ...snapshot.val() });
               setUid(user.uid.toString());
-              // console.log(snapshot.child('productImg'));
             } else {
               setValues({});
             }
@@ -34,9 +33,6 @@ function CartUser() {
       console.log(user.uid.toString());
     });
   }, []);
-
-  // console.log(values);
-
   const DeleteProductCart = (id, kery) => {
     Swal.fire({
       title: "Are you sure?",

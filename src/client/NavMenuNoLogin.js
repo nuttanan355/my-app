@@ -17,13 +17,13 @@ import * as VscIcons from 'react-icons/vsc';
 
 export const NavMenuNoLogin = [
 
-  // {
-  //   title: 'หน้าหลัก',
-  //   path: '/',
-  //   icon: <AiIcons.AiOutlineHome />,
-  //   cName: 'nav-text',
+  {
+    title: 'หน้าแรก',
+    path: '/',
+    icon: <AiIcons.AiOutlineHome />,
+    cName: 'nav-text',
     
-  // },
+  },
   {
     title: 'ลงชื่อเข้าใช้',
     path: '/user/sign-in',

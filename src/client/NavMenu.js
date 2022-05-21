@@ -17,13 +17,13 @@ import * as VscIcons from 'react-icons/vsc';
 
 export const NavMenu = [
 
-  // {
-  //   title: 'หน้าหลัก',
-  //   path: '/',
-  //   icon: <AiIcons.AiOutlineHome />,
-  //   cName: 'nav-text',
+  {
+    title: 'หน้าแรก',
+    path: '/',
+    icon: <AiIcons.AiOutlineHome />,
+    cName: 'nav-text',
     
-  // },
+  },
   {
     title: 'ข้อมูลส่วนตัว',
     path: '/user/profile',

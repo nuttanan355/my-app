@@ -1,6 +1,7 @@
 import { red } from "@material-ui/core/colors";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Button } from 'react-bootstrap'
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { firebaseDB, firebaseAuth } from "../../server/firebase";
@@ -62,13 +63,14 @@ function ViewProduct() {
             <h3>{values.productName}</h3>
           </div> */}
           <div className="container">
-            <div className="row" style={{ background: "green", width: "100%", padding: "20px" }}>
-              <div className="col flex-view">
+            <div className="row" style={{ width: "100%", padding: "20px" }}>
+              <div className="col flex-view" style={{ width: "60%"}}>
                 <div clessName="flex-view-item">
                   {Images.map((url, i) => (
                     <img className="view-img"
                       src={url}
                       key={i}
+                      style={{ boxShadow: "2px 2px 3px lightgray" }}
                       alt="firebase-images"
                     />
                   ))}
@@ -79,56 +81,106 @@ function ViewProduct() {
               <div
                 className="col"
                 style={{
-                  backgroundColor: "#92a8d1",
-                  height: "500px",
+                  borderLeft:"1px solid lightgray",
+                  minHeight: "500px",
                   width: "1000px",
                 }}
               >
-                <h2>{values.productName}</h2>
-                <h4>{"฿" + values.productPrice}</h4>
+                <div style={{ paddingLeft: "100px" }}>
+                  <div style={{ marginTop: "20px"}}>
+                    <strong style={{ fontSize: "40px", fontWeight: "bold" }}>
+                      {values.productName}
+                    </strong>
+                  </div>
+                  <h2 style={{color:"#14DDA0" , fontWeight:"bold"}}>{values.productPrice}</h2><a style={{ marginTop: "20px" }}> บาท / ชิ้น</a>
+                  <div>
+                    <strong>ร้าน: </strong>
+                    <span>{values.storeName}</span>
+                    <br />
 
-                <p>1</p>
-                <strong>Name: </strong>
-                <span>{values.productName}</span>
-                <br />
+                    <button
+                      type="button"
 
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={() =>
-                    setValQuantity((ValQuantity) => ValQuantity - 1)
-                  }
-                >
-                  -
-                </button>
-                <input
-                  type="number"
-                  id="orderQuantity"
-                  name="orderQuantity"
-                  value={ValQuantity}
-                  onChange={(e) => e.target.value}
-                />
+                      className="btn btn-danger"
+                      onClick={() =>
+                        setValQuantity((ValQuantity) => ValQuantity - 1)
+                      }
+                    >
+                      -
+                    </button>
+                    <input
+                      style={{ background: "#f8f8f8", textAlign: "center", marginRight: "10px", marginLeft: "10px", marginTop: "20px" }}
+                      type="number"
+                      id="orderQuantity"
+                      name="orderQuantity"
+                      value={ValQuantity}
+                      onChange={(e) => e.target.value}
+                    />
 
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={() =>
-                    setValQuantity((ValQuantity) => ValQuantity + 1)
-                  }
-                >
-                  +
-                </button>
-                <br />
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  data-toggle="button"
-                  aria-pressed="false"
-                  autoComplete="off"
-                  onClick={() => addCart()}
-                >
-                  เพิ่มลงตะกร้า
-                </button>
+                    <button
+                      type="button"
+
+                      className="btn btn-primary"
+                      onClick={() =>
+                        setValQuantity((ValQuantity) => ValQuantity + 1)
+                      }
+                    >
+                      +
+                    </button>
+                    <br />
+                    <div style={{textAlign:"right" , paddingRight:"50px"}}>
+                      <Button
+                        type="button"
+                        className="btn-payment"
+                        data-toggle="button"
+                        aria-pressed="false"
+                        autoComplete="off"
+                        onClick={() => addCart()}
+                        style={{ marginTop: "20px" , border:"0px" , borderRadius:"15px"}}
+                      >
+                        เพิ่มลงตะกร้า
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="row" style={{ background: "lightgray", height: "100px", marginTop: "20px", marginBottom: "20px", borderRadius: "15px" }}>
+              <div style={{}}>
+
+              </div>
+            </div>
+
+            <div className="row">
+              <div >
+                <div>
+                  <div className="col" style={{ padding: "10px", paddingTop: "20px", paddingLeft: "20px", background: "white", border: "1px solid lightgray", borderRadius: "15px" }}>
+                    <h3 style={{ color: "lightgray" }}>รายละเอียดสินค้า</h3>
+                    <hr style={{ width: "80%" }} />
+
+                    <div >
+                      <p style={{ fontSize: "22px" }} >
+                        {values.productName}
+                      </p>
+                      <p style={{ fontSize: "22px" }}>
+                        {values.productDetails}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div style={{ justifyContent: "center", background: "green", alignItems: "center", marginTop: "50px" }}>
+              <div style={{}}>
+                {Images.map((url, i) => (
+                  <img
+                    src={url}
+                    key={i}
+                    alt="firebase-images"
+                    style={{ width: "90%", marginBottom: "20px" }}
+                  />
+                ))}
               </div>
             </div>
           </div>

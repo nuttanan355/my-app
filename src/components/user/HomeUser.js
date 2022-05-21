@@ -62,7 +62,7 @@ function HomeUser() {
       </div>
       <br />
       <div className="container" style={{ background: "white", borderRadius: "15px 15px 15px 15px", boxShadow: "0px 0px 2px lightgray" }}>
-        <h2 style={{ padding: "3%", color: "orange", fontSize: "25px" }} >
+        <h2 style={{ position:"absolute", paddingTop: "20px", color: "orange", fontSize: "25px" }} >
           <AiIcons.AiFillStar style={{ color: "orange", fontSize: "20px" }} />{" "}
           สินค้าที่ได้รับความนิยม
         </h2>

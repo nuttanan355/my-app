@@ -49,37 +49,29 @@ function ShowDataUser() {
 
   return (
     <div className="slide-container" >
-      <section id="slider">
+      <section id="slider" >
         {Object.keys(values).map((id, index) => {
           return (
-            <div key={index} className="btn col-lg-3">
-              <div className="thumbnail"
-                style={{
-                  background: "#ffffff",
-                  border: "0",
-                  width: "80%",
-                  padding: "1px"
-                }}
-                onClick={() =>
-                  (window.location.href = `/view-product/${id}`)
-                }
-
-              >
-                <div style={{ height: "auto", overflow: "hidden", background: "red" }}>
+            <div className="hovercard-rec" style={{ height: "300px", padding: "5px" }} key={index} >
+              <div type="button" onClick={() => (window.location.href = `/view-product/${id}`)} style={{ borderRadius: "5px" }}>
+                <div className='img-product' >
                   <img
                     id="imgShow"
                     className="card-img-top "
-                    style={{ width: "300px" }}
+                    style={{ width: "200px", height: '180px', borderRadius: "5px 5px 0px 0px" }}
                     alt="Product Images"
                     src={values[id].productImg[0]}
-                  // onClick="#"
                   />
                 </div>
-                <div style={{ paddingTop: "15px", paddingLeft: "15px", height: "100px" }}>
-                  <p style={{ fontWeight: "bold", fontSize: "100%", textAlign: "left" }}>{values[id].productName}</p>
-                  <p style={{ fontWeight: "bold", fontSize: "100%", textAlign: "left" }}>{values[id].productPrice} บาท</p>
+
+                <div style={{ padding: "10px", background: "white", height: "80px", borderRadius: "0px 0px 5px 5px" }}>
+                  <div style={{ height: "40px", overflow: "hidden" }}>
+                    <p className='cut-text-multi' style={{ fontWeight: "bold", fontSize: "12px", textAlign: "left" }}>{values[id].productName}</p>
+                  </div>
+                  <p style={{ marginTop: "5px", fontWeight: "bold", fontSize: "12px", textAlign: "left", color: "#14DDA0" }}> {values[id].productPrice} บาท </p>
                 </div>
               </div>
+              <p style={{ textAlign: "center" ,color:"white",fontWeight:"bold",fontSize:"20px"}}>เลือก</p>
             </div>
           );
         })}

@@ -165,8 +165,7 @@ hr {
 .hovercard-rec:hover {
     transition: 300ms;
     margin-top: 30px;
-    padding: 2px;
-    background-color: rgb(83, 226, 171);
+    background-color: rgb(23, 192, 113);
     border-radius: 5px;
 }
 
@@ -381,9 +380,9 @@ section::-webkit-scrollbar-track {
 
 section::-webkit-scrollbar-thumb {
     margin: auto;
-    background-color: #dd0067;
-    outline: 1px solid #dd0067;
-    /* border-radius: 100px; */
+    height: 3px;
+    background-image: linear-gradient(to right, rgb(83, 226, 171), rgb(78, 208, 248));
+     border-radius: 100px; 
 }
 
 section .thumbnail {

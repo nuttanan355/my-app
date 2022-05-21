@@ -22,6 +22,7 @@ function ProfileSellerAdd() {
   const [values, setValues] = useState({
     storeName: "",
     storeAddress: "",
+    storeDetails:"",
     phoneNumber: "",
     imgBankAccount: [],
     nameBankAccount: "",
@@ -70,8 +71,8 @@ function ProfileSellerAdd() {
         async () => {
           await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             console.log("File available at", downloadURL);
-            values.imgBankAccount.push(downloadURL);
-            if (values.imgBankAccount.length === Images.length) {
+            values.imgBankAccount=downloadURL;
+            if (values.imgBankAccount !== null) {
               firebaseDB
                 .child("Users")
                 .child(uid)
@@ -79,7 +80,7 @@ function ProfileSellerAdd() {
                 .set(values)
                 .then(() => {
                   console.log("add data success");
-                  window.location.href = "/seller/seller-product";
+                  window.location.href = "/seller/seller-profile";
                 })
                 .catch((error) => console.log(error));
             } else {
@@ -145,13 +146,27 @@ function ProfileSellerAdd() {
         </div>
 
         <div className="form-group mt-3">
+          <label htmlFor="productDetails">รายละเอียดร้านค้า</label>
+          <textarea
+            id="storeDetails"
+            name="storeDetails"
+            className="form-control"
+            placeholder="รายละเอียดร้านค้า"
+            style={{ resize: "none", height: "100px" }}
+            value={values.name}
+            onChange={handleOnChange}
+            required
+          />
+        </div>
+
+        <div className="form-group mt-3">
           <label htmlFor="productDetails">ที่อยู่</label>
           <textarea
             id="storeAddress"
             name="storeAddress"
             className="form-control"
             placeholder="ที่อยู่ร้านค้า"
-            style={{ resize: "none", height: "200px" }}
+            style={{ resize: "none", height: "100px" }}
             value={values.name}
             onChange={handleOnChange}
             required

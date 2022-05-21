@@ -6,6 +6,7 @@ import {
   firebaseDB,
   firebaseStorage,
 } from "../../server/firebase";
+import Swal from "sweetalert2";
 
 function ProfileSeller() {
   const [ShowImages, setShowImages] = useState([]);
@@ -16,10 +17,12 @@ function ProfileSeller() {
     storeName: "",
     storeAddress: "",
     phoneNumber: "",
+    storeDetails:"",
     imgBankAccount: [],
     nameBankAccount: "",
     numberBankAccount: "",
   });
+  console.log(values);
 
   useEffect(() => {
     firebaseAuth.onAuthStateChanged((user) => {
@@ -34,6 +37,25 @@ function ProfileSeller() {
               setValues({ ...snapshot.val() });
             } else {
               setValues({});
+              let timerInterval
+              Swal.fire({
+                icon: 'error',
+                title: 'ไม่มีข้อมูลร้านค้า',
+                html: 'ต้องมีข้อมูลร้านก่อน ถึงจะเพิ่มสินค้าได้',
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: () => {
+                  Swal.showLoading()
+                  const b = Swal.getHtmlContainer().querySelector('b')
+                  timerInterval = setInterval(() => {
+                  }, 100)
+                },
+                willClose: () => {
+                  clearInterval(timerInterval)
+                }
+              }).then((result) => {
+                window.location.href='/seller/seller-profile/add';
+              })
             }
           });
       } else {
@@ -71,7 +93,6 @@ function ProfileSeller() {
       </button>
     );
   };
-console.log(ShowImages)
   const handleonSubmit = () => {
     const storageDel = firebaseStorage.ref().child(`users/${uid}/seller`);
     storageDel
@@ -97,13 +118,13 @@ console.log(ShowImages)
             async () => {
               await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
                   console.log("File available at", downloadURL);
-                  values.imgBankAccount.push(downloadURL);
-                  if (values.imgBankAccount.length === Images.length) {
+                  values.imgBankAccount=downloadURL;
+                  if (values.imgBankAccount !== null) {
                     firebaseDB
                       .child("Users")
                       .child(uid)
                       .child("seller")
-                      .set(values)
+                      .update(values)
                       .then(() => {
                         console.log("add data success");
                         window.location.href = "/seller/seller-profile";
@@ -179,7 +200,7 @@ console.log(ShowImages)
                 <label htmlFor="bankAccount">บัญชีธนาคาร</label>
                 <hr/>
                 <p htmlFor="bankAccount">QR CODE</p>
-                <img style={{ width: "150px" }} src={values.imgBankAccount[0]} />
+                <img style={{ width: "150px" }} src={values.imgBankAccount} />
                 <p htmlFor="productName">ชื่อบัญชี : {values.nameBankAccount}</p>
                 <p htmlFor="productName">เลขบัญชี : {values.numberBankAccount}</p>
                 <p></p>
@@ -208,6 +229,20 @@ console.log(ShowImages)
                     required
                   />
                 </div>
+                
+                <div className="form-group mt-3">
+          <label htmlFor="productDetails">รายละเอียดร้านค้า</label>
+          <textarea
+            id="storeDetails"
+            name="storeDetails"
+            className="form-control"
+            placeholder="รายละเอียดร้านค้า"
+            style={{ resize: "none", height: "100px" }}
+            value={values.name}
+            onChange={handleOnChange}
+            required
+          />
+        </div>
 
                 <div className="form-group mt-3">
                   <label htmlFor="productDetails">ที่อยู่</label>
@@ -270,7 +305,7 @@ console.log(ShowImages)
                   {ShowImages.length ? (
                     <img style={{ width: "150px" }} src={ShowImages} />
                   ) : (
-                    <img style={{ width: "150px" }} src={values.imgBankAccount[0]} />
+                    <img style={{ width: "150px" }} src={values.imgBankAccount} />
                   )}
 
                   <br />

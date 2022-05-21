@@ -71,6 +71,7 @@ function ViewProduct() {
             <div className="row" style={{ width: "100%", padding: "20px" }}>
               <div className="col flex-view" style={{ width: "60%" }}>
                 <div clessName="flex-view-item">
+
                   {Images.map((url, i) => (
                     <img className="view-img"
                       src={url}
@@ -79,6 +80,7 @@ function ViewProduct() {
                       alt="firebase-images"
                     />
                   ))}
+                  
                 </div>
 
               </div>
@@ -93,18 +95,23 @@ function ViewProduct() {
               >
                 <div style={{ paddingLeft: "100px" }}>
                   <div style={{ marginTop: "20px" }}>
-                    <strong style={{ fontSize: "40px", fontWeight: "bold" }}>
+                    <strong className="cut-text-multi-5" style={{ fontSize: "40px", fontWeight: "bold" }}>
                       {values.productName}
                     </strong>
                   </div>
+                  <div className="row" style={{ marginTop: "20px" }}>
+                    <div className="col">
+                      <p>ลงขายเมื่อ {values.produtcDate}</p>
+                    </div>
+                  </div>
 
                   <div className="row" style={{ marginTop: "20px" }}>
-                    <div className="col-2">
-                      <h2 style={{ color: "#14DDA0", fontWeight: "bold" }}>{values.productPrice} </h2>
-                      
+                    <div className="col-3">
+                      <h2 style={{ color: "#14DDA0", fontWeight: "bold", textAlign:"right" }}>{values.productPrice} </h2>
+
                     </div>
                     <div className="col">
-                    <p style={{ fontWeight: "bold" }}>บาท / ชิ้น</p>
+                      <p style={{ fontWeight: "bold" }}>บาท / ชิ้น</p>
                     </div>
                   </div>
 
@@ -124,7 +131,7 @@ function ViewProduct() {
                       -
                     </button>
                     <input
-                      style={{ background: "#f8f8f8", textAlign: "center", marginRight: "10px", marginLeft: "10px", marginTop: "70px", width:"100px" }}
+                      style={{ background: "#f8f8f8", textAlign: "center", marginRight: "10px", marginLeft: "10px", marginTop: "70px", width: "100px" }}
                       id="orderQuantity"
                       name="orderQuantity"
                       value={ValQuantity}
@@ -159,9 +166,10 @@ function ViewProduct() {
                 </div>
               </div>
             </div>
-            <div className="row" style={{ background: "lightgray", height: "100px", marginTop: "20px", marginBottom: "20px", borderRadius: "15px" }}>
-              <div style={{}}>
 
+            <div className="row" style={{ background: "white", height: "100px", marginTop: "20px", marginBottom: "20px", borderRadius: "15px" }}>
+              <div style={{}}>
+                <img clasName="col" src='/img/store.png' style={{ height: "70px" , marginTop:"15px",marginLeft:"15px"}} /><span style={{fontSize:"22px"}}>{values.storeName}</span>
               </div>
             </div>
 
@@ -173,10 +181,10 @@ function ViewProduct() {
                     <hr style={{ width: "80%" }} />
 
                     <div >
-                      <p style={{ fontSize: "22px" }} >
+                      <p style={{ fontSize: "18px", fontWeight:"bold" }} >
                         {values.productName}
                       </p>
-                      <p style={{ fontSize: "22px" }}>
+                      <p style={{ fontSize: "18px" }}>
                         {values.productDetails}
                       </p>
                     </div>
@@ -185,14 +193,14 @@ function ViewProduct() {
               </div>
             </div>
 
-            <div style={{ justifyContent: "center", background: "green", alignItems: "center", marginTop: "50px" }}>
-              <div style={{}}>
+            <div style={{ marginTop: "50px" }}>
+              <div style={{ textAlign: "center" }}>
                 {Images.map((url, i) => (
                   <img
                     src={url}
                     key={i}
                     alt="firebase-images"
-                    style={{ width: "90%", marginBottom: "20px" }}
+                    style={{ width: "700px", marginBottom: "20px" }}
                   />
                 ))}
               </div>

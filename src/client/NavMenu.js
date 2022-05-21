@@ -39,7 +39,7 @@ export const NavMenu = [
   
   // },
   {
-    title: 'หมวดหมู่',
+    title: 'สินค้า',
     path: '/category',
     icon: <AiIcons.AiOutlineAppstore />,
     cName: 'nav-text',

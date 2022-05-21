@@ -9,12 +9,14 @@ import { Link } from "react-router-dom";
 
 
 function NavLink() {
+
     const [user, setUser] = useState(null);
     useEffect(() => {
         firebaseAuth.onAuthStateChanged((user) => {
             setUser(user);
         });
     }, []);
+    
     return (
         <div style={{ background: "#EAEAEA" }}>
             <div className="flex-nav-home">

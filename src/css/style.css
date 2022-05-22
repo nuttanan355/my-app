@@ -1,12 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
 
 * {
-    font-family: 'Prompt', 'Prompt-light';;
+    font-family: 'Prompt', sans-serif;
+    ;
 }
 
 body {
 
-    background-image: linear-gradient(to right, rgb(201, 228, 200), rgb(216, 245, 242));
+    background-color: #f8f8f8;
 }
 
 .flexbox {

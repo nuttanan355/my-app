@@ -117,7 +117,7 @@ function PaymentProduct() {
     Slip.forEach((files) => {
       const sotrageRef = ref(
         firebaseStorage,
-        `orders/${user.uid}/${dateKey}${files.name}`
+        `orders/Order-${dateKey}//${user}/${files.name}`
       );
       const uploadTask = uploadBytesResumable(sotrageRef, files);
       uploadTask.on(

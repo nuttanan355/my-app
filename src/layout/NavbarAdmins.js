@@ -128,8 +128,8 @@ function NavbarAdmin() {
       <div className="nav-item-admin" type="button" style={{ display: "block", marginLeft: "40px", textAlign: "center" }} onClick={() => window.location='/admin/recom'}>
         บริการสินค้าแนะนำ
       </div>
-      <div className="nav-item-admin" type="button" style={{ display: "block", marginLeft: "40px", textAlign: "center" }} onClick={() => window.location='/admin/edit-product'}>
-        ตรวจสอบการแก้ไข
+      <div className="nav-item-admin" type="button" style={{ display: "block", marginLeft: "40px", textAlign: "center" }} onClick={() => window.location='/admin/ads-product'}>
+      ปกโฆษณา
       </div>
       <div className="nav-item-admin"  type="button" style={{ display: "block", marginLeft: "40px", textAlign: "center"}} onClick={() => Logout()}>
         <IoIcons.IoLogOut /> Logout

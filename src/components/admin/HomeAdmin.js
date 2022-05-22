@@ -17,9 +17,9 @@ function HomeAdmin() {
           <div style={{ fontSize: "25px" }}>ตรวจสอบการอัปโหลด</div>
         </Link>
 
-        <Link to="/admin/edit-product" className="btn btn-secondary btn-lg m-2 ">
+        <Link to="/admin/ads-product" className="btn btn-secondary btn-lg m-2 ">
           <AiIcons.AiOutlineEdit size={200} />
-          <div style={{ fontSize: "25px" }}>ตรวจสอบการแก้ไข</div>
+          <div style={{ fontSize: "25px" }}>ปกโฆษณา</div>
         </Link>
         
         <Link to="/admin/oders" className="btn btn-secondary btn-lg m-2">

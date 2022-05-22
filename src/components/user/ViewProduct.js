@@ -67,7 +67,7 @@ function ViewProduct() {
           {/* <div className="card-header">
             <h3>{values.productName}</h3>
           </div> */}
-          <div className="container">
+          <div className="container" style={{ padding: "10px", paddingTop: "20px", paddingLeft: "20px", background: "white", border: "1px solid lightgray", borderRadius: "15px" }} >
             <div className="row" style={{ width: "100%", padding: "20px" }}>
               <div className="col flex-view" style={{ width: "60%" }}>
                 <div className="flex-view-item">

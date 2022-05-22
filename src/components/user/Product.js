@@ -24,7 +24,7 @@ function Product() {
     }, []);
     return (
 
-        <div className="container" style={{padding:"50px"}}>
+        <div className="container" style={{padding:"50px"}} >
             <a href="/"> หน้าหลัก \</a><a href="#"> สินค้า </a>
             <div className="flexbox">
                 {Object.keys(values).map((id, index) => {

@@ -43,13 +43,14 @@ function ShowDataSeller() {
   };
 
   return (
-    <div className="container sm-auto">
+    <div className="default-bg sm-auto" >
       <Tabs
         defaultActiveKey="allow"
         id="uncontrolled-tab-example"
         className="mb-3"
+
       >
-        <Tab eventKey="allow" title="อนุมัติ">
+        <Tab eventKey="allow" title="อนุมัติ" style={{ background: "#f8f8f8" }}>
           {Object.keys(values).map((id, index) => {
             return (
               <div key={index}>
@@ -59,11 +60,12 @@ function ShowDataSeller() {
                       <Card.Img
                         variant="top"
                         src={values[id].productImg[0]}
-                        style={{ width: "100px" }}
+                        style={{ width: "100px", heiht: "auto" }}
                       />
-                      <Card.Title>{values[id].productName}</Card.Title>
-                      <Card.Text>{values[id].productDetails}</Card.Text>
-                      <Card.Text>{values[id].sellerUid}</Card.Text>
+                      <Card.Title style={{ marginTop: "20px" }}>{values[id].productName}</Card.Title>
+                      <Card.Text style={{ overflow: "hidden" }}>{values[id].productDetails}</Card.Text>
+                      <Card.Text>{values[id].productPrice} ฿</Card.Text>
+                      <Card.Text>{values[id].storeName}</Card.Text>
                     </Card.Body>
                   </Card>
                 ) : (
@@ -82,22 +84,15 @@ function ShowDataSeller() {
                 ) : (
                   <Card className="my-2">
                     <Card.Body>
-                    {values[id].productImg.map((url, i) => (
-                    <div className="col" interval={3000} key={i}>
-                      <img
-                        src={url}
-                        alt="First slide"
-                        style={{
-                          height: "200px",
-                          textAlign: "center",
-                          margin: "1%"
-                        }}
+                      <Card.Img
+                        variant="top"
+                        src={values[id].productImg[0]}
+                        style={{ width: "100px",heiht:"auto" }}
                       />
-                    </div>
-                  ))}
-                      <Card.Title>{values[id].productName}</Card.Title>
-                      <Card.Text>{values[id].productDetails}</Card.Text>
-                      <Card.Text>{values[id].sellerUid}</Card.Text>
+                      <Card.Title style={{marginTop:"20px"}}>{values[id].productName}</Card.Title>
+                      <Card.Text style={{overflow:"hidden"}}>{values[id].productDetails}</Card.Text>
+                      <Card.Text>{values[id].productPrice} ฿</Card.Text>
+                      <Card.Text>{values[id].storeName}</Card.Text>
                     </Card.Body>
                   </Card>
                 )}

@@ -52,7 +52,7 @@ function ProfileSeller() {
                 didOpen: () => {
                   Swal.showLoading();
                   const b = Swal.getHtmlContainer().querySelector("b");
-                  timerInterval = setInterval(() => {}, 100);
+                  timerInterval = setInterval(() => { }, 100);
                 },
                 willClose: () => {
                   clearInterval(timerInterval);
@@ -168,7 +168,7 @@ function ProfileSeller() {
       );
       uploadTask.on(
         "state_changed",
-        (snapshot) => {},
+        (snapshot) => { },
         (error) => console.log(error),
         async () => {
           await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
@@ -193,7 +193,7 @@ function ProfileSeller() {
       const uploadTask = uploadBytesResumable(sotrageRef, files);
       uploadTask.on(
         "state_changed",
-        (snapshot) => {},
+        (snapshot) => { },
         (error) => console.log(error),
         async () => {
           await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
@@ -224,59 +224,67 @@ function ProfileSeller() {
   };
 
   return (
-    <div className="container">
+    <div className="container" style={{marginBottom:"100px",minHeight:"700px"}}>
       <h1>Profile Seller</h1>
       <hr />
       <Accordion defaultActiveKey="0">
-        <Card>
+        <div style={{ border: "1px solid lightgray" }}>
           <Card.Header>
             <CustomToggle eventKey="0">Show Profile Seller</CustomToggle>
           </Card.Header>
           <Accordion.Collapse eventKey="0">
             <Card.Body>
-              <p htmlFor="bankAccount">รูปร้านค้า</p>
-              <img style={{ width: "150px" }} src={values.storeImg} />
-              <div className="mt-3">
-                <label htmlFor="productName">
-                  ชื่อร้านค้า : {values.storeName}
-                </label>
-              </div>
+              <div className="row">
+                <div className="col-3" style={{ justifyContent: "center" }}>
+                  <img style={{ width: "auto", height: "500px" }} src={values.storeImg} />
+                </div>
+                <div className="col">
+                  <div className="mt-3">
+                    <label htmlFor="bankAccount" style={{ fontWeight: "bold", color: "gray" }}>ร้านค้า</label>
+                    <hr />
+                    <label htmlFor="productName">
+                      ชื่อร้านค้า : {values.storeName}
+                    </label>
+                  </div>
 
-              <div className="mt-3">
-                <label htmlFor="productDetails">
-                  รายละเอียด : {values.storeDetails}
-                </label>
-              </div>
-              <div className="mt-3">
-                <label htmlFor="productDetails">
-                  ที่อยู่ : {values.storeAddress}
-                </label>
-              </div>
+                  <div className="mt-3">
+                    <label htmlFor="productDetails">
+                      รายละเอียด : {values.storeDetails}
+                    </label>
+                  </div>
+                  <div className="mt-3">
+                    <label htmlFor="productDetails">
+                      ที่อยู่ : {values.storeAddress}
+                    </label>
+                  </div>
 
-              <div className="mt-3">
-                <label htmlFor="phoneNumber">
-                  เบอร์โทร : {values.phoneNumber}
-                </label>
-              </div>
-
-              <div className="mt-3">
-                <label htmlFor="bankAccount">บัญชีธนาคาร</label>
-                <hr />
-                <p htmlFor="bankAccount">QR CODE</p>
-                <img style={{ width: "150px" }} src={values.imgBankAccount} />
-                <p htmlFor="productName">
-                  ชื่อบัญชี : {values.nameBankAccount}
-                </p>
-                <p htmlFor="productName">
-                  เลขบัญชี : {values.numberBankAccount}
-                </p>
-                <p></p>
+                  <div className="mt-3">
+                    <label htmlFor="phoneNumber">
+                      เบอร์โทร : {values.phoneNumber}
+                    </label>
+                  </div>
+                </div>
+                <div className="col">
+                  <div className="mt-3">
+                    <label htmlFor="bankAccount" style={{ fontWeight: "bold", color: "gray" }}>บัญชีธนาคาร</label>
+                    <hr />
+                    <p htmlFor="bankAccount">QR CODE</p>
+                    <img style={{ marginTop: "10px", width: "150px" }} src={values.imgBankAccount} />
+                    <p style={{ marginTop: "10px" }} htmlFor="productName">
+                      ชื่อบัญชี : {values.nameBankAccount}
+                    </p>
+                    <p htmlFor="productName">
+                      เลขบัญชี : {values.numberBankAccount}
+                    </p>
+                    <p></p>
+                  </div>
+                </div>
               </div>
             </Card.Body>
           </Accordion.Collapse>
-        </Card>
-
-        <Card>
+        </div>
+        <br />
+        <div style={{ border: "1px solid lightgray" }}>
           <Card.Header>
             <CustomToggle eventKey="1">Edit</CustomToggle>
           </Card.Header>
@@ -384,16 +392,17 @@ function ProfileSeller() {
                 <div className="form-group mt-3">
                   <label htmlFor="bankAccount">QR CODE</label>
                   {ShowImagesBank.length ? (
-                    <img style={{ width: "150px" }} src={ShowImagesBank} />
+                    <img style={{ width: "150px" , marginLeft:"50px"}} src={ShowImagesBank} />
                   ) : (
                     <img
-                      style={{ width: "150px" }}
+                      style={{ width: "150px" , marginLeft:"50px"}}
                       src={values.imgBankAccount}
                     />
                   )}
 
                   <br />
                   <input
+                  style={{ marginTop:"40px"}}
                     accept="image/*"
                     type="file"
                     onChange={ImagesBankOnChange}
@@ -409,14 +418,14 @@ function ProfileSeller() {
                   >
                     Submit
                   </button>
-                  <button type="reset" className="btn btn-danger col mx-3">
+                  <button type="cancel" className="btn btn-danger col mx-3">
                     Cancel
                   </button>
                 </div>
               </form>
             </Card.Body>
           </Accordion.Collapse>
-        </Card>
+        </div>
       </Accordion>
     </div>
   );

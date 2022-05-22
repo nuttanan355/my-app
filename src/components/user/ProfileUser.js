@@ -60,6 +60,27 @@ function ProfileUser() {
   }, []);
 
   const AddRess = () => {
+    let timerInterval
+    Swal.fire({
+      title: 'รอสักครู่',
+      timer: 5000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading()
+        const b = Swal.getHtmlContainer().querySelector('b')
+        timerInterval = setInterval(() => {
+          b.textContent = Swal.getTimerLeft()
+        }, 100)
+      },
+      willClose: () => {
+        clearInterval(timerInterval)
+      }
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log('I was closed by the timer')
+      }
+    })
     firebaseDB
       .child("Users")
       .child(uid)
@@ -280,8 +301,8 @@ function ProfileUser() {
                 เบอร์โทร :{dataAddress[id].phoneNumber}
               </div>
               <div className="card-body">
-                ที่อยู่ : {dataAddress[id].addressDetails} รหัสไปรษณีย์ :{" "}
-                {dataAddress[id].zipcode}
+                ที่อยู่ : {dataAddress[id].addressDetails},
+                รหัสไปรษณีย์ :{dataAddress[id].zipcode}
               </div>
               <div className="card-body">
                 {/* <button

@@ -1,6 +1,7 @@
 import { Tab } from "bootstrap";
 import React, { useEffect, useState } from "react";
 import { Card, Tabs } from "react-bootstrap";
+import Swal from "sweetalert2";
 import { firebaseAuth, firebaseDB } from "../../server/firebase";
 
 function OrderUser() {
@@ -12,13 +13,48 @@ function OrderUser() {
   //   console.log("order", order);
   //   console.log("address", address);
 
+  const updaateOrderSucceed = (id) => {
+      Swal.fire({
+        title: "คุณยอมรับสินค้า ?",
+        text: "คุณจะยืนยันไหมว่า ได้รับสินค้าแล้ว",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "ยอมรับ",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("ยอมรับสินค้า !", "คุณได้รับสินค้าแล้ว.", "success");
+          firebaseDB
+            .child("Orders")
+            .child(id)
+            .update({ OrderSucceed: true })
+            .then(() => {
+              firebaseDB
+              .child("Orders")
+              .child(id).child("statusOrder")
+              .remove()
+              .then(() => {
+                // alert("Add Admin success");
+              })
+              .catch((error) => {
+                console.error(error);
+              });
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        }});
+  };
+
+
   useEffect(() => {
     firebaseAuth.onAuthStateChanged((user) => {
       console.log(user.uid.toString());
       if (user !== null) {
         firebaseDB
           .child("Orders")
-          .child(user.uid.toString())
+          .orderByChild("userID").equalTo(user.uid.toString())
           .on("value", (snapshot) => {
             if (snapshot.val() !== null) {
               setValues({ ...snapshot.val() });
@@ -43,7 +79,8 @@ function OrderUser() {
         <Tabs
           defaultActiveKey="orderWaiting"
           id="uncontrolled-tab-example"
-          className="mb-3"
+          fill
+          justify
         >
           <Tab eventKey="orderWaiting" title="รอจัดส่ง">
             <p>รอจัดส่ง</p>
@@ -124,6 +161,12 @@ function OrderUser() {
                           );
                         })}
                       </div>
+                      <button
+                          className="btn btn-primary mt-3"
+                          onClick={() => updaateOrderSucceed(id)}
+                        >
+                          ยอมรับสินค้า
+                        </button>
                     </div>
                   ) : (
                     <p></p>

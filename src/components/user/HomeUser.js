@@ -4,6 +4,7 @@ import "../../css/pages.css";
 import "../../css/home.css";
 import "../../css/style.css";
 import NavLink from "../../layout/NavLink";
+import ShowDataUserRecom from "../user/ShowDataUserRecom";
 import ShowDataUser from "../user/ShowDataUser";
 import * as AiIcons from "react-icons/ai";
 import { GrouprData } from "../../client/GroupData";
@@ -66,7 +67,7 @@ function HomeUser() {
           <AiIcons.AiFillStar style={{ color: "orange", fontSize: "20px" }} />{" "}
           สินค้าที่ได้รับความนิยม
         </h2>
-        <ShowDataUser />
+        <ShowDataUserRecom />
         <br />
       </div>
       <br />
@@ -98,6 +99,10 @@ function HomeUser() {
                 })}
               </section >
             </div>
+          </div>
+          <div className="mt-3 p-5" style={{ marginLeft: "50px", marginRight: "50px", background: "white", borderRadius: "15px", boxShadow: "0px 0px 2px lightgray" }}>
+          <h2>สินค้าทั่วไป</h2>
+          <ShowDataUser />
           </div>
         </div>
       </div>

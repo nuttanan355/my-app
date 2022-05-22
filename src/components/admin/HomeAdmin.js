@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 // import * as HiIcons from "react-icons/hi";
 function HomeAdmin() {
   return (
-    <div className="pt-5 pb-5" style={{ background: "lightgray" }}>
+    <div className="pt-5 pb-5">
       <h1 style={{ fontWeight: "bold", color: "gray" }}>ADMIN</h1>
       <hr />
       <div className="container mb-5 mt-5">
@@ -17,9 +17,9 @@ function HomeAdmin() {
           <div style={{ fontSize: "25px" }}>ตรวจสอบการอัปโหลด</div>
         </Link>
 
-        <Link to="/admin/edit-product" className="btn btn-secondary btn-lg m-2 ">
+        <Link to="/admin/ads-product" className="btn btn-secondary btn-lg m-2 ">
           <AiIcons.AiOutlineEdit size={200} />
-          <div style={{ fontSize: "25px" }}>ตรวจสอบการแก้ไข</div>
+          <div style={{ fontSize: "25px" }}>ปกโฆษณา</div>
         </Link>
         
         <Link to="/admin/oders" className="btn btn-secondary btn-lg m-2">

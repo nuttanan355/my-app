@@ -21,10 +21,11 @@ function ProfileSeller() {
     storeImg: [],
     storeName: "",
     storeAddress: "",
+    storeDetails:"",
     phoneNumber: "",
-    storeDetails: "",
     imgBankAccount: [],
     nameBankAccount: "",
+    bankAccount: "",
     numberBankAccount: "",
   });
   console.log(values);
@@ -271,6 +272,9 @@ function ProfileSeller() {
                     <p htmlFor="bankAccount">QR CODE</p>
                     <img style={{ marginTop: "10px", width: "150px" }} src={values.imgBankAccount} />
                     <p style={{ marginTop: "10px" }} htmlFor="productName">
+                    ชื่อบัญชีธนาคาร : {values.bankAccount}
+                    </p>
+                    <p>
                       ชื่อบัญชี : {values.nameBankAccount}
                     </p>
                     <p htmlFor="productName">

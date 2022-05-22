@@ -106,7 +106,7 @@ function AddNewProduct() {
 
   const handleonSubmit = () => {
     Images.forEach((files) => {
-      const sotrageRef = ref(firebaseStorage, `product/${dateKey}/${files.name}`);
+      const sotrageRef = ref(firebaseStorage, `product/Product-${dateKey}/${files.name}`);
       const uploadTask = uploadBytesResumable(sotrageRef, files);
       uploadTask.on("state_changed",
         (snapshot) => { },
@@ -255,7 +255,7 @@ function AddNewProduct() {
               name="productDetails"
               className="form-control"
               placeholder="รายละเอียด"
-              style={{ resize: "none" }}
+              style={{ resize: "none", height: "100px" }}
               value={values.name}
               onChange={handleOnChange}
               required
@@ -263,7 +263,7 @@ function AddNewProduct() {
           </div>
 
           <div className="form-group row mt-3">
-            <label htmlFor="produtcCost1" className="col-1">
+            <label htmlFor="produtcCost1" className="col-2">
               ส่ง 1 ชิ้น
             </label>
             <input

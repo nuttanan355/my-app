@@ -27,6 +27,7 @@ function ProfileSellerAdd() {
     phoneNumber: "",
     imgBankAccount: [],
     nameBankAccount: "",
+    bankAccount: "",
     numberBankAccount: "",
   });
 
@@ -242,6 +243,19 @@ function ProfileSellerAdd() {
 
         <h2>บัญชีธนาคาร</h2>
         <hr />
+        <div className="form-group mt-3">
+          <label htmlFor="productName">ชื่อบัญชีธนาคาร</label>
+          <input
+            type="text"
+            id="bankAccount"
+            name="bankAccount"
+            className="form-control"
+            placeholder="ชื่อบัญชีธนาคาร"
+            // value={values.name}
+            onChange={handleOnChange}
+            required
+          />
+        </div>
         <div className="form-group mt-3">
           <label htmlFor="productName">ชื่อบัญชี</label>
           <input

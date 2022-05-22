@@ -30,7 +30,7 @@ function AddNewProduct() {
             // storeName: snapshot.val().seller.storeName,});
         }else{
           setChekDataSeller(false);
-          let timerInterval
+          let timerInterval;
           Swal.fire({
             icon: 'error',
             title: 'ไม่มีข้อมูลร้านค้า',

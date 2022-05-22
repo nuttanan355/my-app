@@ -108,9 +108,6 @@ function ProfileSeller() {
     );
   };
 
-
-  console.log("ImagesStore"+ImagesStore)
-  console.log("ImagesBank"+ImagesBank)
   const handleonSubmit = () => {
     if (ImagesStore.length !== 0) {
       const storageDel = firebaseStorage.refFromURL(values.storeImg);

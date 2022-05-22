@@ -46,7 +46,7 @@ function ViewProduct() {
       refDB.set(values)
         .then(() => {
           refDB.update({ ValQuantity: ValQuantity, }).then(() => {
-            Swal.fire('เพิ่มลงตะกร้าแล้ว').then(() => window.location.href = '/');
+            Swal.fire('เพิ่มลงตะกร้าแล้ว').then(() => window.location.href = '/user/carts');
           }).catch((err) => {
             console.log(err);
           })

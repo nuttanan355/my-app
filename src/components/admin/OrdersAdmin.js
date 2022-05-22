@@ -39,7 +39,7 @@ function OrdersAdmin() {
           fill
           justify
         >
-          <Tab eventKey="orderWaiting" title="รอจัดส่ง">
+          <Tab eventKey="orderWaiting" className="fs-4" title="รอจัดส่ง">
             <p>รอจัดส่ง</p>
             {Object.keys(values).map((id, index) => {
               return (

@@ -1,7 +1,7 @@
 * {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
-            font-family: 'Nunito', sans-serif;
+           
   }
   
   body {
@@ -55,7 +55,7 @@
   }
   
   .notfound h1 {
-    font-family: 'Nunito', sans-serif;
+   
     font-size: 65px;
     font-weight: 700;
     margin-top: 0px;
@@ -65,7 +65,6 @@
   }
   
   .notfound h2 {
-    font-family: 'Nunito', sans-serif;
     font-size: 21px;
     font-weight: 400;
     margin: 0;
@@ -74,13 +73,12 @@
   }
   
   .notfound p {
-    font-family: 'Nunito', sans-serif;
+
     color: #999fa5;
     font-weight: 400;
   }
   
   .notfound a {
-    font-family: 'Nunito', sans-serif;
     display: inline-block;
     font-weight: 700;
     border-radius: 40px;

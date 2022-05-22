@@ -64,14 +64,16 @@ function ShowDataUser() {
                   />
                 </div>
 
-                <div style={{ padding: "10px", background: "white", height: "80px", borderRadius: "0px 0px 5px 5px" }}>
+                <div style={{ padding: "10px", background: "white", height: "80px", borderRadius: "0px 0px 5px 5px" ,width:"200px"}}>
                   <div style={{ height: "40px", overflow: "hidden" }}>
                     <p className='cut-text-multi' style={{ fontWeight: "bold", fontSize: "12px", textAlign: "left" }}>{values[id].productName}</p>
                   </div>
-                  <p style={{ marginTop: "5px", fontWeight: "bold", fontSize: "12px", textAlign: "left", color: "#14DDA0" }}> {values[id].productPrice} บาท </p>
+                  <div>
+                    <p style={{ marginTop: "5px", fontWeight: "bold", fontSize: "12px", textAlign: "left", color: "#14DDA0" }}> {values[id].productPrice} บาท </p>
+                  </div>
                 </div>
               </div>
-              <p style={{ textAlign: "center" ,color:"white",fontWeight:"bold",fontSize:"20px"}}>เลือก</p>
+              <p style={{ textAlign: "center", color: "white", fontWeight: "bold", fontSize: "20px" }}>เลือก</p>
             </div>
           );
         })}

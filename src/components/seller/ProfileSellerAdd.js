@@ -184,11 +184,6 @@ function ProfileSellerAdd() {
           <br />
           <input accept="image/*" type="file" onChange={ImgStoreOnChange} required />
         </div>
-
-
-
-
-
         <div className="form-group mt-3">
           <label htmlFor="productName">ชื่อร้านค้า</label>
           <input

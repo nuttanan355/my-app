@@ -21,14 +21,14 @@ function AddNewProduct() {
 
   useEffect(() => {
     firebaseAuth.onAuthStateChanged((user) => {
-      firebaseDB.child("Users").child(user.uid.toString()).child("seller").on("value",(snapshot)=>{
+      firebaseDB.child("Users").child(user.uid.toString()).child("seller").on("value", (snapshot) => {
         console.log(snapshot.val());
-        if(snapshot.val() !== null){
+        if (snapshot.val() !== null) {
           console.log(snapshot.val().storeName);
           setChekDataSeller(true);
-          return setValues({...values, sellerEmail: user.email, sellerUid: user.uid,storeName: snapshot.val().storeName,});
-            // storeName: snapshot.val().seller.storeName,});
-        }else{
+          return setValues({ ...values, sellerEmail: user.email, sellerUid: user.uid, storeDetails: snapshot.val().storeDetails, storeName: snapshot.val().storeName, });
+          // storeName: snapshot.val().seller.storeName,});
+        } else {
           setChekDataSeller(false);
           let timerInterval;
           Swal.fire({
@@ -47,13 +47,13 @@ function AddNewProduct() {
               clearInterval(timerInterval)
             }
           }).then((result) => {
-            window.location.href='/seller/seller-profile/add';
+            window.location.href = '/seller/seller-profile/add';
           })
 
         }
 
       });
-    
+
     });
   }, []);
 
@@ -62,6 +62,7 @@ function AddNewProduct() {
     productID: dateKey,
     sellerUid: "",
     storeName: "",
+    storeDetails: "",
     productName: "",
     productCategory: "",
     productPrice: "",
@@ -104,30 +105,30 @@ function AddNewProduct() {
 
 
   const handleonSubmit = () => {
-      Images.forEach((files) => {
-        const sotrageRef = ref(firebaseStorage,`product/${dateKey}/${files.name}`);
-        const uploadTask = uploadBytesResumable(sotrageRef, files);
-        uploadTask.on("state_changed",
-          (snapshot) => {},
-          (error) => console.log(error),
-          async () => {
-            await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-              console.log("File available at", downloadURL);
-               values.productImg.push(downloadURL);
-               if( values.productImg.length === Images.length){
-                firebaseDB
+    Images.forEach((files) => {
+      const sotrageRef = ref(firebaseStorage, `product/${dateKey}/${files.name}`);
+      const uploadTask = uploadBytesResumable(sotrageRef, files);
+      uploadTask.on("state_changed",
+        (snapshot) => { },
+        (error) => console.log(error),
+        async () => {
+          await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+            console.log("File available at", downloadURL);
+            values.productImg.push(downloadURL);
+            if (values.productImg.length === Images.length) {
+              firebaseDB
                 .child("Product")
-                .child("Product-"+dateKey)
+                .child("Product-" + dateKey)
                 .set(values)
                 .then(() => {
                   console.log("add data success");
-                  window.location.href='/seller/seller-product';
-                }).catch((error) => console.log(error)); 
-               }
-            });
-          }
-        );
-      });
+                  window.location.href = '/seller/seller-product';
+                }).catch((error) => console.log(error));
+            }
+          });
+        }
+      );
+    });
   };
 
   // -----------END ADD IMAGE----------------------------
@@ -159,14 +160,14 @@ function AddNewProduct() {
       console.log("ราคาเดียวก็ใส่-ซะไอ้สัส 06")
     } else if (Images.length === 0) {
       console.log("ไม่ใส่รูป ใครจะรูปว่าขายอะไรว่ะ")
-    }else {
+    } else {
       // let text = "Press a button!\nEither OK or Cancel.";
       // if (window.confirm(text) == true) {
-        handleonSubmit();
+      handleonSubmit();
       // } else {
       //   text = "You canceled!";
       // }
-      
+
     }
   };
 
@@ -175,20 +176,20 @@ function AddNewProduct() {
       <h1>Add New Product</h1>
       <hr />
       <div className="container">
- 
+
         <form className="was-validated">
-          
-        {ShowImages.map((url, i) => (
-              <img
-                key={i}
-                style={{ width: "150px" }}
-                src={url}
-                alt="firebase-images"
-              />
-            ))}
+
+          {ShowImages.map((url, i) => (
+            <img
+              key={i}
+              style={{ width: "150px" }}
+              src={url}
+              alt="firebase-images"
+            />
+          ))}
 
           <div className="form-group">
-            <label style={{marginRight:"10px"}} htmlFor="productImg">รูปภาพ ( scale 1:1 ) </label>
+            <label style={{ marginRight: "10px" }} htmlFor="productImg">รูปภาพ ( scale 1:1 ) </label>
             <input
               accept="image/*"
               type="file"
@@ -360,7 +361,7 @@ function AddNewProduct() {
               type="button"
               className="btn btn-primary col mx-3"
               onClick={checkData}
-              
+
             >
               Submit
             </button>

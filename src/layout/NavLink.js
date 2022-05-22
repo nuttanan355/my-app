@@ -19,7 +19,7 @@ function NavLink() {
     
     return (
         <div style={{ background: "#EAEAEA" }}>
-            <div className="flex-nav-home">
+            <div className="topnav">
                 {user ? (
                     <div className="item-nav-home">
                         {NavMenu.map((item, index) => {

@@ -273,7 +273,7 @@ function ProfileUser() {
 
       {Object.keys(dataAddress).map((id, index) => {
         return (
-          <div className="container px-5" key={index} >
+          <div className="container px-5 mb-5" key={index} >
             <div className="card">
               <div className="card-body">ชื่อ : {dataAddress[id].fullName}</div>
               <div className="card-body">

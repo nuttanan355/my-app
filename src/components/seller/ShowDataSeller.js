@@ -47,27 +47,30 @@ function ShowDataSeller() {
       <Tabs
         defaultActiveKey="allow"
         id="uncontrolled-tab-example"
-        className="mb-3"
+  
 
       >
-        <Tab eventKey="allow" title="อนุมัติ" style={{ background: "#f8f8f8" }}>
+        <Tab eventKey="allow" title="อนุมัติ" style={{ background: "#f8f8f8", border: "1px solid lightgray" }}>
+        
           {Object.keys(values).map((id, index) => {
             return (
-              <div key={index}>
+              <div key={index} style={{ background: "white" }}>
                 {values[id].productAllow ? (
-                  <Card className="my-2">
-                    <Card.Body>
+                  <div style={{ background: "white" }}>
+                    <Card.Body >
                       <Card.Img
                         variant="top"
                         src={values[id].productImg[0]}
-                        style={{ width: "100px", heiht: "auto" }}
+                        style={{ width: "100px", height: "auto" }}
                       />
                       <Card.Title style={{ marginTop: "20px" }}>{values[id].productName}</Card.Title>
                       <Card.Text style={{ overflow: "hidden" }}>{values[id].productDetails}</Card.Text>
                       <Card.Text>{values[id].productPrice} ฿</Card.Text>
                       <Card.Text>{values[id].storeName}</Card.Text>
+
                     </Card.Body>
-                  </Card>
+                    <hr style={{ background: "white" }} />
+                  </div>
                 ) : (
                   <></>
                 )}
@@ -82,19 +85,19 @@ function ShowDataSeller() {
                 {values[id].productAllow ? (
                   <></>
                 ) : (
-                  <Card className="my-2">
+                  <div className="my-2">
                     <Card.Body>
                       <Card.Img
                         variant="top"
                         src={values[id].productImg[0]}
-                        style={{ width: "100px",heiht:"auto" }}
+                        style={{ width: "100px", heiht: "auto" }}
                       />
-                      <Card.Title style={{marginTop:"20px"}}>{values[id].productName}</Card.Title>
-                      <Card.Text style={{overflow:"hidden"}}>{values[id].productDetails}</Card.Text>
+                      <Card.Title style={{ marginTop: "20px" }}>{values[id].productName}</Card.Title>
+                      <Card.Text style={{ overflow: "hidden" }}>{values[id].productDetails}</Card.Text>
                       <Card.Text>{values[id].productPrice} ฿</Card.Text>
                       <Card.Text>{values[id].storeName}</Card.Text>
                     </Card.Body>
-                  </Card>
+                  </div>
                 )}
               </div>
             );

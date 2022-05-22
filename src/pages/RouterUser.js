@@ -27,6 +27,7 @@ import ProfileSellerAdd from "../components/seller/ProfileSellerAdd";
 // import ProfileSellerEdit from "../components/seller/ProfileSellerEdit";
 import PaymentProduct from '../components/user/PaymentProduct';
 import OrderUser from '../components/user/OrderUser';
+import OrderSellerList from '../components/seller/OrderSeller';
 
 
 
@@ -118,6 +119,10 @@ export const RouteUser = [
       {
         path: "/seller/seller-recom/pay/:id",
         element: <PayRecomProduct />,
+      },
+      {
+        path: "/seller/seller-orders",
+        element: <OrderSellerList />,
       },
 
 

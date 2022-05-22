@@ -33,6 +33,7 @@ function CartUser() {
       console.log(user.uid.toString());
     });
   }, []);
+
   const DeleteProductCart = (id, kery) => {
     Swal.fire({
       title: "Are you sure?",
@@ -55,6 +56,7 @@ function CartUser() {
       }
     });
   };
+
   return (
     <div className="default-bg">
       <div

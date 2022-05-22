@@ -1,46 +1,48 @@
-import { Tab } from "bootstrap";
-import React, { useEffect, useState } from "react";
-import { Card, Tabs } from "react-bootstrap";
-import { firebaseAuth, firebaseDB } from "../../server/firebase";
+import React, { useEffect, useState } from 'react';
+import { Tab, Tabs } from 'react-bootstrap';
+import { firebaseAuth, firebaseDB } from '../../server/firebase';
 
-function OrderUser() {
-  const [values, setValues] = useState({});
-  //   const [order, setOrder] = useState({});
-  //   const [address, setAddress] = useState({});
-
-  //   console.log("values", values);
-  //   console.log("order", order);
-  //   console.log("address", address);
-
-  useEffect(() => {
-    firebaseAuth.onAuthStateChanged((user) => {
-      console.log(user.uid.toString());
-      if (user !== null) {
-        firebaseDB
-          .child("Orders")
-          .child(user.uid.toString())
-          .on("value", (snapshot) => {
-            if (snapshot.val() !== null) {
-              setValues({ ...snapshot.val() });
-            } else {
-              setValues({});
-            }
-          });
-      } else {
+function OrderSellerList(){
+  
+    const [values, setValues] = useState({});
+    //   const [order, setOrder] = useState({});
+    //   const [address, setAddress] = useState({});
+  
+    //   console.log("values", values);
+    //   console.log("order", order);
+    //   console.log("address", address);
+  
+    useEffect(() => {
+      firebaseAuth.onAuthStateChanged((user) => {
+        console.log(user.uid.toString());
+        if (user !== null) {
+            
+          firebaseDB
+            .child("Orders").orderByChild("sellerID").equalTo(user.uid.toString())
+            .on("value", (snapshot) => {
+              if (snapshot.val() !== null) {
+                setValues({ ...snapshot.val() });
+              } else {
+                setValues({});
+              }
+            });
+        } else {
+          setValues({});
+        }
+      });
+      return () => {
         setValues({});
-      }
-    });
-    return () => {
-      setValues({});
-    };
-  }, []);
+      };
+    }, []);
 
-  return (
-    <div>
-      <h1>Order</h1>
+
+
+    return(
+        <div>
+            <h1>Order</h1>
       <hr />
-      <div className="container">
-        <Tabs
+      <div className='container'>
+      <Tabs
           defaultActiveKey="orderWaiting"
           id="uncontrolled-tab-example"
           className="mb-3"
@@ -178,7 +180,6 @@ function OrderUser() {
           </Tab>
         </Tabs>
       </div>
-    </div>
-  );
-}
-export default OrderUser;
+        </div>
+    );
+}export default OrderSellerList;

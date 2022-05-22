@@ -137,6 +137,7 @@ function PaymentProduct() {
                 OrderPackage: "",
                 sellerID: id,
                 OrderList: values,
+                OrderSucceed: false,
                 SlipPayment: downloadURL,
                 totalPrice: sum.reduce((partialSum, a) => partialSum + a, 0),
                 totalCost: cost.reduce(

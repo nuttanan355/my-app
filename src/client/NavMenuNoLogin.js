@@ -45,13 +45,13 @@ export const NavMenuNoLogin = [
     cName: 'nav-text',
   
   },
-  {
-    title: 'รายงานปัญหา',
-    path: '/report',
-    icon: <VscIcons.VscReport />,
-    cName: 'nav-text',
+  // {
+  //   title: 'รายงานปัญหา',
+  //   path: '/report',
+  //   icon: <VscIcons.VscReport />,
+  //   cName: 'nav-text',
   
-  },
+  // },
   
   // ------------------------------------
   

@@ -16,7 +16,7 @@ export const ApplicationData = [
     cName: 'nav-text'
   },
   {
-    title: 'Oders',
+    title: 'Orders',
     path: '/user/order',
     icon: <FaIcons.FaEnvelopeOpenText />,
     cName: 'nav-text'

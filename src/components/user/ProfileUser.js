@@ -98,81 +98,81 @@ function ProfileUser() {
   const EditAddress = (id) => {
     setEdit(true);
     return (
-<div>
-      <Modal show={showEdit} onHide={handleEditClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>ที่อยู่ใหม่</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <form className="was-validated container">
-            <div className="form-group mt-3">
-              <input
-                type="text"
-                id="fullName"
-                name="fullName"
-                className="form-control"
-                value={dataAddress[id].zipcode}
-                onChange={handleOnChange}
-                required
-              />
-            </div>
-            <div className="form-group mt-3">
-              <input
-                type="number"
-                id="phoneNumber"
-                name="phoneNumber"
-                className="form-control"
-                value={dataAddress[id].zipcode}
-                onChange={handleOnChange}
-                required
-              />
-            </div>
-            <div className="form-group mt-3">
-              <textarea
-                id="addressDetails"
-                name="addressDetails"
-                className="form-control"
-                value={dataAddress[id].zipcode}
-                style={{ resize: "none" }}
-                onChange={handleOnChange}
-                required
-              />
-            </div>
-            <div className="form-group mt-3">
-              <input
-                type="number"
-                id="zipcode"
-                name="zipcode"
-                className="form-control"
-                value={dataAddress[id].zipcode}
-                onChange={handleOnChange}
-                required
-              />
-            </div>
-          </form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={""}>
-            Save
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <div>
+        <Modal show={showEdit} onHide={handleEditClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>ที่อยู่ใหม่</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <form className="was-validated container">
+              <div className="form-group mt-3">
+                <input
+                  type="text"
+                  id="fullName"
+                  name="fullName"
+                  className="form-control"
+                  value={dataAddress[id].zipcode}
+                  onChange={handleOnChange}
+                  required
+                />
+              </div>
+              <div className="form-group mt-3">
+                <input
+                  type="number"
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  className="form-control"
+                  value={dataAddress[id].zipcode}
+                  onChange={handleOnChange}
+                  required
+                />
+              </div>
+              <div className="form-group mt-3">
+                <textarea
+                  id="addressDetails"
+                  name="addressDetails"
+                  className="form-control"
+                  value={dataAddress[id].zipcode}
+                  style={{ resize: "none" }}
+                  onChange={handleOnChange}
+                  required
+                />
+              </div>
+              <div className="form-group mt-3">
+                <input
+                  type="number"
+                  id="zipcode"
+                  name="zipcode"
+                  className="form-control"
+                  value={dataAddress[id].zipcode}
+                  onChange={handleOnChange}
+                  required
+                />
+              </div>
+            </form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={""}>
+              Save
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     );
   };
 
   return (
-    <div className="default-bg" style={{ backgroundColor: "lightblue" }}>
+    <div className="default-bg" style={{ backgroundColor: "white" }}>
       <h1>Your Profile</h1>
       <hr />
-      <div className="container">
+      <div className="container" style={{ marginTop:"50px" }} >
         <div className="row">
           <div className="col-md-4 profile-img">
             <form method="post">
-              <img src={values.uimg} alt="" />
+              <img src={values.uimg} alt="" style={{ borderRadius: "15px",width:"300px" }} />
               {/* <div className="file btn btn-lg btn-primary">
                 Change Photo
                 <input type="file" name="file" accept="image/*" />
@@ -192,7 +192,7 @@ function ProfileUser() {
         </div>
       </div>
 
-      <div className="container">
+      <div className="container" style={{marginTop:"200px"}}>
         <hr />
         <div className="row ">
           <div className="col-10 mx-4 my-auto">
@@ -209,9 +209,9 @@ function ProfileUser() {
         <hr />
       </div>
 
-      <Modal show={show} onHide={handleClose}>
+      <Modal show={show} onHide={handleClose} style={{ marginTop: "100px" }}>
         <Modal.Header closeButton>
-          <Modal.Title>ที่อยู่ใหม่</Modal.Title>
+          <Modal.Title >ที่อยู่ใหม่</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <form className="was-validated container">
@@ -273,7 +273,7 @@ function ProfileUser() {
 
       {Object.keys(dataAddress).map((id, index) => {
         return (
-          <div className="container px-5" key={index}>
+          <div className="container px-5" key={index} >
             <div className="card">
               <div className="card-body">ชื่อ : {dataAddress[id].fullName}</div>
               <div className="card-body">

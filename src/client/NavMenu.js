@@ -52,13 +52,13 @@ export const NavMenu = [
     cName: 'nav-text',
     
   },
-  {
-    title: 'รายงานปัญหา',
-    path: '/report',
-    icon: <VscIcons.VscReport />,
-    cName: 'nav-text',
+  // {
+  //   title: 'รายงานปัญหา',
+  //   path: '/report',
+  //   icon: <VscIcons.VscReport />,
+  //   cName: 'nav-text',
   
-  },
+  // },
   
   // ------------------------------------
   

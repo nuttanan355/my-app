@@ -111,16 +111,16 @@ hr {
 }
 
 .btn-add:hover {
-    transform: scale(1.5);
-    transition: 200ms;
+    
+  
     color: rgb(255, 255, 255);
     background-color: rgb(241, 119, 4);
     border-radius: 10px;
 }
 
 .btn-delete:hover {
-    transform: scale(1.5);
-    transition: 200ms;
+    
+
     color: rgb(255, 255, 255);
     background-color: rgb(255, 4, 4);
     border-radius: 10px;
@@ -217,6 +217,7 @@ hr {
 .grid-cart {
     display: flex;
     margin-bottom: 80px;
+    flex-wrap: wrap;
 }
 
 .big-cart {

@@ -78,6 +78,7 @@ function CartUser() {
                 marginTop: "10px",
               }}
             >
+             <div type="hidden" style={{display:"block", width:"100%", marginBottom:"10px"}}>ร้าน : {id}</div>
               <div className="big-cart">
                 {Object.keys(values[id]).map((kery, i) => {
                   const value = values[id][kery];
@@ -94,8 +95,9 @@ function CartUser() {
                   sum.push(value.productPrice * value.ValQuantity)
                   cost.push(allC())
                   return (
+                    
                     <div className="item-cart" key={i}>
-                      <div></div>
+                      
                       <div className="cart-detail">
                         <div>
                           <img
@@ -204,6 +206,8 @@ function CartUser() {
                     width: "100%",
                     height: "100%",
                     borderRadius: "0px 0px 15px 0px ",
+                    padding:"10px",
+                    paddingLeft:"30px",
                   }}
                 >
                   <div>

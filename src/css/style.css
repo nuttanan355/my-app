@@ -217,6 +217,7 @@ hr {
 .grid-cart {
     display: flex;
     margin-bottom: 80px;
+    flex-wrap: wrap;
 }
 
 .big-cart {

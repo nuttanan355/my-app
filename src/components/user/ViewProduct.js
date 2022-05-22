@@ -169,7 +169,7 @@ function ViewProduct() {
 
             <div className="row" style={{ background: "white", height: "100px", marginTop: "20px", marginBottom: "20px", borderRadius: "15px" }}>
               <div style={{}}>
-                <img className="col" src='/img/store.png' style={{ height: "70px" , marginTop:"15px",marginLeft:"15px"}} /><span style={{fontSize:"22px"}}>{values.storeName}</span>
+                <img className="col" src='/img/store.png' style={{ height: "70px" ,width: "70px" , marginTop:"15px",marginLeft:"15px"}} /><span style={{fontSize:"22px"}}>{values.storeName}</span>
               </div>
             </div>
 

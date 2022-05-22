@@ -138,10 +138,23 @@ function PaymentProduct() {
                 sellerID: id,
                 OrderList: values,
                 SlipPayment: downloadURL,
+                totalPrice: sum.reduce((partialSum, a) => partialSum + a, 0),
+                totalCost: cost.reduce(
+                  (partialSum, a) => parseInt(partialSum) + parseInt(a),
+                  0
+                ),
               })
               .then(() => {
-                console.log("add Orders success");
-                window.location.href = "/seller/seller-product";
+                firebaseDB
+                  .child("Cart")
+                  .child(user)
+                  .child(id)
+                  .remove()
+                  .then(() => {
+                    console.log("add Orders success");
+                    window.location.href = "/user/order";
+                  })
+                  .catch((error) => console.log(error));
               })
               .catch((error) => console.log(error));
           });
@@ -307,7 +320,7 @@ function PaymentProduct() {
           </div>
         </div>
       </div>
-
+      <hr />
       <div className="container">
         <h3>แสกนเพื่อชำระเงิน</h3>
         <div>
@@ -349,7 +362,6 @@ function PaymentProduct() {
           </form>
         </div>
       </div>
-
       <button className="btn-payment" onClick={checkData}>
         สั่งซื้อสินค้า
       </button>

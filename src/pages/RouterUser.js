@@ -26,6 +26,7 @@ import ProfileSeller from "../components/seller/ProfileSeller";
 import ProfileSellerAdd from "../components/seller/ProfileSellerAdd";
 // import ProfileSellerEdit from "../components/seller/ProfileSellerEdit";
 import PaymentProduct from '../components/user/PaymentProduct';
+import OrderUser from '../components/user/OrderUser';
 
 
 
@@ -76,6 +77,10 @@ export const RouteUser = [
   {
     path: "/user/profile",
     element: <ProfileUser />,
+},
+{
+  path: "/user/order",
+  element: <OrderUser />,
 },
 
    

@@ -117,7 +117,7 @@ function PaymentProduct() {
     Slip.forEach((files) => {
       const sotrageRef = ref(
         firebaseStorage,
-        `orders/${user.uid}/${dateKey}${files.name}`
+        `orders/Order-${dateKey}//${user}/${files.name}`
       );
       const uploadTask = uploadBytesResumable(sotrageRef, files);
       uploadTask.on(
@@ -129,9 +129,10 @@ function PaymentProduct() {
             console.log("Slip", downloadURL);
             firebaseDB
               .child("Orders")
-              .child(user)
+              // .child(user)
               .child("Orders-" + dateKey)
               .set({
+                userID:user,
                 address: address[Seladdress],
                 statusOrder: false,
                 OrderPackage: "",

@@ -14,14 +14,14 @@ function OrderSellerList(){
   
     useEffect(() => {
       firebaseAuth.onAuthStateChanged((user) => {
-        console.log(user.uid.toString());
         if (user !== null) {
-            
+            console.log(user.uid.toString())
           firebaseDB
             .child("Orders").orderByChild("sellerID").equalTo(user.uid.toString())
-            .on("value", (snapshot) => {
+            .once("value", (snapshot) => {
               if (snapshot.val() !== null) {
                 setValues({ ...snapshot.val() });
+                console.log("value",snapshot.val())
               } else {
                 setValues({});
               }

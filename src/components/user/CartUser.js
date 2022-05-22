@@ -66,8 +66,8 @@ function CartUser() {
       </div>
       <div>
         {Object.keys(values).map((id, index) => {
-          const sum =[];
-          const cost =[];
+          const sum = [];
+          const cost = [];
           return (
             <div
               key={index}
@@ -78,26 +78,26 @@ function CartUser() {
                 marginTop: "10px",
               }}
             >
-             <div type="hidden" style={{display:"block", width:"100%", marginBottom:"10px"}}>ร้าน : {id}</div>
+              <div type="hidden" style={{ display: "block", width: "100%", marginBottom: "10px" }}>ร้าน : {id}</div>
               <div className="big-cart">
                 {Object.keys(values[id]).map((kery, i) => {
                   const value = values[id][kery];
                   const quantity = value.ValQuantity;
-                  const allC=()=>{
-                    if(quantity >= value.produtcCost301){
+                  const allC = () => {
+                    if (quantity >= value.produtcCost301) {
                       return value.produtcCost302;
-                    }else if(quantity >= value.produtcCost201){
+                    } else if (quantity >= value.produtcCost201) {
                       return value.produtcCost202;
-                    }else{
+                    } else {
                       return value.produtcCost100;
                     }
                   }
                   sum.push(value.productPrice * value.ValQuantity)
                   cost.push(allC())
                   return (
-                    
+
                     <div className="item-cart" key={i}>
-                      
+
                       <div className="cart-detail">
                         <div>
                           <img
@@ -123,19 +123,7 @@ function CartUser() {
                         </div>
                       </div>
                       <div className="cart-hr" />
-                      <div className="cart-payment">
-                        <button
-                          className="bin-icon"
-                          style={{
-                            marginRight: "20px",
-                            marginLeft: "20px",
-                            fontSize: "22px",
-                          }}
-                          variant="primary"
-                          onClick={() => DeleteProductCart(id, kery)}
-                        >
-                          <RiIcons.RiDeleteBin5Fill />
-                        </button>
+                      <div className="cart-payment" >
                         <div
                           style={{
                             weight: "15px",
@@ -144,7 +132,8 @@ function CartUser() {
                             paddingTop: "6%",
                           }}
                         >
-                          <div>
+                          <div style={{marginLeft:"30px"}}>
+                            <a >{value.productPrice * value.ValQuantity} ฿</a>
                             <button
                               style={{ marginLeft: "50px" }}
                               type="button"
@@ -191,7 +180,18 @@ function CartUser() {
                               <HiIcons.HiPlus className="btn-add" />
                             </button>
                           </div>
-                          <p>{value.productPrice * value.ValQuantity}</p>  
+                          <div style={{ textAlign: "right", marginTop: "20px",  width: "100%" }} >
+                            <button
+                              className="bin-icon"
+                              style={{
+                                fontSize: "22px",
+                              }}
+                              variant="primary"
+                              onClick={() => DeleteProductCart(id, kery)}
+                            >
+                              <RiIcons.RiDeleteBin5Fill />
+                            </button>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -206,14 +206,14 @@ function CartUser() {
                     width: "100%",
                     height: "100%",
                     borderRadius: "0px 0px 15px 0px ",
-                    padding:"10px",
-                    paddingLeft:"30px",
+                    padding: "10px",
+                    paddingLeft: "30px",
                   }}
                 >
                   <div>
-                    <h5>รวมราคา : {sum.reduce((partialSum, a) => partialSum + a, 0)}</h5>
-                    <br />
-                    <h5>ค่าส่ง : {cost.reduce((partialSum, a) => parseInt(partialSum) + parseInt(a),0)}</h5>
+                    <h6 style={{ marginBottom: "20px" }}>ราคาสินค้า : <a style={{ color: "rgb(23, 192, 113)", fontWeight: "bold", fontSize: "22px" }}>{sum.reduce((partialSum, a) => partialSum + a, 0)} </a> บาท</h6>
+                    <h6 style={{ marginBottom: "20px" }}>ค่าส่ง : <a style={{ color: "rgb(23, 192, 113)", fontWeight: "bold", fontSize: "22px" }}> {cost.reduce((partialSum, a) => parseInt(partialSum) + parseInt(a), 0)}</a>  บาท</h6>
+                    <h5 style={{ marginBottom: "20px" }}>ทั้งหมด : <a style={{ color: "rgb(23, 192, 113)", fontWeight: "bold", fontSize: "32px" }}> {(sum.reduce((partialSum, a) => partialSum + a, 0)) + (cost.reduce((partialSum, a) => parseInt(partialSum) + parseInt(a), 0))} </a> บาท</h5>
                   </div>
                 </div>
                 <button

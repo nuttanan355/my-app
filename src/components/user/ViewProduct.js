@@ -167,9 +167,12 @@ function ViewProduct() {
               </div>
             </div>
 
-            <div className="row" style={{ background: "white", height: "100px", marginTop: "20px", marginBottom: "20px", borderRadius: "15px" }}>
-              <div style={{}}>
-                <img className="col" src='/img/store.png' style={{ height: "70px" ,width: "70px" , marginTop:"15px",marginLeft:"15px"}} /><span style={{fontSize:"22px"}}>{values.storeName}</span>
+            <div className="row" style={{ background: "white", height: "60px", marginTop: "20px", marginBottom: "20px", borderRadius: "15px" }}>
+              <div className="col-1" style={{ textAlign:"center"}}>
+                <img  src='/img/store.png' style={{ height: "40px" ,width: "auto" , marginTop:"10px",marginLeft:"15px"}} />
+              </div>
+              <div className="col-3" style={{ textAlign:"left"}}>
+                <h5 style={{ height: "40px" ,width: "auto" , marginTop:"20px"}}>{values.storeName}</h5>
               </div>
             </div>
 

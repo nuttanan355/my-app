@@ -129,9 +129,10 @@ function PaymentProduct() {
             console.log("Slip", downloadURL);
             firebaseDB
               .child("Orders")
-              .child(user)
+              // .child(user)
               .child("Orders-" + dateKey)
               .set({
+                userID:user,
                 address: address[Seladdress],
                 statusOrder: false,
                 OrderPackage: "",

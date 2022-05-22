@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { firebaseAuth } from "../../server/firebase";
+import { firebaseDB } from "../../server/firebase";
 import "../../css/pages.css";
 import "../../css/home.css";
 import "../../css/style.css";
@@ -13,57 +13,68 @@ import Search from "../user/Search";
 import { NavMenu } from "../../client/NavMenu";
 import { NavMenuNoLogin } from "../../client/NavMenuNoLogin";
 import { Link } from "react-router-dom";
-import { Carousel } from "react-bootstrap";
+import { Carousel, CarouselItem } from "react-bootstrap";
 
 function HomeUser() {
-
-  const [user, setUser] = useState(null);
+  const [values, setValues] = useState({});
   useEffect(() => {
-    firebaseAuth.onAuthStateChanged((user) => {
-      setUser(user);
+    firebaseDB.child("ADS").on("value", (snapshot) => {
+      if (snapshot.val !== null) {
+        setValues({ ...snapshot.val() });
+      } else {
+        setValues({});
+      }
     });
   }, []);
 
+console.log(values);
+
   return (
     <div className="default-bg">
-
       <div>
-        {/* <Search /> */}
-        <div className="container" style={{ width: "1500px", textAlign: "center", marginTop: "20px" }}>
-          <div style={{ textAlign: "center", border: "2px solid black", boxShadow: "2px 2px 3px gray" }}>
-            <Carousel variant="light" style={{ borderRadius: "15px" }} >
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src="../../img/ads1.png"
-                  alt="1500*500"
-                  style={{ minHeight: "200px", maxHeight: "500px", width: "1000px" }}
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src="../../img/ads2.png"
-                  alt="1500*500"
-                  style={{ minHeight: "200px", maxHeight: "500px", width: "1000px" }}
-                />
-
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src="../../img/ads1.png"
-                  alt="1500*500"
-                  style={{ minHeight: "200px", maxHeight: "500px", width: "1000px" }}
-                />
-              </Carousel.Item>
+        <div
+          className="container"
+          style={{ width: "1500px", textAlign: "center", marginTop: "20px" }}
+        >
+          {/* <div
+            style={{
+              textAlign: "center",
+              border: "2px solid black",
+              boxShadow: "2px 2px 3px gray",
+            }}> */}
+            
+            <Carousel variant="light">
+              {Object.keys(values).map((url, i) => (
+                <Carousel.Item key={i} >
+                  <img
+                    className="d-block w-100 h-50"
+                    src={values[url]}
+                    alt="1500*500"
+            
+                  />
+                </Carousel.Item>
+              ))}
             </Carousel>
-          </div>
+          {/* </div> */}
         </div>
       </div>
       <br />
-      <div className="container" style={{ background: "white", borderRadius: "15px 15px 15px 15px", boxShadow: "0px 0px 2px lightgray" }}>
-        <h2 style={{ position:"absolute", paddingTop: "20px", color: "orange", fontSize: "25px" }} >
+      <div
+        className="container"
+        style={{
+          background: "white",
+          borderRadius: "15px 15px 15px 15px",
+          boxShadow: "0px 0px 2px lightgray",
+        }}
+      >
+        <h2
+          style={{
+            position: "absolute",
+            paddingTop: "20px",
+            color: "orange",
+            fontSize: "25px",
+          }}
+        >
           <AiIcons.AiFillStar style={{ color: "orange", fontSize: "20px" }} />{" "}
           สินค้าที่ได้รับความนิยม
         </h2>
@@ -73,15 +84,38 @@ function HomeUser() {
       <br />
       <div>
         <div>
-          <div style={{ marginLeft: "50px", marginRight: "50px", background: "white", borderRadius: "15px", boxShadow: "0px 0px 2px lightgray" }}>
-            <h2 style={{ paddingLeft: "50px", paddingTop: "50px", color: "orange", fontSize: "25px" }}>
+          <div
+            style={{
+              marginLeft: "50px",
+              marginRight: "50px",
+              background: "white",
+              borderRadius: "15px",
+              boxShadow: "0px 0px 2px lightgray",
+            }}
+          >
+            <h2
+              style={{
+                paddingLeft: "50px",
+                paddingTop: "50px",
+                color: "orange",
+                fontSize: "25px",
+              }}
+            >
               หมวดหมู่
             </h2>
-            <div className="slide-container" >
-              <section className="item-container" id="slider" style={{ paddingTop: "0px", marginBottom: "50px", height: "300px" }}>
+            <div className="slide-container">
+              <section
+                className="item-container"
+                id="slider"
+                style={{
+                  paddingTop: "0px",
+                  marginBottom: "50px",
+                  height: "300px",
+                }}
+              >
                 {GrouprData.map((item, index) => {
                   return (
-                    <div key={index} >
+                    <div key={index}>
                       <a className="btn" href={item.path}>
                         <button
                           className="btn circle-btn btn-type flex-item"
@@ -97,19 +131,26 @@ function HomeUser() {
                     </div>
                   );
                 })}
-              </section >
+              </section>
             </div>
           </div>
-          <div className="mt-3 p-5" style={{ marginLeft: "50px", marginRight: "50px", background: "white", borderRadius: "15px", boxShadow: "0px 0px 2px lightgray" }}>
-          <h2>สินค้าทั่วไป</h2>
-          <ShowDataUser />
+          <div
+            className="mt-3 p-5"
+            style={{
+              marginLeft: "50px",
+              marginRight: "50px",
+              background: "white",
+              borderRadius: "15px",
+              boxShadow: "0px 0px 2px lightgray",
+            }}
+          >
+            <h2>สินค้าทั่วไป</h2>
+            <ShowDataUser />
           </div>
         </div>
       </div>
-      <div >
-      </div>
-
-    </div >
+      <div></div>
+    </div>
   );
 }
 

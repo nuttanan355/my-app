@@ -1,17 +1,19 @@
 import { Button } from "bootstrap";
 import { updateMetadata } from "firebase/storage";
 import React, { useEffect, useState } from "react";
-import { Tab, Tabs } from "react-bootstrap";
+import { Form, Tab, Tabs } from "react-bootstrap";
 import Swal from "sweetalert2";
+import { CargoData } from "../../client/CargoData";
 import { firebaseAuth, firebaseDB } from "../../server/firebase";
 
 function OrderSellerList() {
   const [values, setValues] = useState({});
   const [OrderPackage, setOrderPackage] = useState(null);
+  const [OrderCompanyPackage, setOrderCompanyPackage] = useState(null);
   //   const [address, setAddress] = useState({});
 
   console.log("OrderPackage", OrderPackage);
-  //   console.log("order", order);
+  console.log("OrderCompanyPackage", OrderCompanyPackage);
   //   console.log("address", address);
 
   const updaateOrderPackage = (id) => {
@@ -30,7 +32,11 @@ function OrderSellerList() {
           firebaseDB
             .child("Orders")
             .child(id)
-            .update({ OrderPackage: OrderPackage, statusOrder: true })
+            .update({
+              OrderPackage: OrderPackage,
+              OrderCompanyPackage: OrderCompanyPackage,
+              statusOrder: true,
+            })
             .then(() => {
               // alert("Add Admin success");
             })
@@ -99,6 +105,36 @@ function OrderSellerList() {
                       </div>
                       <div className="card-body">
                         <form className="was-validated">
+                          <div className="form-group mt-3">
+                            <label htmlFor="OrderCompanyPackages">
+                              บริษัทขนส่งสินค้า
+                            </label>
+
+                            <Form.Select
+                              aria-label="Default select example"
+                              id="OrderCompanyPackage"
+                              name="OrderCompanyPackage"
+                              className="form-select"
+                              onChange={(e) =>
+                                setOrderCompanyPackage(e.target.value)
+                              }
+                              required
+                            >
+                              <option value="">บริษัทขนส่งสินค้า</option>
+                              {CargoData.map((item, keys) => {
+                                return (
+                                  <option
+                                    name="productCategory"
+                                    key={keys}
+                                    value={item.title}
+                                  >
+                                    {item.title}
+                                  </option>
+                                );
+                              })}
+                            </Form.Select>
+                          </div>
+
                           <div className="form-group mt-3">
                             <label htmlFor="OrderPackage">เลขพัสดุ</label>
                             <input

@@ -132,7 +132,7 @@ function PaymentProduct() {
               // .child(user)
               .child("Orders-" + dateKey)
               .set({
-                userID:user,
+                userID: user,
                 address: address[Seladdress],
                 statusOrder: false,
                 OrderPackage: "",
@@ -326,11 +326,12 @@ function PaymentProduct() {
       <div className="container">
         <h3>แสกนเพื่อชำระเงิน</h3>
         <div>
-          <p>บัญชี : {seller.nameBankAccount}</p>
+          <p>ธนาคาร: {seller.bankAccount}</p>
+          <p>ชื่อบัญชี : {seller.nameBankAccount}</p>
           <p>เลขบัญชี : {seller.numberBankAccount}</p>
           <p>QR CODE</p>
           <img
-            // style={}
+            style={{height:"100%",width:"50%"}}
             src={seller.storeImg}
           />
         </div>
@@ -369,5 +370,4 @@ function PaymentProduct() {
       </button>
     </div>
   );
-}
-export default PaymentProduct;
+}export default PaymentProduct;

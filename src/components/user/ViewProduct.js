@@ -70,7 +70,7 @@ function ViewProduct() {
           <div className="container">
             <div className="row" style={{ width: "100%", padding: "20px" }}>
               <div className="col flex-view" style={{ width: "60%" }}>
-                <div clessName="flex-view-item">
+                <div className="flex-view-item">
 
                   {Images.map((url, i) => (
                     <img className="view-img"
@@ -169,7 +169,7 @@ function ViewProduct() {
 
             <div className="row" style={{ background: "white", height: "100px", marginTop: "20px", marginBottom: "20px", borderRadius: "15px" }}>
               <div style={{}}>
-                <img clasName="col" src='/img/store.png' style={{ height: "70px" , marginTop:"15px",marginLeft:"15px"}} /><span style={{fontSize:"22px"}}>{values.storeName}</span>
+                <img className="col" src='/img/store.png' style={{ height: "70px" , marginTop:"15px",marginLeft:"15px"}} /><span style={{fontSize:"22px"}}>{values.storeName}</span>
               </div>
             </div>
 

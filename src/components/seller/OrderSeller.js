@@ -1,59 +1,92 @@
-import React, { useEffect, useState } from 'react';
-import { Tab, Tabs } from 'react-bootstrap';
-import { firebaseAuth, firebaseDB } from '../../server/firebase';
+import { Button } from "bootstrap";
+import { updateMetadata } from "firebase/storage";
+import React, { useEffect, useState } from "react";
+import { Tab, Tabs } from "react-bootstrap";
+import Swal from "sweetalert2";
+import { firebaseAuth, firebaseDB } from "../../server/firebase";
 
-function OrderSellerList(){
-  
-    const [values, setValues] = useState({});
-    //   const [order, setOrder] = useState({});
-    //   const [address, setAddress] = useState({});
-  
-    //   console.log("values", values);
-    //   console.log("order", order);
-    //   console.log("address", address);
-  
-    useEffect(() => {
-      firebaseAuth.onAuthStateChanged((user) => {
-        if (user !== null) {
-            console.log(user.uid.toString())
+function OrderSellerList() {
+  const [values, setValues] = useState({});
+  const [OrderPackage, setOrderPackage] = useState(null);
+  //   const [address, setAddress] = useState({});
+
+  console.log("OrderPackage", OrderPackage);
+  //   console.log("order", order);
+  //   console.log("address", address);
+
+  const updaateOrderPackage = (id) => {
+    if (OrderPackage !== null) {
+      Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire("Deleted!", "Your file has been deleted.", "success");
           firebaseDB
-            .child("Orders").orderByChild("sellerID").equalTo(user.uid.toString())
-            .once("value", (snapshot) => {
-              if (snapshot.val() !== null) {
-                setValues({ ...snapshot.val() });
-                console.log("value",snapshot.val())
-              } else {
-                setValues({});
-              }
+            .child("Orders")
+            .child(id)
+            .update({ OrderPackage: OrderPackage, statusOrder: true })
+            .then(() => {
+              // alert("Add Admin success");
+            })
+            .catch((error) => {
+              console.error(error);
             });
-        } else {
-          setValues({});
         }
       });
-      return () => {
+    } else {
+      Swal.fire("เพิ่มเลขพัสดุ");
+    }
+  };
+
+  useEffect(() => {
+    firebaseAuth.onAuthStateChanged((user) => {
+      if (user !== null) {
+        console.log(user.uid.toString());
+        firebaseDB
+          .child("Orders")
+          .orderByChild("sellerID")
+          .equalTo(user.uid.toString())
+          .once("value", (snapshot) => {
+            if (snapshot.val() !== null) {
+              setValues({ ...snapshot.val() });
+              console.log("value", snapshot.val());
+            } else {
+              setValues({});
+            }
+          });
+      } else {
         setValues({});
-      };
-    }, []);
+      }
+    });
+    return () => {
+      setValues({});
+    };
+  }, []);
 
-
-
-    return(
-        <div>
-            <h1>Order</h1>
+  return (
+    <div>
+      <h1>Order Seller</h1>
       <hr />
-      <div className='container'>
-      <Tabs
+      <div className="container">
+        <Tabs
           defaultActiveKey="orderWaiting"
           id="uncontrolled-tab-example"
-          className="mb-3"
+          fill
+          justify
         >
-          <Tab eventKey="orderWaiting" title="รอจัดส่ง">
+          <Tab eventKey="orderWaiting" title="รอจัดส่ง" style={{ flex: "1" }}>
             <p>รอจัดส่ง</p>
             {Object.keys(values).map((id, index) => {
               return (
-                <div className="container px-5" key={index}>
-                  {values[id].statusOrder==false ? (
-                    <div className="card my-3">
+                <div className="container" key={index}>
+                  {values[id].statusOrder == false ? (
+                    <div className="card my-3" style={{}}>
                       <div className="card-body">
                         ชื่อ : {values[id].address.fullName}
                       </div>
@@ -61,8 +94,24 @@ function OrderSellerList(){
                         เบอร์โทร : {values[id].address.phoneNumber}
                       </div>
                       <div className="card-body">
-                        ที่อยู่ : {values[id].address.addressDetails}{" "}
+                        ที่อยู่ : {values[id].address.addressDetails}
                         รหัสไปรษณีย์ : {values[id].address.zipcode}
+                      </div>
+                      <div className="card-body">
+                        <form className="was-validated">
+                          <div className="form-group mt-3">
+                            <label htmlFor="OrderPackage">เลขพัสดุ</label>
+                            <input
+                              type="text"
+                              id="OrderPackage"
+                              name="OrderPackage"
+                              className="form-control"
+                              placeholder="เลขพัสดุ"
+                              onChange={(e) => setOrderPackage(e.target.value)}
+                              required
+                            />
+                          </div>
+                        </form>
                       </div>
                       <div className="card-body">
                         <p>รายการ</p>
@@ -81,6 +130,12 @@ function OrderSellerList(){
                             </div>
                           );
                         })}
+                        <button
+                          className="btn btn-primary mt-3"
+                          onClick={() => updaateOrderPackage(id)}
+                        >
+                          จัดส่งสินค้า
+                        </button>
                       </div>
                     </div>
                   ) : (
@@ -92,11 +147,11 @@ function OrderSellerList(){
           </Tab>
 
           <Tab eventKey="orderSending" title="กำลังส่ง">
-          <p>กำลังส่ง</p>
+            <p>กำลังส่ง</p>
             {Object.keys(values).map((id, index) => {
               return (
                 <div className="container px-5" key={index}>
-                  {values[id].statusOrder==true ? (
+                  {values[id].statusOrder == true ? (
                     <div className="card my-3">
                       <div className="card-body">
                         ชื่อ : {values[id].address.fullName}
@@ -105,7 +160,7 @@ function OrderSellerList(){
                         เบอร์โทร : {values[id].address.phoneNumber}
                       </div>
                       <div className="card-body">
-                        ที่อยู่ : {values[id].address.addressDetails}{" "}
+                        ที่อยู่ : {values[id].address.addressDetails},
                         รหัสไปรษณีย์ : {values[id].address.zipcode}
                       </div>
                       <div className="card-body">
@@ -136,7 +191,7 @@ function OrderSellerList(){
           </Tab>
 
           <Tab eventKey="oderSucceed" title="สำเร็จ">
-          <p>สำเร็จ</p>
+            <p>สำเร็จ</p>
             {Object.keys(values).map((id, index) => {
               return (
                 <div className="container px-5" key={index}>
@@ -180,6 +235,7 @@ function OrderSellerList(){
           </Tab>
         </Tabs>
       </div>
-        </div>
-    );
-}export default OrderSellerList;
+    </div>
+  );
+}
+export default OrderSellerList;

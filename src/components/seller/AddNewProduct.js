@@ -106,7 +106,7 @@ function AddNewProduct() {
 
   const handleonSubmit = () => {
     Images.forEach((files) => {
-      const sotrageRef = ref(firebaseStorage, `product/${dateKey}/${files.name}`);
+      const sotrageRef = ref(firebaseStorage, `product/Product-${dateKey}/${files.name}`);
       const uploadTask = uploadBytesResumable(sotrageRef, files);
       uploadTask.on("state_changed",
         (snapshot) => { },

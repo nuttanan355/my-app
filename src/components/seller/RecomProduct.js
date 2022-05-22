@@ -28,7 +28,7 @@ function RecomProduct(){
 
 
     return(
-    <div>
+    <div className='container mt-3'>
           {Object.keys(values).map((id, index) => {
             return (
               <div key={index}>

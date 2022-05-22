@@ -34,6 +34,12 @@ function CartUser() {
     });
   }, []);
 
+  const chkSeller =(id)=>{
+    firebaseDB.child("Users").child(id).child("seller").on("value",(snapshot)=>{
+       return <p>{snapshot.val().storeName}</p>
+   });
+  }
+
   const DeleteProductCart = (id, kery) => {
     Swal.fire({
       title: "Are you sure?",
@@ -70,6 +76,11 @@ function CartUser() {
         {Object.keys(values).map((id, index) => {
           const sum = [];
           const cost = [];
+          const nameStore = [];
+          firebaseDB.child("Users").child(id).child("seller").on("value",(snapshot)=>{
+            return nameStore.push(snapshot.val().storeName);
+        });
+
           return (
             <div
               key={index}
@@ -80,7 +91,7 @@ function CartUser() {
                 marginTop: "10px",
               }}
             >
-              <div type="hidden" style={{ display: "block", width: "100%", marginBottom: "10px" }}>ร้าน : {id}</div>
+              <div type="hidden" style={{ display: "block", width: "100%", marginBottom: "10px" }}>ร้าน : {nameStore}</div>
               <div className="big-cart">
                 {Object.keys(values[id]).map((kery, i) => {
                   const value = values[id][kery];

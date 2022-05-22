@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 // import * as HiIcons from "react-icons/hi";
 function HomeAdmin() {
   return (
-    <div className="pt-5 pb-5" style={{ background: "lightgray" }}>
+    <div className="pt-5 pb-5">
       <h1 style={{ fontWeight: "bold", color: "gray" }}>ADMIN</h1>
       <hr />
       <div className="container mb-5 mt-5">

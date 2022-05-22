@@ -76,7 +76,7 @@ function OrderSellerList() {
   }, []);
 
   return (
-    <div>
+    <div style={{ padding: "10px", paddingTop: "20px", paddingLeft: "20px", background: "white", border: "1px solid lightgray", borderRadius: "15px" }}>
       <h1>Order Seller</h1>
       <hr />
       <div className="container">

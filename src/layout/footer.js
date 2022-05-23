@@ -96,11 +96,11 @@ function Footer() {
             </p>
           </div>
           <div className="col-md-4 col-sm-6 col-xs-12">
-            <ul className="social-icons">
+            
+              <img className="btn" style={{ height: "60px",marginLeft: "20px"}} src="../img/logo.png" onClick={() => { window.location.href = '/' }} />
+              <img className="btn" style={{ height: "60px"}} src="../img/kmutnb.png" onClick={() => { window.location.href = '/' }} />
+            
 
-              <img className="btn" style={{ height: "50px", marginLeft: "20px" }} src="../img/logo.png" onClick={() => { window.location.href = '/' }} />
-
-            </ul>
           </div>
         </div>
       </div>

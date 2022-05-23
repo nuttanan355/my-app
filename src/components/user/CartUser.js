@@ -15,10 +15,10 @@ function CartUser() {
 
   useEffect(() => {
 
-    firebaseDB.child("Users").on("value",(snapshot)=>{
-      if(snapshot.val() !== null){
+    firebaseDB.child("Users").on("value", (snapshot) => {
+      if (snapshot.val() !== null) {
         setUsers(snapshot.val());
-      }else{
+      } else {
         setUsers({});
       }
     });
@@ -84,14 +84,14 @@ function CartUser() {
         <RiIcons.RiShoppingBasket2Line style={{ fontSize: "28px" }} />{" "}
         ตะกร้าสินค้า
       </div>
-      <div  style={{ padding: "100px", paddingTop: "20px", paddingRight: "20px", background: "white", border: "1px solid lightgray", borderRadius: "15px", width: "100%",  }}>
+      <div style={{ padding: "100px", paddingTop: "20px", paddingRight: "20px", background: "white", border: "1px solid lightgray", borderRadius: "15px", width: "100%", }}>
         {Object.keys(values).map((id, index) => {
           const sum = [];
           const cost = [];
-        //   const nameStore = [];
-        //   firebaseDB.child("Users").child(id).child("seller").on("value",(snapshot)=>{
-        //     return nameStore.push(snapshot.val().storeName);
-        // });
+          //   const nameStore = [];
+          //   firebaseDB.child("Users").child(id).child("seller").on("value",(snapshot)=>{
+          //     return nameStore.push(snapshot.val().storeName);
+          // });
 
           return (
             <div
@@ -147,18 +147,21 @@ function CartUser() {
                           <br />
                         </div>
                       </div>
-                      <div className="cart-hr" />
-                      <div className="cart-payment" >
+                  
+                      <div className="cart-payment" style={{paddingTop:"0px"}}>
+                      <div className="cart-hr" style={{marginBottom:"10px"}}/>
                         <div
                           style={{
                             weight: "15px",
-                            height: "15px",
+                            height: "200px",
                             alignItems: "center",
-                            paddingTop: "6%",
+                           
                           }}
                         >
-                          <div style={{marginLeft:"30px"}}>
-                            <a a style={{ color: "rgb(23, 192, 113)", fontWeight: "bold", fontSize: "32px" }}>{value.productPrice * value.ValQuantity} </a><a>บาท</a>
+                          <div style={{ marginLeft: "30px" }}>
+                            <div style={{textAlign:"right"}}>
+                              <a a style={{ color: "rgb(23, 192, 113)", fontWeight: "bold", fontSize: "32px" }}>{value.productPrice * value.ValQuantity} </a><a>บาท</a>
+                            </div>
                             <br></br>
                             <button
                               style={{ marginLeft: "50px" }}
@@ -206,7 +209,7 @@ function CartUser() {
                               <HiIcons.HiPlus className="btn-add" />
                             </button>
                           </div>
-                          <div style={{ textAlign: "right", marginTop: "20px",  width: "100%" }} >
+                          <div style={{ textAlign: "right", marginTop: "20px", width: "100%" }} >
                             <button
                               className="bin-icon"
                               style={{
@@ -225,21 +228,23 @@ function CartUser() {
                 })}
               </div>
 
-              <div className="small-cart" style={{ marginLeft: "25px" }}>
+              <div className="small-cart" style={{ marginLeft: "25px" , border:"0",padding:"0"}}>
                 <div
                   style={{
+                    border:"1px solid lightgray",
+                    marginTop:"0px",
                     fontSize: "20px",
                     width: "100%",
-                    height: "100%",
-                    borderRadius: "0px 0px 15px 0px ",
+                    paddingTop:"40px",
+                    borderRadius: "15px 15px 0px 0px ",
                     padding: "10px",
-                    paddingLeft: "30px",
+                    paddingRight: "30px",
                   }}
                 >
                   <div>
-                    <h6 style={{ marginBottom: "20px" }}>ราคาสินค้า : <a style={{ color: "rgb(23, 192, 113)", fontWeight: "bold", fontSize: "22px" }}>{sum.reduce((partialSum, a) => partialSum + a, 0)} </a> บาท</h6>
-                    <h6 style={{ marginBottom: "20px" }}>ค่าส่ง : <a style={{ color: "rgb(23, 192, 113)", fontWeight: "bold", fontSize: "22px" }}> {cost.reduce((partialSum, a) => parseInt(partialSum) + parseInt(a), 0)}</a>  บาท</h6>
-                    <h5 style={{ marginBottom: "20px" }}>ทั้งหมด : <a style={{ color: "rgb(23, 192, 113)", fontWeight: "bold", fontSize: "32px" }}> {(sum.reduce((partialSum, a) => partialSum + a, 0)) + (cost.reduce((partialSum, a) => parseInt(partialSum) + parseInt(a), 0))} </a> บาท</h5>
+                    <h6 style={{ marginBottom: "20px", textAlign: "right" }}>ราคาสินค้า : <a style={{ color: "rgb(23, 192, 113)", fontWeight: "bold", fontSize: "22px" }}>{sum.reduce((partialSum, a) => partialSum + a, 0)} </a> บาท</h6>
+                    <h6 style={{ marginBottom: "20px", textAlign: "right" }}>ค่าส่ง : <a style={{ color: "rgb(23, 192, 113)", fontWeight: "bold", fontSize: "22px" }}> {cost.reduce((partialSum, a) => parseInt(partialSum) + parseInt(a), 0)}</a>  บาท</h6>
+                    <h5 style={{ marginBottom: "20px", textAlign: "right" }}>ทั้งหมด : <a style={{ color: "rgb(23, 192, 113)", fontWeight: "bold", fontSize: "32px" }}> {(sum.reduce((partialSum, a) => partialSum + a, 0)) + (cost.reduce((partialSum, a) => parseInt(partialSum) + parseInt(a), 0))} </a> บาท</h5>
                   </div>
                 </div>
                 <button

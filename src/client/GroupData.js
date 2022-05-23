@@ -14,6 +14,16 @@ import * as HiIcons from 'react-icons/hi';
 import * as RiIcons from 'react-icons/ri';
 import * as SiIcons from 'react-icons/si';
 import * as TiIcons from 'react-icons/ti';
+import { IoMdWatch, IoIosPhonePortrait, IoIosBicycle, IoFastFoodOutline } from "react-icons/io";
+import { RiComputerLine, RiGameFill, RiCamera2Line } from "react-icons/ri";
+import { ImSpoonKnife } from "react-icons/im";
+import { GiBalloons, GiCardRandom, GiDiamondRing } from "react-icons/gi";
+import { TiBrush, TiGroupOutline, TiHomeOutline } from "react-icons/ti";
+import { MdOutlinePets } from "react-icons/md";
+import { FaCat, FaOdnoklassniki } from "react-icons/fa";
+import { GrFavorite } from "react-icons/gr";
+
+
 
 
 export const GrouprData = [
@@ -35,14 +45,14 @@ export const GrouprData = [
   {
     title: 'แว่น & นาฬิกา',
     path: '/mobile',
-    icon: <FiIcons.FiSmartphone />,
+    icon: <IoMdWatch />,
     cName: 'nav-text',
     color: 'green'
   },
   {
     title: 'เครื่องประดับ',
     path: '/mobile',
-    icon: <FiIcons.FiSmartphone />,
+    icon: <GiDiamondRing />,
     cName: 'nav-text',
     color: 'green'
   },
@@ -70,21 +80,21 @@ export const GrouprData = [
   {
     title: 'มือถือ & อุปกรณ์',
     path: '/mobile',
-    icon: <FiIcons.FiSmartphone />,
+    icon: <IoIosPhonePortrait />,
     cName: 'nav-text',
     color: 'green'
   },
   {
     title: 'อาหาร',
     path: '/mobile',
-    icon: <FiIcons.FiSmartphone />,
+    icon: <ImSpoonKnife />,
     cName: 'nav-text',
     color: 'green'
   },
   {
     title: 'ยานพาหนะ',
     path: '/mobile',
-    icon: <FiIcons.FiSmartphone />,
+    icon: <IoIosBicycle />,
     cName: 'nav-text',
     color: 'green'
   },
@@ -98,35 +108,35 @@ export const GrouprData = [
   {
     title: 'อาหารเสริมสุขภาพ',
     path: '/mobile',
-    icon: <FiIcons.FiSmartphone />,
+    icon: <GrFavorite />,
     cName: 'nav-text',
     color: 'green'
   },
   {
     title: 'ของเล่น',
     path: '/mobile',
-    icon: <FiIcons.FiSmartphone />,
+    icon: <GiBalloons />,
     cName: 'nav-text',
     color: 'green'
   },
   {
     title: 'เครื่องใช้ภายในบ้าน',
     path: '/mobile',
-    icon: <FiIcons.FiSmartphone />,
+    icon: <TiHomeOutline />,
     cName: 'nav-text',
     color: 'green'
   },
   {
     title: 'คอมพิวเตอร์ & แล็ปท็อป',
     path: '/mobile',
-    icon: <FiIcons.FiSmartphone />,
+    icon: <RiComputerLine />,
     cName: 'nav-text',
     color: 'green'
   },
   {
     title: 'กีฬา & กิจกรรม',
     path: '/mobile',
-    icon: <FiIcons.FiSmartphone />,
+    icon: <TiGroupOutline />,
     cName: 'nav-text',
     color: 'green'
   },
@@ -140,35 +150,35 @@ export const GrouprData = [
   {
     title: 'เกมส์ & อุปกรณ์เสริม',
     path: '/mobile',
-    icon: <FiIcons.FiSmartphone />,
+    icon: <RiGameFill />,
     cName: 'nav-text',
     color: 'green'
   },
   {
     title: 'สัตว์เลี้ยง',
     path: '/mobile',
-    icon: <FiIcons.FiSmartphone />,
+    icon: <FaCat/>,
     cName: 'nav-text',
     color: 'green'
   },
   {
     title: 'เครื่องเขียน',
     path: '/mobile',
-    icon: <FiIcons.FiSmartphone />,
+    icon: <TiBrush />,
     cName: 'nav-text',
     color: 'green'
   },
   {
     title: 'ตั๋วและบัตรกำนัน',
     path: '/mobile',
-    icon: <FiIcons.FiSmartphone />,
+    icon: <GiCardRandom />,
     cName: 'nav-text',
     color: 'green'
   },
   {
     title: 'กล้อง & อุปกรณ์',
     path: '/mobile',
-    icon: <FiIcons.FiSmartphone />,
+    icon: <RiCamera2Line/>,
     cName: 'nav-text',
     color: 'green'
   },
@@ -176,7 +186,7 @@ export const GrouprData = [
   {
     title: 'แม่และเด็ก',
     path: '/mobile',
-    icon: <FiIcons.FiSmartphone />,
+    icon: <FaOdnoklassniki />,
     cName: 'nav-text',
     color: 'green'
   },

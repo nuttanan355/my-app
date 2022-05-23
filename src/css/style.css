@@ -49,6 +49,14 @@ hr {
     background-color: #E4E6EB;
 }
 
+.hoverproduct {
+    border: 1px solid lightgray;
+}
+
+.hoverproduct:hover {
+    border: 3px solid rgb(0, 255, 149);
+}
+
 .flex-item {
     padding-left: 20px;
     padding-right: 20px;
@@ -163,6 +171,20 @@ hr {
     transform: translate(-50%, -50%);
 }
 
+.menu-seller {
+    border: 1px solid lightgray;
+    transition: 300ms;
+    border-radius: 15px;
+    color: rgb(180, 180, 180);
+}
+
+.menu-seller:hover {
+    border:4px solid rgb(0, 172, 100);
+    transform: scale(0.99);
+    transition: 300ms;
+    border-radius: 15px;
+    color: rgb(0, 172, 100);
+}
 
 .hovercard:hover {
     border: 3px solid rgb(83, 226, 171);
@@ -354,12 +376,12 @@ main {
 
 .slide-container {
     width: 95%;
-    height:450px;
+    height: 450px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: auto;
-   
+
 }
 
 .arrow {

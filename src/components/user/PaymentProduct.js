@@ -168,6 +168,14 @@ function PaymentProduct() {
   // -----------END ADD IMAGE----------------------------
 
   const checkData = () => {
+    if(Seladdress == ""){
+      Swal.fire({
+        icon: 'error',
+        title: 'กรุณาเลือกที่อยู่จัดส่ง',
+      })
+    }else{
+      window.alert('ไม่ว่าง')
+    }
     // if (values.productName === "") {
     //   console.log("ใส่ชื่อ ไอ้สอง")
     // } else if (values.productCategory === "") {
@@ -214,11 +222,11 @@ function PaymentProduct() {
   return (
     <div>
       <h1>ชำระเงิน</h1>
-      <div style={{ paddingLeft:"100px", paddingRight:"100px"}} >
-        <div style={{ padding: "50px", paddingTop: "20px", paddingLeft: "20px", background: "white", border: "1px solid lightgray", borderRadius: "20px"}}>
+      <div style={{ paddingLeft: "100px", paddingRight: "100px" }} >
+        <div style={{ padding: "50px", paddingTop: "20px", paddingLeft: "20px", background: "white", border: "1px solid lightgray", borderRadius: "20px" }}>
           <div
             className="grid"
-            style={{ background: "yellow", display: "flex", marginLeft: "30px", marginRight: "30px" }}
+            style={{ display: "flex", marginLeft: "30px", marginRight: "30px" }}
           >
             <div
               style={{
@@ -283,18 +291,19 @@ function PaymentProduct() {
               {Object.keys(address).map((id, index) => {
                 return (
                   <div className="container px-5 form-check" key={index}>
-                    <div className="card bg-danger">
-                      <input
-                        className="form-check-input"
-                        type="radio"
-                        value={id}
-                        onChange={SelAddressOnChange}
-                      />
-                      <div className="card-body">ชื่อ : {address[id].fullName}</div>
-                      <div className="card-body">
+                    <input
+                      className="form-check-input"
+                      type="radio"
+                      value={id}
+                      name="radio-address"
+                      onChange={SelAddressOnChange}
+                    />
+                    <div style={{ padding: "20px", borderRadius: "15px", border: "1px solid lightgray", boxShadow: "0px 0px 0px black" }}>
+                      <div style={{ marginBottom: "10px" }}>ชื่อ : {address[id].fullName}</div>
+                      <div style={{ marginBottom: "10px" }}>
                         เบอร์โทร :{address[id].phoneNumber}
                       </div>
-                      <div className="card-body">
+                      <div style={{ marginBottom: "10px" }}>
                         ที่อยู่ : {address[id].addressDetails} รหัสไปรษณีย์ :
                         {address[id].zipcode}
                       </div>
@@ -304,76 +313,76 @@ function PaymentProduct() {
               })}
             </div>
           </div>
-        
-        <hr />
-        <div className="container">
-          <h3>ราคารวม</h3>
-          <div>
+
+          <hr />
+          <div className="container">
+            <h3>ราคารวม</h3>
             <div>
-              <h5>
-                รวมราคา : {sum.reduce((partialSum, a) => partialSum + a, 0)}
-              </h5>
-              <br />
-              <h5>
-                ค่าส่ง :{" "}
-                {cost.reduce(
-                  (partialSum, a) => parseInt(partialSum) + parseInt(a),
-                  0
-                )}
-              </h5>
+              <div>
+                <h5>
+                  รวมราคา : {sum.reduce((partialSum, a) => partialSum + a, 0)}
+                </h5>
+                <br />
+                <h5>
+                  ค่าส่ง :{" "}
+                  {cost.reduce(
+                    (partialSum, a) => parseInt(partialSum) + parseInt(a),
+                    0
+                  )}
+                </h5>
+              </div>
             </div>
           </div>
-        </div>
-        <hr />
-        <div className="container">
-          <h3>แสกนเพื่อชำระเงิน</h3>
-          <div>
-            <p>ธนาคาร: {seller.bankAccount}</p>
-            <p>ชื่อบัญชี : {seller.nameBankAccount}</p>
-            <p>เลขบัญชี : {seller.numberBankAccount}</p>
-            <p>QR CODE</p>
-            <img
-              style={{ height: "100%", width: "50%" }}
-              src={seller.storeImg}
-            />
+          <hr />
+          <div className="container">
+            <h3>แสกนเพื่อชำระเงิน</h3>
+            <div>
+              <p>ธนาคาร: {seller.bankAccount}</p>
+              <p>ชื่อบัญชี : {seller.nameBankAccount}</p>
+              <p>เลขบัญชี : {seller.numberBankAccount}</p>
+              <p>QR CODE</p>
+              <img
+                style={{ height: "100%", width: "50%" }}
+                src={seller.storeImg}
+              />
+            </div>
           </div>
-        </div>
-        <hr />
-        <div className="container">
-          <h3>แนบสลิป</h3>
-          <div>
-            <form className="was-validated">
-              {ShowImageSlip.map((url, i) => (
-                <img
-                  key={i}
-                  style={{ width: "150px" }}
-                  src={url}
-                  alt="firebase-images"
-                />
-              ))}
+          <hr />
+          <div className="container">
+            <h3>แนบสลิป</h3>
+            <div>
+              <form className="was-validated">
+                {ShowImageSlip.map((url, i) => (
+                  <img
+                    key={i}
+                    style={{ width: "150px" }}
+                    src={url}
+                    alt="firebase-images"
+                  />
+                ))}
 
-              <div className="form-group">
-                <label style={{ marginRight: "10px" }} htmlFor="productImg">
-                  รูปภาพ ( scale 1:1 ){" "}
-                </label>
-                <input
-                  accept="image/*"
-                  type="file"
-                  onChange={ImageSlipOnChange}
-                  multiple
-                  required
-                />
-              </div>
-            </form>
+                <div className="form-group">
+                  <label style={{ marginRight: "10px" }} htmlFor="productImg">
+                    รูปภาพ ( scale 1:1 ){" "}
+                  </label>
+                  <input
+                    accept="image/*"
+                    type="file"
+                    onChange={ImageSlipOnChange}
+                    multiple
+                    required
+                  />
+                </div>
+              </form>
+            </div>
           </div>
+          <button className="btn-payment" onClick={checkData} >
+            สั่งซื้อสินค้า
+          </button>
         </div>
-        <button className="btn-payment" onClick={checkData}>
-          สั่งซื้อสินค้า
-        </button>
-      </div>
-      <br></br>
-      <br></br>
-      <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
       </div>
     </div >
   );

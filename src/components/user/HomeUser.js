@@ -58,7 +58,7 @@ function HomeUser() {
         </div>
       </div>
       <br />
-      
+
       <div
 
         style={{
@@ -82,7 +82,7 @@ function HomeUser() {
         <ShowDataUserRecom />
       </div>
 
-      <div style={{ marginTop: "10px" }}>
+      <div style={{ marginTop: "30px" ,backgroundImage: "linear-gradient(to right, rgb(83, 226, 171), rgb(78, 208, 248))", paddingTop:"50px", paddingBottom:"50px"}}>
         <div>
           <div
             style={{
@@ -103,14 +103,14 @@ function HomeUser() {
             >
               หมวดหมู่
             </h2>
-            <div className="slide-container">
+            <div className="slide-container" style={{height:"280px"}}>
               <section
-                className="item-container"
                 id="slider"
                 style={{
                   paddingTop: "0px",
                   marginBottom: "50px",
-                  height: "300px",
+                  height: "200px",
+                  
                 }}
               >
                 {GrouprData.map((item, index) => {
@@ -123,6 +123,8 @@ function HomeUser() {
                             width: "12vw",
                             fontSize: "1vw",
                             background: "white",
+                            height: "120px",
+                            marginBottom:"0px",
                           }}
                         >
                           {item.icon} <div>{item.title}</div>
@@ -149,13 +151,7 @@ function HomeUser() {
           </div>
         </div>
       </div>
-      <div></div>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
+      {/* <div style={{height:"200px"}}></div> */}
     </div>
   );
 }

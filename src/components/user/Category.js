@@ -18,14 +18,14 @@ function Category() {
     };
   }, []);
   return (
-    <div>
+    <div style={{padding:"20px"}}>
       <h1>สินค้าทั้งหมด</h1>
-      <div style={{ padding: "50px", paddingTop: "20px", paddingLeft: "20px", background: "white", border: "1px solid lightgray", borderRadius: "20px", width: "80%" }}>
+      <div style={{ padding: "50px", paddingTop: "20px", paddingLeft: "20px", background: "white", border: "1px solid lightgray", borderRadius: "20px" }}>
         <div className='flexbox' style={{ justifyContent: "center" }} >
           {Object.keys(values).map((id, index) => {
             return (
               <div style={{ display: "block ", height: "300px", padding: "5px", width: "12.5%" }} key={index} >
-                <div type="button" className="card" onClick={() => (window.location.href = `/view-product/${id}`)} style={{ borderRadius: "5px" }}>
+                <div type="button" className="hoverproduct" onClick={() => (window.location.href = `/view-product/${id}`)} style={{ borderRadius: "5px" }}>
                   <div className='img-product' >
                     <img
                       id="imgShow"

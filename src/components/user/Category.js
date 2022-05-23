@@ -2,6 +2,9 @@ import React from 'react'
 import { firebaseDB } from "../../server/firebase";
 import { useState, useEffect } from "react";
 import { Card } from "react-bootstrap";
+import { Form } from 'react-bootstrap';
+import { GrouprData } from '../../client/GroupData';
+
 function Category() {
   const [values, setValues] = useState({});
   useEffect(() => {
@@ -18,10 +21,31 @@ function Category() {
     };
   }, []);
   return (
-    <div style={{padding:"20px"}}>
+    <div style={{ padding: "20px" }}>
       <h1>สินค้าทั้งหมด</h1>
       <div style={{ padding: "50px", paddingTop: "20px", paddingLeft: "20px", background: "white", border: "1px solid lightgray", borderRadius: "20px" }}>
         <div className='flexbox' style={{ justifyContent: "center" }} >
+          <div style={{ display: "block", width: "100%" }}>
+            <select
+           
+              aria-label="Default select example"
+              id="productCategory"
+              name="productCategory"
+              className="form-select"
+              required
+              style={{ marginBottom: "20px", width: "250px" }}
+            >
+              <option value="">ประเภทสินค้า</option>
+              {GrouprData.map((item, keys) => {
+                return (
+                  <option name="productCategory" key={keys} value={item.title}>
+                    {item.title}
+                  </option>
+                );
+              })}
+            </select>
+          </div>
+
           {Object.keys(values).map((id, index) => {
             return (
               <div style={{ display: "block ", height: "300px", padding: "5px", width: "12.5%" }} key={index} >

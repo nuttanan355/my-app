@@ -231,21 +231,21 @@ function ProfileSeller() {
       <Accordion defaultActiveKey="0">
         <div style={{ border: "1px solid lightgray" }}>
           <Card.Header>
-            <CustomToggle eventKey="0">Show Profile Seller</CustomToggle>
+            <CustomToggle eventKey="0" htmlFor="productName" > ชื่อร้านค้า : {values.storeName}</CustomToggle>
           </Card.Header>
           <Accordion.Collapse eventKey="0">
             <Card.Body>
               <div className="row">
-                <div className="col-3" style={{ justifyContent: "center" }}>
-                  <img style={{ width: "auto", height: "500px" }} src={values.storeImg} />
+                <div className="col-3" style={{ padding: "50px", paddingTop: "20px", paddingLeft: "20px", background: "white", border: "1px solid lightgray", borderRadius: "15px" }}>
+                  <img style={{ width: "auto", height: "250px" }} src={values.storeImg} />
                 </div>
                 <div className="col">
                   <div className="mt-3">
-                    <label htmlFor="bankAccount" style={{ fontWeight: "bold", color: "gray" }}>ร้านค้า</label>
+                    <label htmlFor="bankAccount" style={{ fontWeight: "bold", color: "gray" }}>Shop Detail</label>
                     <hr />
-                    <label htmlFor="productName">
+                    {/* <label htmlFor="productName">
                       ชื่อร้านค้า : {values.storeName}
-                    </label>
+                    </label> */}
                   </div>
 
                   <div className="mt-3">

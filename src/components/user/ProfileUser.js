@@ -186,37 +186,32 @@ function ProfileUser() {
   };
 
   return (
-    <div className="default-bg" style={{ backgroundColor: "white" }}>
-      <h1>Your Profile</h1>
+    <div className="default-bg"  >
+      
       <hr />
-      <div className="container" style={{ marginTop:"50px" }} >
+      <div className="container" style={{ padding: "50px", paddingTop: "20px", paddingLeft: "20px", background: "white", border: "1px solid lightgray", borderRadius: "15px" }} >
+        
         <div className="row">
           <div className="col-md-4 profile-img">
+          <h1>Profile</h1>
             <form method="post">
-              <img src={values.uimg} alt="" style={{ borderRadius: "15px",width:"300px" }} />
-              {/* <div className="file btn btn-lg btn-primary">
-                Change Photo
-                <input type="file" name="file" accept="image/*" />
-              </div> */}
+              <img src={values.uimg} alt="" style={{ borderRadius: "15px",width:"250px" }} />
+              
             </form>
           </div>
+  
           <div className="col-md-6 my-auto">
             <h2> E-mail : {values.email} </h2>
             <h2>Name : {values.full_name}</h2>
-            {/* <h2>
-              Phone :{values.phoneNumber ? values.phoneNumber.toString() : " ไม่มี "}
-            </h2> */}
-            {/* <button className="btn btn-primary btn-lg mt-3" role="button">
-              <HiIcons.HiOutlinePencil /> แก้ไข
-            </button> */}
           </div>
+          
         </div>
       </div>
 
-      <div className="container" style={{marginTop:"200px"}}>
+      <div className="container" >
         <hr />
         <div className="row ">
-          <div className="col-10 mx-4 my-auto">
+          <div className="col-10 mx-4 my-auto" >
             <h3>Your address</h3>
           </div>
           <button
@@ -235,8 +230,8 @@ function ProfileUser() {
           <Modal.Title >ที่อยู่ใหม่</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form className="was-validated container">
-            <div className="form-group mt-3">
+          <form className="was-validated container" >
+            <div className="form-group mt-3" >
               <input
                 type="text"
                 id="fullName"
@@ -294,8 +289,9 @@ function ProfileUser() {
 
       {Object.keys(dataAddress).map((id, index) => {
         return (
-          <div className="container px-5 mb-5" key={index} >
-            <div className="card">
+          <div className="row" >
+          <div className="col-md-4 profile-img" key={index}  >
+            <div className="card" >
               <div className="card-body">ชื่อ : {dataAddress[id].fullName}</div>
               <div className="card-body">
                 เบอร์โทร :{dataAddress[id].phoneNumber}
@@ -304,7 +300,7 @@ function ProfileUser() {
                 ที่อยู่ : {dataAddress[id].addressDetails},
                 รหัสไปรษณีย์ :{dataAddress[id].zipcode}
               </div>
-              <div className="card-body">
+              <div className="card-body" >
                 {/* <button
                   className="btn btn-info mx-2"
                   onClick={() => {EditAddress(id)}}
@@ -320,6 +316,7 @@ function ProfileUser() {
               </div>
             </div>
           </div>
+        </div>
         );
       })}
     </div>

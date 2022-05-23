@@ -477,3 +477,7 @@ section .thumbnail {
     background-color: #04AA6D;
     color: white;
   }
+  .contentCenter{
+    display: flex;
+    justify-content: center;
+  }

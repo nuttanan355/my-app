@@ -51,12 +51,14 @@ function ShowDataSeller() {
 
       >
         <Tab eventKey="allow" title="อนุมัติ" style={{ background: "#f8f8f8", border: "1px solid lightgray" }}>
-        
+        <br></br>
+        <br></br>
           {Object.keys(values).map((id, index) => {
             return (
               <div key={index} style={{ background: "white" }}>
                 {values[id].productAllow ? (
-                  <div style={{ background: "white" }}>
+                  <div className="productCard" style={{ padding: "50px", paddingTop: "20px", paddingLeft: "20px", background: "white", border: "1px solid lightgray", borderRadius: "15px" }}>
+              
                     <Card.Body >
                       <Card.Img
                         variant="top"
@@ -74,7 +76,9 @@ function ShowDataSeller() {
                 ) : (
                   <></>
                 )}
+                <br></br>
               </div>
+              
             );
           })}
         </Tab>
@@ -99,11 +103,13 @@ function ShowDataSeller() {
                     </Card.Body>
                   </div>
                 )}
+                
               </div>
             );
           })}
         </Tab>
       </Tabs>
+      <br></br>
     </div>
   );
 }

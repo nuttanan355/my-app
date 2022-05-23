@@ -84,8 +84,8 @@ function CartUser() {
         <RiIcons.RiShoppingBasket2Line style={{ fontSize: "28px" }} />{" "}
         ตะกร้าสินค้า
       </div>
-      <div>
-        {Object.keys(values,users).map((id, index) => {
+      <div  style={{ padding: "100px", paddingTop: "20px", paddingRight: "20px", background: "white", border: "1px solid lightgray", borderRadius: "15px", width: "100%",  }}>
+        {Object.keys(values).map((id, index) => {
           const sum = [];
           const cost = [];
         //   const nameStore = [];
@@ -142,7 +142,7 @@ function CartUser() {
                         >
                           <h4>{value.productName}</h4> <br />
                           <h5 style={{ color: "gray" }}>
-                            {value.productPrice} ฿ / ชิ้น
+                            {value.productPrice} บาท / ชิ้น
                           </h5>{" "}
                           <br />
                         </div>
@@ -158,7 +158,8 @@ function CartUser() {
                           }}
                         >
                           <div style={{marginLeft:"30px"}}>
-                            <a >{value.productPrice * value.ValQuantity} ฿</a>
+                            <a a style={{ color: "rgb(23, 192, 113)", fontWeight: "bold", fontSize: "32px" }}>{value.productPrice * value.ValQuantity} </a><a>บาท</a>
+                            <br></br>
                             <button
                               style={{ marginLeft: "50px" }}
                               type="button"
@@ -256,6 +257,8 @@ function CartUser() {
           );
         })}
       </div>
+      <br></br>
+      <br></br>
     </div>
   );
 }

@@ -27,14 +27,13 @@ function HomeUser() {
     });
   }, []);
 
-console.log(values);
+  console.log(values);
 
   return (
     <div className="default-bg">
       <div>
         <div
-          className="container"
-          style={{ width: "1500px", textAlign: "center", marginTop: "20px" }}
+          style={{ textAlign: "center", marginTop: "20px" }}
         >
           {/* <div
             style={{
@@ -42,28 +41,27 @@ console.log(values);
               border: "2px solid black",
               boxShadow: "2px 2px 3px gray",
             }}> */}
-            
-            <Carousel variant="light">
-              {Object.keys(values).map((url, i) => (
-                <Carousel.Item key={i} >
-                  <img
-                    className="d-block w-100 h-50"
-                    src={values[url]}
-                    alt="1500*500"
-            
-                  />
-                </Carousel.Item>
-              ))}
-            </Carousel>
-          {/* </div> */}
+
+          <Carousel variant="light">
+            {Object.keys(values).map((url, i) => (
+              <Carousel.Item key={i} >
+                <img
+                  style={{width:"100%"}}
+                  src={values[url]}
+                  alt="1500*500"
+
+                />
+              </Carousel.Item>
+            ))}
+          </Carousel>
+
         </div>
       </div>
       <br />
       <div
-        className="container"
+
         style={{
           background: "white",
-          borderRadius: "15px 15px 15px 15px",
           boxShadow: "0px 0px 2px lightgray",
         }}
       >
@@ -79,9 +77,8 @@ console.log(values);
           สินค้าที่ได้รับความนิยม
         </h2>
         <ShowDataUserRecom />
-        <br />
       </div>
-      <br />
+
       <div>
         <div>
           <div

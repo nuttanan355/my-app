@@ -52,7 +52,7 @@ function ShowDataUser() {
       <section id="slider" >
         {Object.keys(values).map((id, index) => {
           return (
-            <div className="hovercard-rec" style={{ height: "300px", padding: "5px" }} key={index} >
+            <div className="hovercard-rec" style={{  height: "300px", padding: "5px" }} key={index} >
               <div type="button" onClick={() => (window.location.href = `/view-product/${id}`)} style={{ borderRadius: "5px" }}>
                 <div className='img-product' >
                   <img
@@ -64,7 +64,7 @@ function ShowDataUser() {
                   />
                 </div>
 
-                <div style={{ padding: "10px", background: "white", height: "80px", borderRadius: "0px 0px 5px 5px" ,width:"200px"}}>
+                <div style={{ padding: "10px", background: "white", height: "80px", borderRadius: "0px 0px 5px 5px", width: "200px" }}>
                   <div style={{ height: "40px", overflow: "hidden" }}>
                     <p className='cut-text-multi' style={{ fontWeight: "bold", fontSize: "12px", textAlign: "left" }}>{values[id].productName}</p>
                   </div>

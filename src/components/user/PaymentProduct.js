@@ -212,8 +212,9 @@ function PaymentProduct() {
   // console.log("seller : ",seller);
 
   return (
-    <div className="default-bg">
-      <h3>ชำระเงิน</h3>
+    <div className="default-bg" >
+      <h1>ชำระเงิน</h1>
+      <div style={{ padding: "50px", paddingTop: "20px", paddingLeft: "20px", background: "white", border: "1px solid lightgray", borderRadius: "20px", width: "80%" }}>
       <div
         className="grid"
         style={{ display: "flex", marginLeft: "30px", marginRight: "30px" }}
@@ -232,7 +233,6 @@ function PaymentProduct() {
             </h5>
             <hr style={{ display: "block", width: "80%" }} />
           </div>
-
           {Object.keys(values).map((id, index) => {
             const quantity = values[id].ValQuantity;
             const allC = () => {
@@ -368,6 +368,10 @@ function PaymentProduct() {
       <button className="btn-payment" onClick={checkData}>
         สั่งซื้อสินค้า
       </button>
+      </div>
+      <br></br>
+      <br></br>
+      <br></br>
     </div>
   );
 }export default PaymentProduct;

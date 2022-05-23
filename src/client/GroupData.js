@@ -17,7 +17,7 @@ import * as TiIcons from 'react-icons/ti';
 import { IoMdWatch, IoIosPhonePortrait, IoIosBicycle, IoFastFoodOutline } from "react-icons/io";
 import { RiComputerLine, RiGameFill, RiCamera2Line } from "react-icons/ri";
 import { ImSpoonKnife } from "react-icons/im";
-import { GiBalloons, GiCardRandom, GiDiamondRing } from "react-icons/gi";
+import { GiBalloons, GiCardRandom, GiDiamondRing, GiLipstick } from "react-icons/gi";
 import { TiBrush, TiGroupOutline, TiHomeOutline } from "react-icons/ti";
 import { MdOutlinePets } from "react-icons/md";
 import { FaCat, FaOdnoklassniki } from "react-icons/fa";
@@ -101,7 +101,7 @@ export const GrouprData = [
   {
     title: 'เครื่องสำอาง',
     path: '/mobile',
-    icon: <FiIcons.FiSmartphone />,
+    icon: <GiLipstick />,
     cName: 'nav-text',
     color: 'green'
   },

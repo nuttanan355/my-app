@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 import "../../css/signIn.css";
 import { firebaseAuth, firebaseDB } from "../../server/firebase";
 
@@ -7,7 +8,7 @@ function SignIn() {
     email: "",
     fullName: "",
     password: "",
-    password1: "",
+    passwordConfirm: "",
   });
 
   const handleChange = (e) => {
@@ -15,82 +16,86 @@ function SignIn() {
     console.log(value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    try {
-      firebaseAuth
-        .createUserWithEmailAndPassword(value.email, value.password)
-        .then((CreateUsers) => {
-          var user = CreateUsers.user;
-          firebaseDB
-            .child("Users")
-            .child(user.uid)
-            .set({
-              email: user.email,
-              full_name: value.fullName,
-              uid: user.uid,
-              type: "User",
-              uimg: "",
-            })
-            .then(() => {
-              alert("Add Admin success");
-            })
-            .catch((err) => console.log(err));
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    } catch (error) {
-      console.log(error);
+  const handleSubmit = () => {
+    if(value.fullName === ""){
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'ไม่มีข้อมูลชื่อ',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }else if(value.email === ""){
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'ไม่มีข้อมูลอีเมล',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      
+    }else if(value.password === ""){
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'ไม่มีข้อมูลรหัสผ่าน',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }else if(value.passwordConfirm === ""){
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'ไม่มีข้อมูลยืนยันรหัสผ่าน',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }else if(value.password !== value.passwordConfirm){
+      Swal.fire({
+        position: 'center',
+        icon: 'error',
+        title: 'รหัสผ่านไม่ตรงกัน',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    }else{
+      try {
+        firebaseAuth
+          .createUserWithEmailAndPassword(value.email, value.password)
+          .then((CreateUsers) => {
+            var user = CreateUsers.user;
+            firebaseDB
+              .child("Users")
+              .child(user.uid)
+              .set({
+                email: user.email,
+                full_name: value.fullName,
+                uid: user.uid,
+                type: "User",
+                uimg: "",
+              })
+              .then(() => {
+                alert("Add Admin success");
+              })
+              .catch((err) => console.log(err));
+          })
+          .catch((err) => {
+            console.error(err);
+          });
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
   return (
-    <div className="default-bg">
-
-      {/* <div className="box-login" >
-        <div style={{ background: "red ", height: "500px", width: "800px" }}>
-
-          <label>ชื่อจริง</label>
-          <input
-            type="text"
-            className="form-control"
-            name="fullName"
-            onChange={handleChange}
-          />
-          <label>เบอร์มือถือ</label>
-
-        </div>
-
-      </div> */}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <div  className="limiter">
       <div className="container-login100">
-        <div className="wrap-login100">
-          <div className="login100-pic js-tilt" data-tilt>
-            <img src="/public/img/group-1.jpg" alt="IMG" />
-          </div>
+      <div style={{ background: "white", width:"500px",padding:"20px",textAlign: "center", borderRadius:"15px" }}>
 
-          <form onSubmit={handleSubmit}>
+          <form>
             <h3>Sign Up</h3>
+
             <div className="mb-3">
               <label>Full name</label>
               <input
@@ -101,14 +106,7 @@ function SignIn() {
                 onChange={handleChange}
               />
             </div>
-            {/* <div className="mb-3">
-              <label>Last name</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Last name"
-              />
-            </div> */}
+
             <div className="mb-3">
               <label>Email address</label>
               <input
@@ -129,8 +127,18 @@ function SignIn() {
                 onChange={handleChange}
               />
             </div>
+            <div className="mb-3">
+              <label>Confirm Password</label>
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Confirm password"
+                name="passwordConfirm"
+                onChange={handleChange}
+              />
+            </div>
             <div className="d-grid">
-              <button type="submit" className="btn btn-primary">
+              <button type="button" className="btn btn-primary" onClick={()=>handleSubmit}>
                 Sign Up
               </button>
             </div>

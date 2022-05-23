@@ -6,11 +6,23 @@ import Swal from "sweetalert2";
 import PaymentProduct from "./PaymentProduct";
 import * as RiIcons from "react-icons/ri";
 import * as HiIcons from "react-icons/hi";
+
 function CartUser() {
   const [values, setValues] = useState({});
   const [uid, setUid] = useState();
+  const [users, setUsers] = useState({});
+
 
   useEffect(() => {
+
+    firebaseDB.child("Users").on("value",(snapshot)=>{
+      if(snapshot.val() !== null){
+        setUsers(snapshot.val());
+      }else{
+        setUsers({});
+      }
+    });
+
     firebaseAuth.onAuthStateChanged((user) => {
       if (user !== null) {
         firebaseDB
@@ -34,11 +46,11 @@ function CartUser() {
     });
   }, []);
 
-  const chkSeller =(id)=>{
-    firebaseDB.child("Users").child(id).child("seller").on("value",(snapshot)=>{
-       return <p>{snapshot.val().storeName}</p>
-   });
-  }
+  // const chkSeller =(id)=>{
+  //   firebaseDB.child("Users").child(id).child("seller").on("value",(snapshot)=>{
+  //      return <p>{snapshot.val().storeName}</p>
+  //  });
+  // }
 
   const DeleteProductCart = (id, kery) => {
     Swal.fire({
@@ -73,13 +85,13 @@ function CartUser() {
         ตะกร้าสินค้า
       </div>
       <div>
-        {Object.keys(values).map((id, index) => {
+        {Object.keys(values,users).map((id, index) => {
           const sum = [];
           const cost = [];
-          const nameStore = [];
-          firebaseDB.child("Users").child(id).child("seller").on("value",(snapshot)=>{
-            return nameStore.push(snapshot.val().storeName);
-        });
+        //   const nameStore = [];
+        //   firebaseDB.child("Users").child(id).child("seller").on("value",(snapshot)=>{
+        //     return nameStore.push(snapshot.val().storeName);
+        // });
 
           return (
             <div
@@ -91,7 +103,7 @@ function CartUser() {
                 marginTop: "10px",
               }}
             >
-              <div type="hidden" style={{ display: "block", width: "100%", marginBottom: "10px" }}>ร้าน : {nameStore}</div>
+              <div type="hidden" style={{ display: "block", width: "100%", marginBottom: "10px" }}>ร้าน : {users[id].seller.storeName}</div>
               <div className="big-cart">
                 {Object.keys(values[id]).map((kery, i) => {
                   const value = values[id][kery];

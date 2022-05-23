@@ -5,8 +5,18 @@ import { firebaseDB } from '../../server/firebase';
 
 function RecomAdmin () {
   const [values, setValues] = useState({});
+  const [users, setUsers] = useState({});
 
   useEffect(() => {
+
+    firebaseDB.child("Users").on("value",(snapshot)=>{
+      if(snapshot.val() !== null){
+        setUsers(snapshot.val());
+      }else{
+        setUsers({});
+      }
+    });
+
     firebaseDB.child("Product").orderByChild("ProductAllowRecom").equalTo(false).on("value", (snapshot) => {
         if (snapshot.val() !== null) {
           setValues({ ...snapshot.val() });
@@ -52,11 +62,11 @@ function RecomAdmin () {
       <div className="row">
         {values ?(
           <div>
-                  {Object.keys(values).map((id, index) => {
+                  {Object.keys(values,users).map((id, index) => {
                     return (
                       <div key={index}>
                       <Card  className="my-2">
-                        <Card.Header>ชื่อร้าน</Card.Header>
+                        <Card.Header>ชื่อร้าน : {users[values[id].sellerUid].seller.storeName}</Card.Header>
                         <Card.Body>
                         <Card.Img variant="top" src={values[id].productImg[0]} style={{width:'100px'}} />
                           <Card.Title>{values[id].productName}</Card.Title>

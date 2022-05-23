@@ -48,7 +48,6 @@ function AdsProductsAdmin() {
 
   const AddRess = () => {
     let timerInterval;
-
     Swal.fire({
       title: "รอสักครู่",
       timer: 5000,
@@ -85,7 +84,7 @@ function AdsProductsAdmin() {
               .then(() => {
                 console.log("add ADS success");
                 // handleClose();
-                // window.location.href = "/admin/ads-product";
+                window.location.href = "/admin/ads-product";
               })
               .catch((error) => console.log(error));
           });
@@ -94,28 +93,56 @@ function AdsProductsAdmin() {
     });
   };
 
-  const DelADS=(url)=>{
-    // console.log(values[url]);
+  const DelADS = (url) => {
+    Swal.fire({
+      title: "ต้องการลบ ADS ไหม ?",
+      text: "คุณต้องการลบ ADS ใช่ไหม !",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes",
+    }).then((result) => {
+      if (result.isConfirmed) {
+           // console.log(values[url]);
     const storageDel = firebaseStorage.refFromURL(values[url]);
     storageDel.delete().then(() => {
       firebaseDB
-      .child("ADS")
-      .child(url).remove().then(() => {
-        console.log("DELETE ADS Success");
-        window.location.href = "/admin/ads-product";
-      })
-      .catch((error) => console.log(error));
+        .child("ADS")
+        .child(url)
+        .remove()
+        .then(() => {
+          console.log("DELETE ADS Success");
+          window.location.href = "/admin/ads-product";
+        })
+        .catch((error) => console.log(error));
     });
-  }
+        Swal.fire({
+          // position: 'top-end',
+          icon: "success",
+          title: "คุณได้ลบ ADS แล้ว",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      }
+    });
+
+  };
 
   return (
     <div className="mt-3">
-      <h1>ADS</h1>
-      <hr />
-      <div className="container">
-        <button type="button" className="btn btn-success" onClick={handleShow}>
+      <div className="container row">
+        <h1 className="col">ADS</h1>
+        <button
+          type="button"
+          className="btn btn-success btn-lg col-1"
+          onClick={handleShow}
+        >
           เพิ่ม
         </button>
+      </div>
+      <hr />
+      <div className="container">
         <Modal show={show} onHide={handleClose} style={{ marginTop: "150px" }}>
           <Modal.Header closeButton>
             <Modal.Title>เพิ่มปกโฆษณา</Modal.Title>
@@ -150,22 +177,28 @@ function AdsProductsAdmin() {
         </Modal>
 
         <div className="container">
-          {Object.keys(values).map((url, i) => (
-            <div className="card text-left mt-5" key={i}>
-              <img
-                className="card-img-top"
-                src={values[url]}
-                style={{ alignItems: "center", width: "50%", height: "100%" }}
-                alt=""
-              />
-              <button
-                className="btn btn-danger mt-3"
-                onClick={() => DelADS(url)}
-              >
-                ลบ
-              </button>
-            </div>
-          ))}
+          <div className="row justify-content-md-center">
+            {Object.keys(values).map((url, i) => (
+              <div className="card text-left my-3  mx-2 col-5 p-2" key={i}>
+                <img
+                  className="card-img-top"
+                  src={values[url]}
+                  style={{
+                    alignItems: "center",
+                    width: "100%",
+                    height: "100%  ",
+                  }}
+                  alt=""
+                />
+                <button
+                  className="btn btn-danger mt-3"
+                  onClick={() => DelADS(url)}
+                >
+                  ลบ
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

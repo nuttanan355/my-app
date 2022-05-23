@@ -11,39 +11,28 @@ function HomeAdmin() {
       <h1 style={{ fontWeight: "bold", color: "Turquoise" }}>ADMIN</h1>
       <hr />
       <div className="container mx-auto mt-5">
-        {/* <Link to="/admin/oders" className="btn btn-outline-secondary"  style={{ width: "20%", margin: "2%", border: "0" }}> */}
         <div className="row">
-          <Link
-            to="/admin/new-products"
-            className="btn btn-light btn-lg col mx-2"
-          >
+          
+          <Link to="/admin/new-products" className="btn btn-light btn-lg col mx-2">
             <FcIcons.FcKindle size={200} />
             <div>ตรวจสอบการอัปโหลด</div>
           </Link>
 
-          <Link
-            to="/admin/ads-product"
-            className="btn btn-light btn-lg col mx-2"
-          >
+          <Link to="/admin/ads-product" className="btn btn-light btn-lg col mx-2">
             <FcIcons.FcPicture size={200} />
             <div>ปกโฆษณา</div>
           </Link>
 
-          <Link
-            to="/admin/oders"
-            className="btn btn-light btn-lg col mx-2 "
-          >
+          <Link to="/admin/oders" className="btn btn-light btn-lg col mx-2 ">
             <FcIcons.FcViewDetails size={200} />
             <div>รายการคำสั่งซื้อจากผู้ซื้อ</div>
           </Link>
 
-          <Link
-            to="/admin/recom"
-            className="btn btn-light btn-lg col mx-2"
-          >
+          <Link to="/admin/recom" className="btn btn-light btn-lg col mx-2" >
             <FcIcons.FcDonate size={200} />
             <div>บริการสินค้าแนะนำ</div>
           </Link>
+
         </div>
       </div>
     </div>

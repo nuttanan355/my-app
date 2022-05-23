@@ -324,19 +324,19 @@ function PaymentProduct() {
             </div>
           </div>
         </div>
-        <hr />
-        <div className="container">
-          <h3>แสกนเพื่อชำระเงิน</h3>
-          <div>
-            <p>ธนาคาร: {seller.bankAccount}</p>
-            <p>ชื่อบัญชี : {seller.nameBankAccount}</p>
-            <p>เลขบัญชี : {seller.numberBankAccount}</p>
-            <p>QR CODE</p>
-            <img
-              style={{ height: "100%", width: "50%" }}
-              src={seller.storeImg}
-            />
-          </div>
+      </div>
+      <hr />
+      <div className="container">
+        <h3>แสกนเพื่อชำระเงิน</h3>
+        <div>
+          <p>ธนาคาร: {seller.bankAccount}</p>
+          <p>ชื่อบัญชี : {seller.nameBankAccount}</p>
+          <p>เลขบัญชี : {seller.numberBankAccount}</p>
+          <p>QR CODE</p>
+          <img
+            style={{height:"100%",width:"50%"}}
+            src={seller.imgBankAccount}
+          />
         </div>
         <hr />
         <div className="container">

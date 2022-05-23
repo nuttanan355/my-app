@@ -101,9 +101,11 @@ function ShowDataSeller() {
                       <Card.Text>{values[id].productPrice} ฿</Card.Text>
                       <Card.Text>{values[id].storeName}</Card.Text>
                     </Card.Body>
+                   
                   </div>
+                  
                 )}
-                
+                 <br></br>
               </div>
             );
           })}

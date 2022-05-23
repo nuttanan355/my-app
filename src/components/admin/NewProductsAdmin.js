@@ -35,16 +35,17 @@ function NewProductsAdmin() {
 
   const AllowProduct = (id) => {
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "อนุมัติสินค้า ?",
+      text: "อนุมัติสินค้าให้แสดงและขาย !",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
+      confirmButtonText: "อนุมัติ",
+      cancelButtonText:"ยกเลิก"
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        Swal.fire("อนุมัติสินค้าแล้ว",'','success');
         firebaseDB
           .child("Product")
           .child(id)
@@ -67,20 +68,14 @@ function NewProductsAdmin() {
       <hr />
       <div className="row">
         {values ? (
-          <div>
+          <div style={{}}>
             {Object.keys(values,users).map((id, index) => {
-            //     const nameStore = [];
-            //   firebaseDB.child("Users").child(values[id].sellerUid).child("seller").on("value",(snapshot)=>{
-            //     return nameStore.push(snapshot.val().storeName);
-            // });
-            // console.log("User : ",users[values[id].sellerUid].seller.storeName);
               return (
-                <div key={index}>
-                  <Card className="my-2">
+                  <div className="my-2 border border-dark rounded" key={index}>
                     <Card.Header>ชื่อร้าน : {users[values[id].sellerUid].seller.storeName}
                   </Card.Header>
-                    <Card.Body>
-                      <div className="slide-container">
+                  <Card.Body>
+                  <div className="mb-3 mx-2">
                         <section id="slider">
                           {Object.keys(values[id].productImg).map((url, i) => {
                             return (
@@ -88,7 +83,7 @@ function NewProductsAdmin() {
                                 <div className="img-product">
                                   <Card.Img
                                     id="imgShow"
-                                    className="card-img-top "
+                                    className="card-img-top mx-1"
                                     style={{
                                       width: "200px",
                                       height: "180px",
@@ -102,12 +97,25 @@ function NewProductsAdmin() {
                           })}
                         </section>
                       </div>
-                      <Card.Title>{values[id].productName} ราคา : {values[id].productPrice}</Card.Title>
-                      <Card.Text>ราคาจัดส่งต่อชิ้น : {values[id].produtcCost100}</Card.Text>
-                      <Card.Text>ราคาจัดส่งตั้งแต่ {values[id].produtcCost200} ถึง {values[id].produtcCost201} ราคา : {values[id].produtcCost202}</Card.Text>
-                      <Card.Text>ราคาจัดส่งตั้งแต่ {values[id].produtcCost300} ถึง {values[id].produtcCost301} ราคา : {values[id].produtcCost302}</Card.Text>
-                      <Card.Text>ประเภท : {values[id].productCategory}</Card.Text>
-                      <Card.Text>รายละเอียด : {values[id].productDetails}</Card.Text>
+                      <hr/>
+                      <Card.Title className="mt-3">{values[id].productName}</Card.Title>
+                      <div className="row">
+                          <p className="col">ประเภท : {values[id].productCategory}</p>
+                          <h4 className="col text-right" style={{color:"#dc3545",}}>
+                          ราคา : {values[id].productPrice}
+                          </h4>
+                        </div>
+                      {/* <Card.Text>ประเภท : {values[id].productCategory}</Card.Text> */}
+                      {/* <h4 className="text-right" style={{color:"#dc3545",}}> ราคา : {values[id].productPrice}</h4> */}
+                      <div className="container bg-light">
+                      <Card.Text>ราคาจัดส่งต่อชิ้น : {values[id].produtcCost100} บาท</Card.Text>
+                      <Card.Text>ราคาจัดส่งตั้งแต่ {values[id].produtcCost200} ถึง {values[id].produtcCost201} ราคา : {values[id].produtcCost202} บาท</Card.Text>
+                      <Card.Text>ราคาจัดส่งตั้งแต่ {values[id].produtcCost300} ถึง {values[id].produtcCost301} ราคา : {values[id].produtcCost302} บาท</Card.Text>
+                      </div>
+                      
+                      <hr/>
+                      <p className="badge bg-danger text-wrap">รายละเอียด : </p>
+                      <p>{values[id].productDetails}</p>
 
                       <Button
                         variant="primary"
@@ -118,8 +126,8 @@ function NewProductsAdmin() {
                         อนุมัติ
                       </Button>
                     </Card.Body>
-                  </Card>
-                </div>
+                  </div>
+          
               );
             })}
           </div>

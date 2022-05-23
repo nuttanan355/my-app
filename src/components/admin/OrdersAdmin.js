@@ -40,151 +40,230 @@ function OrdersAdmin() {
       <h1>Order</h1>
       <hr />
       <div className="container">
-        <Tabs
-          defaultActiveKey="orderWaiting"
-          id="uncontrolled-tab-example"
+        <Tabs defaultActiveKey="orderWaiting" id="uncontrolled-tab-example"
           fill
           justify
         >
-          <Tab eventKey="orderWaiting" title="รอจัดส่ง" className="bg-dark">
-            {/* <p>รอจัดส่ง</p> */}
+          <Tab eventKey="orderWaiting" title="รอจัดส่ง" className="bg-light">
             {Object.keys(values).map((id, index) => {
               const sum = [];
               const cost = [];
               return (
-                <div className="container px-3 py-3" key={index}>
+                <div className="px-3 pt-3" key={index}>
                   {values[id].statusOrder == false ? (
-                    <div className="card my-3">
-                      <div className="card-body">
-                        <label className="me-5">
-                          ชื่อ : {values[id].address.fullName}
-                        </label>
-                        <label>
-                          เบอร์โทร : {values[id].address.phoneNumber}
-                        </label>
-                        <br />
-                        <label className="me-5">
-                          ที่อยู่ : {values[id].address.addressDetails}
-                        </label>
-                        <label>
-                          รหัสไปรษณีย์ : {values[id].address.zipcode}
-                        </label>
+                    <div className="p-3 border border-dark rounded bg-light">
+                      <label className="me-5">
+                        ชื่อ : {values[id].address.fullName}
+                      </label>
+                      <label>เบอร์โทร : {values[id].address.phoneNumber}</label>
+                      <br />
+                      <label className="me-5">
+                        ที่อยู่ : {values[id].address.addressDetails}
+                      </label>
+                      <label>รหัสไปรษณีย์ : {values[id].address.zipcode}</label>
 
-                        <div className="row mt-3 mx-2">
-                          <p className="col">รายการ</p>
-                          <p className="col text-right">
-                            {users[values[id].sellerID].seller.storeName}
-                          </p>
-                        </div>
+                      <div className="row mt-3 mx-2">
+                        <p className="col">รายการ</p>
+                        <p className="col text-right">
+                          {users[values[id].sellerID].seller.storeName}
+                        </p>
+                      </div>
 
-                        <hr />
-                        {Object.keys(values[id].OrderList).map((listID, i) => {
-                          let list = values[id].OrderList[listID];
-                          const quantity = list.ValQuantity;
-                          const allC = () => {
-                            if (quantity >= list.produtcCost301) {
-                              return list.produtcCost302;
-                            } else if (quantity >= list.produtcCost201) {
-                              return list.produtcCost202;
-                            } else {
-                              return list.produtcCost100;
-                            }
-                          };
-                          sum.push(list.productPrice * list.ValQuantity);
-                          cost.push(allC());
-                          // let list = values[id].OrderList[listID];
-                          return (
-                            <div className="card" key={i}>
-                              <div className="card-body">
+                      <hr />
+                      {Object.keys(values[id].OrderList).map((listID, i) => {
+                        let list = values[id].OrderList[listID];
+                        const quantity = list.ValQuantity;
+                        const allC = () => {
+                          if (quantity >= list.produtcCost301) {
+                            return list.produtcCost302;
+                          } else if (quantity >= list.produtcCost201) {
+                            return list.produtcCost202;
+                          } else {
+                            return list.produtcCost100;
+                          }
+                        };
+                        sum.push(list.productPrice * list.ValQuantity);
+                        cost.push(allC());
+                        // let list = values[id].OrderList[listID];
+                        return (
+                          <div key={i}>
+                            <div className="container mt-2">
+                              <div className="row">
+                                <div className="col-2">
+                                <img
+                                    id="imgShow"
+                                    className="card-img-top mx-1"
+                                    style={{
+                                      width: "80px",
+                                      height: "70px",
+                                    }}
+                                    alt="Product Images"
+                                    src={list.productImg[0]}
+                                  />
+                                </div>
+                                <div className="col-10">
                                 <label className="me-5">
-                                  ชื่อ : {list.productName}
-                                </label>
-                                <label className="me-5">
-                                  ประเภท : {list.productCategory}
-                                </label>
-                                <label className="me-5">
-                                  ราคาต่อชิ้น : {list.productPrice} บาท
-                                </label>
-                                <label className="me-5">
-                                  จำนวน : {list.ValQuantity} ชิ้น
-                                </label>
-                                <label className="me-5">
-                                  ราคารวม :{" "}
-                                  {list.ValQuantity * list.productPrice} บาท
-                                </label>
+                                ชื่อ : {list.productName}
+                              </label>
+                              <label className="me-5">
+                                ประเภท : {list.productCategory}
+                              </label>
+                              <label className="me-5">
+                                ราคาต่อชิ้น : {list.productPrice} บาท
+                              </label>
+                              <label className="me-5">
+                                จำนวน : {list.ValQuantity} ชิ้น
+                              </label>
+                              <label className="me-5">
+                                ราคารวม : {list.ValQuantity * list.productPrice}{" "}
+                                บาท
+                              </label>
+                                </div>
                               </div>
                             </div>
-                          );
-                        })}
-                        <div>
-                          <label className="me-5">
-                            ราคาสินค้า :{" "}
-                            {sum.reduce((partialSum, a) => partialSum + a, 0)}
-                          </label>
-                          <label className="me-5">
-                            ค่าส่ง :{" "}
-                            {cost.reduce(
+                          </div>
+                        );
+                      })}
+                      <hr />
+                      <div>
+                        <label className="me-5">
+                          ราคาสินค้า :{" "}
+                          {sum.reduce((partialSum, a) => partialSum + a, 0)}
+                        </label>
+                        <label className="me-5">
+                          ค่าส่ง :{" "}
+                          {cost.reduce(
+                            (partialSum, a) =>
+                              parseInt(partialSum) + parseInt(a),
+                            0
+                          )}
+                        </label>
+                        <label className="me-5">
+                          ทั้งหมด :{" "}
+                          {sum.reduce((partialSum, a) => partialSum + a, 0) +
+                            cost.reduce(
                               (partialSum, a) =>
                                 parseInt(partialSum) + parseInt(a),
                               0
-                            )}
-                          </label>
-                          <label className="me-5">
-                            ทั้งหมด :{" "}
-                            {sum.reduce((partialSum, a) => partialSum + a, 0) +
-                              cost.reduce(
-                                (partialSum, a) =>
-                                  parseInt(partialSum) + parseInt(a),
-                                0
-                              )}{" "}
-                            บาท
-                          </label>
-                        </div>
+                            )}{" "}
+                          บาท
+                        </label>
                       </div>
                     </div>
                   ) : (
                     <p></p>
                   )}
-                  <hr />
                 </div>
               );
             })}
           </Tab>
 
-          <Tab eventKey="orderSending" title="กำลังส่ง">
-            {/* <p>กำลังส่ง</p> */}
-            {Object.keys(values).map((id, index) => {
+          
+
+          <Tab eventKey="orderSending" title="กำลังส่ง" className="bg-light">
+          {Object.keys(values).map((id, index) => {
+              const sum = [];
+              const cost = [];
               return (
-                <div className="container px-5" key={index}>
+                <div className="px-3 pt-1" key={index}>
                   {values[id].statusOrder == true ? (
-                    <div className="card my-3">
-                      <div className="card-body">
+                    <div className="p-3 border border-dark rounded bg-light">
+                      <label className="me-5">
                         ชื่อ : {values[id].address.fullName}
+                      </label>
+                      <label>เบอร์โทร : {values[id].address.phoneNumber}</label>
+                      <br />
+                      <label className="me-5">
+                        ที่อยู่ : {values[id].address.addressDetails}
+                      </label>
+                      <label>รหัสไปรษณีย์ : {values[id].address.zipcode}</label>
+
+                      <div className="row mt-3 mx-2">
+                        <p className="col">รายการ</p>
+                        <p className="col text-right">
+                          {users[values[id].sellerID].seller.storeName}
+                        </p>
                       </div>
-                      <div className="card-body">
-                        เบอร์โทร : {values[id].address.phoneNumber}
-                      </div>
-                      <div className="card-body">
-                        ที่อยู่ : {values[id].address.addressDetails}{" "}
-                        รหัสไปรษณีย์ : {values[id].address.zipcode}
-                      </div>
-                      <div className="card-body">
-                        <p>รายการ</p>
-                        <hr />
-                        {Object.keys(values[id].OrderList).map((listID, i) => {
-                          let list = values[id].OrderList[listID];
-                          return (
-                            <div key={i}>
-                              <div className="card">
-                                <div className="card-body">
-                                  <p>{list.productName}</p>
-                                  <p>{list.productCategory}</p>
-                                  <p>{list.ValQuantity}</p>
+
+                      <hr />
+                      {Object.keys(values[id].OrderList).map((listID, i) => {
+                        let list = values[id].OrderList[listID];
+                        const quantity = list.ValQuantity;
+                        const allC = () => {
+                          if (quantity >= list.produtcCost301) {
+                            return list.produtcCost302;
+                          } else if (quantity >= list.produtcCost201) {
+                            return list.produtcCost202;
+                          } else {
+                            return list.produtcCost100;
+                          }
+                        };
+                        sum.push(list.productPrice * list.ValQuantity);
+                        cost.push(allC());
+                        // let list = values[id].OrderList[listID];
+                        return (
+                          <div key={i}>
+                            <div className="container mt-2">
+                              <div className="row">
+                                <div className="col-2">
+                                <img
+                                    id="imgShow"
+                                    className="card-img-top mx-1"
+                                    style={{
+                                      width: "80px",
+                                      height: "70px",
+                                    }}
+                                    alt="Product Images"
+                                    src={list.productImg[0]}
+                                  />
+                                </div>
+                                <div className="col-10">
+                                <label className="me-5">
+                                ชื่อ : {list.productName}
+                              </label>
+                              <label className="me-5">
+                                ประเภท : {list.productCategory}
+                              </label>
+                              <label className="me-5">
+                                ราคาต่อชิ้น : {list.productPrice} บาท
+                              </label>
+                              <label className="me-5">
+                                จำนวน : {list.ValQuantity} ชิ้น
+                              </label>
+                              <label className="me-5">
+                                ราคารวม : {list.ValQuantity * list.productPrice}{" "}
+                                บาท
+                              </label>
                                 </div>
                               </div>
                             </div>
-                          );
-                        })}
+                          </div>
+                        );
+                      })}
+                      <hr />
+                      <div>
+                        <label className="me-5">
+                          ราคาสินค้า :{" "}
+                          {sum.reduce((partialSum, a) => partialSum + a, 0)}
+                        </label>
+                        <label className="me-5">
+                          ค่าส่ง :{" "}
+                          {cost.reduce(
+                            (partialSum, a) =>
+                              parseInt(partialSum) + parseInt(a),
+                            0
+                          )}
+                        </label>
+                        <label className="me-5">
+                          ทั้งหมด :{" "}
+                          {sum.reduce((partialSum, a) => partialSum + a, 0) +
+                            cost.reduce(
+                              (partialSum, a) =>
+                                parseInt(partialSum) + parseInt(a),
+                              0
+                            )}{" "}
+                          บาท
+                        </label>
                       </div>
                     </div>
                   ) : (
@@ -195,40 +274,112 @@ function OrdersAdmin() {
             })}
           </Tab>
 
-          <Tab eventKey="oderSucceed" title="สำเร็จ">
-            {/* <p>สำเร็จ</p> */}
-            {Object.keys(values).map((id, index) => {
+          <Tab eventKey="oderSucceed" title="สำเร็จ" className="bg-light">
+       
+                  {/* {values[id].OrderSucceed == true ? ( */}
+                  {Object.keys(values).map((id, index) => {
+              const sum = [];
+              const cost = [];
               return (
-                <div className="container px-5" key={index}>
+                <div className="px-3 pt-1" key={index}>
                   {values[id].OrderSucceed == true ? (
-                    <div className="card my-3">
-                      <div className="card-body">
+                    <div className="p-3 border border-dark rounded bg-light">
+                      <label className="me-5">
                         ชื่อ : {values[id].address.fullName}
+                      </label>
+                      <label>เบอร์โทร : {values[id].address.phoneNumber}</label>
+                      <br />
+                      <label className="me-5">
+                        ที่อยู่ : {values[id].address.addressDetails}
+                      </label>
+                      <label>รหัสไปรษณีย์ : {values[id].address.zipcode}</label>
+
+                      <div className="row mt-3 mx-2">
+                        <p className="col">รายการ</p>
+                        <p className="col text-right">
+                          {users[values[id].sellerID].seller.storeName}
+                        </p>
                       </div>
-                      <div className="card-body">
-                        เบอร์โทร : {values[id].address.phoneNumber}
-                      </div>
-                      <div className="card-body">
-                        ที่อยู่ : {values[id].address.addressDetails}{" "}
-                        รหัสไปรษณีย์ : {values[id].address.zipcode}
-                      </div>
-                      <div className="card-body">
-                        <p>รายการ</p>
-                        <hr />
-                        {Object.keys(values[id].OrderList).map((listID, i) => {
-                          let list = values[id].OrderList[listID];
-                          return (
-                            <div key={i}>
-                              <div className="card">
-                                <div className="card-body">
-                                  <p>{list.productName}</p>
-                                  <p>{list.productCategory}</p>
-                                  <p>{list.ValQuantity}</p>
+
+                      <hr />
+                      {Object.keys(values[id].OrderList).map((listID, i) => {
+                        let list = values[id].OrderList[listID];
+                        const quantity = list.ValQuantity;
+                        const allC = () => {
+                          if (quantity >= list.produtcCost301) {
+                            return list.produtcCost302;
+                          } else if (quantity >= list.produtcCost201) {
+                            return list.produtcCost202;
+                          } else {
+                            return list.produtcCost100;
+                          }
+                        };
+                        sum.push(list.productPrice * list.ValQuantity);
+                        cost.push(allC());
+                        // let list = values[id].OrderList[listID];
+                        return (
+                          <div key={i}>
+                            <div className="container  mt-2">
+                              <div className="row">
+                                <div className="col-2">
+                                <img
+                                    id="imgShow"
+                                    className="card-img-top mx-1"
+                                    style={{
+                                      width: "80px",
+                                      height: "70px",
+                                    }}
+                                    alt="Product Images"
+                                    src={list.productImg[0]}
+                                  />
+                                </div>
+                                <div className="col-10">
+                                <label className="me-5">
+                                ชื่อ : {list.productName}
+                              </label>
+                              <label className="me-5">
+                                ประเภท : {list.productCategory}
+                              </label>
+                              <label className="me-5">
+                                ราคาต่อชิ้น : {list.productPrice} บาท
+                              </label>
+                              <label className="me-5">
+                                จำนวน : {list.ValQuantity} ชิ้น
+                              </label>
+                              <label className="me-5">
+                                ราคารวม : {list.ValQuantity * list.productPrice}{" "}
+                                บาท
+                              </label>
                                 </div>
                               </div>
                             </div>
-                          );
-                        })}
+                          </div>
+                        );
+                      })}
+                      <hr />
+                      <div>
+                        <label className="me-5">
+                          ราคาสินค้า :{" "}
+                          {sum.reduce((partialSum, a) => partialSum + a, 0)}
+                        </label>
+                        <label className="me-5">
+                          ค่าส่ง :{" "}
+                          {cost.reduce(
+                            (partialSum, a) =>
+                              parseInt(partialSum) + parseInt(a),
+                            0
+                          )}
+                        </label>
+                        <label className="me-5">
+                          ทั้งหมด :{" "}
+                          {sum.reduce((partialSum, a) => partialSum + a, 0) +
+                            cost.reduce(
+                              (partialSum, a) =>
+                                parseInt(partialSum) + parseInt(a),
+                              0
+                            )}{" "}
+                          บาท
+                        </label>
                       </div>
                     </div>
                   ) : (

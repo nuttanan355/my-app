@@ -31,20 +31,17 @@ function RecomAdmin () {
 
   const AllowProduct =(id)=>{
     Swal.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: 'อนุมัติ ?',
+      text: "อนุมัติ สินค้าแนะนำ!",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonText: "อนุมัติ",
+      cancelButtonText:"ยกเลิก"
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        )
+        Swal.fire("อนุมัติสินค้าแล้ว",'','success');
         firebaseDB.child("Product").child(id)
         .update({ProductAllowRecom:true,}).then(() => {
           // alert("Add Admin success");
@@ -65,15 +62,55 @@ function RecomAdmin () {
                   {Object.keys(values,users).map((id, index) => {
                     return (
                       <div key={index}>
-                      <Card  className="my-2">
-                        <Card.Header>ชื่อร้าน : {users[values[id].sellerUid].seller.storeName}</Card.Header>
+                      <div className="my-2 border border-dark rounded" >
+                        <Card.Header>{users[values[id].sellerUid].seller.storeName}</Card.Header>
                         <Card.Body>
-                        <Card.Img variant="top" src={values[id].productImg[0]} style={{width:'100px'}} />
+                        <div className="mb-3 mx-2">
+                        <section id="slider">
+                          {Object.keys(values[id].productImg).map((url, i) => {
+                            return (
+                              <div key={i} >
+                                <div className="img-product">
+                                  <Card.Img
+                                    id="imgShow"
+                                    className="card-img-top mx-1"
+                                    style={{
+                                      width: "200px",
+                                      height: "180px",
+                                    }}
+                                    alt="Product Images"
+                                    src={values[id].productImg[url]}
+                                  />
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </section>
+                      </div>
+
+                        {/* <Card.Img variant="top" src={values[id].productImg[0]} style={{width:'100px'}} /> */}
                           <Card.Title>{values[id].productName}</Card.Title>
-                          <Card.Text>{values[id].productDetails}</Card.Text>
+                          <div className="row">
+                          <div className="col-10">
+                            <p className="badge bg-danger text-wrap">รายละเอียด : </p>
+                          <p>{values[id].productDetails}</p>
+                          </div>
+                          <div className="col">
+                          <p className="badge bg-primary text-wrap">Splip Images : </p>
+                          <img 
+                           style={{
+                            width: "100%",
+                            height: "100%",
+                          }}
+                          alt="Splip Images"
+                          className=' border border-dark rounded'
+                          src={values[id].SlipAllowRecom} />
+                          </div>
+                        </div>
+                          {/* <Card.Text>{values[id].productDetails}</Card.Text> */}
                           <Button variant="primary" onClick={()=>AllowProduct(id)}>อนุมัติ</Button>
                         </Card.Body>
-                      </Card>
+                      </div>
                       </div>
                     );
                   })}

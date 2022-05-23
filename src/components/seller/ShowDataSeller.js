@@ -85,11 +85,11 @@ function ShowDataSeller() {
         <Tab eventKey="not-allow" title="รออนุมัติ">
           {Object.keys(values).map((id, index) => {
             return (
-              <div key={index}>
+              <div key={index} style={{ background: "white" }}>
                 {values[id].productAllow ? (
                   <></>
                 ) : (
-                  <div className="my-2">
+                  <div className="productCard" style={{ padding: "50px", paddingTop: "20px", paddingLeft: "20px", background: "white", border: "1px solid lightgray", borderRadius: "15px" }}>
                     <Card.Body>
                       <Card.Img
                         variant="top"

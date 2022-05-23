@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 function HomeSeller() {
   return (
-    <div>
+    <div >
       <div className="container">
         <div className="row pt-3">
           <div className="col-8 md-10">
@@ -28,7 +28,7 @@ function HomeSeller() {
         </div>
         <hr />
 
-        <div className="row" style={{ padding: "50px", paddingTop: "20px", paddingLeft: "20px", background: "white", border: "1px solid lightgray", borderRadius: "15px" }}>
+        <div className="row" style={{ padding: "50px", paddingTop: "20px", paddingLeft: "20px", background: "#6BCB77", border: "1px solid lightgray", borderRadius: "15px" }}>
 
           <div className="card" style={{ width: "30%", margin: "50px", height: "auto" }} id="div1">
             <Link to="/seller/seller-product">

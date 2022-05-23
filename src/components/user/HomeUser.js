@@ -46,7 +46,7 @@ function HomeUser() {
             {Object.keys(values).map((url, i) => (
               <Carousel.Item key={i} >
                 <img
-                  style={{width:"100%"}}
+                  style={{ width: "100%" }}
                   src={values[url]}
                   alt="1500*500"
 
@@ -58,11 +58,14 @@ function HomeUser() {
         </div>
       </div>
       <br />
+      
       <div
 
         style={{
           background: "white",
           boxShadow: "0px 0px 2px lightgray",
+          paddingLeft: "100px",
+          paddingRight: "100px"
         }}
       >
         <h2
@@ -79,7 +82,7 @@ function HomeUser() {
         <ShowDataUserRecom />
       </div>
 
-      <div>
+      <div style={{ marginTop: "10px" }}>
         <div>
           <div
             style={{

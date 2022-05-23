@@ -76,7 +76,7 @@ function PaymentProduct() {
                 didOpen: () => {
                   Swal.showLoading();
                   const b = Swal.getHtmlContainer().querySelector("b");
-                  timerInterval = setInterval(() => {}, 100);
+                  timerInterval = setInterval(() => { }, 100);
                 },
                 willClose: () => {
                   clearInterval(timerInterval);
@@ -122,7 +122,7 @@ function PaymentProduct() {
       const uploadTask = uploadBytesResumable(sotrageRef, files);
       uploadTask.on(
         "state_changed",
-        (snapshot) => {},
+        (snapshot) => { },
         (error) => console.log(error),
         async () => {
           await getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
@@ -212,166 +212,169 @@ function PaymentProduct() {
   // console.log("seller : ",seller);
 
   return (
-    <div className="default-bg" >
+    <div>
       <h1>ชำระเงิน</h1>
-      <div style={{ padding: "50px", paddingTop: "20px", paddingLeft: "20px", background: "white", border: "1px solid lightgray", borderRadius: "20px", width: "80%" }}>
-      <div
-        className="grid"
-        style={{ display: "flex", marginLeft: "30px", marginRight: "30px" }}
-      >
-        <div
-          style={{
-            display: "block",
-            marginBottom: "20px",
-            width: "60%",
-            paddingRight: "10px",
-          }}
-        >
-          <div style={{ display: "flex" }}>
-            <h5 style={{ display: "block", width: "60px", color: "gray" }}>
-              สินค้า
-            </h5>
-            <hr style={{ display: "block", width: "80%" }} />
-          </div>
-          {Object.keys(values).map((id, index) => {
-            const quantity = values[id].ValQuantity;
-            const allC = () => {
-              if (quantity >= values[id].produtcCost301) {
-                return values[id].produtcCost302;
-              } else if (quantity >= values[id].produtcCost201) {
-                return values[id].produtcCost202;
-              } else {
-                return values[id].produtcCost100;
-              }
-            };
-            sum.push(values[id].productPrice * values[id].ValQuantity);
-            cost.push(allC());
-            return (
-              <div key={index}>
-                <div style={{ display: "flex", marginBottom: "20px" }}>
-                  <img
-                    style={{
-                      display: "block",
-                      height: "50px",
-                      width: "50px",
-                      borderRadius: "15%",
-                    }}
-                    src={values[id].productImg[0]}
-                  />
-                  <a style={{ display: "block", marginLeft: "20px" }}>
-                    {values[id].productName}
-                    <br /> {values[id].productPrice} ฿ <br />{" "}
-                    {values[id].sellerUid}
-                  </a>
-                </div>
+      <div style={{ paddingLeft:"100px", paddingRight:"100px"}} >
+        <div style={{ padding: "50px", paddingTop: "20px", paddingLeft: "20px", background: "white", border: "1px solid lightgray", borderRadius: "20px"}}>
+          <div
+            className="grid"
+            style={{ background: "yellow", display: "flex", marginLeft: "30px", marginRight: "30px" }}
+          >
+            <div
+              style={{
+                display: "block",
+                marginBottom: "20px",
+                width: "60%",
+                paddingRight: "10px",
+              }}
+            >
+              <div style={{ display: "flex" }}>
+                <h5 style={{ display: "block", width: "60px", color: "gray" }}>
+                  สินค้า
+                </h5>
+                <hr style={{ display: "block", width: "80%" }} />
               </div>
-            );
-          })}
-        </div>
-        <div
-          className="address-pay"
-          style={{ display: "block", marginBottom: "20px", width: "40%" }}
-        >
-          <div style={{ display: "flex" }}>
-            <h5 style={{ display: "block", width: "60px", color: "gray" }}>
-              ที่อยู่
-            </h5>
-            <hr style={{ display: "block", width: "80%" }} />
-          </div>
-
-          {Object.keys(address).map((id, index) => {
-            return (
-              <div className="container px-5 form-check" key={index}>
-                <div className="card bg-danger">
-                  <input
-                    className="form-check-input"
-                    type="radio"
-                    value={id}
-                    onChange={SelAddressOnChange}
-                  />
-                  <div className="card-body">ชื่อ : {address[id].fullName}</div>
-                  <div className="card-body">
-                    เบอร์โทร :{address[id].phoneNumber}
+              {Object.keys(values).map((id, index) => {
+                const quantity = values[id].ValQuantity;
+                const allC = () => {
+                  if (quantity >= values[id].produtcCost301) {
+                    return values[id].produtcCost302;
+                  } else if (quantity >= values[id].produtcCost201) {
+                    return values[id].produtcCost202;
+                  } else {
+                    return values[id].produtcCost100;
+                  }
+                };
+                sum.push(values[id].productPrice * values[id].ValQuantity);
+                cost.push(allC());
+                return (
+                  <div key={index}>
+                    <div style={{ display: "flex", marginBottom: "20px" }}>
+                      <img
+                        style={{
+                          display: "block",
+                          height: "50px",
+                          width: "50px",
+                          borderRadius: "15%",
+                        }}
+                        src={values[id].productImg[0]}
+                      />
+                      <a style={{ display: "block", marginLeft: "20px" }}>
+                        {values[id].productName}
+                        <br /> {values[id].productPrice} ฿ <br />{" "}
+                        {values[id].sellerUid}
+                      </a>
+                    </div>
                   </div>
-                  <div className="card-body">
-                    ที่อยู่ : {address[id].addressDetails} รหัสไปรษณีย์ :
-                    {address[id].zipcode}
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-      <hr />
-      <div className="container">
-        <h3>ราคารวม</h3>
-        <div>
-          <div>
-            <h5>
-              รวมราคา : {sum.reduce((partialSum, a) => partialSum + a, 0)}
-            </h5>
-            <br />
-            <h5>
-              ค่าส่ง :{" "}
-              {cost.reduce(
-                (partialSum, a) => parseInt(partialSum) + parseInt(a),
-                0
-              )}
-            </h5>
-          </div>
-        </div>
-      </div>
-      <hr />
-      <div className="container">
-        <h3>แสกนเพื่อชำระเงิน</h3>
-        <div>
-          <p>ธนาคาร: {seller.bankAccount}</p>
-          <p>ชื่อบัญชี : {seller.nameBankAccount}</p>
-          <p>เลขบัญชี : {seller.numberBankAccount}</p>
-          <p>QR CODE</p>
-          <img
-            style={{height:"100%",width:"50%"}}
-            src={seller.storeImg}
-          />
-        </div>
-      </div>
-      <hr />
-      <div className="container">
-        <h3>แนบสลิป</h3>
-        <div>
-          <form className="was-validated">
-            {ShowImageSlip.map((url, i) => (
-              <img
-                key={i}
-                style={{ width: "150px" }}
-                src={url}
-                alt="firebase-images"
-              />
-            ))}
-
-            <div className="form-group">
-              <label style={{ marginRight: "10px" }} htmlFor="productImg">
-                รูปภาพ ( scale 1:1 ){" "}
-              </label>
-              <input
-                accept="image/*"
-                type="file"
-                onChange={ImageSlipOnChange}
-                multiple
-                required
-              />
+                );
+              })}
             </div>
-          </form>
+            <div
+              className="address-pay"
+              style={{ display: "block", marginBottom: "20px", width: "40%" }}
+            >
+              <div style={{ display: "flex" }}>
+                <h5 style={{ display: "block", width: "60px", color: "gray" }}>
+                  ที่อยู่
+                </h5>
+                <hr style={{ display: "block", width: "80%" }} />
+              </div>
+
+              {Object.keys(address).map((id, index) => {
+                return (
+                  <div className="container px-5 form-check" key={index}>
+                    <div className="card bg-danger">
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        value={id}
+                        onChange={SelAddressOnChange}
+                      />
+                      <div className="card-body">ชื่อ : {address[id].fullName}</div>
+                      <div className="card-body">
+                        เบอร์โทร :{address[id].phoneNumber}
+                      </div>
+                      <div className="card-body">
+                        ที่อยู่ : {address[id].addressDetails} รหัสไปรษณีย์ :
+                        {address[id].zipcode}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        
+        <hr />
+        <div className="container">
+          <h3>ราคารวม</h3>
+          <div>
+            <div>
+              <h5>
+                รวมราคา : {sum.reduce((partialSum, a) => partialSum + a, 0)}
+              </h5>
+              <br />
+              <h5>
+                ค่าส่ง :{" "}
+                {cost.reduce(
+                  (partialSum, a) => parseInt(partialSum) + parseInt(a),
+                  0
+                )}
+              </h5>
+            </div>
+          </div>
         </div>
+        <hr />
+        <div className="container">
+          <h3>แสกนเพื่อชำระเงิน</h3>
+          <div>
+            <p>ธนาคาร: {seller.bankAccount}</p>
+            <p>ชื่อบัญชี : {seller.nameBankAccount}</p>
+            <p>เลขบัญชี : {seller.numberBankAccount}</p>
+            <p>QR CODE</p>
+            <img
+              style={{ height: "100%", width: "50%" }}
+              src={seller.storeImg}
+            />
+          </div>
+        </div>
+        <hr />
+        <div className="container">
+          <h3>แนบสลิป</h3>
+          <div>
+            <form className="was-validated">
+              {ShowImageSlip.map((url, i) => (
+                <img
+                  key={i}
+                  style={{ width: "150px" }}
+                  src={url}
+                  alt="firebase-images"
+                />
+              ))}
+
+              <div className="form-group">
+                <label style={{ marginRight: "10px" }} htmlFor="productImg">
+                  รูปภาพ ( scale 1:1 ){" "}
+                </label>
+                <input
+                  accept="image/*"
+                  type="file"
+                  onChange={ImageSlipOnChange}
+                  multiple
+                  required
+                />
+              </div>
+            </form>
+          </div>
+        </div>
+        <button className="btn-payment" onClick={checkData}>
+          สั่งซื้อสินค้า
+        </button>
       </div>
-      <button className="btn-payment" onClick={checkData}>
-        สั่งซื้อสินค้า
-      </button>
+      <br></br>
+      <br></br>
+      <br></br>
       </div>
-      <br></br>
-      <br></br>
-      <br></br>
-    </div>
+    </div >
   );
-}export default PaymentProduct;
+} export default PaymentProduct;

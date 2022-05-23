@@ -145,7 +145,7 @@ function AdsProductsAdmin() {
       <div className="container">
         <Modal show={show} onHide={handleClose} style={{ marginTop: "150px" }}>
           <Modal.Header closeButton>
-            <Modal.Title>เพิ่มปกโฆษณา</Modal.Title>
+            <Modal.Title>เพิ่มปกโฆษณา (1920 * 500) </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form className="was-validated container">

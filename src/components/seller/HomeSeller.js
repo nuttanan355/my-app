@@ -15,7 +15,8 @@ function HomeSeller() {
       <div className="container">
         <div className="row pt-3">
           <div className="col-8 md-10">
-            <h1>ร้านค้าของฉัน</h1>
+          
+            <h1> ร้านค้าของฉัน</h1>
           </div>
           <a
             href="/seller/seller-product/add-product"
@@ -27,9 +28,9 @@ function HomeSeller() {
         </div>
         <hr />
 
-        <div className="row">
+        <div className="row" style={{ padding: "50px", paddingTop: "20px", paddingLeft: "20px", background: "white", border: "1px solid lightgray", borderRadius: "15px" }}>
 
-          <div className="col" style={{ width: "30%", margin: "50px", height: "auto" }} id="div1">
+          <div className="card" style={{ width: "30%", margin: "50px", height: "auto" }} id="div1">
             <Link to="/seller/seller-product">
               <div className="text-center btn-seller" style={{ padding: "10px" }}>
                 <FcIcons.FcAdvertising style={{ fontSize: "12vw" }} />
@@ -39,7 +40,7 @@ function HomeSeller() {
             </Link>
           </div>
 
-          <div className="col " style={{ width: "30%", margin: "50px" }} id="div2">
+          <div className="card " style={{ width: "30%", margin: "50px" }} id="div2">
             <Link to="/seller/seller-orders">
               <div className="text-center btn-seller" style={{ padding: "10px" }}>
                 <FcIcons.FcFinePrint style={{ fontSize: "12vw" }} />
@@ -48,7 +49,7 @@ function HomeSeller() {
 
             </Link>
           </div>
-          <div className="col" style={{ width: "30%", margin: "50px" }} id="div3">
+          <div className="card" style={{ width: "30%", margin: "50px" }} id="div3">
             <Link to="/seller/seller-payment">
               <div className="text-center btn-seller" style={{ padding: "10px" }}>
                 <FcIcons.FcMoneyTransfer style={{ fontSize: "12vw" }} />
@@ -58,7 +59,7 @@ function HomeSeller() {
             </Link>
           </div>
           <div className="w-100"></div>
-          <div className="col" style={{ width: "30%", margin: "50px" }} id="div4">
+          <div className="card" style={{ width: "30%", margin: "50px" }} id="div4">
             <Link to="/seller/seller-recom">
               <div className="text-center btn-seller" style={{ padding: "10px" }}>
                 <FcIcons.FcCustomerSupport style={{ fontSize: "12vw" }} />
@@ -66,7 +67,7 @@ function HomeSeller() {
               </div>
             </Link>
           </div>
-          <div className="col" style={{ width: "30%", margin: "50px" }} id="div5">
+          <div className="card" style={{ width: "30%", margin: "50px" }} id="div5">
             <Link to="/seller/seller-profile">
               <div className="text-center btn-seller" style={{ padding: "10px" }}>
                 <FcIcons.FcShop style={{ fontSize: "12vw" }} />
@@ -74,7 +75,7 @@ function HomeSeller() {
               </div>
             </Link>
           </div>
-          <div className="col" style={{ width: "30%", margin: "50px" }} id="div6">
+          <div className="card" style={{ width: "30%", margin: "50px" }} id="div6">
             <Link to="/seller/seller-packgate">
               <div className="text-center btn-seller" style={{ padding: "10px" }}>
                 <FcIcons.FcPackage style={{ fontSize: "12vw" }} />
@@ -84,7 +85,14 @@ function HomeSeller() {
           </div>
         </div>
       </div>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
     </div>
+    
   );
 }
 

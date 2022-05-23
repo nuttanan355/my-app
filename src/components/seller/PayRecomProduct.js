@@ -92,19 +92,21 @@ const AddRecomProduct=()=>{
 
 
     return(
-    <div className="container mt-4">
+  <div> 
+    <h1>สินค้าแนะนำ</h1>
+    <div className="container mt-4" style={{ padding: "50px", paddingTop: "20px", paddingLeft: "20px", background: "white", border: "1px solid lightgray", borderRadius: "20px" }} >
 
-        <h1>สินค้าแนะนำ</h1>
+  
         <hr/>
-        <div>
+        <div className="card" style={{ padding: "50px", paddingTop: "20px", paddingLeft: "20px", background: "white", border: "1px solid lightgray", borderRadius: "20px" }}>
           <p>ชื่อร้าน : {values.storeName}</p>
-        </div>
-        <div>
           <p>E-Mail ร้าน : {values.sellerEmail}</p>
+          <p>ชื่อสินค้า : {values.productName}</p>
+ 
         </div>
         <hr/>
         <div>
-          <p>E-Mail ร้าน : {values.sellerEmail}</p>
+          
         </div>
         <hr/>
         <div className="container">
@@ -136,7 +138,14 @@ const AddRecomProduct=()=>{
           </form>
         </div>
       </div>
-        <button className='btn btn-success' onClick={()=>AddRecomProduct()}>บริการสินค้าแนะนำ</button>
+        <button className='btn btn-success' onClick={()=>AddRecomProduct()}>Confirm</button>
     </div>
+    <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+      <br></br>
+  </div> 
     );
 }export default PayRecomProduct

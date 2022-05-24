@@ -182,7 +182,6 @@ function ViewProduct() {
                   <div className="col" style={{ padding: "10px", paddingTop: "20px", paddingLeft: "20px", background: "white", border: "1px solid lightgray", borderRadius: "15px" }}>
                     <h3 style={{ color: "lightgray" }}>รายละเอียดสินค้า</h3>
                     <hr style={{ width: "80%" }} />
-
                     <div >
                       <p style={{ fontSize: "18px", fontWeight:"bold" }} >
                         {values.productName}
@@ -191,6 +190,13 @@ function ViewProduct() {
                         {values.productDetails}
                       </p>
                     </div>
+                    <br/>
+                    <div className="container bg-light">
+                      <h4 style={{ color: "lightgray" }}>ค่าส่ง</h4>
+                      <p>ราคาจัดส่งต่อชิ้น : {values.produtcCost100} บาท</p>
+                      <p>ราคาจัดส่งตั้งแต่ {values.produtcCost200} ถึง {values.produtcCost201} ราคา : {values.produtcCost202} บาท</p>
+                      <p>ราคาจัดส่งตั้งแต่ {values.produtcCost300} ถึง {values.produtcCost301} ราคา : {values.produtcCost302} บาท</p>
+                      </div>
                   </div>
                 </div>
               </div>
